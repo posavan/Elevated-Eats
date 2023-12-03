@@ -2,11 +2,7 @@
   <div class="list-ingredients">
     <h1>Ingredients</h1>
     <section class="container">
-      <ingredient
-        v-for="ingredient in ingredients"
-        v-bind:key="ingredient.id"
-        v-bind:item="ingredient"
-      />
+      <ingredient v-for="ingredient in currentIngredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
 
     <button v-show="!showForm" v-on:click="showForm = true">
@@ -20,83 +16,37 @@
       </div>
       <div>
         <label for="type">Calories: </label>
-        <input
-          type="number"
-          name="calories"
-          id="calories"
-          v-model="newIngredient.calories"
-        />
-      </section>
+        <input type="number" name="calories" id="calories" v-model="newIngredient.calories" />
+      </div>
+      <button type="submit">Save Ingredient</button>
+    </form>
+  </div>
+</template>
   
-      <button v-show="!showForm" v-on:click="showForm = true">Add Ingredient</button>
-  
-      <form v-on:submit.prevent="createNewIngredient" v-show="showForm">
-        <div>
-          <label for="name">Name: </label>
-          <input type="text" name="name" id="name" v-model="newIngredient.name" />
-        </div>
-        <div>
-          <label for="type">Calories: </label>
-          <input type="number" name="calories" id="calories" v-model="newIngredient.calories" />
-        </div>
-  
-        <button type="submit">Save Ingredient</button>
-      </form>
-    </div>
-  </template>
-  
-  <script>
-  import Ingredient from "../components/Ingredient.vue";
-  import ingredientService from "../services/IngredientService.js";
-  
-  export default {
-    components: { Ingredient },
-    name: "ListIngredientsView",
-    data() {
-      return {
-        ingredients : [],
-        showForm: false,
-        newIngredient: {},
-      };
+<script>
+import Ingredient from "../components/Ingredient.vue";
+import ingredientService from "../services/IngredientService.js";
+
+export default {
+  components: { Ingredient },
+  name: "ListIngredientsView",
+  data() {
+    return {
+      //ingredients: [],
+      showForm: false,
+      newIngredient: {},
+    };
+  },
+  computed: {
+    currentIngredients() {
+      return this.$store.state.ingredients;
     },
-    // computed: {
-    //   currentIngredients() {
-    //     return this.$store.state.ingredients;
-    //   },
-    // },
-    methods: {
-      createNewIngredient() {
-        if (this.newIngredient.name) {
-            ingredientService
-            .createIngredient(this.newIngredient)
-            .then(() => {
-              this.newIngredient= {};
-              this.showForm = false;
-              this.loadIngredients();
-            })
-            .catch((error) => {
-              if (error.response) {
-                // error.response exists
-                // Request was made, but response has error status (4xx or 5xx)
-                console.log("Error adding Ingredient: ", error.response.status);
-              } else if (error.request) {
-                // There is no error.response, but error.request exists
-                // Request was made, but no response was received
-                console.log(
-                  "Error adding Ingredient: unable to communicate to server"
-                );
-              } else {
-                // Neither error.response and error.request exist
-                // Request was *not* made
-                console.log("Error adding Ingredient: make request");
-              }
-            });
-        }
-      },
-  
-      loadIngredients() {
+  },
+  methods: {
+    createNewIngredient() {
+      if (this.newIngredient.name) {
         ingredientService
-          .addIngredient(this.newIngredient)
+          .createIngredient(this.newIngredient)
           .then(() => {
             this.newIngredient = {};
             this.showForm = false;
@@ -147,16 +97,12 @@
             console.log("Error loading ingredients: make request");
           }
         });
-    },
-    saveIngredients() {
-      this.$store.commit(`ADD_INGREDIENT`, this.newIngredient);
-      this.newIngredient = {};
-    },
-  },
+    }
+},
 
-  created() {
-    this.loadIngredients();
-  },
+created() {
+  this.loadIngredients();
+},
 };
 </script>
 

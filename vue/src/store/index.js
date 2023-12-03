@@ -8,7 +8,10 @@ export function createStore(currentToken, currentUser) {
     state: {
       token: currentToken || "",
       user: currentUser || {},
+
+      ingredients: [],
     },
+
     mutations: {
       SET_AUTH_TOKEN(state, token) {
         state.token = token;
@@ -57,7 +60,7 @@ export function createStore(currentToken, currentUser) {
 
       ADD_INGREDIENT(state, payload) {
         state.ingredients.push(payload);
-      }
+      },
     },
   });
   return store;
