@@ -1,11 +1,30 @@
 <template>
-    <div class="list-ingredients">
-      <h1>Ingredients</h1>
-      <section class="container">
-        <ingredient
-          v-for="ingredient in ingredients"
-          v-bind:key="ingredient.id"
-          v-bind:item="ingredient"
+  <div class="list-ingredients">
+    <h1>Ingredients</h1>
+    <section class="container">
+      <ingredient
+        v-for="ingredient in ingredients"
+        v-bind:key="ingredient.id"
+        v-bind:item="ingredient"
+      />
+    </section>
+
+    <button v-show="!showForm" v-on:click="showForm = true">
+      Add Ingredient
+    </button>
+
+    <form v-on:submit.prevent="createNewIngredient" v-show="showForm">
+      <div>
+        <label for="name">Name: </label>
+        <input type="text" name="name" id="name" v-model="newIngredient.name" />
+      </div>
+      <div>
+        <label for="type">Calories: </label>
+        <input
+          type="number"
+          name="calories"
+          id="calories"
+          v-model="newIngredient.calories"
         />
       </section>
   
@@ -77,42 +96,69 @@
   
       loadIngredients() {
         ingredientService
-          .list()
-          .then((response) => {
-            console.log("Reached created in ListIngredientsView.vue");
-            console.log(response);
-            this.ingredients = response.data;
+          .addIngredient(this.newIngredient)
+          .then(() => {
+            this.newIngredient = {};
+            this.showForm = false;
+            this.loadIngredients();
           })
           .catch((error) => {
             if (error.response) {
               // error.response exists
               // Request was made, but response has error status (4xx or 5xx)
-              console.log("Error loading ingredients: ", error.response.status);
+              console.log("Error adding Ingredient: ", error.response.status);
             } else if (error.request) {
               // There is no error.response, but error.request exists
               // Request was made, but no response was received
               console.log(
-                "Error loading ingredients: unable to communicate to server"
+                "Error adding Ingredient: unable to communicate to server"
               );
             } else {
               // Neither error.response and error.request exist
               // Request was *not* made
-              console.log("Error loading ingredients: make request");
+              console.log("Error adding Ingredient: make request");
             }
           });
-      },
-      saveIngredients() {
-        this.$store.commit(`ADD_INGREDIENT`, this.newIngredient);
-        this.newIngredient = {}; 
       }
     },
-  
-    created() {
-      this.loadIngredients();
+
+    loadIngredients() {
+      ingredientService
+        .list()
+        .then((response) => {
+          console.log("Reached created in ListIngredientsView.vue");
+          console.log(response);
+          this.ingredients = response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            // error.response exists
+            // Request was made, but response has error status (4xx or 5xx)
+            console.log("Error loading ingredients: ", error.response.status);
+          } else if (error.request) {
+            // There is no error.response, but error.request exists
+            // Request was made, but no response was received
+            console.log(
+              "Error loading ingredients: unable to communicate to server"
+            );
+          } else {
+            // Neither error.response and error.request exist
+            // Request was *not* made
+            console.log("Error loading ingredients: make request");
+          }
+        });
     },
-  };
-  </script>
-  
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
-  <style scoped></style>
-  
+    saveIngredients() {
+      this.$store.commit(`ADD_INGREDIENT`, this.newIngredient);
+      this.newIngredient = {};
+    },
+  },
+
+  created() {
+    this.loadIngredients();
+  },
+};
+</script>
+
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped></style>
