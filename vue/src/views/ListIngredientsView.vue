@@ -40,12 +40,16 @@
         newIngredient: {},
       };
     },
-  
+    // computed: {
+    //   currentIngredients() {
+    //     return this.$store.state.ingredients;
+    //   },
+    // },
     methods: {
       createNewIngredient() {
         if (this.newIngredient.name) {
             ingredientService
-            .addIngredient(this.newIngredient)
+            .createIngredient(this.newIngredient)
             .then(() => {
               this.newIngredient= {};
               this.showForm = false;

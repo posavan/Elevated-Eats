@@ -52,6 +52,9 @@ const routes = [
     path: "/ingredients",
     name: "listIngredients",
     component: ListIngredientsView,
+    meta: {
+      requiresAuth: false,
+    },
   },
 ];
 

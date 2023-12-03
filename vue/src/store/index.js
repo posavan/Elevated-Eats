@@ -1,5 +1,6 @@
 import { createStore as _createStore } from "vuex";
 import axios from "axios";
+
 import ingredientService from "../services/IngredientService";
 
 export function createStore(currentToken, currentUser) {
@@ -55,9 +56,6 @@ export function createStore(currentToken, currentUser) {
       },
 
       ADD_INGREDIENT(state, payload) {
-        state.ingredients.push(payload);
-      },
-      SAVE_INGREDIENT(state, payload) {
         state.ingredients.push(payload);
       }
     },
