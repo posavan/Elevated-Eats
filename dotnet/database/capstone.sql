@@ -30,6 +30,19 @@ CREATE TABLE ingredients (
 	calories int NOT NULL,
 	CONSTRAINT PK_ingredient PRIMARY KEY (ingredient_id)
 )
+CREATE TABLE recipes (
+    recipe_id int IDENTITY (1,1) NOT NULL,
+	recipe_name varchar(60) NOT NULL,
+	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id)
+)
+
+CREATE TABLE recipes_ingredients (
+    recipe_id int NOT NULL,
+	ingredient_id int NOT NULL,
+	CONSTRAINT PK_recipe_ingredient PRIMARY KEY (recipe_id, ingredient_id),
+	CONSTRAINT FK_recipes_ingredients_recipes FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id),
+    CONSTRAINT FK_recipes_ingredients_ingredients FOREIGN KEY (ingredient_id) REFERENCES ingredients (ingredient_id)
+)
 
 --populate default data
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
@@ -38,5 +51,12 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','Yh
 INSERT INTO ingredients (ingredient_name, calories) VALUES ( 'Rice', 80 )
 INSERT INTO ingredients (ingredient_name, calories) VALUES ( 'Eggs', 150 )
 INSERT INTO ingredients (ingredient_name, calories ) VALUES ( 'Milk' , 100  )
+
+INSERT INTO recipes (recipe_name ) VALUES ( 'Pizza' )
+INSERT INTO recipes (recipe_name ) VALUES ( 'Pasta' )
+
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES ( 1, 2)
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES ( 1, 1)
 
 GO
