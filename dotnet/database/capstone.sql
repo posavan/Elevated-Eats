@@ -33,6 +33,7 @@ CREATE TABLE ingredients (
 CREATE TABLE recipes (
     recipe_id int IDENTITY (1,1) NOT NULL,
 	recipe_name varchar(60) NOT NULL,
+	recipe_description varchar(255) NOT NULL,
 	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id)
 )
 
@@ -52,8 +53,8 @@ INSERT INTO ingredients (ingredient_name, calories) VALUES ( 'Rice', 80 )
 INSERT INTO ingredients (ingredient_name, calories) VALUES ( 'Eggs', 150 )
 INSERT INTO ingredients (ingredient_name, calories ) VALUES ( 'Milk' , 100  )
 
-INSERT INTO recipes (recipe_name ) VALUES ( 'Pizza' )
-INSERT INTO recipes (recipe_name ) VALUES ( 'Pasta' )
+INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Pizza' , 'Delicious Italian Delicacy')
+INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Pasta' , 'Carbs')
 
 
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES ( 1, 2)
