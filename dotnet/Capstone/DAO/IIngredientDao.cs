@@ -13,7 +13,7 @@ namespace Capstone.DAO
         public Ingredient GetIngredientByName(string name);
         public Ingredient CreateIngredient(Ingredient ingredient);
 
-        public List<Ingredient> GetIngredientsByRecipeName(string recipeName);
+
 
 
     }
