@@ -23,6 +23,7 @@ namespace Capstone.DAO
 
             string sql = "SELECT recipe_id, recipe_name, recipe_description FROM recipes;";
 
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -35,6 +36,7 @@ namespace Capstone.DAO
                     while (reader.Read())
                     {
                         Recipe recipe = MapRowToRecipe(reader);
+
                         recipes.Add(recipe);
                     }
                 }
@@ -46,6 +48,8 @@ namespace Capstone.DAO
 
             return recipes;
         }
+
+  
 
         public Recipe GetRecipeById(int recipeId)
         {

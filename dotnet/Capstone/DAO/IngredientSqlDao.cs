@@ -105,6 +105,43 @@ namespace Capstone.DAO
             return ingredient;
         }
 
+        //public List<Ingredient> GetIngredientsByRecipeName(string recipeName)
+        //{
+        //    List<Ingredient> ingredients = new List<Ingredient>();
+
+        //    string sql = "SELECT ingredient_name FROM ingredients i " +
+        //        "JOIN recipes_ingredients ri ON i.ingredient_id = ri.ingredient_id " +
+        //        "WHERE ri.recipe_id = " +
+        //        "(SELECT recipe_id FROM recipes WHERE recipe_name = @recipe_name);";
+
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
+
+        //            SqlCommand cmd = new SqlCommand(sql, conn);
+        //            cmd.Parameters.AddWithValue("@recipe_name", recipeName);
+
+        //            SqlDataReader reader = cmd.ExecuteReader();
+
+        //            while(reader.Read())
+        //            {
+        //                Ingredient ingredient = MapRowToIngredient(reader);
+        //                ingredients.Add(ingredient);
+
+        //            }
+        //        }
+        //    }
+        //    catch(SqlException ex)
+        //    {
+        //        throw new DaoException("SQL exception occurred", ex);
+        //    }
+
+        //    return ingredients;
+
+        //}
+
         public Ingredient CreateIngredient(Ingredient ingredient)
         {
             Ingredient newIngredient = null;
