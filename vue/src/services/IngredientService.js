@@ -6,10 +6,10 @@ const http = axios.create({
 
 export default {
   list() {
-    return http.get("/ingredients");
+    return http.get('/ingredients');
   },
 
   createIngredient(newIngredient) {
-    return http.post("/ingredients", newIngredient)
+    return http.post(`/ingredients`, newIngredient)
   }
 };

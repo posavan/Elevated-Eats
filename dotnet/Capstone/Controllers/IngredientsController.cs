@@ -6,13 +6,13 @@ using System.Collections.Generic;
 
 namespace Capstone.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("[controller]")]
     [ApiController]
-    public class IngredientController : ControllerBase
+    public class IngredientsController : ControllerBase
     {
         IIngredientDao dao;
-        public IngredientController(IIngredientDao ingredientDao)
+        public IngredientsController(IIngredientDao ingredientDao)
         {
             this.dao = ingredientDao;
         }

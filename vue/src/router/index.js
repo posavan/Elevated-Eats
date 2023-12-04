@@ -50,7 +50,7 @@ const routes = [
   },
   {
     path: "/ingredients",
-    name: "listIngredients",
+    name: "ingredients",
     component: ListIngredientsView,
     meta: {
       requiresAuth: false,

@@ -12,14 +12,14 @@ namespace Capstone.DAO
 
         public IngredientSqlDao(string dbConnectionString)
         {
-            connectionString = dbConnectionString;
+            this.connectionString = dbConnectionString;
         }
 
         public IList<Ingredient> GetIngredients()
         {
             IList<Ingredient> ingredients = new List<Ingredient>();
 
-            string sql = "SELECT ingredient_id, ingredient_name, calories FROM ingredients";
+            string sql = "SELECT ingredient_id, ingredient_name, calories FROM ingredients;";
 
             try
             {
@@ -111,9 +111,9 @@ namespace Capstone.DAO
 
             string sql = "INSERT INTO ingredients (ingredient_name, calories) " +
                          "OUTPUT INSERTED.ingredient_id " +
-                         "VALUES (@name, @calories)";
+                         "VALUES (@name, @calories);";
 
-            int newIngredientId = 0;
+            ingredient.IngredientId = 0;
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -123,10 +123,10 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@name", ingredient.IngredientName);
                     cmd.Parameters.AddWithValue("@calories", ingredient.Calories);
-                    newIngredientId = Convert.ToInt32(cmd.ExecuteScalar());
+                    ingredient.IngredientId = Convert.ToInt32(cmd.ExecuteScalar());
 
                 }
-                newIngredient = GetIngredientById(newIngredientId);
+                newIngredient = GetIngredientById(ingredient.IngredientId);
             }
             catch (SqlException ex)
             {

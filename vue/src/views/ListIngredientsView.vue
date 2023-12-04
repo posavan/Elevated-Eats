@@ -2,7 +2,7 @@
   <div class="list-ingredients">
     <h1>Ingredients</h1>
     <section class="container">
-      <ingredient v-for="ingredient in currentIngredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
+      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
 
     <button v-show="!showForm" v-on:click="showForm = true">
@@ -12,7 +12,7 @@
     <form v-on:submit.prevent="createNewIngredient" v-show="showForm">
       <div>
         <label for="name">Name: </label>
-        <input type="text" name="name" id="name" v-model="newIngredient.name" />
+        <input type="text" name="name" id="name" v-model="newIngredient.ingredientName" />
       </div>
       <div>
         <label for="type">Calories: </label>
@@ -32,19 +32,19 @@ export default {
   name: "ListIngredientsView",
   data() {
     return {
-      //ingredients: [],
+      ingredients: [],
       showForm: false,
       newIngredient: {},
     };
   },
-  computed: {
-    currentIngredients() {
-      return this.$store.state.ingredients;
-    },
-  },
+  // computed: {
+  //   currentIngredients() {
+  //     return this.$store.state.ingredients;
+  //   },
+  // },
   methods: {
     createNewIngredient() {
-      if (this.newIngredient.name) {
+      if (this.newIngredient.ingredientName) {
         ingredientService
           .createIngredient(this.newIngredient)
           .then(() => {
@@ -98,11 +98,11 @@ export default {
           }
         });
     }
-},
+  },
 
-created() {
-  this.loadIngredients();
-},
+  created() {
+    this.loadIngredients();
+  },
 };
 </script>
 

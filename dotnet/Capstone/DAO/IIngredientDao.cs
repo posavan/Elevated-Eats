@@ -6,12 +6,12 @@ namespace Capstone.DAO
 {
     public interface IIngredientDao
     {
-        IList<Ingredient> GetIngredients();
+        public IList<Ingredient> GetIngredients();
 
-        Ingredient GetIngredientById(int id);
+        public Ingredient GetIngredientById(int id);
 
-        Ingredient GetIngredientByName(string name);
-        Ingredient CreateIngredient(Ingredient ingredient);
+        public Ingredient GetIngredientByName(string name);
+        public Ingredient CreateIngredient(Ingredient ingredient);
 
 
     }
