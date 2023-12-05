@@ -4,16 +4,20 @@
     <p>Description: {{ item.recipeDescription }}</p>
     <p>Ingredients: </p>
     <section class="container">
-      <ingredient v-for="ingredient in item.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient">
-      {{ item.ingredientList }}</ingredient>
+      <ingredient v-for="ingredient in item.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient" />
       </section>
   </section>
 </template>
   
 <script>
+import Ingredient from "../components/Ingredient.vue"
+
 export default {
   name: "recipe",
   props: ["item"],
+  components: {
+    Ingredient
+  }
 };
 </script>
   

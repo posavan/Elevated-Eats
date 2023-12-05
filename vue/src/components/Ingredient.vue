@@ -1,16 +1,16 @@
 <template>
-    <section class="ingredient">
-       <p>Id: {{ item.ingredientId }}</p>
-      <p>Name: {{ item.ingredientName }}</p>
-      <p>Calories: {{ item.calories }}</p>
-    </section>
-  </template>
+  <section class="ingredient">
+    <p>Name: {{ item.ingredientName }}</p>
+    <p>Quantity: {{ item.ingredientQuantity }}</p>
+    <p>Calories: {{ item.calories }}</p>
+  </section>
+</template>
   
-  <script>
-  export default {
-    name: "ingredient",
-    props: ["item"],
-  };
-  </script>
+<script>
+export default {
+  name: "ingredient",
+  props: ["item"],
+};
+</script>
   
   
