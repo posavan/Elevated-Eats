@@ -115,7 +115,7 @@ namespace Capstone.DAO
         {
             List<Ingredient> ingredients = new List<Ingredient>();
 
-            string sql = "SELECT ingredient_name FROM ingredients i " +
+            string sql = "SELECT i.ingredient_id, ingredient_name, calories FROM ingredients i " +
                 "JOIN recipes_ingredients ri ON i.ingredient_id = ri.ingredient_id " +
                 "WHERE ri.recipe_id = " +
                 "(SELECT recipe_id FROM recipes WHERE recipe_name = @recipe_name);";

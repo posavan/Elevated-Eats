@@ -59,5 +59,6 @@ INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Pasta' , 'Carbs
 
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES ( 1, 2)
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES ( 1, 1)
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES ( 2, 3)
 
 GO
