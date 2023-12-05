@@ -24,6 +24,12 @@ namespace Capstone.Controllers
             return Ok(dao.GetRecipes());
         }
 
+        [HttpGet("{recipeId}/ingredients")]
+        public ActionResult<List<Ingredient>> GetIngredientsByRecipeId(int recipeId)
+        {
+            return Ok(dao.GetIngredientsByRecipeId(recipeId));
+        }
+
         [HttpPost()]
         public ActionResult<Recipe> CreateRecipe(Recipe newRecipe)
         {

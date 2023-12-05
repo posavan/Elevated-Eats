@@ -19,8 +19,9 @@
           <input type="text" name="recipeDescription" id="recipeDescription" v-model="newRecipe.recipeDescription" />
         </div>
         <div>
-          <label for="type">Ingredients: </label><!--TODO: allow multiple entries etc...-->
+          <label for="type">Quantity: </label><!--TODO: allow multiple entries etc...-->
           <input type="text" name="quantity" id="quantity" >
+          <label for="type">Ingredient: </label>
           <input type="text" name="ingredient" id="ingredient" v-model="newRecipe.ingredientList" />
         </div>
         <button type="submit">Save Recipe</button>

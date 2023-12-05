@@ -9,6 +9,10 @@ export default {
     return http.get('/recipe');
   },
 
+  listIngredients(id){
+    return http.get('/recipe/' + id + '/ingredients')
+  },
+
   createRecipe(newRecipe) {
     return http.post(`/recipe`, newRecipe)
   }

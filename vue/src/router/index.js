@@ -73,7 +73,17 @@ const routes = [
     meta: {
       requiresAuth: false,
     },
-  }
+  },
+  {
+    path: "/recipe/:id/ingredients",
+    name: "ListRecipeIngredients",
+    component: ListIngredientsView,
+    meta: {
+      requiresAuth: false,
+    },
+  },
+
+
 ];
 
 // Create the router

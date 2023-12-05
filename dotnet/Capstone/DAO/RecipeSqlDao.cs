@@ -36,7 +36,7 @@ namespace Capstone.DAO
                     while (reader.Read())
                     {
                         Recipe recipe = MapRowToRecipe(reader);
-                        recipe.IngredientList = GetIngredientsByRecipeName(recipe.RecipeName);
+                        recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
                         recipes.Add(recipe);
                     }
                 }
@@ -68,7 +68,7 @@ namespace Capstone.DAO
                     if (reader.Read())
                     {
                         recipe = MapRowToRecipe(reader);
-                        recipe.IngredientList = GetIngredientsByRecipeName(recipe.RecipeName);
+                        recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
                     }
                 }
             }
@@ -99,7 +99,7 @@ namespace Capstone.DAO
                     if (reader.Read())
                     {
                         recipe = MapRowToRecipe(reader);
-                        recipe.IngredientList = GetIngredientsByRecipeName(recipe.RecipeName);
+                        recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
                     }
                 }
             }
@@ -111,14 +111,13 @@ namespace Capstone.DAO
             return recipe;
         }
 
-        public List<Ingredient> GetIngredientsByRecipeName(string recipeName)
+        public List<Ingredient> GetIngredientsByRecipeId(int recipeId)
         {
             List<Ingredient> ingredients = new List<Ingredient>();
 
             string sql = "SELECT i.ingredient_id, ingredient_name, calories FROM ingredients i " +
                 "JOIN recipes_ingredients ri ON i.ingredient_id = ri.ingredient_id " +
-                "WHERE ri.recipe_id = " +
-                "(SELECT recipe_id FROM recipes WHERE recipe_name = @recipe_name);";
+                "WHERE ri.recipe_id = @recipe_id";
 
             try
             {
@@ -127,7 +126,7 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@recipe_name", recipeName);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
 
                     SqlDataReader reader = cmd.ExecuteReader();
 

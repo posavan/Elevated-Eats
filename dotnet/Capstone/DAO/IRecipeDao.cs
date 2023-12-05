@@ -9,7 +9,7 @@ namespace Capstone.DAO
 
         public Recipe GetRecipeById(int id);
         public Recipe GetRecipeByName(string name);
-        public List<Ingredient> GetIngredientsByRecipeName(string recipeName);
+        public List<Ingredient> GetIngredientsByRecipeId(int recipeId);
 
         public Recipe CreateRecipe(Recipe recipe);
         public void AddIngredientsToRecipe(Recipe recipe);
