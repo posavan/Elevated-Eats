@@ -8,6 +8,7 @@ import LogoutView from "../views/LogoutView.vue";
 import RegisterView from "../views/RegisterView.vue";
 import ListIngredientsView from "../views/ListIngredientsView.vue";
 import ListRecipesView from "../views/ListRecipesView.vue";
+import AddIngredientView from "../views/AddIngredientView.vue";
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -65,6 +66,14 @@ const routes = [
       requiresAuth: false,
     },
   },
+  {
+    path: "/ingredients/create",
+    name: "AddIngredientView",
+    component: AddIngredientView,
+    meta: {
+      requiresAuth: false,
+    },
+  }
 ];
 
 // Create the router
