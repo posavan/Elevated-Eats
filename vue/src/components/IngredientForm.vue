@@ -10,6 +10,15 @@
       />
     </div>
     <div>
+      <label for="type">Quantity: </label>
+      <input
+        type="text"
+        name="quantity"
+        id="quantity"
+        v-model="editIngredient.quantity"
+      />
+    </div>
+    <div>
       <label for="type">Calories: </label>
       <input
         type="number"
@@ -45,6 +54,7 @@ export default {
         quantity: this.ingredient.quantity,
         calories: this.ingredient.calories,
       },
+      recipeId: this.ingredient.recipeId,
     };
   },
 
@@ -55,7 +65,7 @@ export default {
           .createIngredient(this.editIngredient)
           .then(() => {
             this.editIngredient = {};
-            this.$router.push({ name: "ingredients" });
+            this.$router.push({ name: "ListRecipesView" });
           })
           .catch((error) => {
             if (error.response) {
