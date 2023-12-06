@@ -6,7 +6,6 @@
           v-for="recipe in recipes"
           v-bind:key="recipe.id"
           v-bind:item="recipe"
-
         >
         <button v-on:click="addRecipeToUser">Save Recipe</button>
     </recipe>
