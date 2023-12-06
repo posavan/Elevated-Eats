@@ -83,6 +83,37 @@ namespace Capstone.DAO
 
             return recipes;
         }
+        public void AddRecipeToUsersRecipes(int userId, int recipeId)
+        {
+
+            string sql = "INSERT INTO users_recipes (recipe_id, recipe_id) " +
+                         "VALUES(@recipe_id, @recipe_id);";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    int i = 0;
+                    while (i < recipe.IngredientList.Count)
+                    {
+                        SqlCommand cmd = new SqlCommand(sql, conn);
+                        cmd.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
+                        cmd.Parameters.AddWithValue("@ingredient_id", recipe.IngredientList[i]);
+                        Convert.ToInt32(cmd.ExecuteScalar());
+                        i++;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return;
+
+        }
 
         public Recipe GetRecipeById(int recipeId)
         {
