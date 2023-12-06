@@ -33,16 +33,27 @@ CREATE TABLE ingredients (
 CREATE TABLE recipes (
     recipe_id int IDENTITY (1,1) NOT NULL,
 	recipe_name varchar(60) NOT NULL,
-	recipe_description varchar(255) NOT NULL,
+	recipe_description varchar(500) NOT NULL,
 	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id)
 )
 
 CREATE TABLE recipes_ingredients (
     recipe_id int NOT NULL,
 	ingredient_id int NOT NULL,
-	CONSTRAINT PK_recipe_ingredient PRIMARY KEY (recipe_id, ingredient_id),
+	quantity varchar(60) NOT NULL,
+	CONSTRAINT PK_recipes_ingredients PRIMARY KEY (recipe_id, ingredient_id),
 	CONSTRAINT FK_recipes_ingredients_recipes FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id),
     CONSTRAINT FK_recipes_ingredients_ingredients FOREIGN KEY (ingredient_id) REFERENCES ingredients (ingredient_id)
+
+
+)
+CREATE TABLE users_recipes (
+	user_id int NOT NULL,
+	recipe_id int NOT NULL,
+	CONSTRAINT PK_users_recipes PRIMARY KEY (user_id, recipe_id),
+	CONSTRAINT FK_users_recipes_users FOREIGN KEY (user_id) REFERENCES users (user_id),
+	CONSTRAINT FK_users_recipes_recipes FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
+
 )
 
 --populate default data
@@ -55,10 +66,16 @@ INSERT INTO ingredients (ingredient_name, calories ) VALUES ( 'Milk' , 100  )
 
 INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Pizza' , 'Delicious Italian Delicacy')
 INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Pasta' , 'Carbs')
+INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Tapioca' , 'yummy yummy')
+INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Cake' , 'mhhmm mhhmm')
 
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 1, 2, '1 ea')
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 1, 1 ,'2 ea')
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 2, 3, '2 ea')
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 3, 2, '2 ea')
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 4, 2, '2 ea')
 
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES ( 1, 2)
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES ( 1, 1)
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id) VALUES ( 2, 3)
+INSERT INTO users_recipes (user_id, recipe_id) VALUES (1, 1)
+INSERT INTO users_recipes (user_id, recipe_id) VALUES (1, 2)
 
 GO
