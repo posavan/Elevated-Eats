@@ -31,8 +31,6 @@ namespace Capstone.Controllers
         }
 
 
-
-
         [HttpGet("{userId}/{recipeId}/ingredients")]
         public ActionResult<List<Ingredient>> GetIngredientsByRecipeId(int recipeId)
         {

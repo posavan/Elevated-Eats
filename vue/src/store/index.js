@@ -63,6 +63,33 @@ export function createStore(currentToken, currentUser) {
         state.ingredients.push(payload);
       },
 
+      LOAD_ALL_RECIPES(state) {
+        recipeService
+          .list()
+          .then((response) => {
+            console.log("Reached LOAD_ALL_RECIPES in Vuex");
+            console.log(response);
+            state.recipes = response.data;
+          })
+          .catch((error) => {
+            if (error.response) {
+              // error.response exists
+              // Request was made, but response has error status (4xx or 5xx)
+              console.log("Error loading recipes: ", error.response.status);
+            } else if (error.request) {
+              // There is no error.response, but error.request exists
+              // Request was made, but no response was received
+              console.log(
+                "Error loading recipes: unable to communicate to server"
+              );
+            } else {
+              // Neither error.response and error.request exist
+              // Request was *not* made
+              console.log("Error loading recipes: make request");
+            }
+          });
+      },
+
       LOAD_RECIPES(state) {
         recipeService
           .listUserRecipes(state.user.userId)
