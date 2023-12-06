@@ -31,9 +31,9 @@ export default {
   },
 
   methods: {
-    loadRecipeIngredients(id) {
+    loadRecipeIngredients(recipeId) {
       recipeService
-        .listIngredients(id)
+        .listIngredients(this.userId, recipeId)
         .then((response) => {
           console.log("Reached created in ListIngredientsView.vue");
           console.log(response);

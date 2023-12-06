@@ -49,6 +49,41 @@ namespace Capstone.DAO
             return recipes;
         }
 
+        public IList<Recipe> GetRecipesByUserId(int userId)
+        {
+            IList<Recipe> recipes = new List<Recipe>();
+
+            string sql = "SELECT r.recipe_id, recipe_name, recipe_description FROM recipes r " +
+                "JOIN users_recipes ur ON r.recipe_id = ur.recipe_id " +
+                "WHERE ur.user_id = @user_id ;";
+
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Recipe recipe = MapRowToRecipe(reader);
+                        recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
+                        recipes.Add(recipe);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return recipes;
+        }
+
         public Recipe GetRecipeById(int recipeId)
         {
             Recipe recipe = null;

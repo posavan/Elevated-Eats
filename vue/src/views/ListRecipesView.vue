@@ -1,22 +1,34 @@
 <template>
   <div class="list-recipes">
-    <h1>Recipes</h1>
+    <h1>Recipes for user</h1>
     <section class="container">
-      <recipe v-for="recipe in recipes" v-bind:key="recipe.id" v-bind:item="recipe" />
+      <recipe
+        v-for="recipe in recipes"
+        v-bind:key="recipe.id"
+        v-bind:item="recipe"
+      />
     </section>
 
-    <button v-show="!showForm" v-on:click="showForm = true">
-      Add Recipe
-    </button>
+    <button v-show="!showForm" v-on:click="showForm = true">Add Recipe</button>
 
     <form v-on:submit.prevent="createNewRecipe" v-show="showForm">
       <div>
         <label for="name">Name: </label>
-        <input type="text" name="name" id="name" v-model="newRecipe.recipeName" />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          v-model="newRecipe.recipeName"
+        />
       </div>
       <div>
         <label for="type">Description: </label>
-        <input type="text" name="recipeDescription" id="recipeDescription" v-model="newRecipe.recipeDescription" />
+        <input
+          type="text"
+          name="recipeDescription"
+          id="recipeDescription"
+          v-model="newRecipe.recipeDescription"
+        />
       </div>
       <!-- 
       <div>
@@ -39,22 +51,22 @@
     </form>
   </div>
 </template>
-    
+
 <script>
-import ingredient from "../components/Ingredient.vue";
 import recipe from "../components/Recipe.vue";
 import recipeService from "../services/RecipeService.js";
 //import ListIngredientsView from "./ListIngredientsView.vue";
 
 export default {
-  components: { recipe,  }, //ListIngredientsView
+  components: { recipe }, //ListIngredientsView
   name: "ListRecipesView",
   data() {
     return {
       recipes: [],
       showForm: false,
       newRecipe: {},
-      newIngredient: {}
+      newIngredient: {},
+      userId: 0,
     };
   },
   // computed: {
@@ -84,8 +96,7 @@ export default {
                 "Error adding recipe: unable to communicate to server"
               );
             } else {
-              // Neither error.response and error.request exist
-              // Request was *not* made
+
               console.log("Error adding recipe: make request");
             }
           });
@@ -93,8 +104,9 @@ export default {
     },
 
     loadRecipes() {
+      console.log(this.userId)
       recipeService
-        .list()
+        .listUserRecipes(this.userId)
         .then((response) => {
           console.log("Reached created in ListRecipesView.vue");
           console.log(response);
@@ -102,18 +114,15 @@ export default {
         })
         .catch((error) => {
           if (error.response) {
-            // error.response exists
-            // Request was made, but response has error status (4xx or 5xx)
+
             console.log("Error loading recipes: ", error.response.status);
           } else if (error.request) {
-            // There is no error.response, but error.request exists
-            // Request was made, but no response was received
+
             console.log(
               "Error loading recipes: unable to communicate to server"
             );
           } else {
-            // Neither error.response and error.request exist
-            // Request was *not* made
+
             console.log("Error loading recipes: make request");
           }
         });
@@ -125,16 +134,18 @@ export default {
   },
 
   created() {
+    console.log("about to call load recipes");
+    this.userId = this.$route.params.userId;
+    console.log(this.userId)
     this.loadRecipes();
   },
 };
 </script>
-  
-  <!-- Add "scoped" attribute to limit CSS to this component only -->
+
+
 <style scoped>
 section.recipe {
-  background-color: rgb(19, 218, 148);
+  background-color: pink;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 </style>
-  

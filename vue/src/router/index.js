@@ -67,6 +67,14 @@ const routes = [
     },
   },
   {
+    path: "/recipe/:userId",
+    name: "userRecipe",
+    component: ListRecipesView,
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
     path: "/ingredients/create",
     name: "AddIngredientView",
     component: AddIngredientView,
@@ -75,15 +83,13 @@ const routes = [
     },
   },
   {
-    path: "/recipe/:id/ingredients",
+    path: "/recipe/:userId/:recipeId/ingredients",
     name: "ListRecipeIngredients",
     component: ListIngredientsView,
     meta: {
       requiresAuth: false,
     },
   },
-
-
 ];
 
 // Create the router

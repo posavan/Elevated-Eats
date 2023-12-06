@@ -9,9 +9,15 @@ export default {
     return http.get('/recipe');
   },
 
-  listIngredients(id){
-    return http.get('/recipe/' + id + '/ingredients')
+  listUserRecipes(userId) {
+    return http.get('/recipe/' + userId );
   },
+  
+
+  listIngredients(recipeId , userId){
+    return http.get('/recipe/' + recipeId + '/'+ userId + '/ingredients')
+  },
+
 
   createRecipe(newRecipe) {
     return http.post(`/recipe`, newRecipe)

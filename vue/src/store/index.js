@@ -65,7 +65,7 @@ export function createStore(currentToken, currentUser) {
 
       LOAD_RECIPES(state) {
         recipeService
-          .list()
+          .listUserRecipes(state.user.userId)
           .then((response) => {
             console.log("Reached LOAD_RECIPES in Vuex");
             console.log(response);
