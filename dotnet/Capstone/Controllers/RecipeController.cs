@@ -31,6 +31,8 @@ namespace Capstone.Controllers
         }
 
 
+
+
         [HttpGet("{userId}/{recipeId}/ingredients")]
         public ActionResult<List<Ingredient>> GetIngredientsByRecipeId(int recipeId)
         {
@@ -44,6 +46,21 @@ namespace Capstone.Controllers
             Recipe result = dao.CreateRecipe(newRecipe);
 
             if (result.RecipeId == 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
+
+        [HttpPost("{userId}/{recipeId}")]
+        public ActionResult<Recipe> AddRecipeToUser(int userId, int recipeId)
+        {
+            int result = dao.AddRecipeToUser(userId, recipeId);
+
+            if (result < 0)
             {
                 return BadRequest();
             }

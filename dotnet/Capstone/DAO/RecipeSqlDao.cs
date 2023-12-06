@@ -83,11 +83,14 @@ namespace Capstone.DAO
 
             return recipes;
         }
-        public void AddRecipeToUsersRecipes(int userId, int recipeId)
-        {
 
-            string sql = "INSERT INTO users_recipes (recipe_id, recipe_id) " +
-                         "VALUES(@recipe_id, @recipe_id);";
+        //this method is working and updating the DB but
+        //something may be off with the conversion factor? (returning 0 instead of userId)
+        public int AddRecipeToUser(int userId, int recipeId)
+        {
+            int returnedUser = -1;
+            string sql = "INSERT INTO users_recipes (user_id, recipe_id) " +
+                         "VALUES(@user_id, @recipe_id);";
 
             try
             {
@@ -95,15 +98,12 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    int i = 0;
-                    while (i < recipe.IngredientList.Count)
-                    {
-                        SqlCommand cmd = new SqlCommand(sql, conn);
-                        cmd.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
-                        cmd.Parameters.AddWithValue("@ingredient_id", recipe.IngredientList[i]);
-                        Convert.ToInt32(cmd.ExecuteScalar());
-                        i++;
-                    }
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
+
+                    returnedUser = Convert.ToInt32(cmd.ExecuteScalar());
+
                 }
             }
             catch (SqlException ex)
@@ -111,7 +111,7 @@ namespace Capstone.DAO
                 throw new DaoException("SQL exception occurred", ex);
             }
 
-            return;
+            return returnedUser;
 
         }
 

@@ -47,6 +47,7 @@ CREATE TABLE recipes_ingredients (
 
 
 )
+
 CREATE TABLE users_recipes (
 	user_id int NOT NULL,
 	recipe_id int NOT NULL,
