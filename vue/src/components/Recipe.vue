@@ -10,6 +10,12 @@
         v-bind:item="ingredient"
       />
     </section>
+
+    <div class="button-container">
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!item.saved"> Save Recipe</button>
+      <button
+        class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="item.saved">Remove Recipe</button>
+    </div>
   </section>
 </template>
 
@@ -19,16 +25,22 @@ import recipeService from "../services/RecipeService";
 
 export default {
   name: "recipe",
-  props: ["item"],
+  props: {
+    item: Object,
+    enableAdd: {
+      type: Boolean,
+      default: false,
+    },
+  },
   components: {
     Ingredient,
   },
-
   data() {
     return {
-      recipe: {},
-    };
+      recipe: {}
+    }
   },
+
 
   methods: {
     loadRecipeIngredients(recipeId) {
@@ -51,12 +63,23 @@ export default {
           }
         });
     },
+
+    saveRecipe(item){
+      let savedRecipe = Object.assign({saved:true}, item);
+      this.$store.commit('SAVE_RECIPE', savedRecipe);
+      
+    },
+
+    removeRecipe(item){
+      let savedRecipe = Object.assign({saved:false}, item);
+      this.$store.commit('REMOVE_RECIPE', savedRecipe);
+    }
   },
 
   created() {
-    console.log("Reached created in Recipe.vue")
-    console.log(this.item)
-    console.log(this.item.recipeId)
+    console.log("Reached created in Recipe.vue");
+    console.log(this.item);
+    console.log(this.item.recipeId);
     let id = this.item.recipeId;
     this.loadRecipeIngredients(id);
   },

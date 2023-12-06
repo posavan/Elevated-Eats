@@ -3,7 +3,7 @@
       <h1>All Recipes</h1>
       <section class="container">
         <recipe
-          v-for="recipe in recipes"
+          v-for="recipe in allRecipes"
           v-bind:key="recipe.id"
           v-bind:item="recipe"
         >
@@ -65,7 +65,7 @@
     name: "ListAllRecipesView",
     data() {
       return {
-        recipes: [],
+        allRecipes: [],
         showForm: false,
         newRecipe: {},
         newIngredient: {},
@@ -106,9 +106,9 @@
         recipeService
           .list()
           .then((response) => {
-            console.log("Reached created in ListRecipesView.vue");
+            console.log("Reached created in ListAllRecipesView.vue");
             console.log(response);
-            this.recipes = response.data;
+            this.allRecipes = response.data;
           })
           .catch((error) => {
             if (error.response) {
@@ -132,7 +132,6 @@
     },
   
     created() {
-
       this.loadRecipes();
     },
   };

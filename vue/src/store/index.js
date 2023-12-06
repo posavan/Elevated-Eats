@@ -69,7 +69,7 @@ export function createStore(currentToken, currentUser) {
           .then((response) => {
             console.log("Reached LOAD_ALL_RECIPES in Vuex");
             console.log(response);
-            state.recipes = response.data;
+            state.allRecipes = response.data;
           })
           .catch((error) => {
             if (error.response) {
@@ -118,7 +118,15 @@ export function createStore(currentToken, currentUser) {
       },
 
       ADD_RECIPE(state, payload) {
-        state.recipes.push(payload);
+        state.allRecipes.push(payload);
+      },
+
+      SAVE_RECIPE(state, payload){
+        state.recipes.push(payload); //error with push
+      },
+
+      REMOVE_RECIPE(state, payload){
+        state.recipes.splice(payload,1);
       },
     },
   });
