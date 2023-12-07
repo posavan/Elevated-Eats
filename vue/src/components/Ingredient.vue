@@ -1,9 +1,7 @@
 <template>
   <section class="ingredient">
     <p>Name: {{ item.ingredientName }}</p>
-
-    <!--<p>Quantity: {{ item.quantity }}</p>
-        <p>Calories: {{ item.calories }}</p>-->
+    <p>Quantity: {{ item.quantity }}</p>
   </section>
 </template>
 

@@ -2,31 +2,12 @@
   <form v-on:submit.prevent="createNewIngredient">
     <div>
       <label for="name">Name: </label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        v-model="editIngredient.ingredientName"
-      />
+      <input type="text" name="name" id="name" v-model="editIngredient.ingredientName" />
     </div>
-    <!--<div>
+    <div>
       <label for="type">Quantity: </label>
-      <input
-        type="text"
-        name="quantity"
-        id="quantity"
-        v-model="editIngredient.quantity"
-      /> 
-    </div>-->
-    <!--<div>
-      <label for="type">Calories: </label>
-      <input
-        type="number"
-        name="calories"
-        id="calories"
-        v-model="editIngredient.calories"
-      /> 
-    </div>-->
+      <input type="text" name="quantity" id="quantity" v-model="editIngredient.quantity" />
+    </div>
     <div class="actions">
       <button class="btn-submit" type="submit">Submit</button>
       <button class="btn-cancel" type="button" v-on:click="cancelForm">
