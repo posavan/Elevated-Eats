@@ -7,6 +7,12 @@ export default {
   listUserRecipes(userId) {
     return axios.get('/recipe/' + userId);
   },
+  GetUserRecipeByRecipeId(recipeId, userId) {
+    return http.get('recipe/'+ userId +'/'+ recipeId);
+  },
+  listRecipeByName(recipeName) {
+    return http.get('/recipe/public/' + recipeName);
+  },
   createRecipe(newRecipe) {
     return axios.post('/recipe', newRecipe);
   },
@@ -21,4 +27,5 @@ export default {
   listIngredients(userId, recipeId) {
     return axios.get('/recipe/' + userId + '/' + recipeId + '/ingredients');
   },
+
 };

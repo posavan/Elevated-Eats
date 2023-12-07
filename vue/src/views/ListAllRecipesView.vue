@@ -131,5 +131,62 @@
     background-color: pink;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
   }
+
+  .list-all-recipes {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  .container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+    gap: 1.25rem;
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+    max-width: 18.75rem;
+    margin: auto;
+  }
+
+  form div {
+    margin-bottom: 0.625rem;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 0.3125rem;
+  }
+
+  input {
+    width: 100%;
+    padding: 0.625rem;
+    box-sizing: border-box;
+  }
+
+  button {
+    padding: 1.25rem;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 0.8;
+  }
+
+  .container recipe {
+    background-color: pink;
+    border-radius: 0.5rem;
+    margin-bottom: 1.25rem;
+    width: 30%;
+    padding: 2%;
+  }
   </style>
   

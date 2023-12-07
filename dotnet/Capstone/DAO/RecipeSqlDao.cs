@@ -82,6 +82,38 @@ namespace Capstone.DAO
             return recipes;
         }
 
+        public Recipe GetUserRecipeById(int recipeId)
+        {
+            Recipe recipe = null;
+
+            string sql = "SELECT user_recipe_id, recipe_name, recipe_instructions FROM users_saved_recipes " +
+                "WHERE user_recipe_id = @recipe_id";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        recipe = MapRowToUserRecipe(reader);
+                        recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return recipe;
+        }
+
         // retrieves from users saved recipes
         public Recipe GetRecipeById(int recipeId)
         {
@@ -115,8 +147,7 @@ namespace Capstone.DAO
             return recipe;
         }
 
-        //retrieves from master library
-        public Recipe GetRecipeByName(string name)
+        public Recipe GetRecipeByName(string recipeName)
         {
             Recipe recipe = null;
 
@@ -130,7 +161,7 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@name", recipeName);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
@@ -147,6 +178,7 @@ namespace Capstone.DAO
 
             return recipe;
         }
+
 
         public List<Ingredient> GetIngredientsByRecipeId(int recipeId)
         {
@@ -244,6 +276,43 @@ namespace Capstone.DAO
             return newRecipe;
         }
 
+        public Recipe ModifyRecipe(Recipe updatedRecipe)
+        {
+            //method to update a recipe that a user has saved
+            string sqlUpdateRecipe = "UPDATE users_saved_recipes SET recipe_name = @recipe_name, recipe_instructions = @recipe_instructions  " +
+                            "WHERE user_recipe_id = @user_recipe_id";
+
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sqlUpdateRecipe, conn);
+                    cmd.Parameters.AddWithValue("@recipe_name", updatedRecipe.RecipeName);
+                    cmd.Parameters.AddWithValue("@recipe_instructions", updatedRecipe.RecipeInstructions);
+                    cmd.Parameters.AddWithValue("@user_recipe_id", updatedRecipe.RecipeId);
+
+                    int count = cmd.ExecuteNonQuery();
+                    if (count == 1)
+                    {
+                        return updatedRecipe;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+        }
+
         public void AddIngredientsToRecipe(Recipe recipe)
         {
             string sql = "INSERT INTO recipes_ingredients (user_recipe_id, ingredient_id) " +
@@ -274,6 +343,36 @@ namespace Capstone.DAO
             return;
 
         }
+
+
+
+
+        //public void RemoveIngredientsFromRecipe(int userRecipeId, int ingredientId)
+        //{
+
+        //    string sqlDeleteIngredient = "DELETE FROM recipes_ingredients WHERE ingredient_id = @ingredientId AND user_recipe_id = @userRecipeId";
+
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
+
+        //            SqlCommand cmd = new SqlCommand(sqlDeleteIngredient, conn);
+        //            cmd.Parameters.AddWithValue("@userRecipeId", userRecipeId);
+        //            cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+        //            cmd.ExecuteNonQuery();
+
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw new DaoException("SQL exception occurred", ex);
+        //    }
+
+        //    return;
+
+        //}
 
         private Recipe MapRowToRecipe(SqlDataReader reader)
         {
