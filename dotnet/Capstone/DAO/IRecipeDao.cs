@@ -8,6 +8,7 @@ namespace Capstone.DAO
     {
         public IList<Recipe> GetRecipes();
         public IList<Recipe> GetRecipesByUserId(int userId);
+        public Recipe GetUserRecipeById(int recipeId);
         public Recipe GetRecipeById(int id);
         public Recipe GetRecipeByName(string name);
         public List<Ingredient> GetIngredientsByRecipeId(int recipeId);

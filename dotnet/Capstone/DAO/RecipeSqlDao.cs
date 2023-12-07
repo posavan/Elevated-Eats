@@ -82,6 +82,38 @@ namespace Capstone.DAO
             return recipes;
         }
 
+        public Recipe GetUserRecipeById(int recipeId)
+        {
+            Recipe recipe = null;
+
+            string sql = "SELECT user_recipe_id, recipe_name, recipe_instructions FROM users_saved_recipes " +
+                "WHERE user_recipe_id = @recipe_id";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    if (reader.Read())
+                    {
+                        recipe = MapRowToUserRecipe(reader);
+                        recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return recipe;
+        }
+
         //this method is working and updating the DB but
         //something may be off with the conversion factor? (returning 0 instead of userId)
         public int AddRecipeToUser(int userId, int recipeId)
@@ -179,6 +211,7 @@ namespace Capstone.DAO
 
             return recipe;
         }
+
 
         public List<Ingredient> GetIngredientsByRecipeId(int recipeId)
         {

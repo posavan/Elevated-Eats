@@ -1,7 +1,7 @@
 <template>
   <h1>Recipe Details</h1>
   <div class="Recipe Details">
-    <recipe v-bind="recipe" :key="recipe.recipeName" :item="recipe" />
+    <recipe :key="recipe.recipeName" :item="recipe" />
   </div>
 </template>
 
@@ -17,15 +17,18 @@ export default {
   data() {
     return {
       recipe: [],
+      recipeName: "",
+
     };
   },
   methods: {
     loadRecipe() {
+      console.log(this.recipeName)
       recipeService
         .listRecipeByName(this.recipeName)
         .then((response) => {
           console.log("Reached created in RecipeDetailsView.vue");
-          console.log(response);
+          console.log(response.data);
           this.recipe = response.data;
         })
         .catch((error) => {
@@ -42,9 +45,9 @@ export default {
     },
   },
   created() {
-    //this.loadRecipe(this.recipeId);
-    const recipeName = this.$route.params.recipeName;
-    console.log(recipeName);
+    console.log("about to call load recipe");
+    //this.loadRecipe(this.recipeName);
+    this.recipeName = this.$route.params.recipeName;
     this.loadRecipe();
   },
 };

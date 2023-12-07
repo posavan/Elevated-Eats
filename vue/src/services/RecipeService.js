@@ -11,8 +11,11 @@ export default {
   listUserRecipes(userId) {
     return http.get('/recipe/' + userId);
   },
+  GetUserRecipeByRecipeId(recipeId, userId) {
+    return http.get('recipe/'+ userId +'/'+ recipeId);
+  },
   listRecipeByName(recipeName) {
-    return http.get('/recipe/public' + recipeName);
+    return http.get('/recipe/public/' + recipeName);
   },
   createRecipe(newRecipe) {
     return http.post('/recipe', newRecipe);
