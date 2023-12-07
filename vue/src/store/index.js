@@ -42,25 +42,19 @@ export function createStore(currentToken, currentUser) {
           })
           .catch((error) => {
             if (error.response) {
-              // error.response exists
-              // Request was made, but response has error status (4xx or 5xx)
               console.log("Error loading ingredients: ", error.response.status);
             } else if (error.request) {
-              // There is no error.response, but error.request exists
-              // Request was made, but no response was received
               console.log(
                 "Error loading ingredients: unable to communicate to server"
               );
             } else {
-              // Neither error.response and error.request exist
-              // Request was *not* made
               console.log("Error loading ingredients: make request");
             }
           });
       },
 
       ADD_INGREDIENT(state, payload) {
-        state.ingredients.push(payload);
+        state.ingredients.push(payload);//@todo: refactor
       },
 
       LOAD_ALL_RECIPES(state) {
@@ -73,18 +67,12 @@ export function createStore(currentToken, currentUser) {
           })
           .catch((error) => {
             if (error.response) {
-              // error.response exists
-              // Request was made, but response has error status (4xx or 5xx)
               console.log("Error loading recipes: ", error.response.status);
             } else if (error.request) {
-              // There is no error.response, but error.request exists
-              // Request was made, but no response was received
               console.log(
                 "Error loading recipes: unable to communicate to server"
               );
             } else {
-              // Neither error.response and error.request exist
-              // Request was *not* made
               console.log("Error loading recipes: make request");
             }
           });
@@ -100,33 +88,78 @@ export function createStore(currentToken, currentUser) {
           })
           .catch((error) => {
             if (error.response) {
-              // error.response exists
-              // Request was made, but response has error status (4xx or 5xx)
               console.log("Error loading recipes: ", error.response.status);
             } else if (error.request) {
-              // There is no error.response, but error.request exists
-              // Request was made, but no response was received
               console.log(
                 "Error loading recipes: unable to communicate to server"
               );
             } else {
-              // Neither error.response and error.request exist
-              // Request was *not* made
               console.log("Error loading recipes: make request");
             }
           });
       },
 
       ADD_RECIPE(state, payload) {
-        state.allRecipes.push(payload);
+        recipeService
+          .createRecipe(payload)
+          .then((response) => {
+            console.log("Reached ADD_RECIPE in Vuex");
+            console.log(response);
+            //@todo: refresh state.recipes?
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.log("Error loading recipes: ", error.response.status);
+            } else if (error.request) {
+              console.log(
+                "Error loading recipes: unable to communicate to server"
+              );
+            } else {
+              console.log("Error loading recipes: make request");
+            }
+          });
       },
 
-      SAVE_RECIPE(state, payload){
-        state.recipes.push(payload); //error with push
+      SAVE_RECIPE(state, payload) {
+        recipeService
+          .addRecipeToUser(state.user.userId, payload)
+          .then((response) => {
+            console.log("Reached SAVE_RECIPE in Vuex");
+            console.log(response);
+            //@todo: refresh state.recipes
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.log("Error loading recipes: ", error.response.status);
+            } else if (error.request) {
+              console.log(
+                "Error loading recipes: unable to communicate to server"
+              );
+            } else {
+              console.log("Error loading recipes: make request");
+            }
+          });
       },
 
-      REMOVE_RECIPE(state, payload){
-        state.recipes.splice(payload,1);
+      REMOVE_RECIPE(state, payload) {
+        recipeService
+          .removeRecipeFromUser(state.user.userId, payload)
+          .then((response) => {
+            console.log("Reached SAVE_RECIPE in Vuex");
+            console.log(response);
+            //@todo: refresh state.recipes
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.log("Error loading recipes: ", error.response.status);
+            } else if (error.request) {
+              console.log(
+                "Error loading recipes: unable to communicate to server"
+              );
+            } else {
+              console.log("Error loading recipes: make request");
+            }
+          });
       },
     },
   });

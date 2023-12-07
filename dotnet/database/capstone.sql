@@ -43,17 +43,15 @@ CREATE TABLE recipes_ingredients (
 	CONSTRAINT PK_recipes_ingredients PRIMARY KEY (recipe_id, ingredient_id),
 	CONSTRAINT FK_recipes_ingredients_recipes FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id),
     CONSTRAINT FK_recipes_ingredients_ingredients FOREIGN KEY (ingredient_id) REFERENCES ingredients (ingredient_id)
-
-
 )
 
-CREATE TABLE users_recipes (
+CREATE TABLE users_saved_recipes (
+	user_recipe_id int IDENTITY (1,1) NOT NULL,
 	user_id int NOT NULL,
-	recipe_id int NOT NULL,
-	CONSTRAINT PK_users_recipes PRIMARY KEY (user_id, recipe_id),
-	CONSTRAINT FK_users_recipes_users FOREIGN KEY (user_id) REFERENCES users (user_id),
-	CONSTRAINT FK_users_recipes_recipes FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
-
+	recipe_name varchar(60) NOT NULL,
+	recipe_instructions varchar(500) NOT NULL,
+	CONSTRAINT PK_user_saved_recipe PRIMARY KEY (user_recipe_id),
+	CONSTRAINT FK_user_saved_recipe_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 )
 
 --populate default data
@@ -75,7 +73,7 @@ INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 2,
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 3, 2, '2 ea')
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 4, 2, '2 ea')
 
-INSERT INTO users_recipes (user_id, recipe_id) VALUES (1, 1)
-INSERT INTO users_recipes (user_id, recipe_id) VALUES (1, 2)
+INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Pizza', 'Bake for 30 mins');
+INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Pasta', 'Boil for 25 mins');
 
 GO
