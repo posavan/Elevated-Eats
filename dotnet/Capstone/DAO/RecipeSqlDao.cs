@@ -53,10 +53,8 @@ namespace Capstone.DAO
         {
             IList<Recipe> recipes = new List<Recipe>();
 
-            string sql = "SELECT r.recipe_id, recipe_name, recipe_instructions FROM recipes r " +
-                "JOIN users_recipes ur ON r.recipe_id = ur.recipe_id " +
-                "WHERE ur.user_id = @user_id ;";
-
+            string sql = "SELECT user_recipe_id, recipe_name, recipe_instructions FROM users_saved_recipes " +
+                "WHERE user_recipe_id = @user_id ;";
 
             try
             {
@@ -70,7 +68,7 @@ namespace Capstone.DAO
 
                     while (reader.Read())
                     {
-                        Recipe recipe = MapRowToRecipe(reader);
+                        Recipe recipe = MapRowToUserRecipe(reader);
                         recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
                         recipes.Add(recipe);
                     }
@@ -88,9 +86,11 @@ namespace Capstone.DAO
         //something may be off with the conversion factor? (returning 0 instead of userId)
         public int AddRecipeToUser(int userId, int recipeId)
         {
-            int returnedUser = -1;
-            string sql = "INSERT INTO users_recipes (user_id, recipe_id) " +
-                         "VALUES(@user_id, @recipe_id);";
+            int returnedUserId = -1;
+            string sql = "INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) " +
+                         "VALUES(@user_id," +
+                         "(SELECT recipe_name FROM recipes WHERE recipe_id = @recipe_id)," +
+                         "(SELECT recipe_instructions FROM recipes WHERE recipe_id = @recipe_id));";
 
             try
             {
@@ -102,7 +102,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.Parameters.AddWithValue("@recipe_id", recipeId);
 
-                    returnedUser = Convert.ToInt32(cmd.ExecuteScalar());
+                    returnedUserId = Convert.ToInt32(cmd.ExecuteScalar());
 
                 }
             }
@@ -111,15 +111,17 @@ namespace Capstone.DAO
                 throw new DaoException("SQL exception occurred", ex);
             }
 
-            return returnedUser;
+            return returnedUserId;
 
         }
 
+        // retrieves from users saved recipes
         public Recipe GetRecipeById(int recipeId)
         {
             Recipe recipe = null;
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes WHERE recipe_id = @recipe_id";
+            string sql = "SELECT user_recipe_id, recipe_name, recipe_instructions FROM users_saved_recipes " +
+                "WHERE user_recipe_id = @recipe_id";
 
             try
             {
@@ -133,7 +135,7 @@ namespace Capstone.DAO
 
                     if (reader.Read())
                     {
-                        recipe = MapRowToRecipe(reader);
+                        recipe = MapRowToUserRecipe(reader);
                         recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
                     }
                 }
@@ -146,11 +148,17 @@ namespace Capstone.DAO
             return recipe;
         }
 
+<<<<<<< HEAD
         public Recipe GetRecipeByName(string recipeName)
+=======
+        //retrieves from master library
+        public Recipe GetRecipeByName(string name)
+>>>>>>> 04454e7285a2ba0820efde32a474863c8f23b672
         {
             Recipe recipe = null;
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes WHERE recipe_name = @name";
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes " +
+                "WHERE recipe_name = @name";
 
             try
             {
@@ -183,7 +191,7 @@ namespace Capstone.DAO
 
             string sql = "SELECT i.ingredient_id, ingredient_name FROM ingredients i " +
                 "JOIN recipes_ingredients ri ON i.ingredient_id = ri.ingredient_id " +
-                "WHERE ri.recipe_id = @recipe_id";
+                "WHERE ri.user_recipe_id = @recipe_id";
 
             try
             {
@@ -213,12 +221,12 @@ namespace Capstone.DAO
 
         }
 
-
-        public Recipe CreateRecipe(Recipe recipe)
+        // creates recipe in User's recipes
+        public Recipe CreateRecipe(Recipe recipe, int userId)
         {
             Recipe newRecipe = null;
 
-            string sql = "INSERT INTO recipes (recipe_name, recipe_instructions) " +
+            string sql = "INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) " +
                          "OUTPUT INSERTED.recipe_id " +
                          "VALUES (@name, @instructions);";
             try
@@ -281,6 +289,14 @@ namespace Capstone.DAO
         {
             Recipe recipe = new Recipe();
             recipe.RecipeId = Convert.ToInt32(reader["recipe_id"]);
+            recipe.RecipeName = Convert.ToString(reader["recipe_name"]);
+            recipe.RecipeInstructions = Convert.ToString(reader["recipe_instructions"]);
+            return recipe;
+        }
+        private Recipe MapRowToUserRecipe(SqlDataReader reader)
+        {
+            Recipe recipe = new Recipe();
+            recipe.RecipeId = Convert.ToInt32(reader["user_recipe_id"]);
             recipe.RecipeName = Convert.ToString(reader["recipe_name"]);
             recipe.RecipeInstructions = Convert.ToString(reader["recipe_instructions"]);
             return recipe;

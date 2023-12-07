@@ -8,10 +8,14 @@ export default {
   list() {
     return http.get('/recipe');
   },
+<<<<<<< HEAD
   
+=======
+>>>>>>> 04454e7285a2ba0820efde32a474863c8f23b672
   listUserRecipes(userId) {
-    return http.get('/recipe/' + userId );
+    return http.get('/recipe/' + userId);
   },
+<<<<<<< HEAD
   
   listRecipeByName(recipeName) {
     return http.get('/recipe/public' + recipeName );
@@ -26,4 +30,19 @@ export default {
     return http.post(`/recipe`, newRecipe)
   }
 
+=======
+  createRecipe(newRecipe) {
+    return http.post('/recipe', newRecipe);
+  },
+  addRecipeToUser(userId, newRecipe) {
+    return http.post('/recipe/' + userId, newRecipe);
+  },
+  removeRecipeFromUser(userId, recipeId) {
+    return http.delete('/recipe/'+userId +'/'+recipeId);
+  },
+
+  listIngredients(userId, recipeId) {
+    return http.get('/recipe/' + userId + '/' + recipeId + '/ingredients');
+  },
+>>>>>>> 04454e7285a2ba0820efde32a474863c8f23b672
 };

@@ -1,7 +1,8 @@
 <template>
   <section class="ingredient">
-    <p>Name: {{ item.ingredientName }}</p>
-    <p>Quantity: {{ item.quantity }}</p>
+    <div>Quantity: {{ item.quantity }}</div>
+    <div>Name: {{ item.ingredientName }}</div>
+    <p></p>
   </section>
 </template>
 

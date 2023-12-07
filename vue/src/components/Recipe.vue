@@ -1,16 +1,17 @@
 <template>
   <section class="recipe">
-    <p>Name: {{ item.recipeName }}</p>
-    <p>Ingredients:</p>
+    <h3>Name: {{ item.recipeName }}</h3>
+    <h4>Ingredients:</h4>
     <section class="container">
       <ingredient v-for="ingredient in item.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
-    <p>Instructions: {{ item.instructions }}</p>
+    <h4>Instructions: {{ item.instructions }}</h4>
 
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!item.saved">Save Recipe</button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="item.saved">Remove Recipe</button>
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!item.favorite">Save Recipe</button>
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="item.favorite">Remove Recipe</button>
     </div>
+    <p></p>
   </section>
 </template>
 
