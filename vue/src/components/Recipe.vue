@@ -1,7 +1,7 @@
 <template>
   <section class="recipe">
     <p>Name: {{ item.recipeName }}</p>
-    <p>Description: {{ item.recipeDescription }}</p>
+    <p>Instructions: {{ item.recipeInstructions }}</p>
     <p>Ingredients:</p>
     <section class="container">
       <ingredient

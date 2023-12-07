@@ -19,7 +19,7 @@ namespace Capstone.DAO
         {
             IList<Ingredient> ingredients = new List<Ingredient>();
 
-            string sql = "SELECT ingredient_id, ingredient_name, calories FROM ingredients;";
+            string sql = "SELECT ingredient_id, ingredient_name FROM ingredients;";
 
             try
             {
@@ -49,7 +49,7 @@ namespace Capstone.DAO
         {
             Ingredient ingredient = null;
 
-            string sql = "SELECT ingredient_id, ingredient_name, calories FROM ingredients WHERE ingredient_id = @ingredient_id";
+            string sql = "SELECT ingredient_id, ingredient_name FROM ingredients WHERE ingredient_id = @ingredient_id";
 
             try
             {
@@ -79,7 +79,7 @@ namespace Capstone.DAO
         {
             Ingredient ingredient = null;
 
-            string sql = "SELECT ingredient_id, ingredient_name, calories FROM ingredients WHERE ingredient_name = @name";
+            string sql = "SELECT ingredient_id, ingredient_name FROM ingredients WHERE ingredient_name = @name";
 
             try
             {
@@ -111,9 +111,9 @@ namespace Capstone.DAO
         {
             Ingredient newIngredient = null;
 
-            string sql = "INSERT INTO ingredients (ingredient_name, calories) " +
+            string sql = "INSERT INTO ingredients (ingredient_name) " +
                          "OUTPUT INSERTED.ingredient_id " +
-                         "VALUES (@name, @calories);";
+                         "VALUES (@name);";
 
             ingredient.IngredientId = 0;
             try
@@ -124,7 +124,6 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@name", ingredient.IngredientName);
-                    cmd.Parameters.AddWithValue("@calories", ingredient.Calories);
                     ingredient.IngredientId = Convert.ToInt32(cmd.ExecuteScalar());
 
                 }
@@ -143,7 +142,6 @@ namespace Capstone.DAO
             Ingredient ingredient = new Ingredient();
             ingredient.IngredientId = Convert.ToInt32(reader["ingredient_id"]);
             ingredient.IngredientName = Convert.ToString(reader["ingredient_name"]);
-            ingredient.Calories = Convert.ToInt32(reader["calories"]);
             return ingredient;
         }
     }

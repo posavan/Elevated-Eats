@@ -25,14 +25,14 @@
           />
         </div>
         <div>
-          <label for="type">Description: </label>
-          <input
-            type="text"
-            name="recipeDescription"
-            id="recipeDescription"
-            v-model="newRecipe.recipeDescription"
-          />
-        </div>
+        <label for="type">Instructions: </label>
+        <input
+          type="text"
+          name="recipeInstructions"
+          id="recipeInstructions"
+          v-model="newRecipe.recipeInstructions"
+        />
+      </div>
         <!-- 
         <div>
           <h2>Ingredients: </h2>
