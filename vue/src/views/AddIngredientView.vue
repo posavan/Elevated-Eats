@@ -16,7 +16,6 @@ export default {
         id: 0,
         name: "",
         quantity: "1 ea",
-        calories: 0,
         recipeId: Number(this.$route.params.recipeId)
       },
     };

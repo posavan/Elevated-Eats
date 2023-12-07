@@ -77,6 +77,14 @@ const routes = [
     },
   },
   {
+    path: "/recipe/public/:recipeName",
+    name: "RecipeDetailsView",
+    component: RecipeDetailsView,
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
     path: "/ingredients/create",
     name: "AddIngredientView",
     component: AddIngredientView,
@@ -92,15 +100,6 @@ const routes = [
       requiresAuth: false,
     },
   },
-  {
-    path: "/recipe/:userId/:recipeId",
-    name: "RecipeDetailsView",
-    component: RecipeDetailsView,
-    meta: {
-      requiresAuth: false,
-    },
-  },
-
 
   // {
   //   path: "/recipe/:userId/:recipeId",

@@ -2,30 +2,11 @@
   <form v-on:submit.prevent="createNewIngredient">
     <div>
       <label for="name">Name: </label>
-      <input
-        type="text"
-        name="name"
-        id="name"
-        v-model="editIngredient.ingredientName"
-      />
+      <input type="text" name="name" id="name" v-model="editIngredient.ingredientName" />
     </div>
     <div>
       <label for="type">Quantity: </label>
-      <input
-        type="text"
-        name="quantity"
-        id="quantity"
-        v-model="editIngredient.quantity"
-      />
-    </div>
-    <div>
-      <label for="type">Calories: </label>
-      <input
-        type="number"
-        name="calories"
-        id="calories"
-        v-model="editIngredient.calories"
-      />
+      <input type="text" name="quantity" id="quantity" v-model="editIngredient.quantity" />
     </div>
     <div class="actions">
       <button class="btn-submit" type="submit">Submit</button>
@@ -51,8 +32,8 @@ export default {
       editIngredient: {
         ingredientId: this.ingredient.ingredientId,
         ingredientName: this.ingredient.ingredientName,
-        quantity: this.ingredient.quantity,
-        calories: this.ingredient.calories,
+        //quantity: this.ingredient.quantity,
+        //calories: this.ingredient.calories,
       },
       recipeId: this.ingredient.recipeId,
     };

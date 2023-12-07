@@ -1,11 +1,12 @@
 <template>
   <h1>Recipe Details</h1>
   <div class="Recipe Details">
-    <recipe v-if="recipe" :key="recipe.id" :item="recipe" />
+    <recipe v-bind="recipe" :key="recipe.recipeName" :item="recipe" />
   </div>
 </template>
 
 <script>
+
 import recipe from "../components/Recipe.vue";
 import recipeService from "../services/RecipeService.js";
 
@@ -16,20 +17,17 @@ export default {
   name: "RecipeDetailsView",
   data() {
     return {
-      recipe: null,
+      recipe: [],
     };
   },
   methods: {
-    loadRecipe(recipeId) {
+    loadRecipe() {
       recipeService
-        .list() /// get recipe by id
+      .listRecipeByName(this.recipeName)
         .then((response) => {
           console.log("Reached created in RecipeDetailsView.vue");
           console.log(response);
-          if (response.data && response.data.length > 0) {
-            this.recipe = response.data[0];
-          }
-          //this.recipe = response.data;
+          this.recipe = response.data;
         })
         .catch((error) => {
           if (error.response) {
@@ -51,9 +49,10 @@ export default {
     },
   },
   created() {
-    this.loadRecipe(this.recipeId);
-    //const recipeId = this.$route.params.recipeId;
-    //this.loadRecipe(recipeId);
+    //this.loadRecipe(this.recipeId);
+    const recipeName = this.$route.params.recipeName;
+    console.log(recipeName)
+    this.loadRecipe();
   },
 };
 </script>

@@ -21,7 +21,7 @@ namespace Capstone.DAO
         {
             IList<Recipe> recipes = new List<Recipe>();
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_description FROM recipes;";
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes;";
 
 
             try
@@ -53,7 +53,7 @@ namespace Capstone.DAO
         {
             IList<Recipe> recipes = new List<Recipe>();
 
-            string sql = "SELECT r.recipe_id, recipe_name, recipe_description FROM recipes r " +
+            string sql = "SELECT r.recipe_id, recipe_name, recipe_instructions FROM recipes r " +
                 "JOIN users_recipes ur ON r.recipe_id = ur.recipe_id " +
                 "WHERE ur.user_id = @user_id ;";
 
@@ -119,7 +119,7 @@ namespace Capstone.DAO
         {
             Recipe recipe = null;
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_description FROM recipes WHERE recipe_id = @recipe_id";
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes WHERE recipe_id = @recipe_id";
 
             try
             {
@@ -150,7 +150,7 @@ namespace Capstone.DAO
         {
             Recipe recipe = null;
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_description FROM recipes WHERE recipe_name = @name";
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes WHERE recipe_name = @name";
 
             try
             {
@@ -181,7 +181,7 @@ namespace Capstone.DAO
         {
             List<Ingredient> ingredients = new List<Ingredient>();
 
-            string sql = "SELECT i.ingredient_id, ingredient_name, calories FROM ingredients i " +
+            string sql = "SELECT i.ingredient_id, ingredient_name FROM ingredients i " +
                 "JOIN recipes_ingredients ri ON i.ingredient_id = ri.ingredient_id " +
                 "WHERE ri.recipe_id = @recipe_id";
 
@@ -218,9 +218,9 @@ namespace Capstone.DAO
         {
             Recipe newRecipe = null;
 
-            string sql = "INSERT INTO recipes (recipe_name, recipe_description) " +
+            string sql = "INSERT INTO recipes (recipe_name, recipe_instructions) " +
                          "OUTPUT INSERTED.recipe_id " +
-                         "VALUES (@name, @description);";
+                         "VALUES (@name, @instructions);";
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -229,7 +229,7 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@name", recipe.RecipeName);
-                    cmd.Parameters.AddWithValue("@description", recipe.RecipeDescription);
+                    cmd.Parameters.AddWithValue("@instructions", recipe.RecipeInstructions);
                     recipe.RecipeId = Convert.ToInt32(cmd.ExecuteScalar());
 
                 }
@@ -282,7 +282,7 @@ namespace Capstone.DAO
             Recipe recipe = new Recipe();
             recipe.RecipeId = Convert.ToInt32(reader["recipe_id"]);
             recipe.RecipeName = Convert.ToString(reader["recipe_name"]);
-            recipe.RecipeDescription = Convert.ToString(reader["recipe_description"]);
+            recipe.RecipeInstructions = Convert.ToString(reader["recipe_instructions"]);
             return recipe;
         }
 
@@ -291,7 +291,6 @@ namespace Capstone.DAO
             Ingredient ingredient = new Ingredient();
             ingredient.IngredientId = Convert.ToInt32(reader["ingredient_id"]);
             ingredient.IngredientName = Convert.ToString(reader["ingredient_name"]);
-            ingredient.Calories = Convert.ToInt32(reader["calories"]);
             return ingredient;
         }
     }

@@ -8,16 +8,14 @@ export default {
   list() {
     return http.get('/recipe');
   },
-
-  //listRecipeById(recipeId) {
-    //return http.get('/recipe/' + recipeId );
-  //},
-
-
+  
   listUserRecipes(userId) {
     return http.get('/recipe/' + userId );
   },
   
+  listRecipeByName(recipeName) {
+    return http.get('/recipe/public' + recipeName );
+  },
 
   listIngredients(recipeId , userId){
     return http.get('/recipe/' + recipeId + '/'+ userId + '/ingredients')
