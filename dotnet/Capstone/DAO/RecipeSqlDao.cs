@@ -82,39 +82,6 @@ namespace Capstone.DAO
             return recipes;
         }
 
-        //this method is working and updating the DB but
-        //something may be off with the conversion factor? (returning 0 instead of userId)
-        public int AddRecipeToUser(int userId, int recipeId)
-        {
-            int returnedUserId = -1;
-            string sql = "INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) " +
-                         "VALUES(@user_id," +
-                         "(SELECT recipe_name FROM recipes WHERE recipe_id = @recipe_id)," +
-                         "(SELECT recipe_instructions FROM recipes WHERE recipe_id = @recipe_id));";
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-
-                    SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@user_id", userId);
-                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
-
-                    returnedUserId = Convert.ToInt32(cmd.ExecuteScalar());
-
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw new DaoException("SQL exception occurred", ex);
-            }
-
-            return returnedUserId;
-
-        }
-
         // retrieves from users saved recipes
         public Recipe GetRecipeById(int recipeId)
         {
@@ -217,14 +184,12 @@ namespace Capstone.DAO
 
         }
 
-        // creates recipe in User's recipes
-        public Recipe CreateRecipe(Recipe recipe, int userId)
+        public Recipe AddRecipeToUser(Recipe recipe, int userId)
         {
             Recipe newRecipe = null;
-
             string sql = "INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) " +
-                         "OUTPUT INSERTED.user_recipe_id " +
-                         "VALUES (@name, @instructions);";
+                         "VALUES (@user_id, @recipe_name, @recipe_instructions);";
+
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -232,13 +197,43 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    cmd.Parameters.AddWithValue("@recipe_name", recipe.RecipeName);
+                    cmd.Parameters.AddWithValue("@recipe_instructions", recipe.RecipeInstructions);
+                    cmd.ExecuteScalar();
+                    //newRecipe = GetRecipeById(Convert.ToInt32(cmd.ExecuteScalar())); returns null
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return newRecipe;
+        }
+
+        // creates recipe in User's recipes
+        public Recipe CreateRecipe(Recipe recipe, int userId)
+        {
+            Recipe newRecipe = null;
+
+            string sql = "INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) " +
+                         "OUTPUT INSERTED.user_recipe_id " +
+                         "VALUES (@user_id, @name, @instructions);";
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.Parameters.AddWithValue("@name", recipe.RecipeName);
                     cmd.Parameters.AddWithValue("@instructions", recipe.RecipeInstructions);
-                    recipe.RecipeId = Convert.ToInt32(cmd.ExecuteScalar());
-
+                    newRecipe = GetRecipeById(Convert.ToInt32(cmd.ExecuteScalar()));
                 }
                 AddIngredientsToRecipe(recipe);
-                newRecipe = GetRecipeById(recipe.RecipeId);
 
             }
             catch (SqlException ex)
@@ -251,7 +246,6 @@ namespace Capstone.DAO
 
         public void AddIngredientsToRecipe(Recipe recipe)
         {
-
             string sql = "INSERT INTO recipes_ingredients (user_recipe_id, ingredient_id) " +
                          "VALUES(@recipe_id, @ingredient_id);";
 

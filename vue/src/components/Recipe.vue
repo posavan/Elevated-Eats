@@ -5,11 +5,12 @@
     <section class="container">
       <ingredient v-for="ingredient in item.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
-    <h4>Instructions: {{ item.instructions }}</h4>
-
+    <p>Instructions: {{ item.recipeInstructions }}</p>
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!item.favorite">Save Recipe</button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="item.favorite">Remove Recipe</button>
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!item.favorite">Save Recipe To
+        Favorites</button>
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="item.favorite">Remove Recipe From
+        Favorites</button>
     </div>
     <p></p>
   </section>
@@ -17,27 +18,14 @@
 
 <script>
 import Ingredient from "../components/Ingredient.vue";
-import recipeService from "../services/RecipeService";
+import recipeService from "../services/RecipeService.js";
 
 export default {
   name: "recipe",
-  props: {
-    item: Object,
-    enableAdd: {
-      type: Boolean,
-      default: false,
-    },
-  },
+  props: ["item"],
   components: {
-    Ingredient,
+    Ingredient
   },
-  data() {
-    return {
-      recipe: {}
-    }
-  },
-
-
   methods: {
     loadRecipeIngredients(recipeId) {
       recipeService
@@ -60,14 +48,33 @@ export default {
         });
     },
 
-    saveRecipe(item) {
-      let savedRecipe = Object.assign({ saved: true }, item);
+    saveRecipe() {
+      console.log("In recipe vie, saveRecipe: ", this.item);
+      let savedRecipe = Object.assign({ favorite: true }, this.item);
       this.$store.commit('SAVE_RECIPE', savedRecipe);
-
+      // recipeService
+      // console.log("reached recipeService")
+      //   .addRecipeToUser(this.userId, this.item)
+      //   .then((response) => {
+      //     console.log("Reached SAVE_RECIPE in Vuex");
+      //     console.log(response);
+      //     //@todo: refresh state.recipes
+      //   })
+      //   .catch((error) => {
+      //     if (error.response) {
+      //       console.log("Error loading recipes: ", error.response.status);
+      //     } else if (error.request) {
+      //       console.log(
+      //         "Error loading recipes: unable to communicate to server"
+      //       );
+      //     } else {
+      //       console.log("Error loading recipes: make request");
+      //     }
+      //   });
     },
 
     removeRecipe(item) {
-      let savedRecipe = Object.assign({ saved: false }, item);
+      let savedRecipe = Object.assign({ favorite: false }, item);
       this.$store.commit('REMOVE_RECIPE', savedRecipe);
     }
   },

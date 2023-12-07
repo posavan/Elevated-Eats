@@ -53,7 +53,7 @@ export function createStore(currentToken, currentUser) {
           });
       },
 
-      ADD_INGREDIENT(state, payload) {
+      ADD_NEW_INGREDIENT(state, payload) {
         state.ingredients.push(payload);//@todo: refactor
       },
 
@@ -121,6 +121,7 @@ export function createStore(currentToken, currentUser) {
       },
 
       SAVE_RECIPE(state, payload) {
+        console.log("In save recipe: ", payload);
         recipeService
           .addRecipeToUser(state.user.userId, payload)
           .then((response) => {
