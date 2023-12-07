@@ -9,24 +9,24 @@
         v-model="editIngredient.ingredientName"
       />
     </div>
-    <div>
+    <!--<div>
       <label for="type">Quantity: </label>
       <input
         type="text"
         name="quantity"
         id="quantity"
         v-model="editIngredient.quantity"
-      />
-    </div>
-    <div>
+      /> 
+    </div>-->
+    <!--<div>
       <label for="type">Calories: </label>
       <input
         type="number"
         name="calories"
         id="calories"
         v-model="editIngredient.calories"
-      />
-    </div>
+      /> 
+    </div>-->
     <div class="actions">
       <button class="btn-submit" type="submit">Submit</button>
       <button class="btn-cancel" type="button" v-on:click="cancelForm">
@@ -51,8 +51,8 @@ export default {
       editIngredient: {
         ingredientId: this.ingredient.ingredientId,
         ingredientName: this.ingredient.ingredientName,
-        quantity: this.ingredient.quantity,
-        calories: this.ingredient.calories,
+        //quantity: this.ingredient.quantity,
+        //calories: this.ingredient.calories,
       },
       recipeId: this.ingredient.recipeId,
     };

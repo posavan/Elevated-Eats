@@ -22,12 +22,12 @@
         />
       </div>
       <div>
-        <label for="type">Description: </label>
+        <label for="type">Instructions: </label>
         <input
           type="text"
-          name="recipeDescription"
-          id="recipeDescription"
-          v-model="newRecipe.recipeDescription"
+          name="recipeInstructions"
+          id="recipeInstructions"
+          v-model="newRecipe.recipeInstructions"
         />
       </div>
       <!-- 

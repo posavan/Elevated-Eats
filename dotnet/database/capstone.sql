@@ -27,13 +27,12 @@ CREATE TABLE users (
 CREATE TABLE ingredients (
     ingredient_id int IDENTITY (1,1) NOT NULL,
 	ingredient_name varchar(60) NOT NULL,
-	calories int NOT NULL,
 	CONSTRAINT PK_ingredient PRIMARY KEY (ingredient_id)
 )
 CREATE TABLE recipes (
     recipe_id int IDENTITY (1,1) NOT NULL,
 	recipe_name varchar(60) NOT NULL,
-	recipe_description varchar(500) NOT NULL,
+	recipe_instructions varchar(500) NOT NULL,
 	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id)
 )
 
@@ -61,14 +60,14 @@ CREATE TABLE users_recipes (
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
-INSERT INTO ingredients (ingredient_name, calories) VALUES ( 'Rice', 80 )
-INSERT INTO ingredients (ingredient_name, calories) VALUES ( 'Eggs', 150 )
-INSERT INTO ingredients (ingredient_name, calories ) VALUES ( 'Milk' , 100  )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Rice' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Eggs' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Milk' )
 
-INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Pizza' , 'Delicious Italian Delicacy')
-INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Pasta' , 'Carbs')
-INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Tapioca' , 'yummy yummy')
-INSERT INTO recipes (recipe_name, recipe_description ) VALUES ( 'Cake' , 'mhhmm mhhmm')
+INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Pizza' , 'Delicious Italian Delicacy')
+INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Pasta' , 'Carbs')
+INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Tapioca' , 'yummy yummy')
+INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Cake' , 'mhhmm mhhmm')
 
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 1, 2, '1 ea')
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 1, 1 ,'2 ea')
