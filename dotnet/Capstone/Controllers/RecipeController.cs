@@ -12,9 +12,11 @@ namespace Capstone.Controllers
     {
 
         IRecipeDao dao;
-        public RecipeController(IRecipeDao RecipeDao)
+        IUserDao userDao;
+        public RecipeController(IRecipeDao RecipeDao, IUserDao UserDao)
         {
             this.dao = RecipeDao;
+            this.userDao = UserDao;
         }
 
 
@@ -24,18 +26,17 @@ namespace Capstone.Controllers
             return Ok(dao.GetRecipes());
         }
 
-        [HttpGet("public/{recipeName}")]
-        public ActionResult<Recipe> GetRecipeByName(string recipeName)
-        {
-            return Ok(dao.GetRecipeByName(recipeName));
-        }
-
         [HttpGet("{userId}")]
         public ActionResult<List<Recipe>> GetRecipesByUserId(int userId)
         {
             return Ok(dao.GetRecipesByUserId(userId));
         }
 
+        [HttpGet("public/{recipeName}")]
+        public ActionResult<Recipe> GetRecipeByName(string recipeName)
+        {
+            return Ok(dao.GetRecipeByName(recipeName));
+        }
 
         [HttpGet("{userId}/{recipeId}/ingredients")]
         public ActionResult<List<Ingredient>> GetIngredientsByRecipeId(int recipeId)
@@ -47,7 +48,8 @@ namespace Capstone.Controllers
         [HttpPost()]
         public ActionResult<Recipe> CreateRecipe(Recipe newRecipe)
         {
-            Recipe result = dao.CreateRecipe(newRecipe);
+            int currentUser = userDao.GetUserByUsername(User.Identity.Name).UserId;
+            Recipe result = dao.CreateRecipe(newRecipe, currentUser);
 
             if (result.RecipeId == 0)
             {
@@ -60,8 +62,9 @@ namespace Capstone.Controllers
         }
 
         [HttpPost("{userId}/{recipeId}")]
-        public ActionResult<Recipe> AddRecipeToUser(int userId, int recipeId)
+        public ActionResult<Recipe> AddRecipeToUser(int recipeId)
         {
+            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
             int result = dao.AddRecipeToUser(userId, recipeId);
 
             if (result < 0)
@@ -73,6 +76,5 @@ namespace Capstone.Controllers
                 return Ok(result);
             }
         }
-
     }
 }

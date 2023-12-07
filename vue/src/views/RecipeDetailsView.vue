@@ -6,7 +6,6 @@
 </template>
 
 <script>
-
 import recipe from "../components/Recipe.vue";
 import recipeService from "../services/RecipeService.js";
 
@@ -23,7 +22,7 @@ export default {
   methods: {
     loadRecipe() {
       recipeService
-      .listRecipeByName(this.recipeName)
+        .listRecipeByName(this.recipeName)
         .then((response) => {
           console.log("Reached created in RecipeDetailsView.vue");
           console.log(response);
@@ -31,18 +30,12 @@ export default {
         })
         .catch((error) => {
           if (error.response) {
-            // error.response exists
-            // Request was made, but response has error status (4xx or 5xx)
             console.log("Error loading recipe: ", error.response.status);
           } else if (error.request) {
-            // There is no error.response, but error.request exists
-            // Request was made, but no response was received
             console.log(
               "Error loading recipe: unable to communicate to server"
             );
           } else {
-            // Neither error.response and error.request exist
-            // Request was *not* made
             console.log("Error loading recipe: make request");
           }
         });
@@ -51,7 +44,7 @@ export default {
   created() {
     //this.loadRecipe(this.recipeId);
     const recipeName = this.$route.params.recipeName;
-    console.log(recipeName)
+    console.log(recipeName);
     this.loadRecipe();
   },
 };

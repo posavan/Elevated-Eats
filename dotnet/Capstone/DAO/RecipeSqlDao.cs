@@ -148,12 +148,7 @@ namespace Capstone.DAO
             return recipe;
         }
 
-<<<<<<< HEAD
         public Recipe GetRecipeByName(string recipeName)
-=======
-        //retrieves from master library
-        public Recipe GetRecipeByName(string name)
->>>>>>> 04454e7285a2ba0820efde32a474863c8f23b672
         {
             Recipe recipe = null;
 

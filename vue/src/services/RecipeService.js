@@ -8,29 +8,12 @@ export default {
   list() {
     return http.get('/recipe');
   },
-<<<<<<< HEAD
-  
-=======
->>>>>>> 04454e7285a2ba0820efde32a474863c8f23b672
   listUserRecipes(userId) {
     return http.get('/recipe/' + userId);
   },
-<<<<<<< HEAD
-  
   listRecipeByName(recipeName) {
-    return http.get('/recipe/public' + recipeName );
+    return http.get('/recipe/public' + recipeName);
   },
-
-  listIngredients(recipeId , userId){
-    return http.get('/recipe/' + recipeId + '/'+ userId + '/ingredients')
-  },
-
-
-  createRecipe(newRecipe) {
-    return http.post(`/recipe`, newRecipe)
-  }
-
-=======
   createRecipe(newRecipe) {
     return http.post('/recipe', newRecipe);
   },
@@ -44,5 +27,5 @@ export default {
   listIngredients(userId, recipeId) {
     return http.get('/recipe/' + userId + '/' + recipeId + '/ingredients');
   },
->>>>>>> 04454e7285a2ba0820efde32a474863c8f23b672
+
 };
