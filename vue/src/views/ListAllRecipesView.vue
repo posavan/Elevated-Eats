@@ -1,18 +1,18 @@
 <template>
     <div class="list-all-recipes">
-      <h1>All Recipes</h1>
+      <h1>Recipe Library</h1>
       <section class="container">
         <recipe
           v-for="recipe in allRecipes"
           v-bind:key="recipe.id"
           v-bind:item="recipe"
         >
-        <button v-on:click="addRecipeToUser">Save Recipe</button>
+        <button v-on:click="addRecipeToUser">Save Recipe To Favorites</button>
     </recipe>
 
       </section>
   
-      <button v-show="!showForm" v-on:click="showForm = true">Add Recipe</button>
+      <button v-show="!showForm" v-on:click="showForm = true">Add New Recipe</button>
   
       <form v-on:submit.prevent="createNewRecipe" v-show="showForm">
         <div>
@@ -25,7 +25,7 @@
           />
         </div>
         <div>
-          <label for="type">Description: </label>
+          <label for="type">Instructions: </label>
           <input
             type="text"
             name="recipeDescription"
@@ -48,7 +48,6 @@
           
             <button class="btn-add" v-on:click="$router.push({ name: 'AddIngredientView', params: { recipeId: newRecipe.id } })">Add
             Ingredient</button>
-             
         </div> -->
         <button type="submit">Save Recipe</button>
       </form>
@@ -61,7 +60,7 @@
   //import ListIngredientsView from "./ListIngredientsView.vue";
   
   export default {
-    components: { recipe }, //ListIngredientsView
+    components: { recipe },
     name: "ListAllRecipesView",
     data() {
       return {

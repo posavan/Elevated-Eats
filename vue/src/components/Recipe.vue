@@ -1,20 +1,15 @@
 <template>
   <section class="recipe">
     <p>Name: {{ item.recipeName }}</p>
-    <p>Description: {{ item.recipeDescription }}</p>
     <p>Ingredients:</p>
     <section class="container">
-      <ingredient
-        v-for="ingredient in item.ingredientList"
-        v-bind:key="ingredient.id"
-        v-bind:item="ingredient"
-      />
+      <ingredient v-for="ingredient in item.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
+    <p>Instructions: {{ item.instructions }}</p>
 
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!item.saved"> Save Recipe</button>
-      <button
-        class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="item.saved">Remove Recipe</button>
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!item.saved">Save Recipe</button>
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="item.saved">Remove Recipe</button>
     </div>
   </section>
 </template>
@@ -64,14 +59,14 @@ export default {
         });
     },
 
-    saveRecipe(item){
-      let savedRecipe = Object.assign({saved:true}, item);
+    saveRecipe(item) {
+      let savedRecipe = Object.assign({ saved: true }, item);
       this.$store.commit('SAVE_RECIPE', savedRecipe);
-      
+
     },
 
-    removeRecipe(item){
-      let savedRecipe = Object.assign({saved:false}, item);
+    removeRecipe(item) {
+      let savedRecipe = Object.assign({ saved: false }, item);
       this.$store.commit('REMOVE_RECIPE', savedRecipe);
     }
   },
