@@ -8,18 +8,20 @@ export default {
   list() {
     return http.get('/recipe');
   },
-
   listUserRecipes(userId) {
-    return http.get('/recipe/' + userId );
+    return http.get('/recipe/' + userId);
   },
-  
-
-  listIngredients(recipeId , userId){
-    return http.get('/recipe/' + recipeId + '/'+ userId + '/ingredients')
-  },
-
-
   createRecipe(newRecipe) {
-    return http.post(`/recipe`, newRecipe)
-  }
+    return http.post('/recipe', newRecipe);
+  },
+  addRecipeToUser(userId, newRecipe) {
+    return http.post('/recipe/' + userId, newRecipe);
+  },
+  removeRecipeFromUser(userId, recipeId) {
+    return http.delete('/recipe/'+userId +'/'+recipeId);
+  },
+
+  listIngredients(userId, recipeId) {
+    return http.get('/recipe/' + userId + '/' + recipeId + '/ingredients');
+  },
 };
