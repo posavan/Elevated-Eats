@@ -9,6 +9,11 @@ export default {
     return http.get('/recipe');
   },
 
+  //listRecipeById(recipeId) {
+    //return http.get('/recipe/' + recipeId );
+  //},
+
+
   listUserRecipes(userId) {
     return http.get('/recipe/' + userId );
   },
@@ -22,4 +27,5 @@ export default {
   createRecipe(newRecipe) {
     return http.post(`/recipe`, newRecipe)
   }
+
 };

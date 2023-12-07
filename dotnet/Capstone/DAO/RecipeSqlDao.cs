@@ -146,7 +146,7 @@ namespace Capstone.DAO
             return recipe;
         }
 
-        public Recipe GetRecipeByName(string name)
+        public Recipe GetRecipeByName(string recipeName)
         {
             Recipe recipe = null;
 
@@ -159,7 +159,7 @@ namespace Capstone.DAO
                     conn.Open();
 
                     SqlCommand cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@name", recipeName);
                     SqlDataReader reader = cmd.ExecuteReader();
 
                     if (reader.Read())
