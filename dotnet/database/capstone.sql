@@ -36,14 +36,6 @@ CREATE TABLE recipes (
 	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id)
 )
 
-CREATE TABLE recipes_ingredients (
-    recipe_id int NOT NULL,
-	ingredient_id int NOT NULL,
-	quantity varchar(60) NOT NULL,
-	CONSTRAINT PK_recipes_ingredients PRIMARY KEY (recipe_id, ingredient_id),
-	CONSTRAINT FK_recipes_ingredients_recipes FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id),
-    CONSTRAINT FK_recipes_ingredients_ingredients FOREIGN KEY (ingredient_id) REFERENCES ingredients (ingredient_id)
-)
 
 CREATE TABLE users_saved_recipes (
 	user_recipe_id int IDENTITY (1,1) NOT NULL,
@@ -52,6 +44,16 @@ CREATE TABLE users_saved_recipes (
 	recipe_instructions varchar(500) NOT NULL,
 	CONSTRAINT PK_user_saved_recipe PRIMARY KEY (user_recipe_id),
 	CONSTRAINT FK_user_saved_recipe_users FOREIGN KEY (user_id) REFERENCES users (user_id)
+)
+
+CREATE TABLE recipes_ingredients (
+    user_recipe_id int NOT NULL,
+	ingredient_id int NOT NULL,
+	quantity varchar(60) NOT NULL,
+	CONSTRAINT PK_recipes_ingredients PRIMARY KEY (user_recipe_id, ingredient_id),
+	CONSTRAINT FK_recipes_ingredients_recipes FOREIGN KEY (user_recipe_id) 
+	REFERENCES users_saved_recipes (user_recipe_id),
+    CONSTRAINT FK_recipes_ingredients_ingredients FOREIGN KEY (ingredient_id) REFERENCES ingredients (ingredient_id)
 )
 
 --populate default data
@@ -67,13 +69,21 @@ INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Pasta' , 'Carb
 INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Tapioca' , 'yummy yummy')
 INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Cake' , 'mhhmm mhhmm')
 
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 1, 2, '1 ea')
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 1, 1 ,'2 ea')
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 2, 3, '2 ea')
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 3, 2, '2 ea')
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) VALUES ( 4, 2, '2 ea')
-
 INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Pizza', 'Bake for 30 mins');
-INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Pasta', 'Boil for 25 mins');
+INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) VALUES (2, 'Pasta', 'Boil for 25 mins');
+INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) VALUES (2, 'Cake', 'Bake for 1 hour');
+
+INSERT INTO recipes_ingredients (user_recipe_id, ingredient_id, quantity) 
+	VALUES ( 1, 2, '1 ea');
+INSERT INTO recipes_ingredients (user_recipe_id, ingredient_id, quantity) 
+	VALUES ( 1, 1 ,'2 ea');
+INSERT INTO recipes_ingredients (user_recipe_id, ingredient_id, quantity) 
+	VALUES ( 2, 3, '2 ea');
+INSERT INTO recipes_ingredients (user_recipe_id, ingredient_id, quantity) 
+	VALUES ( 3, 2, '2 ea');
+INSERT INTO recipes_ingredients (user_recipe_id, ingredient_id, quantity) 
+	VALUES ( 2, 2, '3 ea');
+
+
 
 GO
