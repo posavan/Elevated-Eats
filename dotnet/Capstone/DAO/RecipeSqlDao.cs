@@ -350,32 +350,35 @@ namespace Capstone.DAO
 
         }
 
-        public void RemoveIngredientsFromRecipe(int userRecipeId, int ingredientId)
-        {
 
-            string sqlDeleteIngredient = "DELETE FROM recipes_ingredients WHERE ingredient_id = @ingredientId AND user_recipe_id = @userRecipeId";
 
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(sqlDeleteIngredient, conn);
-                    cmd.Parameters.AddWithValue("@userRecipeId", userRecipeId);
-                    cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
-                    cmd.ExecuteNonQuery();
+        //public void RemoveIngredientsFromRecipe(int userRecipeId, int ingredientId)
+        //{
 
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw new DaoException("SQL exception occurred", ex);
-            }
+        //    string sqlDeleteIngredient = "DELETE FROM recipes_ingredients WHERE ingredient_id = @ingredientId AND user_recipe_id = @userRecipeId";
 
-            return;
+        //    try
+        //    {
+        //        using (SqlConnection conn = new SqlConnection(connectionString))
+        //        {
+        //            conn.Open();
 
-        }
+        //            SqlCommand cmd = new SqlCommand(sqlDeleteIngredient, conn);
+        //            cmd.Parameters.AddWithValue("@userRecipeId", userRecipeId);
+        //            cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+        //            cmd.ExecuteNonQuery();
+
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw new DaoException("SQL exception occurred", ex);
+        //    }
+
+        //    return;
+
+        //}
 
         private Recipe MapRowToRecipe(SqlDataReader reader)
         {
