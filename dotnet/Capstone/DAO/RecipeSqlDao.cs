@@ -54,7 +54,7 @@ namespace Capstone.DAO
             IList<Recipe> recipes = new List<Recipe>();
 
             string sql = "SELECT user_recipe_id, recipe_name, recipe_instructions FROM users_saved_recipes " +
-                "WHERE user_recipe_id = @user_id ;";
+                "WHERE user_id = @user_id;";
 
             try
             {
@@ -223,7 +223,7 @@ namespace Capstone.DAO
             Recipe newRecipe = null;
 
             string sql = "INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) " +
-                         "OUTPUT INSERTED.recipe_id " +
+                         "OUTPUT INSERTED.user_recipe_id " +
                          "VALUES (@name, @instructions);";
             try
             {
@@ -252,7 +252,7 @@ namespace Capstone.DAO
         public void AddIngredientsToRecipe(Recipe recipe)
         {
 
-            string sql = "INSERT INTO recipes_ingredients (recipe_id, ingredient_id) " +
+            string sql = "INSERT INTO recipes_ingredients (user_recipe_id, ingredient_id) " +
                          "VALUES(@recipe_id, @ingredient_id);";
 
             try
