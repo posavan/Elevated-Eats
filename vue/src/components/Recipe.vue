@@ -5,7 +5,7 @@
     <section class="container">
       <ingredient v-for="ingredient in item.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
-    <h4>Instructions: {{ item.instructions }}</h4>
+    <h4>Instructions: {{ item.recipeInstructions }}</h4>
 
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!item.favorite">Save Recipe</button>
@@ -41,15 +41,15 @@ export default {
   methods: {
     loadRecipeIngredients(recipeId) {
       recipeService
-        .listIngredients(this.userId, recipeId)
+        .listIngredients(this.$store.state.user.userId, recipeId)
         .then((response) => {
           console.log("Reached created in ListIngredientsView.vue");
-          console.log(response);
+          console.log(response.data);
           this.ingredients = response.data;
         })
         .catch((error) => {
           if (error.response) {
-            console.log("Error loading ingredients: ", error.response.status);
+            console.log("Error loading recipe ingredients: ", error.response.status);
           } else if (error.request) {
             console.log(
               "Error loading ingredients: unable to communicate to server"
@@ -69,13 +69,12 @@ export default {
     removeRecipe(item) {
       let savedRecipe = Object.assign({ saved: false }, item);
       this.$store.commit('REMOVE_RECIPE', savedRecipe);
-    }
+    },
+    
   },
 
   created() {
     console.log("Reached created in Recipe.vue");
-    console.log(this.item);
-    console.log(this.item.recipeId);
     let id = this.item.recipeId;
     this.loadRecipeIngredients(id);
   },
