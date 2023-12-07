@@ -21,7 +21,7 @@ export default {
     return http.post('/recipe/' + userId, newRecipe);
   },
   removeRecipeFromUser(userId, recipeId) {
-    return http.delete('/recipe/'+userId +'/'+recipeId);
+    return http.delete('/recipe/' + userId + '/' + recipeId);
   },
 
   listIngredients(userId, recipeId) {
