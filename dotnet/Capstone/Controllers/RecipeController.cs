@@ -1,7 +1,9 @@
 ﻿using Capstone.DAO;
+using Capstone.Exceptions;
 using Capstone.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 
 namespace Capstone.Controllers
@@ -71,5 +73,38 @@ namespace Capstone.Controllers
                 return Ok(result);
             }
         }
+
+        [HttpPut("{userId}/{recipeName}")]
+        public ActionResult<Recipe> ChangeRecipe(int userRecipeId, Recipe changedRecipe)
+        {
+            Recipe newRecipe = dao.ModifyRecipe(changedRecipe);
+
+
+            if (newRecipe == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(newRecipe);
+            }
+
+        }
+
+        [HttpDelete("{userId}/{recipeId}/ingredients")]
+        public ActionResult RemoveIngredientsFromRecipe(int userRecipeId, int ingredientId)
+        {
+            try
+            {
+                dao.RemoveIngredientsFromRecipe(userRecipeId, ingredientId);
+                return NoContent();
+
+            }
+            catch (DaoException ex)
+            {
+                return NotFound();
+            }
+        }
+
     }
 }
