@@ -191,7 +191,7 @@ namespace Capstone.DAO
 
             string sql = "SELECT i.ingredient_id, ingredient_name FROM ingredients i " +
                 "JOIN recipes_ingredients ri ON i.ingredient_id = ri.ingredient_id " +
-                "WHERE ri.user_recipe_id = @recipe_id";
+                "WHERE ri.recipe_id = @recipe_id";
 
             try
             {
