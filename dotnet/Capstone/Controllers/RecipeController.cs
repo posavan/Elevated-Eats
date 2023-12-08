@@ -17,10 +17,12 @@ namespace Capstone.Controllers
 
         IRecipeDao dao;
         IUserDao userDao;
-        public RecipeController(IRecipeDao RecipeDao, IUserDao UserDao)
+        IIngredientDao ingredientDao;
+        public RecipeController(IRecipeDao RecipeDao, IUserDao UserDao, IIngredientDao IngredientDao )
         {
             this.dao = RecipeDao;
             this.userDao = UserDao;
+            this.ingredientDao = IngredientDao;
         }
 
 
@@ -84,35 +86,29 @@ namespace Capstone.Controllers
 
         }
 
-        [HttpPost("{userId}/{recipeId}/ingredients")]
-        public ActionResult<Recipe> AddIngredientsToRecipe(int userId, int recipeId, Recipe recipe)
+        [HttpPost("{userId}/{recipeId}")]
+        public ActionResult<Recipe> AddIngredientsToRecipe(int userId, int recipeId, List<Ingredient> ingredientList)
         {
-            try
-            {
-                dao.AddIngredientsToRecipe(userId, recipeId, recipe.IngredientList);
-                return Ok();
-            }
-            catch (DaoException ex)
-            {
-                
-                Console.WriteLine($"Error adding ingredients to recipe: {ex.Message}");
-                return StatusCode(500, "Internal Server Error");
-            }
-        }
-        //public ActionResult<Recipe> AddIngredientsToRecipe(Recipe recipe)
-        //{
-        //    int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
-        //    int result = dao.AddIngredientsToRecipe(recipe.RecipeId);
 
-        //    if (result < 0)
-        //    {
-        //        return BadRequest();
-        //    }
-        //    else
-        //    {
-        //        return Ok(result);
-        //    }
-        //}
+            // Check if each ingredient exists in the master list
+            foreach (Ingredient ingredient in ingredientList)
+            {
+                if (!ingredientDao.IngredientExists(ingredient))
+                {
+                    // Handle the case where the ingredient doesn't exist
+                    return BadRequest($"Ingredient {ingredient.IngredientName} does not exist in the master list.");
+                }
+            }
+
+            // Call the method to add ingredients to the recipe
+            dao.AddIngredientsToRecipe(userId, recipeId, ingredientList);
+
+            // Optionally, return a success response
+            return Ok("Ingredients added successfully to the recipe.");
+
+
+        }
+
 
         [HttpPut("{userId}/{recipeName}")]
         public ActionResult<Recipe> ChangeRecipe(int userRecipeId, Recipe changedRecipe)

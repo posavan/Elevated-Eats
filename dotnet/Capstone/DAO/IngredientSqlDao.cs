@@ -45,6 +45,35 @@ namespace Capstone.DAO
             return ingredients;
         }
 
+        public bool IngredientExists(Ingredient ingredient)
+        {
+            string sql = "SELECT COUNT(*) FROM ingredients WHERE ingredient_name = @ingredientName";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@ingredientName", ingredient.IngredientName);
+
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (count == 1)
+                    {
+                        return true;
+
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+            return false;
+        }
+
         public Ingredient GetIngredientById(int ingredientId)
         {
             Ingredient ingredient = null;
@@ -104,8 +133,6 @@ namespace Capstone.DAO
 
             return ingredient;
         }
-
-        
 
         public Ingredient CreateIngredient(Ingredient ingredient)
         {
