@@ -25,9 +25,8 @@ export default {
   },
   methods: {
     loadRecipe() {
-      console.log(this.userId, this.recipeId)
       recipeService
-        .GetUserRecipeByRecipeId(this.recipeId, this.userId)
+        .GetUserRecipeByRecipeId(this.userId)
         .then((response) => {
           console.log(response.data);
           this.recipe = response.data;

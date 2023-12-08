@@ -78,7 +78,6 @@ export default {
       ingredientService
         .list()
         .then((response) => {
-          console.log("Reached created in ListIngredientsView.vue");
           console.log(response);
           this.ingredients = response.data;
         })

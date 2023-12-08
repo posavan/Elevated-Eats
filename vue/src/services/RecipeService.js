@@ -5,11 +5,11 @@ export default {
   list() {
     return axios.get('/recipe');
   },
-  listUserRecipes(userId) {
-    return axios.get('/recipe/' + userId);
+  listUserRecipes() {
+    return axios.get('/recipe/favorites');
   },
-  GetUserRecipeByRecipeId(recipeId, userId) {
-    return axios.get('recipe/' + userId + '/' + recipeId);
+  GetUserRecipeByRecipeId(recipeId) {
+    return axios.get('/recipe/favorites/' + recipeId);
   },
   listRecipeByName(recipeName) {
     return axios.get('/recipe/public/' + recipeName);
@@ -18,24 +18,24 @@ export default {
   createRecipe(newRecipe) {
     return axios.post('/recipe', newRecipe);
   },
-  addRecipeToUser(userId, newRecipe) {
-    return axios.post('/recipe/' + userId, newRecipe);
+  addRecipeToUser(newRecipe) {
+    return axios.post('/recipe/favorites', newRecipe);
   },
-  removeRecipeFromUser(userId, recipeId) {
-    return axios.delete('/recipe/' + userId + '/' + recipeId);
+  removeRecipeFromUser(recipeId) {
+    return axios.delete('/recipe/favorites/' + recipeId);
   },
 
-  listIngredients(userId, recipeId) {
-    return axios.get('/recipe/' + userId + '/' + recipeId + '/ingredients');
+  listIngredients(recipeId) {
+    return axios.get('/recipe/favorites/' + recipeId + '/ingredients');
   },
-  updateRecipe(userId, recipeId, newRecipe) {
-    return axios.put('/recipe/' + userId + '/' + recipeId, newRecipe);
+  updateRecipe(recipeId, newRecipe) {
+    return axios.put('/recipe/favorites/' + recipeId, newRecipe);
   },
-  addIngredientToRecipe(userId, recipeId, newRecipe) {
-    return axios.put('/recipe/' + userId + '/' + recipeId + '/ingredients', newRecipe);
+  addIngredientToRecipe(recipeId, newRecipe) {
+    return axios.put('/recipe/favorites/' + recipeId + '/ingredients', newRecipe);
   },
-  removeIngredientFromRecipe(userId, recipeId, ingredientId) {
-    return axios.delete('/recipe/' + userId + '/' + recipeId + '/ingredients', ingredientId);
+  removeIngredientFromRecipe(recipeId, ingredientId) {
+    return axios.delete('/recipe/favorites/' + recipeId + '/ingredients/' + ingredientId);
   },
 
 

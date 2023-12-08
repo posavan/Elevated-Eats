@@ -85,7 +85,7 @@ export default {
     loadRecipes() {
       console.log(this.userId)
       recipeService
-        .listUserRecipes(this.userId)
+        .listUserRecipes()
         .then((response) => {
           console.log(response);
           this.recipes = response.data;

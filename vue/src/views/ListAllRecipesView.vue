@@ -97,6 +97,7 @@ export default {
           }
         });
     },
+    
     addIngredientToRecipe() {
       this.newRecipe.ingredientList.add(this.newIngredient);
       this.newIngredient = {};

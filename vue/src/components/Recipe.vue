@@ -36,7 +36,7 @@ export default {
   methods: {
     loadRecipeIngredients() {
       recipeService
-        .listIngredients(this.$store.state.user.userId, this.recipe.recipeId)
+        .listIngredients(this.recipe.recipeId)
         .then((response) => {
           this.ingredients = response.data;
         })
@@ -54,9 +54,8 @@ export default {
     },
 
     saveRecipe() {
-      this.recipe.favorite = true;
       recipeService
-        .addRecipeToUser(this.$store.state.user.userId, this.recipe)
+        .addRecipeToUser(this.recipe)
         .then((response) => {
           console.log(response);
         })
@@ -73,10 +72,8 @@ export default {
     },
 
     removeRecipe() {
-      this.recipe.favorite = false;
-      console.log("reached removeRecipe", this.recipe);
       recipeService
-        .removeRecipeFromUser(this.$store.state.user.userId, this.recipe.recipeId)
+        .removeRecipeFromUser(this.recipe.recipeId)
         .then((response) => {
           console.log(response);
         })
