@@ -1,17 +1,10 @@
 <template>
   <div class="list-ingredients">
     <h1>Ingredients</h1>
-    <button
-      class="btn-add"
-      v-on:click="$router.push({ name: 'AddIngredientView' })"
-    >Add Ingredient
+    <button class="btn-add" v-on:click="$router.push({ name: 'AddIngredientView' })">Add Ingredient
     </button>
     <section class="container">
-      <ingredient
-        v-for="ingredient in ingredients"
-        v-bind:key="ingredient.id"
-        v-bind:item="ingredient"
-      />
+      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
     <!-- 
     <button v-show="!showForm" v-on:click="showForm = true">

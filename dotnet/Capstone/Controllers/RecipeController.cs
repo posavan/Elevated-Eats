@@ -81,7 +81,24 @@ namespace Capstone.Controllers
             Recipe result = dao.AddRecipeToUser(newRecipe, userId);
 
             return Ok(result);
+        }
 
+        [HttpDelete("{userId}/{recipeId}")]
+        public ActionResult<Recipe> RemoveRecipeFromUser(int recipeId)
+        {
+            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
+            Recipe recipe = dao.GetUserRecipeById(recipeId);
+            if (recipe == null)
+            {
+                return NotFound();
+            }
+            if (dao.RemoveRecipeFromUser(recipe.RecipeName, userId))
+            {
+                return NoContent();
+            }
+
+            return NotFound();
+            
         }
 
         [HttpPut("{userId}/{recipeName}")]
