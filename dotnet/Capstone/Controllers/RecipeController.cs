@@ -104,7 +104,23 @@ namespace Capstone.Controllers
 
         }
 
-        [HttpPut("{userId}/{recipeId}/ingredients")]
+        [HttpPut("favorites/edit")]
+        public ActionResult<Recipe> ChangeRecipe(Recipe changedRecipe)
+        {
+            Recipe newRecipe = dao.ModifyRecipe(changedRecipe);
+
+            if (newRecipe == null)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(newRecipe);
+            }
+
+        }
+
+        [HttpPut("favorites/edit/ingredients")]
         public ActionResult<Recipe> AddIngredientsToRecipe(Recipe recipe)
         {
             // Check if each ingredient exists in the master list
@@ -123,28 +139,10 @@ namespace Capstone.Controllers
             //return a success response
             return Ok("Ingredients added successfully to the recipe.");
 
-
         }
 
-        [HttpPut("{userId}/{recipeId}")]
-        public ActionResult<Recipe> ChangeRecipe(Recipe changedRecipe)
-        {
-            Recipe newRecipe = dao.ModifyRecipe(changedRecipe);
-
-
-            if (newRecipe == null)
-            {
-                return BadRequest();
-            }
-            else
-            {
-                return Ok(newRecipe);
-            }
-
-        }
-
-        [HttpDelete("{userId}/{recipeId}/ingredients/{ingredientId}")]
-        public ActionResult RemoveIngredientsFromRecipe(int userId, int recipeId, int ingredientId)
+        [HttpDelete("favorites/{recipeId}/ingredients/{ingredientId}")]
+        public ActionResult RemoveIngredientsFromRecipe(int recipeId, int ingredientId)
         {
             try
             {
