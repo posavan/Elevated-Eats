@@ -1,36 +1,36 @@
 <template>
   <section class="recipe">
     <h3>Name: {{ recipe.recipeName }}</h3>
-    <h4>Ingredients:</h4>
-    <section class="container">
-      <ingredient v-for="ingredient in recipe.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient" />
+    <section v-if="showHidden" class="container">
+      <h4>Ingredients:</h4>
+      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="this.$route.name == 'recipe'">
-        Add Recipe To
-        Favorites</button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="this.$route.name == 'userRecipe'">
-        Remove
-        Recipe From Favorites</button>
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!showHidden">
+        Add Recipe To Favorites</button>
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="showHidden">
+        Remove Recipe From Favorites</button>
     </div>
     <p></p>
   </section>
 </template>
 
 <script>
-import Ingredient from "../components/Ingredient.vue";
+import ingredient from "../components/Ingredient.vue";
 import recipeService from "../services/RecipeService.js";
 
 export default {
   name: "recipe",
   props: ["item"],
   components: {
-    Ingredient
+    ingredient
   },
   data() {
     return {
       recipe: {},
+      ingredients: [],
+      showHidden: this.$route.name == 'userRecipe',
     }
   },
   methods: {
@@ -52,6 +52,10 @@ export default {
           }
         });
     },
+    // addIngredientToRecipe() {
+    //   this.newRecipe.ingredientList.add(this.newIngredient);
+    //   this.newIngredient = {};
+    // },
 
     saveRecipe() {
       recipeService

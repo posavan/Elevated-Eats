@@ -8,7 +8,6 @@ namespace Capstone.Models
         public string RecipeName { get; set; }
         public List<Ingredient> IngredientList { get; set; }
         public string RecipeInstructions { get; set; }
-        public bool Favorite { get; set; } = false;
 
     }
 }

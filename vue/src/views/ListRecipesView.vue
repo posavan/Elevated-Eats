@@ -16,23 +16,6 @@
         <label for="type">Instructions: </label>
         <input type="text" name="recipeInstructions" id="recipeInstructions" v-model="newRecipe.recipeInstructions" />
       </div>
-      <!-- 
-      <div>
-        <h2>Ingredients: </h2>
-        <label for="type">Quantity: </label>
-        <input type="text" name="quantity" id="quantity" v-model="newIngredient.quantity" />
-        <label for="type">Ingredient: </label>
-        <input type="text" name="name" id="name" v-model="newIngredient.ingredientName" />
-        <label for="type">Calories: </label>
-        <input type="text" name="calories" id="calories" v-model="newIngredient.calories" />
-        addIngredientToRecipe
-        <recipe v-for="ingredient in newRecipe.ingredientList" v-bind:key="ingredient.id"
-          v-bind:ingredient="ingredient" />
-        
-          <button class="btn-add" v-on:click="$router.push({ name: 'AddIngredientView', params: { recipeId: newRecipe.id } })">Add
-          Ingredient</button>
-           
-      </div> -->
       <button type="submit">Save Recipe</button>
     </form>
   </div>
@@ -41,25 +24,19 @@
 <script>
 import recipe from "../components/Recipe.vue";
 import recipeService from "../services/RecipeService.js";
-//import ListIngredientsView from "./ListIngredientsView.vue";
 
 export default {
-  components: { recipe }, //ListIngredientsView
   name: "ListRecipesView",
+  components: { 
+    recipe 
+  },
   data() {
     return {
       recipes: [],
       showForm: false,
-      newRecipe: {},
-      newIngredient: {},
-      userId: 0,
+      newRecipe: {}
     };
   },
-  // computed: {
-  //   currentRecipes() {
-  //     return this.$store.state.recipes;
-  //   },
-  // },
   methods: {
     createNewRecipe() {
       if (this.newRecipe.recipeName) {
@@ -81,7 +58,6 @@ export default {
           });
       }
     },
-
     loadRecipes() {
       recipeService
         .listUserRecipes()
@@ -101,14 +77,9 @@ export default {
           }
         });
     },
-    addIngredientToRecipe() {
-      this.newRecipe.ingredientList.add(this.newIngredient);
-      this.newIngredient = {};
-    },
   },
 
   created() {
-    this.userId = this.$route.params.userId;
     this.loadRecipes();
   },
 };

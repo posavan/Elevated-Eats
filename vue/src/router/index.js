@@ -101,14 +101,14 @@ const routes = [
       requiresAuth: true,
     },
   },
-  {
-    path: "/recipe/favorites/:recipeId/ingredients",
-    name: "listRecipeIngredients",
-    component: ListIngredientsView,
-    meta: {
-      requiresAuth: true,
-    },
-  },
+  // {
+  //   path: "/recipe/favorites/:recipeId/ingredients",
+  //   name: "listRecipeIngredients",
+  //   component: ListRecipeIngredientsView,
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
   // {
   //   path: "/recipe/:userId/:recipeId/edit",
   //   name: "editRecipe",
