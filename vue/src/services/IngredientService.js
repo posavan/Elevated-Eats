@@ -8,5 +8,5 @@ export default {
 
   createIngredient(newIngredient) {
     return axios.post(`/ingredients`, newIngredient)
-  }
+  },
 };
