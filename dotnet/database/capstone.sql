@@ -26,7 +26,7 @@ CREATE TABLE users (
 
 CREATE TABLE ingredients (
     ingredient_id int IDENTITY (1,1) NOT NULL,
-	ingredient_name varchar(60) NOT NULL,
+	ingredient_name varchar(60) UNIQUE NOT NULL,
 	CONSTRAINT PK_ingredient PRIMARY KEY (ingredient_id)
 )
 CREATE TABLE recipes (
