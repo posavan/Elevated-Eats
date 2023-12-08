@@ -73,7 +73,7 @@ export default {
 <style scoped>
 div#login {
   background-color:rgb(186, 48, 48);
-  border-radius: 10%;
+  /* border-radius: 10%; */
   
 }
 .form-input-group {

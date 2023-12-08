@@ -8,9 +8,9 @@
         v-bind:item="recipe"
       />
     </section>
-
+    <div class="add-recipe">
     <button v-show="!showForm" v-on:click="showForm = true">Add Recipe</button>
-
+    </div>
     <form v-on:submit.prevent="createNewRecipe" v-show="showForm">
       <div>
         <label for="name">Name: </label>
@@ -145,7 +145,41 @@ export default {
 
 <style scoped>
 section.recipe {
-  background-color: pink;
+  background-color: rgb(214, 195, 157);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: rgb(224, 203, 163);
+  border-radius: 0.5rem;
+  margin-bottom: 1.25rem;
+  width: 90%;
+  padding: 2%;
+}
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 10px;
+}
+h1{
+  text-align: center;
+}
+form{
+  text-align: center;
+} 
+
+.add-recipe{
+  display: block;
+  color: wheat;
+  text-align: center;
+  padding: 14px 16px;
+  background-color: rgb(213, 51, 51);
+  border-radius: 50px;
+  margin-left: 40%;
+  margin-right: 40%;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  margin-bottom: 0.9%;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 16px;
 }
 </style>

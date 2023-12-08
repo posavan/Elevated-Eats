@@ -1,11 +1,11 @@
 <template>
   <section class="recipe">
     <h3>Name: {{ item.recipeName }}</h3>
+    <p>Instructions: {{ item.recipeInstructions }}</p>
     <h4>Ingredients:</h4>
     <section class="container">
       <ingredient v-for="ingredient in item.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
-    <p>Instructions: {{ item.recipeInstructions }}</p>
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!item.favorite">Save Recipe To
         Favorites</button>
@@ -92,6 +92,7 @@ export default {
 .list-all-recipes {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center; /* Center text for better appearance */
+    padding-right: 20%;
   }
 
   h1 {
@@ -104,8 +105,8 @@ export default {
     gap: 1.25rem;
   }
 
-  recipe {
-    background-color: pink;
+  .recipe {
+    background-color: rgb(225, 203, 164);
     border-radius: 0.625rem; /* Rounded corners for recipe cards */
     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
     margin-bottom: 1.25rem;
@@ -142,7 +143,7 @@ export default {
 
   button {
     padding: 1.25rem;
-    background-color: #4caf50;
+    background-color: brown;
     color: #fff;
     border: none;
     border-radius: 0.25rem;

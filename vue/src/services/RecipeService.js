@@ -8,10 +8,10 @@ export default {
     return axios.get('/recipe/' + userId);
   },
   GetUserRecipeByRecipeId(recipeId, userId) {
-    return http.get('recipe/'+ userId +'/'+ recipeId);
+    return axios.get('recipe/'+ userId +'/'+ recipeId);
   },
   listRecipeByName(recipeName) {
-    return http.get('/recipe/public/' + recipeName);
+    return axios.get('/recipe/public/' + recipeName);
   },
   createRecipe(newRecipe) {
     return axios.post('/recipe', newRecipe);

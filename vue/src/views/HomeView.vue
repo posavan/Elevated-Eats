@@ -23,11 +23,10 @@ div.home {
   background-color: rgb(120, 111, 84);
   background-image: url("../../homeview.jpg");
   color: wheat;
-  padding-top: 200px;
+  padding-top: 100px;
   padding-bottom: 13%;
   padding-top: 240px;
   background-size: cover;
-  border-radius: 3%;
   background-blend-mode: multiply;
 }
 h1 {
@@ -37,51 +36,33 @@ h1 {
 p {
   text-align: center;
 }
-.recipes {
+.recipes,
+.meal-plans,
+.my-recipes {
   display: block;
   color: wheat;
   text-align: center;
   padding: 14px 16px;
-  text-decoration: none;
   background-color: rgb(213, 51, 51);
   border-radius: 50px;
   margin-left: 40%;
   margin-right: 40%;
-  margin-bottom: 0.9%;
   border-top: none;
   border-left: none;
   border-right: none;
+  margin-bottom: 0.9%;
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 16px;
 }
-.meal-plans {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  background-color: rgb(213, 51, 51);
-  border-radius: 50px;
-  margin-left: 40%;
-  margin-right: 40%;
-  margin-bottom: 0.9%;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
+
+.recipes:hover {
+  opacity: .50;
 }
-.my-recipes {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  background-color: rgb(213, 51, 51);
-  border-radius: 50px;
-  margin-left: 40%;
-  margin-right: 40%;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  border-bottom: none;
-  margin-bottom: 0.9%;
+.my-recipes:hover {
+  opacity: 0.50;
+}
+.meal-plans:hover {
+  opacity: 0.50;
 }
 </style>
