@@ -6,9 +6,9 @@ using System.Collections.Generic;
 
 namespace Capstone.Controllers
 {
-    //[Authorize]
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class IngredientsController : ControllerBase
     {
         IIngredientDao dao;
@@ -31,7 +31,7 @@ namespace Capstone.Controllers
         {
             Ingredient result = dao.CreateIngredient(newIngredient);
 
-            if (result.IngredientId == 0)
+            if (result == null || result.IngredientId == 0)
             {
                 return BadRequest();
             }

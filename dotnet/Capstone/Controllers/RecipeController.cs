@@ -1,6 +1,7 @@
 ﻿using Capstone.DAO;
 using Capstone.Exceptions;
 using Capstone.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -10,6 +11,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize]
     public class RecipeController : ControllerBase
     {
 
@@ -61,7 +63,7 @@ namespace Capstone.Controllers
             int currentUser = userDao.GetUserByUsername(User.Identity.Name).UserId;
             Recipe result = dao.CreateRecipe(newRecipe, currentUser);
 
-            if (result.RecipeId == 0)
+            if (result == null || result.RecipeId == 0)
             {
                 return BadRequest();
             }
@@ -71,20 +73,15 @@ namespace Capstone.Controllers
             }
         }
 
-        [HttpPost("{userId}/{recipeId}")]
-        public ActionResult<Recipe> AddRecipeToUser(int recipeId)
+        [HttpPost("{userId}")]
+        public ActionResult<Recipe> AddRecipeToUser(Recipe newRecipe)
         {
-            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
-            int result = dao.AddRecipeToUser(userId, recipeId);
 
-            if (result < 0)
-            {
-                return BadRequest();
-            }
-            else
-            {
-                return Ok(result);
-            }
+            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
+            Recipe result = dao.AddRecipeToUser(newRecipe, userId);
+
+            return Ok(result);
+
         }
 
         [HttpPost("{userId}/{recipeId}/ingredients")]

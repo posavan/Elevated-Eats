@@ -58,7 +58,7 @@ const routes = [
     name: "ingredients",
     component: ListIngredientsView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -66,7 +66,7 @@ const routes = [
     name: "recipe",
     component: ListAllRecipesView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -74,7 +74,7 @@ const routes = [
     name: "userRecipe",
     component: ListRecipesView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -98,7 +98,7 @@ const routes = [
     name: "AddIngredientView",
     component: AddIngredientView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -106,7 +106,7 @@ const routes = [
     name: "ListRecipeIngredients",
     component: ListIngredientsView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   // {
@@ -114,7 +114,7 @@ const routes = [
   //   name: "AddRecipeToUser",
   //   component: AddRecipeView,
   //   meta: {
-  //     requiresAuth: false,
+  //     requiresAuth: true,
   //   },
   // },
 ];
@@ -128,10 +128,8 @@ const router = createRouter({
 router.beforeEach((to) => {
   // Get the Vuex store
   const store = useStore();
-
   // Determine if the route requires Authentication
   const requiresAuth = to.matched.some((x) => x.meta.requiresAuth);
-
   // If it does and they are not logged in, send the user to "/login"
   if (requiresAuth && store.state.token === "") {
     return { name: "login" };
