@@ -104,8 +104,8 @@ namespace Capstone.Controllers
 
         }
 
-        [HttpPost("favorites/add")]
-        public ActionResult<Recipe> AddIngredientToRecipe(Recipe recipe)
+        [HttpPut("{userId}/{recipeId}/ingredients")]
+        public ActionResult<Recipe> AddIngredientsToRecipe(Recipe recipe)
         {
             // Check if each ingredient exists in the master list
             foreach (Ingredient ingredient in recipe.IngredientList)
@@ -113,22 +113,20 @@ namespace Capstone.Controllers
                 if (ingredientDao.IngredientExists(ingredient))
                 {
                     // Handle the case where the ingredient already exist
-                    return BadRequest($"Ingredient {ingredient.IngredientName} already in the master list.");
+                    return BadRequest($"Ingredient {ingredient.IngredientName} already exists in the master list.");
                 }
             }
 
             // Call the method to add ingredients to the recipe
             dao.AddIngredientsToRecipe(recipe);
 
-            // Optionally, return a success response
+            //return a success response
             return Ok("Ingredients added successfully to the recipe.");
 
 
         }
 
-
-
-        [HttpPut("favorites/edit")]
+        [HttpPut("{userId}/{recipeId}")]
         public ActionResult<Recipe> ChangeRecipe(Recipe changedRecipe)
         {
             Recipe newRecipe = dao.ModifyRecipe(changedRecipe);
@@ -145,12 +143,12 @@ namespace Capstone.Controllers
 
         }
 
-        [HttpDelete("favorites/{recipeId}/ingredients/{ingredientId}")]
-        public ActionResult RemoveIngredientsFromRecipe(int recipeId, int ingredientId)
+        [HttpDelete("{userId}/{recipeId}/ingredients/{ingredientId}")]
+        public ActionResult RemoveIngredientsFromRecipe(int userId, int recipeId, int ingredientId)
         {
             try
             {
-                dao.RemoveIngredientsFromRecipe(userRecipeId, ingredientId);
+                dao.RemoveIngredientsFromRecipe(recipeId, ingredientId);
                 return NoContent();
 
             }

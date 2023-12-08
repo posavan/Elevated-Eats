@@ -117,6 +117,9 @@ namespace Capstone.DAO
         }
 
         // retrieves from users saved recipes
+        
+
+        //get rid of this method -- duplicate
         public Recipe GetRecipeById(int recipeId)
         {
             Recipe recipe = null;
@@ -354,7 +357,7 @@ namespace Capstone.DAO
 
         }
 
-        public void AddIngredientsToRecipe(Recipe recipe) //change to recipe object
+        public void AddIngredientsToRecipe(Recipe recipe)
         {
             string sqlAddNewIngredient = "INSERT INTO ingredients (ingredient_name) " +
                 "OUTPUT INSERTED.ingredient_id " +
@@ -421,11 +424,10 @@ namespace Capstone.DAO
 
         }
 
-
-        public void RemoveIngredientsFromRecipe(int userRecipeId, int ingredientId)
+        public bool RemoveIngredientsFromRecipe(int recipeId, int ingredientId)
         {
-
-            string sqlDeleteIngredient = "DELETE FROM recipes_ingredients WHERE ingredient_id = @ingredientId AND user_recipe_id = @userRecipeId";
+            bool result = false;
+            string sqlDeleteIngredientFromRecipe = "DELETE FROM recipes_ingredients WHERE ingredient_id = @ingredientId AND user_recipe_id = @recipeId";
 
             try
             {
@@ -433,21 +435,28 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(sqlDeleteIngredient, conn);
-                    cmd.Parameters.AddWithValue("@userRecipeId", userRecipeId);
-                    cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
-                    cmd.ExecuteNonQuery();
+                    Console.WriteLine($"Removing ingredients. RecipeId: {recipeId}, IngredientId: {ingredientId}");
 
+
+                    SqlCommand cmd = new SqlCommand(sqlDeleteIngredientFromRecipe, conn);
+                    cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                    cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        result = true;
+                    }
                 }
+
             }
             catch (SqlException ex)
             {
                 throw new DaoException("SQL exception occurred", ex);
             }
 
-            return;
-
+            return result;
         }
+
 
         private Recipe MapRowToRecipe(SqlDataReader reader)
         {
