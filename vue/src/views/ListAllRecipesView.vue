@@ -1,16 +1,24 @@
 <template>
+  <h1>Recipe Library</h1>
   <div class="list-all-recipes">
-    <h1>Recipe Library</h1>
     <section class="container">
-      <recipe v-for="recipe in allRecipes" v-bind:key="recipe.id" v-bind:item="recipe">
+      <recipe
+        v-for="recipe in allRecipes"
+        v-bind:key="recipe.id"
+        v-bind:item="recipe"
+      >
         <button v-on:click="addRecipeToUser">Save Recipe To Favorites</button>
       </recipe>
-
     </section>
     <form v-on:submit.prevent="createNewRecipe" v-show="showForm">
       <div>
         <label for="name">Name: </label>
-        <input type="text" name="name" id="name" v-model="newRecipe.recipeName" />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          v-model="newRecipe.recipeName"
+        />
       </div>
       <!-- 
         <div>
@@ -37,7 +45,7 @@
     </form>
   </div>
 </template>
-  
+
 <script>
 import recipe from "../components/Recipe.vue";
 import recipeService from "../services/RecipeService.js";
@@ -110,12 +118,13 @@ export default {
   },
 };
 </script>
-  
-  
+
 <style scoped>
 section.recipe {
-  background-color: pink;
+  background-color: rgb(220, 200, 163);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+  border-right: 20px;
 }
 
 .list-all-recipes {
@@ -156,23 +165,22 @@ input {
 
 button {
   padding: 1.25rem;
-  background-color: #4caf50;
-  color: #fff;
+  background-color: brown;
+  color: wheat;
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
 }
 
 button:hover {
-  opacity: 0.8;
+  opacity: 0.50;
 }
 
 .container recipe {
-  background-color: pink;
+  background-color: rgb(224, 203, 163);
   border-radius: 0.5rem;
   margin-bottom: 1.25rem;
   width: 30%;
   padding: 2%;
 }
 </style>
-  

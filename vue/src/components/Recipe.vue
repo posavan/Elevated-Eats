@@ -102,6 +102,10 @@ export default {
 
 <style scoped>
 .list-all-recipes {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center; /* Center text for better appearance */
+    padding-right: 20%;
+  }
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   /* Center text for better appearance */
@@ -117,6 +121,13 @@ h1 {
   gap: 1.25rem;
 }
 
+  .recipe {
+    background-color: rgb(225, 203, 164);
+    border-radius: 0.625rem; /* Rounded corners for recipe cards */
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.25rem;
+    padding: 2%;
+  }
 recipe {
   background-color: pink;
   border-radius: 0.625rem;
@@ -155,6 +166,14 @@ input {
   box-sizing: border-box;
 }
 
+  button {
+    padding: 1.25rem;
+    background-color: brown;
+    color: #fff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+  }
 button {
   padding: 1.25rem;
   background-color: #4caf50;
