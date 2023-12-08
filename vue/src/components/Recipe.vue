@@ -7,9 +7,11 @@
     </section>
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="this.$route.name == 'recipe'">Add Recipe To
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="this.$route.name == 'recipe'">
+        Add Recipe To
         Favorites</button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="this.$route.name == 'userRecipe'">Remove
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="this.$route.name == 'userRecipe'">
+        Remove
         Recipe From Favorites</button>
     </div>
     <p></p>
@@ -33,7 +35,6 @@ export default {
   },
   methods: {
     loadRecipeIngredients() {
-      console.log("reached loadRecipeIngrd");
       recipeService
         .listIngredients(this.$store.state.user.userId, this.recipe.recipeId)
         .then((response) => {
@@ -185,4 +186,5 @@ button {
 
 button:hover {
   opacity: 0.8;
-}</style>
+}
+</style>

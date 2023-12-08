@@ -18,7 +18,6 @@ export default {
     return {
       recipe: [],
       recipeName: "",
-
     };
   },
   methods: {
@@ -27,7 +26,6 @@ export default {
       recipeService
         .listRecipeByName(this.recipeName)
         .then((response) => {
-          console.log("Reached created in RecipeDetailsView.vue");
           console.log(response.data);
           this.recipe = response.data;
         })
@@ -45,8 +43,6 @@ export default {
     },
   },
   created() {
-    console.log("about to call load recipe");
-    //this.loadRecipe(this.recipeName);
     this.recipeName = this.$route.params.recipeName;
     this.loadRecipe();
   },
@@ -60,6 +56,7 @@ h1 {
   background-color: rgb(210, 184, 244);
   border-radius: 50px;
 }
+
 div {
   background-color: rgb(167, 116, 244);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;

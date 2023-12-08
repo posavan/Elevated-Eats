@@ -9,9 +9,8 @@
       <input type="text" name="name" id="name" v-model="editIngredient.ingredientName" />
     </div>
     <div class="actions">
-      <button class="btn-continue" type="submit">Save Ingredient</button><!--Needs to return to prev-->
-      <button class="btn-submit" type="submit">Save and Continue Adding</button>
-      <button class="btn-cancel" type="button" v-on:click="cancelForm">Cancel</button>
+      <button class="btn-submit" type="submit">Add and Continue</button>
+      <button class="btn-cancel" type="button" v-on:click="cancelForm">Return</button>
     </div>
   </form>
 </template>
@@ -44,7 +43,7 @@ export default {
           .createIngredient(this.editIngredient)
           .then(() => {
             this.editIngredient = {};
-            this.$router.push({ name: "ListRecipesView" });
+            this.$router.push({ name: "userRecipe" });
           })
           .catch((error) => {
             if (error.response) {
