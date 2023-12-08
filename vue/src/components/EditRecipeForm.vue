@@ -2,33 +2,17 @@
   <form v-on:submit.prevent="editRecipe">
     <div>
       <label for="type">Edit Ingredients: </label>
-      <input
-        type="text"
-        name="edit-ingredient-name"
-        id="edit-ingredient-name"
-        v-model="editRecipe.ingredientName"
-      />
-      <input
-        type="text"
-        name="edit-ingredient-quantity"
-        id="edit-ingredient-quantity"
-        v-model="editRecipe.quantity"
-      />
+      <input type="text" name="edit-ingredient-name" id="edit-ingredient-name" v-model="editRecipe.ingredientName" />
+      <input type="text" name="edit-ingredient-quantity" id="edit-ingredient-quantity" v-model="editRecipe.quantity" />
     </div>
 
     <div>
       <label for="name">Edit Instructions: </label>
-      <input
-        type="text"
-        name="edit-instructions"
-        id="edit-instructions"
-        v-model="editRecipe.recipeInstructions"
-      />
+      <input type="text" name="edit-instructions" id="edit-instructions" v-model="editRecipe.recipeInstructions" />
     </div>
 
     <div class="actions">
-      <button class="btn-continue" type="submit">Save Recipe</button
-      ><!--Needs to return to prev-->
+      <button class="btn-continue" type="submit">Save Recipe</button><!--Needs to return to prev-->
       <button class="btn-submit" type="submit">
         Save and Continue Editing
       </button>

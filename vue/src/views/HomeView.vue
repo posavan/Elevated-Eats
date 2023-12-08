@@ -3,13 +3,13 @@
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="recipes">
-      <a href="/recipe">Recipes </a>
+      <a href="recipe">Recipes </a>
     </nav>
     <nav class="my-recipes">
-      <a href="/recipe/1">My Recipes</a>
+      <a href="recipe/1" onclick="location.href=this.href+this.$store.state.userId">My Recipes</a>
     </nav>
     <nav class="meal-plans">
-      <a href="/mealPlans">My Meal Plans</a>
+      <a href="mealplans">My Meal Plans</a>
     </nav>
   </div>
 </template>
@@ -29,13 +29,16 @@ div.home {
   background-size: cover;
   background-blend-mode: multiply;
 }
+
 h1 {
   text-align: center;
   font-size: 100px;
 }
+
 p {
   text-align: center;
 }
+
 .recipes,
 .meal-plans,
 .my-recipes {
@@ -59,10 +62,11 @@ p {
 .recipes:hover {
   opacity: .50;
 }
+
 .my-recipes:hover {
   opacity: 0.50;
 }
+
 .meal-plans:hover {
   opacity: 0.50;
-}
-</style>
+}</style>

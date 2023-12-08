@@ -87,7 +87,6 @@ export default {
       recipeService
         .listUserRecipes(this.userId)
         .then((response) => {
-          console.log("Reached created in ListRecipesView.vue");
           console.log(response);
           this.recipes = response.data;
         })

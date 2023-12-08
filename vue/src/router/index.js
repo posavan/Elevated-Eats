@@ -79,7 +79,7 @@ const routes = [
   },
   {
     path: "/recipe/public/:recipeName",
-    name: "RecipeDetailsView",
+    name: "recipeDetails",
     component: RecipeDetailsView,
     meta: {
       requiresAuth: false,
@@ -87,7 +87,7 @@ const routes = [
   },
   {
     path: "/recipe/:userId/:recipeId",
-    name: "UserRecipeDetailsView",
+    name: "userRecipeDetails",
     component: UserRecipeDetailsView,
     meta: {
       requiresAuth: false,
@@ -95,7 +95,7 @@ const routes = [
   },
   {
     path: "/ingredients/create",
-    name: "AddIngredientView",
+    name: "addIngredient",
     component: AddIngredientView,
     meta: {
       requiresAuth: true,
@@ -103,12 +103,20 @@ const routes = [
   },
   {
     path: "/recipe/:userId/:recipeId/ingredients",
-    name: "ListRecipeIngredients",
+    name: "listRecipeIngredients",
     component: ListIngredientsView,
     meta: {
       requiresAuth: true,
     },
   },
+  // {
+  //   path: "/recipe/:userId/:recipeId/edit",
+  //   name: "editRecipe",
+  //   component: EditRecipeView,
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
   // {
   //   path: "/recipe/:userId/:recipeId",
   //   name: "AddRecipeToUser",
