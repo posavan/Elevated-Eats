@@ -3,15 +3,14 @@
     <h3>Name: {{ recipe.recipeName }}</h3>
     <h4>Ingredients:</h4>
     <section class="container">
-      <ingredient v-for="ingredient in recipe.ingredientList" 
-      v-bind:key="ingredient.id" v-bind:item="ingredient" />
+      <ingredient v-for="ingredient in recipe.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" 
-      v-if="this.$route.name == 'recipe'">Add Recipe To Favorites</button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" 
-      v-if="this.$route.name == 'userRecipe'">Remove Recipe From Favorites</button>
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="this.$route.name == 'recipe'">Add Recipe To
+        Favorites</button>
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="this.$route.name == 'userRecipe'">Remove
+        Recipe From Favorites</button>
     </div>
     <p></p>
   </section>
@@ -102,14 +101,12 @@ export default {
 
 <style scoped>
 .list-all-recipes {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center; /* Center text for better appearance */
-    padding-right: 20%;
-  }
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   /* Center text for better appearance */
+  padding-right: 20%;
 }
+
 
 h1 {
   text-align: center;
@@ -121,13 +118,15 @@ h1 {
   gap: 1.25rem;
 }
 
-  .recipe {
-    background-color: rgb(225, 203, 164);
-    border-radius: 0.625rem; /* Rounded corners for recipe cards */
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.25rem;
-    padding: 2%;
-  }
+.recipe {
+  background-color: rgb(225, 203, 164);
+  border-radius: 0.625rem;
+  /* Rounded corners for recipe cards */
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+  margin-bottom: 1.25rem;
+  padding: 2%;
+}
+
 recipe {
   background-color: pink;
   border-radius: 0.625rem;
@@ -166,14 +165,15 @@ input {
   box-sizing: border-box;
 }
 
-  button {
-    padding: 1.25rem;
-    background-color: brown;
-    color: #fff;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-  }
+button {
+  padding: 1.25rem;
+  background-color: brown;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
 button {
   padding: 1.25rem;
   background-color: #4caf50;
@@ -185,5 +185,4 @@ button {
 
 button:hover {
   opacity: 0.8;
-}
-</style>
+}</style>
