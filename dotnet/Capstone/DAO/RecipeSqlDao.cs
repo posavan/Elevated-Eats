@@ -247,6 +247,43 @@ namespace Capstone.DAO
             return newRecipe;
         }
 
+        public bool RemoveRecipeFromUser(string recipeName, int userId)
+        {
+            bool result = false;
+            string priorSql = "DELETE FROM recipes_ingredients WHERE user_recipe_id IN " +
+                "(SELECT ri.user_recipe_id FROM recipes_ingredients ri " +
+                "JOIN users_saved_recipes usr ON ri.user_recipe_id=usr.user_recipe_id " +
+                "WHERE usr.recipe_name=@recipe_name);";
+            string sql = "DELETE FROM users_saved_recipes WHERE recipe_name=@recipe_name AND user_id=@user_id;";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand(priorSql, conn);
+                    cmd.Parameters.AddWithValue("@recipe_name", recipeName);
+                    int count = cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@recipe_name", recipeName);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+                    count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        result = true;
+                    }
+                }
+
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return result;
+        }
+
         // creates recipe in User's recipes
         public Recipe CreateRecipe(Recipe recipe, int userId)
         {

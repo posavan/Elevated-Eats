@@ -32,7 +32,7 @@ export function createStore(currentToken, currentUser) {
         axios.defaults.headers.common = {};
       },
 
-      LOAD_INGREDIENTS(state) {
+      LOAD_ALL_INGREDIENTS(state) {
         ingredientService
           .list()
           .then((response) => {
@@ -53,115 +53,138 @@ export function createStore(currentToken, currentUser) {
           });
       },
 
-      ADD_NEW_INGREDIENT(state, payload) {
-        state.ingredients.push(payload);//@todo: refactor
+      LOAD_INGREDIENTS(state, payload) {
+        recipeService
+        .listIngredients(state.user.userId, payload.recipeId)
+        .then((response) => {
+          this.ingredients = response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("Error loading recipe ingredients: ", error.response.status);
+          } else if (error.request) {
+            console.log(
+              "Error loading ingredients: unable to communicate to server"
+            );
+          } else {
+            console.log("Error loading ingredients: make request");
+          }
+        });
       },
 
-      LOAD_ALL_RECIPES(state) {
-        recipeService
-          .list()
-          .then((response) => {
-            console.log("Reached LOAD_ALL_RECIPES in Vuex");
-            console.log(response);
-            state.allRecipes = response.data;
-          })
-          .catch((error) => {
-            if (error.response) {
-              console.log("Error loading recipes: ", error.response.status);
-            } else if (error.request) {
-              console.log(
-                "Error loading recipes: unable to communicate to server"
-              );
-            } else {
-              console.log("Error loading recipes: make request");
-            }
-          });
-      },
+      // ADD_NEW_INGREDIENT(state, payload) {
+      //   state.ingredients.push(payload);//@todo: refactor
+      // },
 
-      LOAD_RECIPES(state) {
-        recipeService
-          .listUserRecipes(state.user.userId)
-          .then((response) => {
-            console.log("Reached LOAD_RECIPES in Vuex");
-            console.log(response);
-            state.recipes = response.data;
-          })
-          .catch((error) => {
-            if (error.response) {
-              console.log("Error loading recipes: ", error.response.status);
-            } else if (error.request) {
-              console.log(
-                "Error loading recipes: unable to communicate to server"
-              );
-            } else {
-              console.log("Error loading recipes: make request");
-            }
-          });
-      },
+      // LOAD_ALL_RECIPES(state) {
+      //   recipeService
+      //     .list()
+      //     .then((response) => {
+      //       console.log("Reached LOAD_ALL_RECIPES in Vuex");
+      //       console.log(response);
+      //       state.allRecipes = response.data;
+      //     })
+      //     .catch((error) => {
+      //       if (error.response) {
+      //         console.log("Error loading recipes: ", error.response.status);
+      //       } else if (error.request) {
+      //         console.log(
+      //           "Error loading recipes: unable to communicate to server"
+      //         );
+      //       } else {
+      //         console.log("Error loading recipes: make request");
+      //       }
+      //     });
+      // },
 
-      ADD_RECIPE(state, payload) {
-        recipeService
-          .createRecipe(payload)
-          .then((response) => {
-            console.log("Reached ADD_RECIPE in Vuex");
-            console.log(response);
-            //@todo: refresh state.recipes?
-          })
-          .catch((error) => {
-            if (error.response) {
-              console.log("Error loading recipes: ", error.response.status);
-            } else if (error.request) {
-              console.log(
-                "Error loading recipes: unable to communicate to server"
-              );
-            } else {
-              console.log("Error loading recipes: make request");
-            }
-          });
-      },
+      // LOAD_RECIPES(state) {
+      //   recipeService
+      //     .listUserRecipes(state.user.userId)
+      //     .then((response) => {
+      //       console.log("Reached LOAD_RECIPES in Vuex");
+      //       console.log(response);
+      //       state.recipes = response.data;
+      //     })
+      //     .catch((error) => {
+      //       if (error.response) {
+      //         console.log("Error loading recipes: ", error.response.status);
+      //       } else if (error.request) {
+      //         console.log(
+      //           "Error loading recipes: unable to communicate to server"
+      //         );
+      //       } else {
+      //         console.log("Error loading recipes: make request");
+      //       }
+      //     });
+      // },
 
-      SAVE_RECIPE(state, payload) {
-        console.log("In save recipe: ", payload);
-        recipeService
-          .addRecipeToUser(state.user.userId, payload)
-          .then((response) => {
-            console.log("Reached SAVE_RECIPE in Vuex");
-            console.log(response);
-            //@todo: refresh state.recipes
-          })
-          .catch((error) => {
-            if (error.response) {
-              console.log("Error loading recipes: ", error.response.status);
-            } else if (error.request) {
-              console.log(
-                "Error loading recipes: unable to communicate to server"
-              );
-            } else {
-              console.log("Error loading recipes: make request");
-            }
-          });
-      },
+      // ADD_RECIPE(state, payload) {
+      //   recipeService
+      //     .createRecipe(payload)
+      //     .then((response) => {
+      //       console.log("Reached ADD_RECIPE in Vuex");
+      //       console.log(response);
+      //       //@todo: refresh state.recipes?
+      //     })
+      //     .catch((error) => {
+      //       if (error.response) {
+      //         console.log("Error loading recipes: ", error.response.status);
+      //       } else if (error.request) {
+      //         console.log(
+      //           "Error loading recipes: unable to communicate to server"
+      //         );
+      //       } else {
+      //         console.log("Error loading recipes: make request");
+      //       }
+      //     });
+      // },
 
-      REMOVE_RECIPE(state, payload) {
-        recipeService
-          .removeRecipeFromUser(state.user.userId, payload)
-          .then((response) => {
-            console.log("Reached SAVE_RECIPE in Vuex");
-            console.log(response);
-            //@todo: refresh state.recipes
-          })
-          .catch((error) => {
-            if (error.response) {
-              console.log("Error loading recipes: ", error.response.status);
-            } else if (error.request) {
-              console.log(
-                "Error loading recipes: unable to communicate to server"
-              );
-            } else {
-              console.log("Error loading recipes: make request");
-            }
-          });
-      },
+      // FLIP_FAV_STATUS(state, payload) {
+      //   payload.item.favorite = !payload.item.favorite;
+      // },
+
+      // SAVE_RECIPE(state, payload) {
+      //   console.log("In save recipe: ", payload);
+      //   recipeService
+      //     .addRecipeToUser(state.user.userId, payload)
+      //     .then((response) => {
+      //       console.log("Reached SAVE_RECIPE in Vuex");
+      //       console.log(response);
+      //       //@todo: refresh state.recipes
+      //     })
+      //     .catch((error) => {
+      //       if (error.response) {
+      //         console.log("Error loading recipes: ", error.response.status);
+      //       } else if (error.request) {
+      //         console.log(
+      //           "Error loading recipes: unable to communicate to server"
+      //         );
+      //       } else {
+      //         console.log("Error loading recipes: make request");
+      //       }
+      //     });
+      // },
+
+      // REMOVE_RECIPE(state, payload) {
+      //   recipeService
+      //     .removeRecipeFromUser(state.user.userId, payload)
+      //     .then((response) => {
+      //       console.log("Reached SAVE_RECIPE in Vuex");
+      //       console.log(response);
+      //       //@todo: refresh state.recipes
+      //     })
+      //     .catch((error) => {
+      //       if (error.response) {
+      //         console.log("Error loading recipes: ", error.response.status);
+      //       } else if (error.request) {
+      //         console.log(
+      //           "Error loading recipes: unable to communicate to server"
+      //         );
+      //       } else {
+      //         console.log("Error loading recipes: make request");
+      //       }
+      //     });
+      // },
     },
   });
   return store;

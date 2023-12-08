@@ -13,6 +13,7 @@ namespace Capstone.DAO
         public List<Ingredient> GetIngredientsByRecipeId(int recipeId);
 
         public Recipe AddRecipeToUser(Recipe recipe, int userId);
+        public bool RemoveRecipeFromUser(string recipeName, int userId);
         public Recipe CreateRecipe(Recipe recipe, int userId);
         public Recipe ModifyRecipe(Recipe updatedRecipe);
         public void AddIngredientsToRecipe(int userId, int recipeId, List<Ingredient> ingredientList);
