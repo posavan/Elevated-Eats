@@ -87,6 +87,36 @@ namespace Capstone.Controllers
             }
         }
 
+        [HttpPost("{userId}/{recipeId}/ingredients")]
+        public ActionResult<Recipe> AddIngredientsToRecipe(int userId, int recipeId, Recipe recipe)
+        {
+            try
+            {
+                dao.AddIngredientsToRecipe(userId, recipeId, recipe.IngredientList);
+                return Ok();
+            }
+            catch (DaoException ex)
+            {
+                
+                Console.WriteLine($"Error adding ingredients to recipe: {ex.Message}");
+                return StatusCode(500, "Internal Server Error");
+            }
+        }
+        //public ActionResult<Recipe> AddIngredientsToRecipe(Recipe recipe)
+        //{
+        //    int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
+        //    int result = dao.AddIngredientsToRecipe(recipe.RecipeId);
+
+        //    if (result < 0)
+        //    {
+        //        return BadRequest();
+        //    }
+        //    else
+        //    {
+        //        return Ok(result);
+        //    }
+        //}
+
         [HttpPut("{userId}/{recipeName}")]
         public ActionResult<Recipe> ChangeRecipe(int userRecipeId, Recipe changedRecipe)
         {
@@ -104,20 +134,20 @@ namespace Capstone.Controllers
 
         }
 
-        //[HttpDelete("{userId}/{recipeId}/ingredients")]
-        //public ActionResult RemoveIngredientsFromRecipe(int userRecipeId, int ingredientId)
-        //{
-        //    try
-        //    {
-        //        dao.RemoveIngredientsFromRecipe(userRecipeId, ingredientId);
-        //        return NoContent();
+        [HttpDelete("{userId}/{recipeId}/ingredients/{ingredientId}")]
+        public ActionResult RemoveIngredientsFromRecipe(int userRecipeId, int ingredientId)
+        {
+            try
+            {
+                dao.RemoveIngredientsFromRecipe(userRecipeId, ingredientId);
+                return NoContent();
 
-        //    }
-        //    catch (DaoException ex)
-        //    {
-        //        return NotFound();
-        //    }
-        //}
+            }
+            catch (DaoException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
 
     }
 }
