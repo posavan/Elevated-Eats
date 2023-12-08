@@ -18,7 +18,7 @@ namespace Capstone.Controllers
         IRecipeDao dao;
         IUserDao userDao;
         IIngredientDao ingredientDao;
-        public RecipeController(IRecipeDao RecipeDao, IUserDao UserDao, IIngredientDao IngredientDao )
+        public RecipeController(IRecipeDao RecipeDao, IUserDao UserDao, IIngredientDao IngredientDao)
         {
             this.dao = RecipeDao;
             this.userDao = UserDao;
@@ -33,6 +33,7 @@ namespace Capstone.Controllers
         }
 
         [HttpGet("{userId}")]
+
         public ActionResult<List<Recipe>> GetRecipesByUserId(int userId)
         {
             return Ok(dao.GetRecipesByUserId(userId));
@@ -100,31 +101,32 @@ namespace Capstone.Controllers
             }
 
             return NotFound();
-            
+
         }
 
         [HttpPost("{userId}/{recipeId}")]
-        public ActionResult<Recipe> AddIngredientsToRecipe(int userId, int recipeId, List<Ingredient> ingredientList)
+        public ActionResult<Recipe> AddIngredientsToRecipe(Recipe recipe)
         {
 
             // Check if each ingredient exists in the master list
-            foreach (Ingredient ingredient in ingredientList)
+            foreach (Ingredient ingredient in recipe.IngredientList)
             {
-                if (!ingredientDao.IngredientExists(ingredient))
+                if (ingredientDao.IngredientExists(ingredient))
                 {
-                    // Handle the case where the ingredient doesn't exist
-                    return BadRequest($"Ingredient {ingredient.IngredientName} does not exist in the master list.");
+                    // Handle the case where the ingredient already exist
+                    return BadRequest($"Ingredient {ingredient.IngredientName} already in the master list.");
                 }
             }
 
             // Call the method to add ingredients to the recipe
-            dao.AddIngredientsToRecipe(userId, recipeId, ingredientList);
+            dao.AddIngredientsToRecipe(recipe);
 
             // Optionally, return a success response
             return Ok("Ingredients added successfully to the recipe.");
 
 
         }
+
 
 
         [HttpPut("{userId}/{recipeName}")]

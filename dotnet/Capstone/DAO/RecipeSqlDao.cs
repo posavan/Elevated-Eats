@@ -305,7 +305,7 @@ namespace Capstone.DAO
                     newRecipe = GetRecipeById(Convert.ToInt32(cmd.ExecuteScalar()));
                 }
 
-                AddIngredientsToRecipe(userId, recipe.RecipeId, recipe.IngredientList);
+                AddIngredientsToRecipe(recipe);
                 newRecipe = GetRecipeById(recipe.RecipeId);
 
 
@@ -355,8 +355,7 @@ namespace Capstone.DAO
 
         }
 
-
-        public void AddIngredientsToRecipe(int userId, int recipeId, List<Ingredient> ingredientList)
+        public void AddIngredientsToRecipe(Recipe recipe) //change to recipe object
         {
             string sqlAddNewIngredient = "INSERT INTO ingredients (ingredient_name) " +
                 "OUTPUT INSERTED.ingredient_id " +
@@ -371,11 +370,11 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    foreach (Ingredient ingredient in ingredientList)
+                    foreach (Ingredient ingredient in recipe.IngredientList)
                     {
                         // check if ingredient already exists in the master list (db does not allow duplicates)
-                        if (!ingredientDao.IngredientExists(ingredient))
-                        {
+                        //if (!ingredientDao.IngredientExists(ingredient))
+                        //{
                             // add the new ingredient to the master list
                             SqlCommand cmdNewIngredient = new SqlCommand(sqlAddNewIngredient, conn);
                             cmdNewIngredient.Parameters.AddWithValue("@ingredientName", ingredient.IngredientName);
@@ -387,7 +386,7 @@ namespace Capstone.DAO
                             {
                                 // add the ingredient to recipes_ingredients
                                 SqlCommand cmdAddToRecipe = new SqlCommand(sqlAddIngredientToRecipe, conn);
-                                cmdAddToRecipe.Parameters.AddWithValue("@recipe_id", recipeId);
+                                cmdAddToRecipe.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
                                 cmdAddToRecipe.Parameters.AddWithValue("@ingredient_id", newIngredientId);
                                 cmdAddToRecipe.Parameters.AddWithValue("@quantity", ingredient.Quantity);
 
@@ -406,11 +405,11 @@ namespace Capstone.DAO
                             {
                                 Console.WriteLine($"Failed to add ingredient {ingredient.IngredientName} to the master list.");
                             }
-                        }
-                        else
-                        {
-                            Console.WriteLine($"Ingredient {ingredient.IngredientName} already exists in the master list.");
-                        }
+                        //}
+                        //else
+                        //{
+                        //    Console.WriteLine($"Ingredient {ingredient.IngredientName} already exists in the master list.");
+                        //}
                     }
                 }
             }
