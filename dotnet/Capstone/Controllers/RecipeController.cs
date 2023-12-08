@@ -32,8 +32,7 @@ namespace Capstone.Controllers
             return Ok(dao.GetRecipes());
         }
 
-        [HttpGet("/favorites")]
-
+        [HttpGet("favorites")]
         public ActionResult<List<Recipe>> GetRecipesByUserId()
         {
             int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;

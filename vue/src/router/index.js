@@ -70,7 +70,7 @@ const routes = [
     },
   },
   {
-    path: "/recipe/:userId",
+    path: "/recipe/favorites",
     name: "userRecipe",
     component: ListRecipesView,
     meta: {
@@ -86,7 +86,7 @@ const routes = [
     },
   },
   {
-    path: "/recipe/:userId/:recipeId",
+    path: "/recipe/favorites/:recipeId",
     name: "userRecipeDetails",
     component: UserRecipeDetailsView,
     meta: {
@@ -102,7 +102,7 @@ const routes = [
     },
   },
   {
-    path: "/recipe/:userId/:recipeId/ingredients",
+    path: "/recipe/favorites/:recipeId/ingredients",
     name: "listRecipeIngredients",
     component: ListIngredientsView,
     meta: {

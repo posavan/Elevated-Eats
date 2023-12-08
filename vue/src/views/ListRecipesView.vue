@@ -83,7 +83,6 @@ export default {
     },
 
     loadRecipes() {
-      console.log(this.userId)
       recipeService
         .listUserRecipes()
         .then((response) => {

@@ -6,7 +6,7 @@
       <a href="recipe">Recipes </a>
     </nav>
     <nav class="my-recipes">
-      <a href="recipe/1" onclick="location.href=this.href+this.$store.state.userId">My Recipes</a>
+      <a href="recipe/favorites">My Recipes</a>
     </nav>
     <nav class="meal-plans">
       <a href="mealplans">My Meal Plans</a>
