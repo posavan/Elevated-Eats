@@ -39,6 +39,16 @@ p {
   text-align: center;
 }
 
+a {
+  color: wheat;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 .recipes,
 .meal-plans,
 .my-recipes {

@@ -5,16 +5,16 @@
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       </span>
       <span id="recipe">
-      <router-link v-bind:to="{ name: 'recipe' }" v-if="$store.state.token != ''">Recipes</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''">Recipes</router-link>&nbsp;|&nbsp;
       </span>
       <span id="user">
-      <router-link v-bind:to="{ name: 'userRecipe' }" v-if="$store.state.token != ''">MyRecipes</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'userRecipe' }" v-if="this.$store.state.token != ''">MyRecipes</router-link>&nbsp;|&nbsp;
       </span>
       <!-- <span id="mealplan">
       <router-link v-bind:to="{ name: 'mealplans' }" v-if="$store.state.token != ''">Mealplans</router-link>&nbsp;|&nbsp;
       </span> -->
       <span id="logout">
-      <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
+      <router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>
       </span>
     </div>
     <router-view />
