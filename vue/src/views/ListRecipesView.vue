@@ -46,6 +46,7 @@ export default {
             this.newRecipe = {};
             this.showForm = false;
             this.loadRecipes();
+            location.reload();
           })
           .catch((error) => {
             if (error.response) {

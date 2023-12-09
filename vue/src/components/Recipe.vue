@@ -10,7 +10,7 @@
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
         Add Recipe To Favorites</button>
       <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
-        Remove Recipe From Favorites</button>
+        Delete Recipe</button>
     </div>
     <p></p>
   </section>
