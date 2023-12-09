@@ -64,6 +64,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.recipes = response.data;
+          this.$router.push('favorites');
         })
         .catch((error) => {
           if (error.response) {

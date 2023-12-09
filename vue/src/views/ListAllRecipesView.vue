@@ -84,6 +84,7 @@ export default {
         .then((response) => {
           console.log(response);
           this.allRecipes = response.data;
+          this.$router.push('recipe');
         })
         .catch((error) => {
           if (error.response) {

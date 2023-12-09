@@ -71,7 +71,7 @@ const routes = [
   },
   {
     path: "/recipe/favorites",
-    name: "userRecipe",
+    name: "favorites",
     component: ListRecipesView,
     meta: {
       requiresAuth: true,
@@ -82,7 +82,7 @@ const routes = [
     name: "recipeDetails",
     component: RecipeDetailsView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
@@ -90,7 +90,7 @@ const routes = [
     name: "userRecipeDetails",
     component: UserRecipeDetailsView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {

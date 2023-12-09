@@ -8,7 +8,7 @@
       <router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''">Recipes</router-link>&nbsp;|&nbsp;
       </span>
       <span id="user">
-      <router-link v-bind:to="{ name: 'userRecipe' }" v-if="this.$store.state.token != ''">MyRecipes</router-link>&nbsp;|&nbsp;
+      <router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">MyRecipes</router-link>&nbsp;|&nbsp;
       </span>
       <!-- <span id="mealplan">
       <router-link v-bind:to="{ name: 'mealplans' }" v-if="$store.state.token != ''">Mealplans</router-link>&nbsp;|&nbsp;

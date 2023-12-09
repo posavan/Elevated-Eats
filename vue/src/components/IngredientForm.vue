@@ -43,7 +43,7 @@ export default {
           .createIngredient(this.editIngredient)
           .then(() => {
             this.editIngredient = {};
-            this.$router.push({ name: "userRecipe" });
+            this.$router.push({ name: "favorites" });
           })
           .catch((error) => {
             if (error.response) {

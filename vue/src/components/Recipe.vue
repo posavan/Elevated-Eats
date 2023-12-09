@@ -30,7 +30,7 @@ export default {
     return {
       recipe: {},
       ingredients: [],
-      hide: this.$route.name == 'userRecipe',
+      hide: this.$route.name == 'recipe',
       recipeId: 0
     }
   },
@@ -39,6 +39,7 @@ export default {
       recipeService
         .listIngredients(this.recipe.recipeId)
         .then((response) => {
+          console.log("successful recipe/loadRecipeIngredients");
           this.ingredients = response.data;
         })
         .catch((error) => {
@@ -63,6 +64,7 @@ export default {
         .addRecipeToUser(this.recipe)
         .then((response) => {
           console.log(response);
+          this.$router.push({name: 'recipe' });
         })
         .catch((error) => {
           if (error.response) {
@@ -81,6 +83,8 @@ export default {
         .removeRecipeFromUser(this.recipe.recipeId)
         .then((response) => {
           console.log(response);
+          //this.$router.push({name: 'favorites' });
+          location.reload();
         })
         .catch((error) => {
           if (error.response) {

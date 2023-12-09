@@ -117,8 +117,6 @@ namespace Capstone.DAO
         }
 
         // retrieves from users saved recipes
-        
-
         //get rid of this method -- duplicate
         public Recipe GetRecipeById(int recipeId)
         {
@@ -189,7 +187,7 @@ namespace Capstone.DAO
         {
             List<Ingredient> ingredients = new List<Ingredient>();
 
-            string sql = "SELECT i.ingredient_id, ingredient_name FROM ingredients i " +
+            string sql = "SELECT i.ingredient_id, ingredient_name, ri.quantity FROM ingredients i " +
                 "JOIN recipes_ingredients ri ON i.ingredient_id = ri.ingredient_id " +
                 "WHERE ri.user_recipe_id = @recipe_id";
 
@@ -480,6 +478,7 @@ namespace Capstone.DAO
             Ingredient ingredient = new Ingredient();
             ingredient.IngredientId = Convert.ToInt32(reader["ingredient_id"]);
             ingredient.IngredientName = Convert.ToString(reader["ingredient_name"]);
+            ingredient.Quantity = Convert.ToString(reader["quantity"]);
             return ingredient;
         }
     }

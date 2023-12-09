@@ -6,7 +6,7 @@ namespace Capstone.Models
     {
         public int RecipeId { get; set; }
         public string RecipeName { get; set; }
-        public List<Ingredient> IngredientList { get; set; }
+        public List<Ingredient> IngredientList { get; set; } = new List<Ingredient>();
         public string RecipeInstructions { get; set; }
 
     }

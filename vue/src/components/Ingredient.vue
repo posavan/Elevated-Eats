@@ -12,7 +12,7 @@ export default {
   props: ["item"],
   data() {
     return {
-      showQuantity: this.$route.name == 'userRecipe'
+      showQuantity: this.$route.name == 'favorites'
     }
   }
 };

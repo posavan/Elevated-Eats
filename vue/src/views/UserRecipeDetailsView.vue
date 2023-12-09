@@ -13,7 +13,7 @@ export default {
   components: {
     recipe,
   },
-  name: "RecipeDetailsView",
+  name: "UserRecipeDetailsView",
   data() {
     return {
       recipe: [],
@@ -25,6 +25,7 @@ export default {
   },
   methods: {
     loadRecipe() {
+      console.log("reached userRecipeDetailsView/loadRecipe()", this.recipeId);
       recipeService
         .GetUserRecipeByRecipeId(this.recipeId)
         .then((response) => {
