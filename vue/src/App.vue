@@ -4,6 +4,15 @@
       <span id="home">
       <router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       </span>
+      <span id="recipe">
+      <router-link v-bind:to="{ name: 'recipe' }" v-if="$store.state.token != ''">Recipes</router-link>&nbsp;|&nbsp;
+      </span>
+      <span id="user">
+      <router-link v-bind:to="{ name: 'userRecipe' }" v-if="$store.state.token != ''">MyRecipes</router-link>&nbsp;|&nbsp;
+      </span>
+      <!-- <span id="mealplan">
+      <router-link v-bind:to="{ name: 'mealplans' }" v-if="$store.state.token != ''">Mealplans</router-link>&nbsp;|&nbsp;
+      </span> -->
       <span id="logout">
       <router-link v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
       </span>
@@ -27,18 +36,27 @@ html{
 }
 
 #home,
+#recipe,
+#user,
+#mealplan,
 #logout {
   font-size: 18px;
   margin-right: 10px;
 }
 
 #home a,
+#recipe a,
+#user a,
+#mealplan a,
 #logout a {
   text-decoration: none;
   color: wheat;
 }
 
 #home a:hover,
+#recipe a:hover,
+#user a:hover,
+#mealplan a:hover,
 #logout a:hover {
   text-decoration: underline;
   cursor: pointer;

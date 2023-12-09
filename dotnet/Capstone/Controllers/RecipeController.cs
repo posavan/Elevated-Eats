@@ -141,11 +141,11 @@ namespace Capstone.Controllers
         }
 
         [HttpDelete("favorites/{recipeId}/ingredients/{ingredientId}")]
-        public ActionResult RemoveIngredientsFromRecipe(int recipeId, int ingredientId)
+        public ActionResult RemoveIngredientFromRecipe(int recipeId, int ingredientId)
         {
             try
             {
-                dao.RemoveIngredientsFromRecipe(recipeId, ingredientId);
+                dao.RemoveIngredientFromRecipe(recipeId, ingredientId);
                 return NoContent();
 
             }

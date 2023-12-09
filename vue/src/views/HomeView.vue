@@ -8,9 +8,9 @@
     <nav class="my-recipes">
       <a href="recipe/favorites">My Recipes</a>
     </nav>
-    <nav class="meal-plans">
+    <!-- <nav class="meal-plans">
       <a href="mealplans">My Meal Plans</a>
-    </nav>
+    </nav> -->
   </div>
 </template>
 

@@ -32,7 +32,7 @@ export default {
   updateRecipe(newRecipe) {
     return axios.put('/recipe/favorites/edit', newRecipe);
   },
-  addIngredientToRecipe(newRecipe) {
+  addIngredientsToRecipe(newRecipe) {
     return axios.put('/recipe/favorites/edit/ingredients', newRecipe);
   },
   removeIngredientFromRecipe(recipeId, ingredientId) {

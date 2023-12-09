@@ -424,7 +424,7 @@ namespace Capstone.DAO
 
         }
 
-        public bool RemoveIngredientsFromRecipe(int recipeId, int ingredientId)
+        public bool RemoveIngredientFromRecipe(int recipeId, int ingredientId)
         {
             bool result = false;
             string sqlDeleteIngredientFromRecipe = "DELETE FROM recipes_ingredients WHERE ingredient_id = @ingredientId AND user_recipe_id = @recipeId";

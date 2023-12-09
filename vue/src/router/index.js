@@ -101,6 +101,7 @@ const routes = [
       requiresAuth: true,
     },
   },
+
   // {
   //   path: "/recipe/favorites/:recipeId/ingredients",
   //   name: "listRecipeIngredients",
@@ -121,6 +122,14 @@ const routes = [
   //   path: "/recipe/:userId/:recipeId",
   //   name: "AddRecipeToUser",
   //   component: AddRecipeView,
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
+  // {
+  //   path: "/mealplans",
+  //   name: "mealplans",
+  //   component: MealplanView,
   //   meta: {
   //     requiresAuth: true,
   //   },
