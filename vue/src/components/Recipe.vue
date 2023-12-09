@@ -1,15 +1,15 @@
 <template>
   <section class="recipe">
     <h3>Name: {{ recipe.recipeName }}</h3>
-    <section v-if="showHidden" class="container">
+    <section v-if="!hide" class="container">
       <h4>Ingredients:</h4>
       <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="!showHidden">
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
         Add Recipe To Favorites</button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="showHidden">
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
         Remove Recipe From Favorites</button>
     </div>
     <p></p>
@@ -30,7 +30,8 @@ export default {
     return {
       recipe: {},
       ingredients: [],
-      showHidden: this.$route.name == 'userRecipe',
+      hide: this.$route.name == 'userRecipe',
+      recipeId: 0
     }
   },
   methods: {
@@ -96,6 +97,7 @@ export default {
 
   created() {
     this.recipe = this.item;
+    this.recipeId = this.$route.params.recipeId;
     this.loadRecipeIngredients();
   },
 };
