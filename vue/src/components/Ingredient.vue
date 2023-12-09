@@ -1,6 +1,6 @@
 <template>
   <section class="ingredient">
-    <div v-if="showQuantity">Quantity: {{ item.quantity }}</div>
+    <div v-if="!hideQuantity">Quantity: {{ item.quantity }}</div>
     <div>Name: {{ item.ingredientName }}</div>
     <p></p>
   </section>
@@ -12,7 +12,7 @@ export default {
   props: ["item"],
   data() {
     return {
-      showQuantity: this.$route.name == 'favorites'
+      hideQuantity: this.$route.name == 'ingredients'
     }
   }
 };

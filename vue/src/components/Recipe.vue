@@ -8,7 +8,7 @@
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
-        Add Recipe To Favorites</button>
+        {{ feedback }}</button>
       <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
         Delete Recipe</button>
     </div>
@@ -31,7 +31,8 @@ export default {
       recipe: {},
       ingredients: [],
       hide: this.$route.name == 'recipe',
-      recipeId: 0
+      recipeId: 0,
+      feedback: 'Add Recipe To Favorites'
     }
   },
   methods: {
@@ -64,7 +65,9 @@ export default {
         .addRecipeToUser(this.recipe)
         .then((response) => {
           console.log(response);
-          this.$router.push({name: 'recipe' });
+          this.$router.push({ name: 'recipe' });
+          this.buttonClick();
+          //location.reload();
         })
         .catch((error) => {
           if (error.response) {
@@ -75,7 +78,7 @@ export default {
             console.log("Error saving recipe: make request");
           }
         });
-
+      
     },
 
     removeRecipe() {
@@ -97,6 +100,13 @@ export default {
         });
     },
 
+    buttonClick() {
+      this.feedback = 'Added';
+      // setTimeout(resetMessage, 3000);
+      // function resetMessage() {
+      //   this.feedback = "Add Recipe To Favorites";
+      // }
+    }
   },
 
   created() {
@@ -114,7 +124,6 @@ export default {
   /* Center text for better appearance */
   padding-right: 20%;
 }
-
 
 h1 {
   text-align: center;

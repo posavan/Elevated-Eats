@@ -94,7 +94,7 @@ namespace Capstone.Controllers
             {
                 return NotFound();
             }
-            if (dao.RemoveRecipeFromUser(recipe.RecipeName, userId))
+            if (dao.RemoveRecipeFromUser(recipeId, userId))
             {
                 return NoContent();
             }
