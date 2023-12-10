@@ -19,7 +19,6 @@ namespace Capstone.Controllers
         }
 
         // /meal
-
         [HttpGet()]
         public ActionResult<List<Meal>> ListMeals()
         {
@@ -36,7 +35,6 @@ namespace Capstone.Controllers
 
 
         // meal/
-
         [HttpPost()]
         public ActionResult<Meal> CreateMeal(Meal newMeal)
         {
@@ -54,7 +52,6 @@ namespace Capstone.Controllers
 
 
         // meal/1
-
         [HttpPut("{mealId}")]
         public ActionResult<Meal> UpdateMeal(int mealId, Meal updatedMeal)
         {
@@ -72,8 +69,7 @@ namespace Capstone.Controllers
 
         }
 
-
-        [HttpDelete("{mealId")]
+        [HttpDelete("{mealId}")]
         public ActionResult<Meal> DeleteMeal(int mealId)
         {
 

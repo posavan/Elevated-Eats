@@ -24,7 +24,7 @@ namespace Capstone.DAO
         {
             List<Meal> meals = new List<Meal>();
 
-            string sql = "SELECT meal_id, meal_name, meal_description, recipe_id, recipe_name FROM meals;";
+            string sql = "SELECT meal_id, meal_name, meal_description FROM meals;";
 
             try
             {
@@ -58,7 +58,7 @@ namespace Capstone.DAO
         {
             Meal meal = null;
 
-            string sql = " SELECT meal_id, meal_name, meal_description, recipe_id, recipe_name " +
+            string sql = " SELECT meal_id, meal_name, meal_description " +
                          "FROM meals " +
                          "WHERE meal_id = @mealId ";
 
@@ -94,9 +94,9 @@ namespace Capstone.DAO
         {
             newMeal.MealId = 0;
 
-            string sql = "INSERT INTO meals (meal_name, meal_description, recipe_id) " +
+            string sql = "INSERT INTO meals (meal_name, meal_description) " +
                          "OUTPUT INSERTED.meal_id " +
-                         "VALUES (@meal_name, @meal_description, @recipe_id) ";
+                         "VALUES (@meal_name, @meal_description) ";
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -107,7 +107,6 @@ namespace Capstone.DAO
                     {
                         cmd.Parameters.AddWithValue("@meal_name", newMeal.MealName);
                         cmd.Parameters.AddWithValue("@meal_description", newMeal.MealDescription);
-                        cmd.Parameters.AddWithValue("@recipe_id", newMeal.RecipeId);
                         newMeal.MealId = (int)cmd.ExecuteScalar();
                     }
                 }
@@ -123,7 +122,7 @@ namespace Capstone.DAO
         public Meal UpdateMeal(Meal updatedMeal)
         {
             string sql = "UPDATE meals " +
-                         "SET meal_name = @meal_name, meal_description = @meal_description , recipe_id = @recipe_id " +
+                         "SET meal_name = @meal_name, meal_description = @meal_description  " +
                          "WHERE meal_id = @meal_id";
 
             try
@@ -136,7 +135,6 @@ namespace Capstone.DAO
                     {
                         cmd.Parameters.AddWithValue("@meal_name", updatedMeal.MealName);
                         cmd.Parameters.AddWithValue("@meal_description", updatedMeal.MealDescription);
-                        cmd.Parameters.AddWithValue("@recipe_id", updatedMeal.RecipeId);
                         cmd.Parameters.AddWithValue("@meal_id", updatedMeal.MealId);
 
                         int count = cmd.ExecuteNonQuery();
@@ -202,8 +200,6 @@ namespace Capstone.DAO
             meal.MealId = Convert.ToInt32(reader["meal_id"]);
             meal.MealName = Convert.ToString(reader["meal_name"]);
             meal.MealDescription = Convert.ToString(reader["meal_description"]);
-            meal.RecipeId = Convert.ToInt32(reader["recipe_id"]);
-            meal.RecipeName = Convert.ToString(reader["recipe_name"]);
             return meal;
         }
 
