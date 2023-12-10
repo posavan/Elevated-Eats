@@ -34,20 +34,7 @@ CREATE TABLE recipes (
 	user_id int,
 	recipe_name varchar(60) NOT NULL,
 	recipe_instructions varchar(500) NOT NULL,
-<<<<<<< HEAD
 	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id)
-)
-
-CREATE TABLE users_saved_recipes (
-	user_recipe_id int IDENTITY (1,1) NOT NULL,
-	user_id int NOT NULL,
-	recipe_name varchar(60) NOT NULL,
-	recipe_instructions varchar(500) NOT NULL,
-	CONSTRAINT PK_user_saved_recipe PRIMARY KEY (user_recipe_id),
-=======
-	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id),
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
-	CONSTRAINT FK_user_saved_recipe_users FOREIGN KEY (user_id) REFERENCES users (user_id)
 )
 
 --CREATE TABLE users_saved_recipes (
@@ -65,8 +52,7 @@ CREATE TABLE recipes_ingredients (
 	ingredient_id int NOT NULL,
 	quantity varchar(60) NOT NULL,
 	CONSTRAINT PK_recipes_ingredients PRIMARY KEY (recipe_id, ingredient_id),
-	CONSTRAINT FK_recipes_ingredients_recipes FOREIGN KEY (recipe_id) 
-	--REFERENCES users_saved_recipes (user_recipe_id),
+	CONSTRAINT FK_recipes_ingredients_recipes FOREIGN KEY (recipe_id)
 	REFERENCES recipes (recipe_id),
     CONSTRAINT FK_recipes_ingredients_ingredients FOREIGN KEY (ingredient_id) 
 	REFERENCES ingredients (ingredient_id)
@@ -76,21 +62,36 @@ CREATE TABLE meals (
     meal_id int IDENTITY (1,1) NOT NULL,
     meal_name varchar(60) NOT NULL,
     meal_description varchar(500) NOT NULL,
-    recipe_id int,
-    recipe_name varchar(60), 
     CONSTRAINT PK_meal PRIMARY KEY (meal_id),
-    CONSTRAINT FK_meals_recipes FOREIGN KEY (recipe_id) REFERENCES recipes (recipe_id)
+)
+
+CREATE TABLE meals_recipes (
+	meal_id int NOT NULL,
+	recipe_id int NOT NULL,
+	recipe_name varchar(60),
+	CONSTRAINT FK_meals_recipes_meals FOREIGN KEY (meal_id) 
+	REFERENCES meals (meal_id),
+	CONSTRAINT FK_meals_recipes_recipes FOREIGN KEY (recipe_id) 
+	REFERENCES recipes (recipe_id)
 )
 
 CREATE TABLE meal_plans (
     meal_plan_id int IDENTITY (1,1) NOT NULL,
+	meal_plan_name varchar(60),
     user_id int NOT NULL,
-    meal_id int NOT NULL,
-    meal_plan_name varchar(60) NOT NULL
     CONSTRAINT PK_meal_plan PRIMARY KEY (meal_plan_id),
-    CONSTRAINT FK_meal_plan_users FOREIGN KEY (user_id) REFERENCES users (user_id),
-    CONSTRAINT FK_meal_plan_meals FOREIGN KEY (meal_id) REFERENCES meals (meal_id)
+    CONSTRAINT FK_meal_plan_users FOREIGN KEY (user_id) 
+	REFERENCES users (user_id)
 )
+
+CREATE TABLE meal_plans_meals (
+	meal_plan_id int NOT NULL,
+    meal_id int NOT NULL,
+    meal_name varchar(60),
+	CONSTRAINT FK_meal_plan_meal_plans FOREIGN KEY (meal_plan_id) REFERENCES meal_plans (meal_plan_id),
+	CONSTRAINT FK_meal_plan_meals FOREIGN KEY (meal_id) REFERENCES meals (meal_id)
+)
+
 --populate default data
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('user','Jg45HuwT7PZkfuKTz6IB90CtWY4=','LHxP4Xh7bN0=','user');
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
@@ -119,13 +120,23 @@ INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity)
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
 	VALUES ( 2, 2, '3 ea');
 
-INSERT INTO meals (meal_name, meal_description, recipe_id, recipe_name) VALUES ('Breakfast', 'IDK', 1, 'Pizza');
-INSERT INTO meals (meal_name, meal_description, recipe_id, recipe_name) VALUES ('Lunch', 'IDK', 2, 'Pasta');
-INSERT INTO meals (meal_name, meal_description, recipe_id, recipe_name) VALUES ('Dinner', 'IDK', 4, 'Cake');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Breakfast', 'IDK');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Lunch', 'IDK');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Dinner', 'IDK');
 
-INSERT INTO meal_plans (user_id, meal_id, meal_plan_name) VALUES (1, 1, 'Vegan');  
-INSERT INTO meal_plans (user_id, meal_id, meal_plan_name) VALUES (1, 2, 'Leftovers');  
-INSERT INTO meal_plans (user_id, meal_id, meal_plan_name) VALUES (2, 2,'Bulk Prep');
-INSERT INTO meal_plans (user_id, meal_id, meal_plan_name) VALUES (2, 3,'vegetarian');
+insert into meals_recipes (meal_id, recipe_id) VALUES (1,1);
+insert into meals_recipes (meal_id, recipe_id) VALUES (1,3);
+insert into meals_recipes (meal_id, recipe_id) VALUES (2,2);
+insert into meals_recipes (meal_id, recipe_id) VALUES (3,1);
+
+INSERT INTO meal_plans (user_id, meal_plan_name) VALUES (1, 'Vegan');  
+INSERT INTO meal_plans (user_id, meal_plan_name) VALUES (1, 'Leftovers');  
+INSERT INTO meal_plans (user_id, meal_plan_name) VALUES (2, 'Bulk Prep');
+INSERT INTO meal_plans (user_id, meal_plan_name) VALUES (2, 'vegetarian');
+
+insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 1, 'Breakfast');
+insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 3, 'Dinner');
+insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (2, 1, 'Breakfast');
+
 
 GO
