@@ -24,7 +24,7 @@ namespace Capstone.Controllers
             return Ok(dao.GetIngredients());
         }
 
-        
+
 
         [HttpPost()]
         public ActionResult<Ingredient> CreateIngredient(Ingredient newIngredient)

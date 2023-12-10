@@ -89,119 +89,119 @@ namespace Capstone.DAO
             return meal;
         }
 
-        // left off here
-        public Meal AddAMeal(Meal newMeal)
+
+        public Meal CreateMeal(Meal newMeal)
         {
             newMeal.MealId = 0;
 
-            string sql = "";
+            string sql = "INSERT INTO meals (meal_name, meal_description, recipe_id) " +
+                         "OUTPUT INSERTED.meal_id " +
+                         "VALUES (@meal_name, @meal_description, @recipe_id) ";
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
                     conn.Open();
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         cmd.Parameters.AddWithValue("@meal_name", newMeal.MealName);
                         cmd.Parameters.AddWithValue("@meal_description", newMeal.MealDescription);
-                        newMeal.MealId= (int)cmd.ExecuteScalar();
+                        cmd.Parameters.AddWithValue("@recipe_id", newMeal.RecipeId);
+                        newMeal.MealId = (int)cmd.ExecuteScalar();
                     }
                 }
             }
             catch (SqlException ex)
             {
-                throw new DaoException("SQL exception occurred", ex); throw new DaoException("SQL exception occurred", ex);
+                throw new DaoException("SQL exception occurred", ex);
             }
+
             return newMeal;
         }
 
-
-
-
-
-
-
-
-
-
-        public List<Meal> ListMealsById(int mealId)
+        public Meal UpdateMeal(Meal updatedMeal)
         {
-            throw new NotImplementedException();
+            string sql = "UPDATE meals " +
+                         "SET meal_name = @meal_name, meal_description = @meal_description , recipe_id = @recipe_id " +
+                         "WHERE meal_id = @meal_id";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@meal_name", updatedMeal.MealName);
+                        cmd.Parameters.AddWithValue("@meal_description", updatedMeal.MealDescription);
+                        cmd.Parameters.AddWithValue("@recipe_id", updatedMeal.RecipeId);
+                        cmd.Parameters.AddWithValue("@meal_id", updatedMeal.MealId);
+
+                        int count = cmd.ExecuteNonQuery();
+
+                        if (count == 1)
+                        {
+                            return updatedMeal;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
         }
 
-        public Meal UpdateMeal(Meal newMeal)
+
+
+        public bool DeleteMeal(int mealId)
         {
-            throw new NotImplementedException();
+            string sql = "DELETE FROM meals " +
+                         "WHERE meal_id = @meal_id ";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@meal_id", mealId);
+
+                        int count = cmd.ExecuteNonQuery();
+                        if (count == 1)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
         }
 
 
-
-        public bool DeleteAMeal(int mealId)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
-
-        //public meal UpdatePet(meal updatedPet)
-        //{
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        conn.Open();
-
-        //        using (SqlCommand cmd = new SqlCommand(SqlUpdatePet, conn))
-        //        {
-        //            cmd.Parameters.AddWithValue("@name", updatedPet.Name);
-        //            cmd.Parameters.AddWithValue("@age", updatedPet.Age);
-        //            cmd.Parameters.AddWithValue("@type", updatedPet.Type);
-        //            cmd.Parameters.AddWithValue("@id", updatedPet.Id);
-        //            cmd.Parameters.AddWithValue("@owner", updatedPet.Owner);
-
-        //            int count = cmd.ExecuteNonQuery();
-        //            if (count == 1)
-        //            {
-        //                return updatedPet;
-        //            }
-        //            else
-        //            {
-        //                return null;
-        //            }
-        //        }
-        //    }
-        //}
-
-        //public bool DeleteAPet(int petId)
-        //{
-        //    using (SqlConnection conn = new SqlConnection(connectionString))
-        //    {
-        //        conn.Open();
-
-        //        using (SqlCommand cmd = new SqlCommand(SqlDeletePet, conn))
-        //        {
-        //            cmd.Parameters.AddWithValue("@id", petId);
-
-        //            int count = cmd.ExecuteNonQuery();
-        //            if (count == 1)
-        //            {
-        //                return true;
-        //            }
-        //            else
-        //            {
-        //                return false;
-        //            }
-        //        }
-        //    }
-        //}
 
         private Meal MapRowToMeal(SqlDataReader reader)
         {
             Meal meal = new Meal();
             meal.MealId = Convert.ToInt32(reader["meal_id"]);
             meal.MealName = Convert.ToString(reader["meal_name"]);
-            meal.MealDescription = Convert.ToString(reader["description"]);
+            meal.MealDescription = Convert.ToString(reader["meal_description"]);
             meal.RecipeId = Convert.ToInt32(reader["recipe_id"]);
             meal.RecipeName = Convert.ToString(reader["recipe_name"]);
             return meal;
