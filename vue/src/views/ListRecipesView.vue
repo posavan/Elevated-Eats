@@ -91,13 +91,13 @@ export default {
 
 <style scoped>
 section.recipe {
-  background-color: rgb(214, 195, 157);
+  background-color: rgb(171, 247, 201);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: rgb(224, 203, 163);
   border-radius: 0.5rem;
   margin-bottom: 1.25rem;
   width: 90%;
   padding: 2%;
+  text-align: center;
 }
 .container {
   display: grid;
@@ -113,10 +113,10 @@ form{
 
 .add-recipe{
   display: block;
-  color: wheat;
+  color: white;
   text-align: center;
   padding: 14px 16px;
-  background-color: rgb(213, 51, 51);
+  background-color: rgb(169, 235, 161);
   border-radius: 50px;
   margin-left: 40%;
   margin-right: 40%;

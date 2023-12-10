@@ -3,11 +3,14 @@ using Capstone.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
+
 
 namespace Capstone.DAO
 {
     public class MealPlanSqlDao : IMealPlanDao
     {
+
         private readonly string connectionString;
         private readonly MealSqlDao mealDao;
 
@@ -275,5 +278,6 @@ namespace Capstone.DAO
             mealplan.UserId = Convert.ToInt32(reader["user_id"]);
             return mealplan;
         }
+
     }
 }

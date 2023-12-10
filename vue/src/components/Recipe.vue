@@ -174,8 +174,12 @@ section {
 }
 
 .recipe {
+<<<<<<< HEAD
+  background-color: rgb(164, 225, 187);
+=======
   text-align: center;
   background-color: rgb(225, 203, 164);
+>>>>>>> 00cae56a8e2a28d52d2b0d563d6b7f166c5c0684
   border-radius: 0.625rem;
   /* Rounded corners for recipe cards */
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);

@@ -10,9 +10,14 @@
       <input type="text" name="name" id="name" v-model="editIngredient.ingredientName" />
     </div>
     <div class="actions">
+<<<<<<< HEAD
       <button class="btn-continue" type="submit">Save Ingredient</button>
       <button class="btn-submit" type="submit">Save and Continue Adding</button>
       <button class="btn-cancel" type="button" v-on:click="cancelForm">Cancel</button>
+=======
+      <button class="btn-submit" type="submit">Add and Continue</button>
+      <button class="btn-cancel" type="button" v-on:click="cancelForm">Return</button>
+>>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
     </div>
   </form>
 </template>
