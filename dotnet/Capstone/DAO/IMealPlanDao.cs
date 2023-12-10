@@ -5,19 +5,15 @@ namespace Capstone.DAO
 {
     public interface IMealPlanDao
     {
-        public List<MealPlan> ListMeals();
+        public List<MealPlan> ListMealPlansByUserId(int userId);
+        public MealPlan GetMealPlanById(int mealPlanId);
 
-        //public List<MealPlan> ListMealsById(int mealId);
-        public MealPlan GetMealPlan(int MealPlanId);
+        public MealPlan CreateMealPlan(MealPlan mealPlan, int userId);
+        public MealPlan UpdateMealPlan(MealPlan mealPlan, int userId);
 
-        public MealPlan AddAMealPlan(MealPlan newMealPlan);
-        public MealPlan AddMealToMealPlan(int mealId, MealPlan mealPlan);
-
-        public MealPlan UpdateMealPlan(Meal newMealPlan);
-
-        public bool DeleteAMealFromMealPlan(int mealId, int MealPlanId);
-
-        public bool DeleteAMealPlan(int mealPlanId);
+        public bool AddMealToMealPlan(int mealId, int mealPlanId);
+        public bool RemoveMealFromMealPlan(int mealId, int mealPlanId);
+        public bool DeleteMealPlan(int mealPlanId);
 
     }
 }

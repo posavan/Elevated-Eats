@@ -113,7 +113,7 @@ export default {
 
 <style scoped>
 section.recipe {
-  background-color: rgb(220, 200, 163);
+  background-color:  rgb(171, 247, 201);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   border-right: 20px;
@@ -157,7 +157,7 @@ input {
 
 button {
   padding: 1.25rem;
-  background-color: brown;
+  background-color: rgb(235, 142, 42);
   color: wheat;
   border: none;
   border-radius: 0.25rem;
@@ -169,7 +169,7 @@ button:hover {
 }
 
 .container recipe {
-  background-color: rgb(224, 203, 163);
+  background-color: rgb(171, 247, 201);
   border-radius: 0.5rem;
   margin-bottom: 1.25rem;
   width: 30%;

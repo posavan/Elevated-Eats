@@ -8,9 +8,7 @@ namespace Capstone.Models
         public string MealName { get; set; }
         public string MealDescription { get; set; }
 
-       // public List<Recipe> RecipesList { get; set; }
-        public int RecipeId { get; set; }
-        public string RecipeName { get; set; }
+        public List<Recipe> RecipesList { get; set; }
 
     }
 }

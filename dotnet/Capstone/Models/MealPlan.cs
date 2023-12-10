@@ -4,13 +4,11 @@ namespace Capstone.Models
 {
     public class MealPlan
     {
-        public int MealPlanId { get; set; }
+        public int MealPlanId { get; set; } = 0;
         public string MealPlanName { get; set; }
         public string MealPlanDescription { get; set; }
-
-        public List<Recipe> RecipesList { get; set; }
-        public int MealId { get; set; }
-        public string MealName { get; set; }
         public int UserId { get; set; }
+
+        public List<Meal> MealList { get; set; }
     }
 }

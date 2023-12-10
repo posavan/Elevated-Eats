@@ -72,7 +72,7 @@ export default {
 
 <style scoped>
 div#login {
-  background-color:rgb(186, 48, 48);
+  background-color:white;
   /* border-radius: 10%; */
   
 }
@@ -84,13 +84,13 @@ label {
 }
 form {
   padding-top: 15%;
-  background-color: wheat;
+  background-color: white;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: large;
   text-align: center;
   border-radius: 50%;
   padding: auto;
-  color:rgb(95, 25, 133);
+  color:rgb(235, 142, 42);
 }
 button {
   display: block;
@@ -98,7 +98,7 @@ button {
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
-  background-color: brown;
+  background-color:grey;
   border-radius: 50px;
   margin-left: 48%;
   border-top: none;
@@ -116,7 +116,7 @@ input#username {
   height: 25px;
   padding-top: 10px;
   margin-bottom: 15px;
-  background: rgb(252, 235, 234);
+  background: lightgray;
   border-bottom: 1px solid #fff;
   border-top: none;
   border-left: none;
@@ -129,7 +129,7 @@ input#password {
   height: 25px;
   padding-top: 10px;
   margin-bottom: 15px;
-  background: rgb(252, 235, 234);
+  background:lightgray;
   border-bottom: 1px solid #fff;
   border-top: none;
   border-left: none;

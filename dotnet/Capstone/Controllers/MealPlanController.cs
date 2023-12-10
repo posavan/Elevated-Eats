@@ -1,8 +1,9 @@
 ﻿using Capstone.DAO;
+using Capstone.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System.Threading;
+using System.Collections.Generic;
 
 namespace Capstone.Controllers
 {
@@ -12,23 +13,80 @@ namespace Capstone.Controllers
     public class MealPlanController : ControllerBase
     {
         IMealPlanDao dao;
-        IMealDao mealDao;
-        IRecipeDao recipeDao;
+
         IUserDao userDao;
-        IIngredientDao ingredientDao;
-        public MealPlanController(IMealPlanDao MealPlanDao,IRecipeDao RecipeDao, IUserDao UserDao, IIngredientDao IngredientDao, IMealDao MealDao)
+        public MealPlanController(IMealPlanDao MealPlanDao, IUserDao UserDao)
         {
             this.dao = MealPlanDao;
-            this.mealDao = MealDao;
-            this.recipeDao = RecipeDao;
             this.userDao = UserDao;
-            this.ingredientDao = IngredientDao;
         }
 
+        [HttpGet()]
+        public ActionResult<List<MealPlan>> ListMealPlans()
+        {
+            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
+            return Ok(dao.ListMealPlansByUserId(userId));
+        }
 
+        [HttpGet("{mealPlanId}")]
+        public ActionResult<MealPlan> GetMealPlanById(int mealPlanId)
+        {
+            return Ok(dao.GetMealPlanById(mealPlanId));
+        }
 
+        [HttpPost()]
+        public ActionResult<MealPlan> CreateMealPlan(MealPlan newMealPlan)
+        {
+            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
+            MealPlan result = dao.CreateMealPlan(newMealPlan, userId);
+            if (result == null || result.MealPlanId == 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
 
+        [HttpPut()]
+        public ActionResult<MealPlan> UpdateMealPlan(MealPlan mealPlan)
+        {
+            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
+            MealPlan result = dao.UpdateMealPlan(mealPlan, userId);
+            if (result == null || result.MealPlanId == 0)
+            {
+                return BadRequest();
+            }
+            else
+            {
+                return Ok(result);
+            }
+        }
 
+        [HttpPost("{mealPlanId}")]
+        public ActionResult<MealPlan> AddMealToMealPlan(int mealId, int mealPlanId)
+        {
+            bool result = dao.AddMealToMealPlan(mealId, mealPlanId);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("{mealPlanId}/{mealId}")]
+        public ActionResult<MealPlan> RemoveMealFromMealPlan(int mealId, int mealPlanId)
+        {
+            bool result = dao.RemoveMealFromMealPlan(mealId, mealPlanId);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("{mealPlanId}")]
+        public ActionResult<MealPlan> DeleteMealPlan(int mealPlanId)
+        {
+            bool result = dao.DeleteMealPlan(mealPlanId);
+
+            return Ok(result);
+        }
 
 
     }

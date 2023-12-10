@@ -102,24 +102,6 @@ const routes = [
       requiresAuth: true,
     },
   },
-<<<<<<< HEAD
-  {
-    path: "/recipe/:userId/:recipeId/ingredients",
-    name: "ListRecipeIngredients",
-    component: ListIngredientsView,
-    meta: {
-      requiresAuth: true,
-    },
-  },
-  {
-    path: "/recipe/:userId/:recipeId/edit",
-    name: "EditRecipeView",
-    component: EditRecipeView,
-    meta: {
-      requiresAuth: true,
-    },
-  },
-=======
 
   // {
   //   path: "/recipe/favorites/:recipeId/ingredients",
@@ -137,7 +119,6 @@ const routes = [
   //     requiresAuth: true,
   //   },
   // },
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
   // {
   //   path: "/recipe/:userId/:recipeId",
   //   name: "AddRecipeToUser",

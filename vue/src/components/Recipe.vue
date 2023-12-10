@@ -136,7 +136,7 @@ h1 {
 }
 
 .recipe {
-  background-color: rgb(225, 203, 164);
+  background-color: rgb(164, 225, 187);
   border-radius: 0.625rem;
   /* Rounded corners for recipe cards */
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
