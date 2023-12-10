@@ -1,4 +1,4 @@
-﻿using Capstone.Exceptions;
+using Capstone.Exceptions;
 using Capstone.Models;
 using System;
 using System.Collections.Generic;
@@ -156,7 +156,7 @@ namespace Capstone.DAO
             }
         }
 
-        public bool AddMealToMealPlan(int mealId, int mealPlanId)
+        public bool AddMealToMealPlan(int mealPlanId, int mealId)
         {
             bool result = false;
             try
@@ -181,7 +181,7 @@ namespace Capstone.DAO
             }
             return result;
         }
-        public bool RemoveMealFromMealPlan(int mealId, int mealPlanId)
+        public bool RemoveMealFromMealPlan(int mealPlanId, int mealId)
         {
             bool result = false;
             try

@@ -64,17 +64,17 @@ namespace Capstone.Controllers
         }
 
         [HttpPost("{mealPlanId}")]
-        public ActionResult<MealPlan> AddMealToMealPlan(int mealId, int mealPlanId)
+        public ActionResult<MealPlan> AddMealToMealPlan(int mealPlanId, int mealId)
         {
-            bool result = dao.AddMealToMealPlan(mealId, mealPlanId);
+            bool result = dao.AddMealToMealPlan(mealPlanId, mealId);
 
             return Ok(result);
         }
 
         [HttpDelete("{mealPlanId}/{mealId}")]
-        public ActionResult<MealPlan> RemoveMealFromMealPlan(int mealId, int mealPlanId)
+        public ActionResult<MealPlan> RemoveMealFromMealPlan(int mealPlanId, int mealId)
         {
-            bool result = dao.RemoveMealFromMealPlan(mealId, mealPlanId);
+            bool result = dao.RemoveMealFromMealPlan(mealPlanId, mealId);
 
             return Ok(result);
         }

@@ -89,7 +89,6 @@ namespace Capstone.DAO
             return meal;
         }
 
-
         public Meal CreateMeal(Meal newMeal)
         {
             newMeal.MealId = 0;
@@ -157,6 +156,63 @@ namespace Capstone.DAO
             }
         }
 
+        public bool AddRecipeToMeal(int mealId, int recipeId)
+        {
+            bool result = false;
+            string sql = "INSERT INTO meals_recipes (meal_id, recipe_id) " +
+             "VALUES(@meal_id, @recipe_id);";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@meal_id", mealId);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+            return result;
+        }
+        public bool RemoveRecipeFromMeal(int mealId, int recipeId)
+        {
+            bool result = false;
+            string sql = "DELETE FROM meals_recipes " +
+             "WHERE meal_id = @mealId AND recipe_id = @recipe_id";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@meal_id", mealId);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return result;
+        }
 
 
         public bool DeleteMeal(int mealId)

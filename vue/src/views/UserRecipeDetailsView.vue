@@ -19,38 +19,22 @@ export default {
   components: {
     recipe,
   },
-<<<<<<< HEAD
-  name: "RecipeDetailsView",
-=======
   name: "UserRecipeDetailsView",
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
   data() {
     return {
       recipe: [],
       recipeName: "",
       userId: 0,
-<<<<<<< HEAD
-      recipeId: 0,
-=======
       recipeId: 0
 
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
     };
   },
   methods: {
     loadRecipe() {
-<<<<<<< HEAD
-      console.log(this.userId, this.recipeId);
-      recipeService
-        .GetUserRecipeByRecipeId(this.recipeId, this.userId)
-        .then((response) => {
-          console.log("Reached created in RecipeDetailsView.vue");
-=======
       console.log("reached userRecipeDetailsView/loadRecipe()", this.recipeId);
       recipeService
         .GetUserRecipeByRecipeId(this.recipeId)
         .then((response) => {
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
           console.log(response.data);
           this.recipe = response.data;
         })
@@ -68,50 +52,30 @@ export default {
     },
   },
   created() {
-<<<<<<< HEAD
     console.log("about to call load recipe");
     //this.loadRecipe(this.recipeName);
     this.recipeId = this.$route.params.recipeId;
     // this.userId = this.$store.params.userId;
-=======
-    this.recipeId = this.$route.params.recipeId;
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
     this.loadRecipe();
   },
 };
 </script>
-<<<<<<< HEAD
-
-=======
   
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
 <style scoped>
 h1 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-<<<<<<< HEAD
-  background-color: wheat;
-  border-radius: 50px;
-}
-=======
   background-color: rgb(206, 182, 236);
   border-radius: 50px;
 }
 
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
 div {
   background-color: rgb(118, 244, 175);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: large;
   text-align: center;
   border-radius: 50px;
-<<<<<<< HEAD
-
-}
-</style>
-=======
   padding: auto;
 }
 </style>
   
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f

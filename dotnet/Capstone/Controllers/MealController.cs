@@ -51,9 +51,9 @@ namespace Capstone.Controllers
         }
 
 
-        // meal/1
-        [HttpPut("{mealId}")]
-        public ActionResult<Meal> UpdateMeal(int mealId, Meal updatedMeal)
+        // meal
+        [HttpPut()]
+        public ActionResult<Meal> UpdateMeal(Meal updatedMeal)
         {
             Meal newMeal = dao.UpdateMeal(updatedMeal);
 
@@ -67,6 +67,22 @@ namespace Capstone.Controllers
                 return Ok(newMeal);
             }
 
+        }
+
+        [HttpPost("{mealId}")]
+        public ActionResult<Meal> AddRecipeToMeal(int mealId, int recipeId)
+        {
+            bool result = dao.AddRecipeToMeal(mealId, recipeId);
+
+            return Ok(result);
+        }
+
+        [HttpDelete("{mealId}/{recipeId}")]
+        public ActionResult<Meal> RemoveRecipeFromMeal(int mealId, int recipeId)
+        {
+            bool result = dao.RemoveRecipeFromMeal(mealId, recipeId);
+
+            return Ok(result);
         }
 
         [HttpDelete("{mealId}")]
