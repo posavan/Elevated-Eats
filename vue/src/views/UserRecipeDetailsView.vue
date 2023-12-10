@@ -2,6 +2,8 @@
   <h1>User Recipe Details</h1>
   <div class="Recipe Details">
     <recipe :key="recipe.recipeId" :item="recipe" />
+
+  
   </div>
 
 </template>
@@ -68,6 +70,21 @@ div {
   text-align: center;
   border-radius: 50px;
   padding: auto;
+  justify-content: space-between;
+}
+
+button {
+  padding: 1.25rem;
+  background-color: #4caf50;
+  justify-content: space-between;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 </style>
 

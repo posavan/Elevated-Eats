@@ -111,14 +111,14 @@ const routes = [
   //     requiresAuth: true,
   //   },
   // },
-  // {
-  //   path: "/recipe/:userId/:recipeId/edit",
-  //   name: "editRecipe",
-  //   component: EditRecipeView,
-  //   meta: {
-  //     requiresAuth: true,
-  //   },
-  // },
+  {
+    path: "/recipe/favorites/:recipeId/edit",
+    name: "editRecipe",
+    component: EditRecipeView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
   // {
   //   path: "/recipe/:userId/:recipeId",
   //   name: "AddRecipeToUser",
