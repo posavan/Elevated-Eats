@@ -3,7 +3,6 @@
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="recipes">
-<<<<<<< HEAD
       <a href="/recipe" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">Recipes </a>
     </nav>
     <nav class="my-recipes"> 
@@ -11,12 +10,6 @@
     </nav>
     <nav class="meal-plans">
       <a href="/mealPlans" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
-=======
-      <a href="recipe">Recipes </a>
-    </nav>
-    <nav class="my-recipes">
-      <a href="recipe/favorites">My Recipes</a>
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
     </nav>
     <!-- <nav class="meal-plans">
       <a href="mealplans">My Meal Plans</a>
