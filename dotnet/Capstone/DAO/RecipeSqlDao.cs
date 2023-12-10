@@ -55,7 +55,7 @@ namespace Capstone.DAO
         {
             IList<Recipe> recipes = new List<Recipe>();
 
-            string sql = "SELECT user_recipe_id, recipe_name, recipe_instructions FROM users_saved_recipes " +
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes " +
                 "WHERE user_id = @user_id;";
 
             try
@@ -88,8 +88,8 @@ namespace Capstone.DAO
         {
             Recipe recipe = null;
 
-            string sql = "SELECT user_recipe_id, recipe_name, recipe_instructions FROM users_saved_recipes " +
-                "WHERE user_recipe_id = @recipe_id";
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes " +
+                "WHERE recipe_id = @recipe_id";
 
             try
             {
@@ -117,12 +117,13 @@ namespace Capstone.DAO
         }
 
         // retrieves from users saved recipes
+        //get rid of this method -- duplicate
         public Recipe GetRecipeById(int recipeId)
         {
             Recipe recipe = null;
 
-            string sql = "SELECT user_recipe_id, recipe_name, recipe_instructions FROM users_saved_recipes " +
-                "WHERE user_recipe_id = @recipe_id";
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes " +
+                "WHERE recipe_id = @recipe_id";
 
             try
             {
@@ -186,9 +187,9 @@ namespace Capstone.DAO
         {
             List<Ingredient> ingredients = new List<Ingredient>();
 
-            string sql = "SELECT i.ingredient_id, ingredient_name FROM ingredients i " +
+            string sql = "SELECT i.ingredient_id, ingredient_name, ri.quantity FROM ingredients i " +
                 "JOIN recipes_ingredients ri ON i.ingredient_id = ri.ingredient_id " +
-                "WHERE ri.user_recipe_id = @recipe_id";
+                "WHERE ri.recipe_id = @recipe_id";
 
             try
             {
@@ -221,7 +222,7 @@ namespace Capstone.DAO
         public Recipe AddRecipeToUser(Recipe recipe, int userId)
         {
             Recipe newRecipe = null;
-            string sql = "INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) " +
+            string sql = "INSERT INTO recipes (user_id, recipe_name, recipe_instructions) " +
                          "VALUES (@user_id, @recipe_name, @recipe_instructions);";
 
             try
@@ -247,14 +248,14 @@ namespace Capstone.DAO
             return newRecipe;
         }
 
-        public bool RemoveRecipeFromUser(string recipeName, int userId)
+        public bool RemoveRecipeFromUser(int recipeId, int userId)
         {
             bool result = false;
-            string priorSql = "DELETE FROM recipes_ingredients WHERE user_recipe_id IN " +
-                "(SELECT ri.user_recipe_id FROM recipes_ingredients ri " +
-                "JOIN users_saved_recipes usr ON ri.user_recipe_id=usr.user_recipe_id " +
-                "WHERE usr.recipe_name=@recipe_name);";
-            string sql = "DELETE FROM users_saved_recipes WHERE recipe_name=@recipe_name AND user_id=@user_id;";
+            string priorSql = "DELETE FROM recipes_ingredients WHERE recipe_id IN " +
+                "(SELECT ri.recipe_id FROM recipes_ingredients ri " +
+                "JOIN recipes r ON ri.recipe_id=r.recipe_id " +
+                "WHERE r.recipe_id=@recipe_id);";
+            string sql = "DELETE FROM recipes WHERE recipe_id=@recipe_id AND user_id=@user_id;";
 
             try
             {
@@ -262,11 +263,11 @@ namespace Capstone.DAO
                 {
                     conn.Open();
                     SqlCommand cmd = new SqlCommand(priorSql, conn);
-                    cmd.Parameters.AddWithValue("@recipe_name", recipeName);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
                     int count = cmd.ExecuteNonQuery();
 
                     cmd = new SqlCommand(sql, conn);
-                    cmd.Parameters.AddWithValue("@recipe_name", recipeName);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     count = cmd.ExecuteNonQuery();
                     if (count > 0)
@@ -289,8 +290,8 @@ namespace Capstone.DAO
         {
             Recipe newRecipe = null;
 
-            string sql = "INSERT INTO users_saved_recipes (user_id, recipe_name, recipe_instructions) " +
-                         "OUTPUT INSERTED.user_recipe_id " +
+            string sql = "INSERT INTO recipes (user_id, recipe_name, recipe_instructions) " +
+                         "OUTPUT INSERTED.recipe_id " +
                          "VALUES (@user_id, @name, @instructions);";
             try
             {
@@ -305,7 +306,6 @@ namespace Capstone.DAO
                     newRecipe = GetRecipeById(Convert.ToInt32(cmd.ExecuteScalar()));
                 }
 
-                AddIngredientsToRecipe(recipe);
                 newRecipe = GetRecipeById(recipe.RecipeId);
 
 
@@ -321,8 +321,8 @@ namespace Capstone.DAO
         public Recipe ModifyRecipe(Recipe updatedRecipe)
         {
             //method to update a recipe that a user has saved
-            string sqlUpdateRecipe = "UPDATE users_saved_recipes SET recipe_name = @recipe_name, recipe_instructions = @recipe_instructions  " +
-                            "WHERE user_recipe_id = @user_recipe_id";
+            string sqlUpdateRecipe = "UPDATE recipes SET recipe_name = @recipe_name, recipe_instructions = @recipe_instructions  " +
+                            "WHERE recipe_id = @recipe_id";
 
 
             try
@@ -334,7 +334,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(sqlUpdateRecipe, conn);
                     cmd.Parameters.AddWithValue("@recipe_name", updatedRecipe.RecipeName);
                     cmd.Parameters.AddWithValue("@recipe_instructions", updatedRecipe.RecipeInstructions);
-                    cmd.Parameters.AddWithValue("@user_recipe_id", updatedRecipe.RecipeId);
+                    cmd.Parameters.AddWithValue("recipe_id", updatedRecipe.RecipeId);
 
                     int count = cmd.ExecuteNonQuery();
                     if (count == 1)
@@ -355,13 +355,13 @@ namespace Capstone.DAO
 
         }
 
-        public void AddIngredientsToRecipe(Recipe recipe) //change to recipe object
+        public void AddIngredientsToRecipe(Recipe recipe)
         {
             string sqlAddNewIngredient = "INSERT INTO ingredients (ingredient_name) " +
                 "OUTPUT INSERTED.ingredient_id " +
                 "VALUES (@ingredientName);";
 
-            string sqlAddIngredientToRecipe = "INSERT INTO recipes_ingredients (user_recipe_id, ingredient_id, quantity) " +
+            string sqlAddIngredientToRecipe = "INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) " +
                          "VALUES(@recipe_id, @ingredient_id, @quantity);";
 
             try
@@ -422,11 +422,11 @@ namespace Capstone.DAO
 
         }
 
-
-        public void RemoveIngredientsFromRecipe(int userRecipeId, int ingredientId)
+        public bool RemoveIngredientFromRecipe(int recipeId, int ingredientId)
         {
-
-            string sqlDeleteIngredient = "DELETE FROM recipes_ingredients WHERE ingredient_id = @ingredientId AND user_recipe_id = @userRecipeId";
+            bool result = false;
+            string sqlDeleteIngredientFromRecipe = "DELETE FROM recipes_ingredients " +
+                "WHERE ingredient_id = @ingredientId AND recipe_id = @recipeId";
 
             try
             {
@@ -434,21 +434,28 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(sqlDeleteIngredient, conn);
-                    cmd.Parameters.AddWithValue("@userRecipeId", userRecipeId);
-                    cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
-                    cmd.ExecuteNonQuery();
+                    Console.WriteLine($"Removing ingredients. RecipeId: {recipeId}, IngredientId: {ingredientId}");
 
+
+                    SqlCommand cmd = new SqlCommand(sqlDeleteIngredientFromRecipe, conn);
+                    cmd.Parameters.AddWithValue("@recipeId", recipeId);
+                    cmd.Parameters.AddWithValue("@ingredientId", ingredientId);
+                    int count = cmd.ExecuteNonQuery();
+                    if (count > 0)
+                    {
+                        result = true;
+                    }
                 }
+
             }
             catch (SqlException ex)
             {
                 throw new DaoException("SQL exception occurred", ex);
             }
 
-            return;
-
+            return result;
         }
+
 
         private Recipe MapRowToRecipe(SqlDataReader reader)
         {
@@ -461,7 +468,7 @@ namespace Capstone.DAO
         private Recipe MapRowToUserRecipe(SqlDataReader reader)
         {
             Recipe recipe = new Recipe();
-            recipe.RecipeId = Convert.ToInt32(reader["user_recipe_id"]);
+            recipe.RecipeId = Convert.ToInt32(reader["recipe_id"]);
             recipe.RecipeName = Convert.ToString(reader["recipe_name"]);
             recipe.RecipeInstructions = Convert.ToString(reader["recipe_instructions"]);
             return recipe;
@@ -472,6 +479,7 @@ namespace Capstone.DAO
             Ingredient ingredient = new Ingredient();
             ingredient.IngredientId = Convert.ToInt32(reader["ingredient_id"]);
             ingredient.IngredientName = Convert.ToString(reader["ingredient_name"]);
+            ingredient.Quantity = Convert.ToString(reader["quantity"]);
             return ingredient;
         }
     }

@@ -1,42 +1,46 @@
 <template>
   <section class="recipe">
     <h3>Name: {{ recipe.recipeName }}</h3>
-    <h4>Ingredients:</h4>
-    <section class="container">
-      <ingredient v-for="ingredient in recipe.ingredientList" v-bind:key="ingredient.id" v-bind:item="ingredient" />
+    <section v-if="!hide" class="container">
+      <h4>Ingredients:</h4>
+      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="this.$route.name == 'recipe'">Add Recipe To
-        Favorites</button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="this.$route.name == 'userRecipe'">Remove
-        Recipe From Favorites</button>
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
+        {{ feedback }}</button>
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
+        Delete Recipe</button>
     </div>
     <p></p>
   </section>
 </template>
 
 <script>
-import Ingredient from "../components/Ingredient.vue";
+import ingredient from "../components/Ingredient.vue";
 import recipeService from "../services/RecipeService.js";
 
 export default {
   name: "recipe",
   props: ["item"],
   components: {
-    Ingredient
+    ingredient
   },
   data() {
     return {
       recipe: {},
+      ingredients: [],
+      hide: this.$route.name == 'recipe',
+      recipeId: 0,
+      feedback: 'Add Recipe To Favorites'
     }
   },
   methods: {
     loadRecipeIngredients() {
-      console.log("reached loadRecipeIngrd");
       recipeService
-        .listIngredients(this.$store.state.user.userId, this.recipe.recipeId)
+        .listIngredients(this.recipe.recipeId)
         .then((response) => {
+          console.log("successful recipe/loadRecipeIngredients");
           this.ingredients = response.data;
         })
         .catch((error) => {
@@ -51,13 +55,19 @@ export default {
           }
         });
     },
+    // addIngredientToRecipe() {
+    //   this.newRecipe.ingredientList.add(this.newIngredient);
+    //   this.newIngredient = {};
+    // },
 
     saveRecipe() {
-      this.recipe.favorite = true;
       recipeService
-        .addRecipeToUser(this.$store.state.user.userId, this.recipe)
+        .addRecipeToUser(this.recipe)
         .then((response) => {
           console.log(response);
+          this.$router.push({ name: 'recipe' });
+          this.buttonClick();
+          //location.reload();
         })
         .catch((error) => {
           if (error.response) {
@@ -68,16 +78,16 @@ export default {
             console.log("Error saving recipe: make request");
           }
         });
-
+      
     },
 
     removeRecipe() {
-      this.recipe.favorite = false;
-      console.log("reached removeRecipe", this.recipe);
       recipeService
-        .removeRecipeFromUser(this.$store.state.user.userId, this.recipe.recipeId)
+        .removeRecipeFromUser(this.recipe.recipeId)
         .then((response) => {
           console.log(response);
+          //this.$router.push({name: 'favorites' });
+          location.reload();
         })
         .catch((error) => {
           if (error.response) {
@@ -90,10 +100,18 @@ export default {
         });
     },
 
+    buttonClick() {
+      this.feedback = 'Added';
+      // setTimeout(resetMessage, 3000);
+      // function resetMessage() {
+      //   this.feedback = "Add Recipe To Favorites";
+      // }
+    }
   },
 
   created() {
     this.recipe = this.item;
+    this.recipeId = this.$route.params.recipeId;
     this.loadRecipeIngredients();
   },
 };
@@ -106,7 +124,6 @@ export default {
   /* Center text for better appearance */
   padding-right: 20%;
 }
-
 
 h1 {
   text-align: center;
@@ -178,4 +195,5 @@ button {
 
 button:hover {
   opacity: 0.8;
-}</style>
+}
+</style>

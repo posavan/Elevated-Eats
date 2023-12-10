@@ -32,17 +32,18 @@ namespace Capstone.Controllers
             return Ok(dao.GetRecipes());
         }
 
-        [HttpGet("{userId}")]
-
-        public ActionResult<List<Recipe>> GetRecipesByUserId(int userId)
+        [HttpGet("favorites")]
+        public ActionResult<List<Recipe>> GetRecipesByUserId()
         {
+            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
             return Ok(dao.GetRecipesByUserId(userId));
         }
 
 
-        [HttpGet("{userId}/{recipeId}")]
+        [HttpGet("favorites/{recipeId}")]
         public ActionResult<Recipe> GetUserRecipeById(int recipeId)
         {
+            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
             return Ok(dao.GetUserRecipeById(recipeId));
         }
 
@@ -52,8 +53,7 @@ namespace Capstone.Controllers
             return Ok(dao.GetRecipeByName(recipeName));
         }
 
-
-        [HttpGet("{userId}/{recipeId}/ingredients")]
+        [HttpGet("favorites/{recipeId}/ingredients")]
         public ActionResult<List<Ingredient>> GetIngredientsByRecipeId(int recipeId)
         {
             return Ok(dao.GetIngredientsByRecipeId(recipeId));
@@ -63,8 +63,8 @@ namespace Capstone.Controllers
         [HttpPost()]
         public ActionResult<Recipe> CreateRecipe(Recipe newRecipe)
         {
-            int currentUser = userDao.GetUserByUsername(User.Identity.Name).UserId;
-            Recipe result = dao.CreateRecipe(newRecipe, currentUser);
+            int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
+            Recipe result = dao.CreateRecipe(newRecipe, userId);
 
             if (result == null || result.RecipeId == 0)
             {
@@ -76,17 +76,16 @@ namespace Capstone.Controllers
             }
         }
 
-        [HttpPost("{userId}")]
+        [HttpPost("favorites")]
         public ActionResult<Recipe> AddRecipeToUser(Recipe newRecipe)
         {
-
             int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
             Recipe result = dao.AddRecipeToUser(newRecipe, userId);
 
             return Ok(result);
         }
 
-        [HttpDelete("{userId}/{recipeId}")]
+        [HttpDelete("favorites/{recipeId}")]
         public ActionResult<Recipe> RemoveRecipeFromUser(int recipeId)
         {
             int userId = userDao.GetUserByUsername(User.Identity.Name).UserId;
@@ -95,7 +94,7 @@ namespace Capstone.Controllers
             {
                 return NotFound();
             }
-            if (dao.RemoveRecipeFromUser(recipe.RecipeName, userId))
+            if (dao.RemoveRecipeFromUser(recipeId, userId))
             {
                 return NoContent();
             }
@@ -104,36 +103,10 @@ namespace Capstone.Controllers
 
         }
 
-        [HttpPost("{userId}/{recipeId}")]
-        public ActionResult<Recipe> AddIngredientsToRecipe(Recipe recipe)
-        {
-
-            // Check if each ingredient exists in the master list
-            foreach (Ingredient ingredient in recipe.IngredientList)
-            {
-                if (ingredientDao.IngredientExists(ingredient))
-                {
-                    // Handle the case where the ingredient already exist
-                    return BadRequest($"Ingredient {ingredient.IngredientName} already in the master list.");
-                }
-            }
-
-            // Call the method to add ingredients to the recipe
-            dao.AddIngredientsToRecipe(recipe);
-
-            // Optionally, return a success response
-            return Ok("Ingredients added successfully to the recipe.");
-
-
-        }
-
-
-
-        [HttpPut("{userId}/{recipeName}")]
-        public ActionResult<Recipe> ChangeRecipe(int userRecipeId, Recipe changedRecipe)
+        [HttpPut("favorites/edit")]
+        public ActionResult<Recipe> ChangeRecipe(Recipe changedRecipe)
         {
             Recipe newRecipe = dao.ModifyRecipe(changedRecipe);
-
 
             if (newRecipe == null)
             {
@@ -146,12 +119,33 @@ namespace Capstone.Controllers
 
         }
 
-        [HttpDelete("{userId}/{recipeId}/ingredients/{ingredientId}")]
-        public ActionResult RemoveIngredientsFromRecipe(int userRecipeId, int ingredientId)
+        [HttpPut("favorites/edit/ingredients")]
+        public ActionResult<Recipe> AddIngredientsToRecipe(Recipe recipe)
+        {
+            // Check if each ingredient exists in the master list
+            foreach (Ingredient ingredient in recipe.IngredientList)
+            {
+                if (ingredientDao.IngredientExists(ingredient))
+                {
+                    // Handle the case where the ingredient already exist
+                    return BadRequest($"Ingredient {ingredient.IngredientName} already exists in the master list.");
+                }
+            }
+
+            // Call the method to add ingredients to the recipe
+            dao.AddIngredientsToRecipe(recipe);
+
+            //return a success response
+            return Ok("Ingredients added successfully to the recipe.");
+
+        }
+
+        [HttpDelete("favorites/{recipeId}/ingredients/{ingredientId}")]
+        public ActionResult RemoveIngredientFromRecipe(int recipeId, int ingredientId)
         {
             try
             {
-                dao.RemoveIngredientsFromRecipe(userRecipeId, ingredientId);
+                dao.RemoveIngredientFromRecipe(recipeId, ingredientId);
                 return NoContent();
 
             }

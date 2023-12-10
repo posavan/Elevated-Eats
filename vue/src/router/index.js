@@ -71,8 +71,8 @@ const routes = [
     },
   },
   {
-    path: "/recipe/:userId",
-    name: "userRecipe",
+    path: "/recipe/favorites",
+    name: "favorites",
     component: ListRecipesView,
     meta: {
       requiresAuth: true,
@@ -80,28 +80,29 @@ const routes = [
   },
   {
     path: "/recipe/public/:recipeName",
-    name: "RecipeDetailsView",
+    name: "recipeDetails",
     component: RecipeDetailsView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
-    path: "/recipe/:userId/:recipeId",
-    name: "UserRecipeDetailsView",
+    path: "/recipe/favorites/:recipeId",
+    name: "userRecipeDetails",
     component: UserRecipeDetailsView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
   },
   {
     path: "/ingredients/create",
-    name: "AddIngredientView",
+    name: "addIngredient",
     component: AddIngredientView,
     meta: {
       requiresAuth: true,
     },
   },
+<<<<<<< HEAD
   {
     path: "/recipe/:userId/:recipeId/ingredients",
     name: "ListRecipeIngredients",
@@ -118,10 +119,37 @@ const routes = [
       requiresAuth: true,
     },
   },
+=======
+
+  // {
+  //   path: "/recipe/favorites/:recipeId/ingredients",
+  //   name: "listRecipeIngredients",
+  //   component: ListRecipeIngredientsView,
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
+  // {
+  //   path: "/recipe/:userId/:recipeId/edit",
+  //   name: "editRecipe",
+  //   component: EditRecipeView,
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
+>>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
   // {
   //   path: "/recipe/:userId/:recipeId",
   //   name: "AddRecipeToUser",
   //   component: AddRecipeView,
+  //   meta: {
+  //     requiresAuth: true,
+  //   },
+  // },
+  // {
+  //   path: "/mealplans",
+  //   name: "mealplans",
+  //   component: MealplanView,
   //   meta: {
   //     requiresAuth: true,
   //   },

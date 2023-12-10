@@ -5,37 +5,38 @@ export default {
   list() {
     return axios.get('/recipe');
   },
-  listUserRecipes(userId) {
-    return axios.get('/recipe/' + userId);
-  },
-  GetUserRecipeByRecipeId(recipeId, userId) {
-    return axios.get('recipe/' + userId + '/' + recipeId);
+  createRecipe(newRecipe) {
+    return axios.post('/recipe', newRecipe);
   },
   listRecipeByName(recipeName) {
     return axios.get('/recipe/public/' + recipeName);
   },
-
-  createRecipe(newRecipe) {
-    return axios.post('/recipe', newRecipe);
+  listUserRecipes() {
+    return axios.get('/recipe/favorites');
   },
-  addRecipeToUser(userId, newRecipe) {
-    return axios.post('/recipe/' + userId, newRecipe);
-  },
-  removeRecipeFromUser(userId, recipeId) {
-    return axios.delete('/recipe/' + userId + '/' + recipeId);
+  GetUserRecipeByRecipeId(recipeId) {
+    return axios.get('/recipe/favorites/' + recipeId);
   },
 
-  listIngredients(userId, recipeId) {
-    return axios.get('/recipe/' + userId + '/' + recipeId + '/ingredients');
+  addRecipeToUser(newRecipe) {
+    return axios.post('/recipe/favorites', newRecipe);
   },
-  updateRecipe(userId, recipeId, newRecipe) {
-    return axios.put('/recipe/' + userId + '/' + recipeId, newRecipe);
+  
+  removeRecipeFromUser(recipeId) {
+    return axios.delete('/recipe/favorites/' + recipeId);
   },
-  addIngredientToRecipe(userId, recipeId, newRecipe) {
-    return axios.put('/recipe/' + userId + '/' + recipeId + '/ingredients', newRecipe);
+  listIngredients(recipeId) {
+    return axios.get('/recipe/favorites/' + recipeId + '/ingredients');
   },
-  removeIngredientFromRecipe(userId, recipeId, ingredientId) {
-    return axios.delete('/recipe/' + userId + '/' + recipeId + '/ingredients', ingredientId);
+
+  updateRecipe(newRecipe) {
+    return axios.put('/recipe/favorites/edit', newRecipe);
+  },
+  addIngredientsToRecipe(newRecipe) {
+    return axios.put('/recipe/favorites/edit/ingredients', newRecipe);
+  },
+  removeIngredientFromRecipe(recipeId, ingredientId) {
+    return axios.delete('/recipe/favorites/' + recipeId + '/ingredients/' + ingredientId);
   },
 
 

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <template>
   <h1>Edit Recipe</h1>
   <edit-recipe-form v-bind:recipe="recipe" />
@@ -53,3 +54,5 @@ export default {
   },
 };
 </script>
+=======
+>>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f

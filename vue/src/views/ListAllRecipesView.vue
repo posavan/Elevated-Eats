@@ -2,23 +2,14 @@
   <h1>Recipe Library</h1>
   <div class="list-all-recipes">
     <section class="container">
-      <recipe
-        v-for="recipe in allRecipes"
-        v-bind:key="recipe.id"
-        v-bind:item="recipe"
-      >
+      <recipe v-for="recipe in allRecipes" v-bind:key="recipe.id" v-bind:item="recipe">
         <button v-on:click="addRecipeToUser">Save Recipe To Favorites</button>
       </recipe>
     </section>
     <form v-on:submit.prevent="createNewRecipe" v-show="showForm">
       <div>
         <label for="name">Name: </label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          v-model="newRecipe.recipeName"
-        />
+        <input type="text" name="name" id="name" v-model="newRecipe.recipeName" />
       </div>
       <!-- 
         <div>
@@ -91,9 +82,9 @@ export default {
       recipeService
         .list()
         .then((response) => {
-          console.log("Reached created in ListAllRecipesView.vue");
           console.log(response);
           this.allRecipes = response.data;
+          this.$router.push('recipe');
         })
         .catch((error) => {
           if (error.response) {
@@ -107,6 +98,7 @@ export default {
           }
         });
     },
+    
     addIngredientToRecipe() {
       this.newRecipe.ingredientList.add(this.newIngredient);
       this.newIngredient = {};
