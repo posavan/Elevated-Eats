@@ -1,8 +1,12 @@
 <template>
-  <form v-on:submit.prevent="editRecipe">
+  <form v-on:submit.prevent="updateRecipe">
     <div>
-      <label for="type">Edit Ingredients: </label>
+      <label for="type">Edit Ingredient Name: </label>
       <input type="text" name="edit-ingredient-name" id="edit-ingredient-name" v-model="editRecipe.ingredientName" />
+    </div>
+
+    <div>
+      <label for="type">Edit Ingredient Quantity: </label>
       <input type="text" name="edit-ingredient-quantity" id="edit-ingredient-quantity" v-model="editRecipe.quantity" />
     </div>
 
@@ -36,15 +40,56 @@ export default {
   data() {
     return {
       editRecipe: {
-        recipeId: this.recipe.recipeId,
-        recipeName: this.recipe.recipeName,
-        recipeInstructions: this.recipe.recipeInstructions
+        recipeId: this.recipeId,
+        recipeName: this.recipeName,
+        recipeInstructions: this.recipeInstructions
       },
     };
   },
 
   methods: {
-
+    updateRecipe(){
+      recipeService
+      .updateRecipe(this.editRecipe.recipeId, this.editRecipe)
+        .then(() => {
+          this.$router.push({ name: "userRecipeDetails", params: {id: this.editRecipe.recipeId} });
+          console.log("Recipe edited successfully");
+        })
+        .catch((error) => {
+          if (error.response) {
+              console.log("Error updating Recipe: ", error.response.status);
+            } else if (error.request) {
+              console.log(
+                "Error updating Recipe: unable to communicate to server"
+              );
+            } else {
+              console.log("Error updating Recipe: make request");
+            }
+        });
+    },
+    cancelForm(){
+      
+        this.$router.back();
+    
+    }
   }
 };
 </script>
+
+<style scoped>
+h1 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  background-color: rgb(206, 182, 236);
+  border-radius: 50px;
+}
+
+div {
+  background-color: rgb(14, 136, 71);
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: large;
+  text-align: center;
+  border-radius: 50px;
+  padding: auto;
+}
+</style>

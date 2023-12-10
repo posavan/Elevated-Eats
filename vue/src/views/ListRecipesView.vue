@@ -3,6 +3,7 @@
     <h1>Favorite Recipes</h1>
     <section class="container">
       <recipe v-for="recipe in recipes" v-bind:key="recipe.id" v-bind:item="recipe" />
+      
     </section>
     <div class="add-recipe">
     <button v-show="!showForm" v-on:click="showForm = true">Add Recipe</button>

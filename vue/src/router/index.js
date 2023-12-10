@@ -12,6 +12,7 @@ import ListAllRecipesView from "../views/ListAllRecipesView.vue";
 import AddIngredientView from "../views/AddIngredientView.vue";
 import RecipeDetailsView from "../views/RecipeDetailsView.vue";
 import UserRecipeDetailsView from "../views/UserRecipeDetailsView.vue";
+import EditRecipeView from "../views/EditRecipeView.vue";
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -110,14 +111,14 @@ const routes = [
   //     requiresAuth: true,
   //   },
   // },
-  // {
-  //   path: "/recipe/:userId/:recipeId/edit",
-  //   name: "editRecipe",
-  //   component: EditRecipeView,
-  //   meta: {
-  //     requiresAuth: true,
-  //   },
-  // },
+  {
+    path: "/recipe/favorites/:recipeId/edit",
+    name: "editRecipe",
+    component: EditRecipeView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
   // {
   //   path: "/recipe/:userId/:recipeId",
   //   name: "AddRecipeToUser",
