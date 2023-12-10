@@ -324,7 +324,6 @@ namespace Capstone.DAO
             string sqlUpdateRecipe = "UPDATE recipes SET recipe_name = @recipe_name, recipe_instructions = @recipe_instructions  " +
                             "WHERE recipe_id = @recipe_id";
 
-
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))

@@ -196,7 +196,7 @@ namespace Capstone.DAO
         //    }
         //}
 
-        private Meal MapRowToMeal(SqlDataReader reader)
+        public Meal MapRowToMeal(SqlDataReader reader)
         {
             Meal meal = new Meal();
             meal.MealId = Convert.ToInt32(reader["meal_id"]);
