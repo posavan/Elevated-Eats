@@ -11,5 +11,6 @@ namespace Capstone.Models
         public List<Recipe> RecipesList { get; set; }
         public int MealId { get; set; }
         public string MealName { get; set; }
+        public int UserId { get; set; }
     }
 }

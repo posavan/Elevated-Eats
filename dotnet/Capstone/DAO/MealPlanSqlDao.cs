@@ -1,38 +1,14 @@
-﻿using Capstone.Models;
+﻿using Capstone.Exceptions;
+using Capstone.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
+using System.Diagnostics.Eventing.Reader;
 
 namespace Capstone.DAO
 {
     public class MealPlanSqlDao : IMealPlanDao
     {
-        public MealPlan AddAMealPlan(Meal newMeal)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public bool DeleteAMealPlan(int mealId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public MealPlan GetMealPlan(int MealPlanId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public List<MealPlan> ListMeals()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public List<MealPlan> ListMealsById(int mealId)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public MealPlan UpdateMealPlan(Meal newMeal)
-        {
-            throw new System.NotImplementedException();
-        }
+      
     }
 }
