@@ -1,6 +1,7 @@
 <template>
   <form v-on:submit.prevent="editRecipe">
     <div>
+      <!--add ingredients button-->
       <label for="type">Edit Ingredients: </label>
       <input
         type="text"
@@ -54,13 +55,9 @@ export default {
       editRecipe: {
         recipeId: this.recipe.recipeId,
         recipeName: this.recipe.recipeName,
-        recipeInstructions: this.recipe.recipeInstructions
+        recipeInstructions: this.recipe.recipeInstructions,
       },
     };
-  },
-
-  methods: {
-
   }
-};
+}
 </script>

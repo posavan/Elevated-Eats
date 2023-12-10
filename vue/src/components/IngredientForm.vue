@@ -1,6 +1,7 @@
 <template>
   <form v-on:submit.prevent="createNewIngredient">
     <div>
+      <!--qty text box-->
       <label for="type">Quantity: </label>
       <input type="text" name="quantity" id="quantity" v-model="editIngredient.quantity" />
     </div>
@@ -9,7 +10,7 @@
       <input type="text" name="name" id="name" v-model="editIngredient.ingredientName" />
     </div>
     <div class="actions">
-      <button class="btn-continue" type="submit">Save Ingredient</button><!--Needs to return to prev-->
+      <button class="btn-continue" type="submit">Save Ingredient</button>
       <button class="btn-submit" type="submit">Save and Continue Adding</button>
       <button class="btn-cancel" type="button" v-on:click="cancelForm">Cancel</button>
     </div>

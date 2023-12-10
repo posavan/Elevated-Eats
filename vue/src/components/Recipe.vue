@@ -127,14 +127,7 @@ h1 {
   padding: 2%;
 }
 
-recipe {
-  background-color: pink;
-  border-radius: 0.625rem;
-  /* Rounded corners for recipe cards */
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.25rem;
-  padding: 2%;
-}
+
 
 .add-recipe-button {
   margin-top: 1.25rem;

@@ -3,13 +3,13 @@
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="recipes">
-      <a href="/recipe">Recipes </a>
+      <a href="/recipe" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">Recipes </a>
     </nav>
-    <nav class="my-recipes">
-      <a href="/recipe/1">My Recipes</a>
+    <nav class="my-recipes"> 
+      <a href="/recipe/1" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">My Recipes</a>
     </nav>
     <nav class="meal-plans">
-      <a href="/mealPlans">My Meal Plans</a>
+      <a href="/mealPlans" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
     </nav>
   </div>
 </template>
@@ -40,7 +40,7 @@ p {
 .meal-plans,
 .my-recipes {
   display: block;
-  color: wheat;
+  /* color: wheat; */
   text-align: center;
   padding: 14px 16px;
   background-color: rgb(213, 51, 51);
@@ -54,6 +54,7 @@ p {
   text-decoration: none;
   font-family: sans-serif;
   font-size: 16px;
+  color: inherit;
 }
 
 .recipes:hover {

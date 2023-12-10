@@ -65,6 +65,7 @@ namespace Capstone
             services.AddTransient<IUserDao>(m => new UserSqlDao(connectionString));
             services.AddTransient<IIngredientDao>(i => new IngredientSqlDao(connectionString));
             services.AddTransient<IRecipeDao>(r => new RecipeSqlDao(connectionString));
+            services.AddTransient<IMealDao>(m => new MealSqlDao(connectionString));
             //services.AddTransient<IMealplanDao>(mp => new MealplanSqlDao(connectionString));
         }
 
