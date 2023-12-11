@@ -1,8 +1,12 @@
 <template>
   <form v-on:submit.prevent="updateRecipe">
     <div>
+<<<<<<< HEAD
+      <label for="type">Edit Ingredient Name: </label>
+=======
       <!--add ingredients button-->
       <label for="type">Edit Ingredients: </label>
+>>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
       <input type="text" name="edit-ingredient-name" id="edit-ingredient-name" v-model="editRecipe.ingredientName" />
     </div>
 
@@ -17,7 +21,7 @@
     </div>
 
     <div class="actions">
-      <button class="btn-continue" type="submit">Save Recipe</button><!--Needs to return to prev-->
+      <button class="btn-continue" type="submit">Save Recipe</button> <!--Needs to return to prev-->
       <button class="btn-submit" type="submit">
         Save and Continue Editing
       </button>

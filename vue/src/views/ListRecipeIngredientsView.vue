@@ -21,7 +21,7 @@ import RecipeService from "../services/RecipeService";
 import IngredientService from "../services/IngredientService";
 
 export default {
-  name: "ListRecipeIngredientsView",
+  name: "listRecipeIngredients",
   components: {
     ingredient
   },
