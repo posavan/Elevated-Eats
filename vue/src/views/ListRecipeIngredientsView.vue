@@ -6,19 +6,17 @@
     <h1>Recipe Ingredients</h1>
     <section class="container">
       <ingredient
-        v-for="recipe in recipes"
-        v-bind:key="recipe.id"
-        v-bind:item="recipe.ingredientName"
+        v-for="ingredient in ingredients"
+        v-bind:key="ingredient.id"
+        v-bind:item="ingredient"
       />
     </section>
   </div>
 </template>
 
 <script>
-import recipe from "../components/Recipe.vue";
 import ingredient from "../components/Ingredient.vue";
 import RecipeService from "../services/RecipeService";
-import IngredientService from "../services/IngredientService";
 
 export default {
   name: "listRecipeIngredients",
@@ -28,8 +26,7 @@ export default {
   data() {
     return {
       ingredients: [],
-      showForm: false,
-      newIngredient: {}
+      recipeId: 0
     };
   },
 
@@ -39,7 +36,7 @@ export default {
         .listIngredients(this.recipeId)
         .then((response) => {
             console.log(response);
-            this.recipes = response.data;
+            this.ingredients = response.data;
             this.$router.push('listRecipeIngredients');
         })
         .catch((error) => {
@@ -55,6 +52,7 @@ export default {
   },
 
   created() {
+    this.recipeId = this.$route.params.recipeId;
     this.loadIngredients();
   }
 };

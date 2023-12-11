@@ -5,16 +5,13 @@
 
 
   <div class="list-ingredients">
-    <h1>Ingredients</h1>
+    <h1>Ingredients for {{ recipeName }}</h1>
     <button class="btn-add" v-on:click="$router.push({ name: 'AddIngredientView' })">Add Ingredient
     </button>
     <section class="container">
       <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
     <!-- 
-    <button v-show="!showForm" v-on:click="showForm = true">
-      Add Ingredient
-    </button>
 
     <form v-on:submit.prevent="createNewIngredient" v-show="showForm">
       <div>
@@ -42,6 +39,8 @@ export default {
       ingredients: [],
       showForm: false,
       newIngredient: {},
+      recipeId: 0,
+      recipeName: ""
     };
   },
   // computed: {
@@ -104,7 +103,8 @@ export default {
     },
   },
   created() {
-
+    this.recipeId = this.$route.params.recipeId;
+    this.recipeName = this.$route.params.recipeName;
     this.loadIngredients();
   },
 };

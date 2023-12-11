@@ -1,6 +1,6 @@
 <template>
-  <h1>Edit Recipe</h1>
-  <edit-recipe-form v-bind:recipe="recipe" />
+  <h1 v-if="isLoading == false">Edit Recipe: {{editRecipe.recipeName}}</h1>
+  <EditRecipeForm v-bind:recipe="editRecipe" v-if="isLoading == false" />
 
   <!--needs add ingredient button that allows user to add an ingredient not already part of this recipe-->
   <!--add ingredient button brings up a list of ingredients from ListIngredientsView-->
@@ -11,34 +11,19 @@ import recipeService from "../services/RecipeService";
 import EditRecipeForm from "../components/EditRecipeForm.vue";
 
 export default {
-<<<<<<< HEAD
-  components: {
-    EditRecipeForm,
-=======
-  components: EditRecipeForm,
-  prop: {
-    recipe: {
-      type: Object,
-      required: true,
-
-    },
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
-  },
+  components: {EditRecipeForm},
   data() {
     return {
+      isLoading: true,
       editRecipe: {
-<<<<<<< HEAD
-        name: "",
-        recipeId: Number(this.recipeId),
-=======
-        recipeId: this.recipeId,
-        recipeName: this.recipeName,
-        recipeInstructions: this.recipeInstructions,
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
+        recipeId: 0,
+        recipeName: "",
+        recipeInstructions: "",
       },
     };
   },
   methods: {
+  
     updateRecipe() {
       recipeService
         .updateRecipe(this.editRecipe.recipeId, this.editRecipe)
@@ -48,9 +33,6 @@ export default {
             params: { id: this.editRecipe.recipeId },
           });
         })
-<<<<<<< HEAD
-        .catch((error) => {});
-=======
         .catch((error) => { })
       },
       deleteRecipe() {
@@ -77,8 +59,29 @@ export default {
             });
         }
       },
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
     },
+
+    created() {
+      this.editRecipe.recipeId = this.$route.params.recipeId;
+      console.log('logging editRecipe', this.editRecipe);
+      this.editRecipe.recipeName = this.recipeName;
+      this.editRecipe.recipeInstructions = this.recipeInstructions;
+      recipeService.GetUserRecipeByRecipeId(this.editRecipe.recipeId)
+      .then((response) => {
+          console.log(response.data);
+          this.editRecipe = response.data;
+          this.isLoading = false;
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("Error loading recipe: ", error.response.status);
+          } else if (error.request) {
+            console.log("Error loading recipe: unable to communicate to server");
+          } else {
+            console.log("Error loading recipe: make request");
+          }
+        });
+    }
   };
 </script>
 

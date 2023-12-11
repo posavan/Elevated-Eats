@@ -1,6 +1,8 @@
 <template>
   <section class="recipe">
+
     <h3>Name: {{ recipe.recipeName }}</h3>
+
     <section v-if="!hide" class="container">
       <h4>Ingredients:</h4>
       <ingredient
@@ -9,7 +11,9 @@
         v-bind:item="ingredient"
       />
     </section>
+
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
+
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
         {{ feedback }}
@@ -145,8 +149,6 @@ export default {
     this.recipe = this.item;
     this.recipeId = this.item.recipeId;
     this.loadRecipeIngredients();
-    console.log("In created of REcipe.vue", this.item.recipeId)
-    console.log("In created of REcipe.vue", this.item)
   },
 };
 </script>
