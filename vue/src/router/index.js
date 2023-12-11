@@ -14,7 +14,12 @@ import RecipeDetailsView from "../views/RecipeDetailsView.vue";
 import AddRecipeView from "../views/AddRecipeView.vue";
 import UserRecipeDetailsView from "../views/UserRecipeDetailsView.vue";
 import EditRecipeView from "../views/EditRecipeView.vue";
+
+import MealView from "../views/MealView.vue";
+import MealDetailsView from "../views/MealDetailsView.vue";
 import AddMealView from "../views/AddMealView.vue";
+import EditMealView from "../views/EditMealView.vue";
+
 import MealPlanView from "../views/MealPlanView.vue";
 import AddMealPlanView from "../views/AddMealPlanView.vue";
 import MealPlanDetailsView from "../views/MealPlanDetailsView.vue";
@@ -118,6 +123,32 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: "/meal",
+    name: "meal",
+    component: MealView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/meal/:mealId",
+    name: "mealDetailsView",
+    component: MealDetailsView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/meal/:mealId/edit",
+    name: "EditMealView",
+    component: EditMealView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  
+
 
   // {
   //   path: "/recipe/favorites/:recipeId/ingredients",

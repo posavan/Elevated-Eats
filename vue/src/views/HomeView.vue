@@ -2,6 +2,9 @@
   <div class="home">
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
+    <nav class="recipes">
+      <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman; ">Recipes </a>
+    </nav>
     <nav class="meal-plans">
       <a href="/mealplan" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
     </nav>
@@ -10,6 +13,9 @@
     </nav>
     <nav class="recipes">
       <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">All Recipes</a>
+    </nav>
+    <nav class="meals">
+      <a href="/meal" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">Meals</a>
     </nav>
   </div>
 </template>
@@ -46,16 +52,16 @@ a {
 
 a:hover {
   text-decoration: underline;
-  cursor: pointer;
 }
 
 .recipes,
 .meal-plans,
+.meals,
 .my-recipes {
   display: block;
   /* color: wheat; */
   text-align: center;
-  padding: 14px 16px;
+  padding: 13px 16px;
   background-color:rgb(235, 142, 42);
   border-radius: 50px;
   margin-left: 40%;
@@ -80,4 +86,8 @@ a:hover {
 
 .meal-plans:hover {
   opacity: 0.50;
-}</style>
+}
+.meals:hover {
+  opacity: 0.50;
+}
+</style>

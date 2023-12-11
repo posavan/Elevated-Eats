@@ -80,7 +80,6 @@ h1 {
 form {
     text-align: center;
 }
-
 .add-mealplan {
     display: block;
     color: white;
@@ -98,5 +97,6 @@ form {
     font-family: sans-serif;
     font-size: 16px;
 }
+
 </style>
   
