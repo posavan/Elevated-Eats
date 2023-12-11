@@ -11,8 +11,8 @@ namespace Capstone.DAO
         public MealPlan CreateMealPlan(MealPlan mealPlan, int userId);
         public MealPlan UpdateMealPlan(MealPlan mealPlan, int userId);
 
-        public bool AddMealToMealPlan(int mealId, int mealPlanId);
-        public bool RemoveMealFromMealPlan(int mealId, int mealPlanId);
+        public bool AddMealToMealPlan(int mealPlanId, int mealId);
+        public bool RemoveMealFromMealPlan(int mealPlanId, int mealId);
         public bool DeleteMealPlan(int mealPlanId);
 
     }

@@ -14,7 +14,11 @@ export default {
   components: {
     recipe,
   },
+<<<<<<< HEAD
   name: "RecipeDetailsView",
+=======
+  name: "UserRecipeDetailsView",
+>>>>>>> e2c024ea142eb508e50a352bac84dd3cf97ff8d8
   data() {
     return {
       recipe: [],

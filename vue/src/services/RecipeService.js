@@ -21,7 +21,7 @@ export default {
   addRecipeToUser(newRecipe) {
     return axios.post('/recipe/favorites', newRecipe);
   },
-  
+
   removeRecipeFromUser(recipeId) {
     return axios.delete('/recipe/favorites/' + recipeId);
   },

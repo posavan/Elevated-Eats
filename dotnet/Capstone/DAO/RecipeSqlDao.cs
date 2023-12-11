@@ -70,7 +70,7 @@ namespace Capstone.DAO
 
                     while (reader.Read())
                     {
-                        Recipe recipe = MapRowToUserRecipe(reader);
+                        Recipe recipe = MapRowToRecipe(reader);
                         recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
                         recipes.Add(recipe);
                     }
@@ -103,7 +103,7 @@ namespace Capstone.DAO
 
                     if (reader.Read())
                     {
-                        recipe = MapRowToUserRecipe(reader);
+                        recipe = MapRowToRecipe(reader);
                         recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
                     }
                 }
@@ -137,7 +137,7 @@ namespace Capstone.DAO
 
                     if (reader.Read())
                     {
-                        recipe = MapRowToUserRecipe(reader);
+                        recipe = MapRowToRecipe(reader);
                         recipe.IngredientList = GetIngredientsByRecipeId(recipe.RecipeId);
                     }
                 }
@@ -374,36 +374,36 @@ namespace Capstone.DAO
                         // check if ingredient already exists in the master list (db does not allow duplicates)
                         //if (!ingredientDao.IngredientExists(ingredient))
                         //{
-                            // add the new ingredient to the master list
-                            SqlCommand cmdNewIngredient = new SqlCommand(sqlAddNewIngredient, conn);
-                            cmdNewIngredient.Parameters.AddWithValue("@ingredientName", ingredient.IngredientName);
+                        // add the new ingredient to the master list
+                        SqlCommand cmdNewIngredient = new SqlCommand(sqlAddNewIngredient, conn);
+                        cmdNewIngredient.Parameters.AddWithValue("@ingredientName", ingredient.IngredientName);
 
-                            // assign new ingredient's id
-                            int newIngredientId = Convert.ToInt32(cmdNewIngredient.ExecuteScalar());
+                        // assign new ingredient's id
+                        int newIngredientId = Convert.ToInt32(cmdNewIngredient.ExecuteScalar());
 
-                            if (newIngredientId > 0)
+                        if (newIngredientId > 0)
+                        {
+                            // add the ingredient to recipes_ingredients
+                            SqlCommand cmdAddToRecipe = new SqlCommand(sqlAddIngredientToRecipe, conn);
+                            cmdAddToRecipe.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
+                            cmdAddToRecipe.Parameters.AddWithValue("@ingredient_id", newIngredientId);
+                            cmdAddToRecipe.Parameters.AddWithValue("@quantity", ingredient.Quantity);
+
+                            int rowsAffected = cmdAddToRecipe.ExecuteNonQuery();
+
+                            if (rowsAffected > 0)
                             {
-                                // add the ingredient to recipes_ingredients
-                                SqlCommand cmdAddToRecipe = new SqlCommand(sqlAddIngredientToRecipe, conn);
-                                cmdAddToRecipe.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
-                                cmdAddToRecipe.Parameters.AddWithValue("@ingredient_id", newIngredientId);
-                                cmdAddToRecipe.Parameters.AddWithValue("@quantity", ingredient.Quantity);
-
-                                int rowsAffected = cmdAddToRecipe.ExecuteNonQuery();
-
-                                if (rowsAffected > 0)
-                                {
-                                    Console.WriteLine($"Ingredient {ingredient.IngredientName} added successfully to recipe.");
-                                }
-                                else
-                                {
-                                    Console.WriteLine($"Failed to add ingredient {ingredient.IngredientName} to the recipe.");
-                                }
+                                Console.WriteLine($"Ingredient {ingredient.IngredientName} added successfully to recipe.");
                             }
                             else
                             {
-                                Console.WriteLine($"Failed to add ingredient {ingredient.IngredientName} to the master list.");
+                                Console.WriteLine($"Failed to add ingredient {ingredient.IngredientName} to the recipe.");
                             }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Failed to add ingredient {ingredient.IngredientName} to the master list.");
+                        }
                         //}
                         //else
                         //{
@@ -456,15 +456,7 @@ namespace Capstone.DAO
         }
 
 
-        private Recipe MapRowToRecipe(SqlDataReader reader)
-        {
-            Recipe recipe = new Recipe();
-            recipe.RecipeId = Convert.ToInt32(reader["recipe_id"]);
-            recipe.RecipeName = Convert.ToString(reader["recipe_name"]);
-            recipe.RecipeInstructions = Convert.ToString(reader["recipe_instructions"]);
-            return recipe;
-        }
-        private Recipe MapRowToUserRecipe(SqlDataReader reader)
+        public Recipe MapRowToRecipe(SqlDataReader reader)
         {
             Recipe recipe = new Recipe();
             recipe.RecipeId = Convert.ToInt32(reader["recipe_id"]);
