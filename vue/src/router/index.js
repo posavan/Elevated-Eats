@@ -13,12 +13,9 @@ import AddIngredientView from "../views/AddIngredientView.vue";
 import RecipeDetailsView from "../views/RecipeDetailsView.vue";
 import UserRecipeDetailsView from "../views/UserRecipeDetailsView.vue";
 import EditRecipeView from "../views/EditRecipeView.vue";
-<<<<<<< HEAD
 import ListRecipeIngredientsView from "../views/ListRecipeIngredientsView.vue";
-=======
-import MealPlanView from "../views/MealPlanView.vue";
+import MealPlanView from "../views/MealplanView.vue";
 import AddMealPlanView from "../views/AddMealPlanView.vue";
->>>>>>> 04528248c3a39728db308756bbf78371854b3e52
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
