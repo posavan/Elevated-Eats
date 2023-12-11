@@ -1,12 +1,8 @@
 <template>
   <form v-on:submit.prevent="updateRecipe">
     <div>
-<<<<<<< HEAD
-      <label for="type">Edit Ingredient Name: </label>
-=======
       <!--add ingredients button-->
       <label for="type">Edit Ingredients: </label>
->>>>>>> f0dcfada6de9610c5e3fbbd38198d7ea7ccfb83f
       <input type="text" name="edit-ingredient-name" id="edit-ingredient-name" v-model="editRecipe.ingredientName" />
     </div>
 
@@ -45,7 +41,6 @@ export default {
   data() {
     return {
       editRecipe: {
-<<<<<<< HEAD
         recipeId: this.recipeId,
         recipeName: this.recipeName,
         recipeInstructions: this.recipeInstructions
@@ -78,13 +73,6 @@ export default {
         this.$router.back();
     
     }
-=======
-        recipeId: this.recipe.recipeId,
-        recipeName: this.recipe.recipeName,
-        recipeInstructions: this.recipe.recipeInstructions,
-      },
-    };
->>>>>>> f0dcfada6de9610c5e3fbbd38198d7ea7ccfb83f
   }
 }
 </script>
