@@ -41,11 +41,46 @@ export default {
   data() {
     return {
       editRecipe: {
+<<<<<<< HEAD
         recipeId: this.recipe.recipeId,
         recipeName: this.recipe.recipeName,
         recipeInstructions: this.recipe.recipeInstructions,
       },
     };
+=======
+        recipeId: this.recipeId,
+        recipeName: this.recipeName,
+        recipeInstructions: this.recipeInstructions
+      },
+    };
+  },
+
+  methods: {
+    updateRecipe(){
+      recipeService
+      .updateRecipe(this.editRecipe.recipeId, this.editRecipe)
+        .then(() => {
+          this.$router.push({ name: "userRecipeDetails", params: {id: this.editRecipe.recipeId} });
+          console.log("Recipe edited successfully");
+        })
+        .catch((error) => {
+          if (error.response) {
+              console.log("Error updating Recipe: ", error.response.status);
+            } else if (error.request) {
+              console.log(
+                "Error updating Recipe: unable to communicate to server"
+              );
+            } else {
+              console.log("Error updating Recipe: make request");
+            }
+        });
+    },
+    cancelForm(){
+      
+        this.$router.back();
+    
+    }
+>>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
   }
 }
 </script>

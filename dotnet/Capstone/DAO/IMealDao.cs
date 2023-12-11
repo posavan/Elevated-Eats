@@ -16,6 +16,8 @@ namespace Capstone.DAO
 
         // public bool DeleteRecipeFromMeal(int recipeId, int mealId);
         public Meal UpdateMeal(Meal updatedMeal);
+        public bool AddRecipeToMeal(int mealId, int recipeId);
+        public bool RemoveRecipeFromMeal(int mealId, int recipeId);
 
         public bool DeleteMeal(int mealId);
 

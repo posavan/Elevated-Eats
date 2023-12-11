@@ -1,4 +1,4 @@
-﻿using Capstone.Exceptions;
+using Capstone.Exceptions;
 using Capstone.Models;
 using System;
 using System.Collections.Generic;
@@ -21,9 +21,9 @@ namespace Capstone.DAO
             this.mealDao = new MealSqlDao(dbConnectionString);
         }
 
-        string getListSql = "SELECT meal_plan_id, meal_plan_name, meal_plan_description " +
+        string getListSql = "SELECT meal_plan_id, meal_plan_name, meal_plan_description, user_id " +
             "FROM meal_plans WHERE user_id = @user_id;";
-        string getMealPlanSql = "SELECT meal_plan_id, meal_plan_name, meal_plan_description " +
+        string getMealPlanSql = "SELECT meal_plan_id, meal_plan_name, meal_plan_description, user_id " +
             "FROM meal_plans WHERE meal_plan_id = @meal_plan_id";
 
         string createSql = "INSERT INTO meal_plans (meal_plan_name, meal_plan_description, user_id) " +
@@ -32,15 +32,17 @@ namespace Capstone.DAO
         string updateSql = "UPDATE meal_plans " +
             "SET meal_plan_name = @meal_plan_name, meal_plan_description = @meal_plan_description " +
             "WHERE meal_plan_id = @meal_plan_id AND user_id = @user_id";
-        string addMealSql = "INSERT INTO meal_plan_meals (meal_plan_id, meal_id) " +
-             "VALUES(@meal_plan_id, @meal_id);";
+
+        string checkMealSql = "SELECT meal_id FROM meal_plans_meals WHERE meal_plan_id=@meal_plan_id";
+        string addMealSql = "INSERT INTO meal_plans_meals (meal_plan_id, meal_id) " +
+             "VALUES (@meal_plan_id, @meal_id);";
         string removeMealSql = "DELETE FROM meal_plans_meals " +
-             "WHERE meal_id = @mealId AND meal_plan_id = @meal_plan_id";
+             "WHERE meal_id = @meal_id AND meal_plan_id = @meal_plan_id";
 
         string deleteMealsSql = "DELETE FROM meal_plans_meals " +
             "WHERE meal_plan_id = @meal_plan_id";
         string deleteSql = "DELETE FROM meal_plans WHERE meal_plan_id=@meal_plan_id;";
-        string getMealsSql = "SELECT m.meal_plan_id, m.meal_id, m.meal_name " +
+        string getMealsSql = "SELECT m.meal_id, m.meal_name, m.meal_description " +
             "FROM meals m JOIN meal_plans_meals mpm ON m.meal_id = mpm.meal_id " +
             "WHERE mpm.meal_plan_id = @meal_plan_id;";
 
@@ -116,7 +118,7 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(createSql, conn);
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.Parameters.AddWithValue("@name", mealPlan.MealPlanName);
-                    cmd.Parameters.AddWithValue("@instructions", mealPlan.MealPlanDescription);
+                    cmd.Parameters.AddWithValue("@description", mealPlan.MealPlanDescription);
                     mealplan = GetMealPlanById(Convert.ToInt32(cmd.ExecuteScalar()));
                 }
             }
@@ -159,7 +161,7 @@ namespace Capstone.DAO
             }
         }
 
-        public bool AddMealToMealPlan(int mealId, int mealPlanId)
+        public bool AddMealToMealPlan(int mealPlanId, int mealId)
         {
             bool result = false;
             try
@@ -168,10 +170,19 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(addMealSql, conn);
+                    SqlCommand cmd = new SqlCommand(checkMealSql, conn);
+                    cmd.Parameters.AddWithValue("@meal_plan_id", mealPlanId);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        // meal is already in mealplan
+                        return result;
+                    }
+
+                    cmd = new SqlCommand(addMealSql, conn);
                     cmd.Parameters.AddWithValue("@meal_plan_id", mealPlanId);
                     cmd.Parameters.AddWithValue("@meal_id", mealId);
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    count = Convert.ToInt32(cmd.ExecuteNonQuery());
                     if (count > 0)
                     {
                         result = true;
@@ -184,7 +195,7 @@ namespace Capstone.DAO
             }
             return result;
         }
-        public bool RemoveMealFromMealPlan(int mealId, int mealPlanId)
+        public bool RemoveMealFromMealPlan(int mealPlanId, int mealId)
         {
             bool result = false;
             try

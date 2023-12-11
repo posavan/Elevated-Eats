@@ -17,7 +17,6 @@ export default {
     recipe,
   },
   name: "UserRecipeDetailsView",
-
   data() {
     return {
       recipe: [],
@@ -56,6 +55,7 @@ export default {
 };
 </script>
 
+  
 <style scoped>
 h1 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
