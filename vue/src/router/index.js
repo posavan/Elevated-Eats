@@ -14,9 +14,24 @@ import RecipeDetailsView from "../views/RecipeDetailsView.vue";
 import AddRecipeView from "../views/AddRecipeView.vue";
 import UserRecipeDetailsView from "../views/UserRecipeDetailsView.vue";
 import EditRecipeView from "../views/EditRecipeView.vue";
+<<<<<<< HEAD
 import AddMealPlanView from "../views/AddMealPlanView.vue";
+=======
+
+import MealView from "../views/MealView.vue";
+import MealDetailsView from "../views/MealDetailsView.vue";
+>>>>>>> 702baa90b9d54ca39c81726735af04b4ed9b2a35
 import AddMealView from "../views/AddMealView.vue";
+import EditMealView from "../views/EditMealView.vue";
+
 import MealPlanView from "../views/MealPlanView.vue";
+<<<<<<< HEAD
+=======
+import AddMealPlanView from "../views/AddMealPlanView.vue";
+import MealPlanDetailsView from "../views/MealPlanDetailsView.vue";
+import EditMealPlanView from "../views/EditMealPlanView.vue";
+import ListRecipeIngredientsView from "../views/ListRecipeIngredientsView.vue";
+>>>>>>> 702baa90b9d54ca39c81726735af04b4ed9b2a35
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
@@ -115,6 +130,32 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: "/meal",
+    name: "meal",
+    component: MealView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/meal/:mealId",
+    name: "mealDetailsView",
+    component: MealDetailsView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/meal/:mealId/edit",
+    name: "EditMealView",
+    component: EditMealView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  
+
 
   // {
   //   path: "/recipe/favorites/:recipeId/ingredients",
@@ -164,14 +205,22 @@ const routes = [
       requiresAuth: true,
     },
   },
-  // {
-  //   path: "/mealplan/:mealPlanId",
-  //   name: "viewMealPlan",
-  //   component: MealPlanDetailsView,
-  //   meta: {
-  //     requiresAuth: true,
-  //   },
-  // },
+  {
+    path: "/mealplan/:mealPlanId",
+    name: "mealPlanDetails",
+    component: MealPlanDetailsView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/mealplan/:mealPlanId/edit",
+    name: "editMealPlan",
+    component: EditMealPlanView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 // Create the router

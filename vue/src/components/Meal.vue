@@ -1,211 +1,137 @@
-<!-- placeholder code -->
 <template>
-    <section class="meal">
-        <h3>Name: {{ meal.mealName }}</h3>
-        <section v-if="showDetails || showEdit" class="container">
-            <h4>Recipes:</h4>
-            <recipe v-for="recipe in recipes" v-bind:key="recipe.id" v-bind:item="recipe" />
-        </section>
-        <p>Description: {{ meal.mealDescription }}</p>
-        <div class="button-container">
-            <button class="save-meal" v-on:click.prevent="saveMeal" v-if="showDetails">
-                {{ feedback }}
-            </button>
-            <button class="view-meal-details" v-on:click="this.$router.push('/meal/' + meal.mealId)" v-if="showDetails">
-                View Meal Details
-            </button>
-            <button class="remove-meal" v-on:click.prevent="deleteMeal" v-if="showEdit">
-                Delete Meal
-            </button>
-            <button class="edit-meal" v-on:click="this.$router.push('/meal/' + meal.mealId + '/edit')" v-if="showEdit">
-                Edit Meal
-            </button>
-        </div>
-        <p></p>
+  <section class="meal">
+    <h2>Meal Name: {{ item.mealName }}</h2>
+    <p>Description: {{ item.mealDescription }}</p>
+    <section v-if="!hide" class="container">
+      <p>Recipes: {{ item.recipeList }}</p>
+      <!-- <recipe
+        v-for="recipe in recipes"
+        v-bind:key="recipe.recipeId"
+        v-bind:item="recipe"
+      /> -->
     </section>
+    <div class="button-container">
+      <button
+        class="edit-meal"
+        v-on:click="this.$router.push('/meal/' + this.mealId + '/edit')"
+        v-if="showEdit"
+      >
+        Edit Meal
+      </button>
+      <button
+        class="view-meal-details"
+        v-on:click="this.$router.push('/meal/' + this.mealId)"
+        v-if="showDetails"
+      >
+        View Meal Details
+      </button>
+    </div>
+  </section>
 </template>
+
 <script>
-import recipe from "../components/Recipe.vue";
-import mealService from "../services/MealService.js";
-import recipeService from "../services/RecipeService";
+import Recipe from "../components/Recipe.vue";
+import RecipeService from "../services/RecipeService";
+import MealService from "../services/MealService.js";
+import MealPlanService from "../services/MealPlanService";
 
 export default {
-    name: "meal",
-    props: ["item"],
-    components: {
-        recipe,
-    },
-    data() {
-        return {
-            meal: {},
-            recipes: [],
-            showDetails: this.$route.name == "meal",
-            showEdit: this.$route.name == "mealDetails",
-            mealId: 0,
-            feedback: "Create Meal",
-        };
-    },
-    methods: {
-        loadRecipes() {
-            recipeService
-                .listUserRecipes()
-                .then((response) => {
-                    this.recipes = response.data;
-                })
-                .catch((error) => {
-                    if (error.response) {
-                        console.log(
-                            "Error loading recipes: ", error.response.status);
-                    } else if (error.request) {
-                        console.log(
-                            "Error loading recipes: unable to communicate to server"
-                        );
-                    } else {
-                        console.log("Error loading recipes: make request");
-                    }
-                });
-        },
-
-        saveMeal() {
-            mealService
-                .createMeal(this.meal)
-                .then((response) => {
-                    console.log(response);
-                    this.$router.push({ name: "meal" });
-                    this.buttonClick();
-                })
-                .catch((error) => {
-                    if (error.response) {
-                        console.log("Error saving meal: ", error.response.status);
-                    } else if (error.request) {
-                        console.log("Error saving meal: unable to communicate to server");
-                    } else {
-                        console.log("Error saving meal: make request");
-                    }
-                });
-        },
-
-        deleteMeal() {
-            mealService
-                .deleteMeal(this.meal.mealId)
-                .then((response) => {
-                    console.log(response);
-                    location.reload();
-                })
-                .catch((error) => {
-                    if (error.response) {
-                        console.log("Error removing meal: ", error.response.status);
-                    } else if (error.request) {
-                        console.log(
-                            "Error removing meal: unable to communicate to server"
-                        );
-                    } else {
-                        console.log("Error removing meal: make request");
-                    }
-                });
-        },
-
-        buttonClick() {
-            this.feedback = "Created";
-        },
-    },
-
-    created() {
-        this.meal = this.item;
-        this.mealId = this.$route.params.mealId;
-        this.loadRecipes();
-    },
+  // components: {
+  //   Recipe,
+  // },
+  name: "meal",
+  props: ["item"],
+  data() {
+    return {
+      meals: {},
+      mealId: 0,
+      mealName: "",
+      mealDescription: "",
+      showDetails: this.$route.name == "meal",
+      showEdit: this.$route.name == "mealEdit",
+    };
+  },
+  loadMeals() {
+    MealService.list()
+      .then((response) => {
+        this.meals = response.data;
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("Error loading meals: ", error.response.status);
+        } else if (error.request) {
+          console.log("Error loading meals: unable to communicate to server");
+        } else {
+          console.log("Error loading meals: make request");
+        }
+      });
+  },
+  //   loadMealRecipes() {
+  //       MealService
+  //         .listRecipesByMeal(this.recipe.recipeId)
+  //         .then((response) => {
+  //           console.log("successful recipe/loadRecipeIngredients");
+  //           this.ingredients = response.data;
+  //         })
+  //         .catch((error) => {
+  //           if (error.response) {
+  //             console.log(
+  //               "Error loading recipe ingredients: ",
+  //               error.response.status
+  //             );
+  //           } else if (error.request) {
+  //             console.log(
+  //               "Error loading ingredients: unable to communicate to server"
+  //             );
+  //           } else {
+  //             console.log("Error loading ingredients: make request");
+  //           }
+  //         });
+  //     },
+  saveMeal() {
+    MealPlanService.addMealToMealPlan(this.meal)
+      .then((response) => {
+        console.log(response);
+        this.$router.push({ name: "meal" });
+        this.buttonClick();
+        //location.reload();
+      })
+      .catch((error) => {
+        if (error.response) {
+          console.log("Error saving meal: ", error.response.status);
+        } else if (error.request) {
+          console.log("Error saving meal: unable to communicate to server");
+        } else {
+          console.log("Error saving meal: make request");
+        }
+      });
+  },
+  buttonClick() {
+    this.feedback = "Added";
+  },
+  created() {
+    this.meal = this.item;
+    this.mealId = this.item.mealId;
+  },
 };
 </script>
-<style scoped>
-.list-all-meals {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: center;
-    /* Center text for better appearance */
-    padding-right: 20%;
-}
 
+<style>
 h1 {
-    text-align: center;
-}
-
-section {
-    text-align: center;
-    justify-content: space-between;
-}
-
-.container {
-
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-    gap: 1.25rem;
+  text-align: right;
 }
 
 .meal {
-    text-align: center;
-    background-color: rgb(225, 203, 164);
-    border-radius: 0.625rem;
-    /* Rounded corners for recipe cards */
-    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-    margin-bottom: 1.25rem;
-    padding: 2%;
+  background-color: rgb(132, 226, 170);
+  border-radius: 0.5rem;
+  margin-bottom: 1.25rem;
+  width: 97%;
+  padding: 1%;
+  border-left: 10%;
+  border-right: 10%;
 }
-
-
-
-.add-meal-button {
-    margin-top: 1.25rem;
-    align-items: center;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    max-width: 18.75rem;
-    margin: auto;
-    margin-top: 1.25rem;
-    /* Add spacing between the button and the form */
-}
-
-form div {
-    margin-bottom: 0.625rem;
-}
-
-label {
-    display: block;
-    margin-bottom: 0.3125rem;
-}
-
-input {
-    width: 100%;
-    padding: 0.625rem;
-    box-sizing: border-box;
-}
-
-
-button {
-    padding: 1.25rem;
-    background-color: brown;
-    color: #fff;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    margin-right: 1.25rem;
-}
-
-button {
-    padding: 1.25rem;
-    background-color: #4caf50;
-    justify-content: space-between;
-    color: #fff;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    margin-right: 1.25rem;
-}
-
-button:hover {
-    opacity: 0.8;
+.meal:hover {
+ 
+  color: black;
 }
 </style>
-<!-- end placeholder -->

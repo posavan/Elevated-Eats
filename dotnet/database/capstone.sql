@@ -132,10 +132,10 @@ insert into meals_recipes (meal_id, recipe_id) VALUES (1,3);
 insert into meals_recipes (meal_id, recipe_id) VALUES (2,2);
 insert into meals_recipes (meal_id, recipe_id) VALUES (3,1);
 
-INSERT INTO meal_plans (user_id, meal_plan_name) VALUES (1, 'Vegan');  
-INSERT INTO meal_plans (user_id, meal_plan_name) VALUES (1, 'Leftovers');  
-INSERT INTO meal_plans (user_id, meal_plan_name) VALUES (2, 'Bulk Prep');
-INSERT INTO meal_plans (user_id, meal_plan_name) VALUES (2, 'vegetarian');
+INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Vegan', 'for those allergic to meat');  
+INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Leftovers', 'for the cheap');  
+INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (2, 'Bulk Prep', 'the gains');
+INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (2, 'vegetarian', 'gross');
 
 insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 1, 'Breakfast');
 insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 3, 'Dinner');

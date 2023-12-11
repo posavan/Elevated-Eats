@@ -10,7 +10,7 @@
         </div>
     </div>
 </template>
-  
+
 <script>
 import mealPlanService from '../services/MealPlanService.js';
 import mealplan from '../components/MealPlan.vue';
@@ -23,7 +23,8 @@ export default {
     data() {
         return {
             mealplans: [],
-            newMealPlan: {}
+            newMealPlan: {},
+            mealPlanId: 0
         };
     },
     methods: {
@@ -79,7 +80,6 @@ h1 {
 form {
     text-align: center;
 }
-
 .add-mealplan {
     display: block;
     color: white;
@@ -97,5 +97,6 @@ form {
     font-family: sans-serif;
     font-size: 16px;
 }
+
 </style>
   

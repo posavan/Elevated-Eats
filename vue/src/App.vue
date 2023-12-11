@@ -32,8 +32,8 @@ html{
   color: white;
   padding: 10px;
   background-blend-mode: multiply;
-  
 }
+
 
 #home,
 #recipe,
@@ -51,6 +51,13 @@ html{
 #logout a {
   text-decoration: none;
   color: white;
+}
+#home a:hover,
+#recipe a:hover,
+#user a:hover,
+#mealplan a:hover,
+#logout a:hover {
+  color: black;
 }
 
 #home a:hover,

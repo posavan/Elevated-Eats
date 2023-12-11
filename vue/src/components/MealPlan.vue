@@ -2,24 +2,24 @@
     <section class="mealplan">
         <h3>Name: {{ mealplan.mealPlanName }}</h3>
         <p>Description: {{ mealplan.mealPlanDescription }}</p>
-        <section v-if="!showDetails" class="container">
+        <section v-if="showDetails" class="container">
             <h4>Meals:</h4>
             <meal v-for="meal in meals" v-bind:key="meal.id" v-bind:item="meal" />
         </section>
         <div class="button-container">
-            <button class="save-mealplan" v-on:click.prevent="saveMealPlan" v-if="!showDetails">
+            <!-- <button class="save-mealplan" v-on:click.prevent="createMealPlan" v-if="false">
                 {{ feedback }}
+            </button> -->
+            <button class="view-mealplan-details" v-on:click="this.$router.push(`/mealplan/${this.mealPlanId}`)" v-if="show">
+                View Meal Plan Details
             </button>
-            <button class="view-mealplan-details" v-on:click="this.$router.push('/mealplan/' + mealplan.mealPlanId)"
-                v-if="showDetails">View Meal Plan Details
+            <button class="edit-mealplan" v-on:click="this.$router.push(`/mealplan/${this.mealPlanId}/edit`)" v-if="showEdit">
+                Edit Meal Plan
             </button>
-            <button class="delete-mealplan" v-on:click.prevent="deleteMealPlan" v-if="showDetails">
+            <button class="delete-mealplan" v-on:click.prevent="deleteMealPlan" v-if="show || showDetails">
                 Delete Meal Plan
             </button>
-            <button class="edit-mealplan" v-on:click="this.$router.push('/mealplan/' + mealplan.mealPlanId + '/edit')"
-                v-if="showEdit">
-                Edit Meal PLan
-            </button>
+            <button class="btn-cancel" type="button" @click="cancel" v-if="!show">Cancel</button>
         </div>
         <p></p>
     </section>
@@ -39,7 +39,9 @@ export default {
         return {
             mealplan: {},
             meals: [],
-            showDetails: this.$route.name == "mealplan",
+            mealPlanId: 0,
+            show: this.$route.name == "mealplan",
+            showDetails: this.$route.name == "mealPlanDetails",
             showEdit: this.$route.name == "mealPlanDetails",
             feedback: "Create Meal Plan",
         };
@@ -67,7 +69,7 @@ export default {
                 });
         },
 
-        saveMealPlan() {
+        createMealPlan() {
             mealPlanService
                 .addMealToPlan(this.meal)
                 .then((response) => {
@@ -91,7 +93,11 @@ export default {
                 .deleteMealPlan(this.mealplan.mealPlanId)
                 .then((response) => {
                     console.log(response);
+                    // if (!this.show) {
+                    //     this.cancel();
+                    // }
                     location.reload();
+
                 })
                 .catch((error) => {
                     if (error.response) {
@@ -105,15 +111,21 @@ export default {
                     }
                 });
         },
-
+        cancel() {
+            this.$router.back();
+        },
         buttonClick() {
             this.feedback = "Created";
         },
+
     },
 
     created() {
         this.mealplan = this.item;
-        this.loadMeals();
+        this.mealPlanId = this.mealplan.mealPlanId;
+        if (this.mealplan.mealList) {
+            this.loadMeals();
+        }
     },
 };
 </script>

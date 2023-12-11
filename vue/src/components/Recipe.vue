@@ -44,7 +44,7 @@ export default {
       ingredients: [],
       hide: this.$route.name == "recipe",
       showDetails: this.$route.name == "favorites",
-      showEdit: this.$route.name == "userRecipeDetails",
+      showEdit: this.$route.name == "4",
       recipeId: 0,
       feedback: "Add Recipe To Favorites",
     };
@@ -169,8 +169,6 @@ section {
   padding: 2%;
 }
 
-
-
 .add-recipe-button {
   margin-top: 1.25rem;
   align-items: center;
@@ -200,16 +198,6 @@ input {
   box-sizing: border-box;
 }
 
-
-button {
-  padding: 1.25rem;
-  background-color: brown;
-  color: #fff;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
-  margin-right: 1.25rem;
-}
 
 button {
   padding: 1.25rem;
