@@ -10,7 +10,7 @@
     </div>
     <!-- display meals to be added -->
     <meal v-for="meal in addedMeals" v-bind:key="meal.id" v-bind:item="meal">
-    <button class="btn-remove" type="button" @click="removeMeal">Remove Meal</button>
+    <!-- <button class="btn-remove" type="button" @click="removeMeal">Remove Meal</button> -->
     </meal>
     <div>
       <!-- add each meal -->
