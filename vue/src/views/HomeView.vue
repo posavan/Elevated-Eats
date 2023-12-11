@@ -6,14 +6,11 @@
       <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">Recipes </a>
     </nav>
     <nav class="my-recipes"> 
-      <a href="/recipe/1" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Recipes</a>
+      <a href="/recipe/favorites" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Recipes</a>
     </nav>
     <nav class="meal-plans">
-      <a href="/mealplans" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
+      <a href="/mealplan" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
     </nav>
-    <!-- <nav class="meal-plans">
-      <a href="mealplans">My Meal Plans</a>
-    </nav> -->
   </div>
 </template>
 
