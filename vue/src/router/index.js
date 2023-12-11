@@ -13,6 +13,7 @@ import AddIngredientView from "../views/AddIngredientView.vue";
 import RecipeDetailsView from "../views/RecipeDetailsView.vue";
 import UserRecipeDetailsView from "../views/UserRecipeDetailsView.vue";
 import EditRecipeView from "../views/EditRecipeView.vue";
+import MealView from "../views/MealView.vue";
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -102,6 +103,15 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: "/meal",
+    name: "meal",
+    component: MealView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+
 
   // {
   //   path: "/recipe/favorites/:recipeId/ingredients",

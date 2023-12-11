@@ -3,7 +3,7 @@
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="recipes">
-      <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">Recipes </a>
+      <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman; ">Recipes </a>
     </nav>
     <nav class="my-recipes"> 
       <a href="/recipe/1" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Recipes</a>
@@ -49,7 +49,6 @@ a {
 
 a:hover {
   text-decoration: underline;
-  cursor: pointer;
 }
 
 .recipes,
@@ -83,4 +82,5 @@ a:hover {
 
 .meal-plans:hover {
   opacity: 0.50;
-}</style>
+}
+</style>

@@ -1,12 +1,8 @@
 <template>
   <form v-on:submit.prevent="updateRecipe">
     <div>
-<<<<<<< HEAD
-      <label for="type">Edit Ingredient Name: </label>
-=======
       <!--add ingredients button-->
       <label for="type">Edit Ingredients: </label>
->>>>>>> f0dcfada6de9610c5e3fbbd38198d7ea7ccfb83f
       <input type="text" name="edit-ingredient-name" id="edit-ingredient-name" v-model="editRecipe.ingredientName" />
     </div>
 
@@ -45,46 +41,11 @@ export default {
   data() {
     return {
       editRecipe: {
-<<<<<<< HEAD
-        recipeId: this.recipeId,
-        recipeName: this.recipeName,
-        recipeInstructions: this.recipeInstructions
-      },
-    };
-  },
-
-  methods: {
-    updateRecipe(){
-      recipeService
-      .updateRecipe(this.editRecipe.recipeId, this.editRecipe)
-        .then(() => {
-          this.$router.push({ name: "userRecipeDetails", params: {id: this.editRecipe.recipeId} });
-          console.log("Recipe edited successfully");
-        })
-        .catch((error) => {
-          if (error.response) {
-              console.log("Error updating Recipe: ", error.response.status);
-            } else if (error.request) {
-              console.log(
-                "Error updating Recipe: unable to communicate to server"
-              );
-            } else {
-              console.log("Error updating Recipe: make request");
-            }
-        });
-    },
-    cancelForm(){
-      
-        this.$router.back();
-    
-    }
-=======
         recipeId: this.recipe.recipeId,
         recipeName: this.recipe.recipeName,
         recipeInstructions: this.recipe.recipeInstructions,
       },
     };
->>>>>>> f0dcfada6de9610c5e3fbbd38198d7ea7ccfb83f
   }
 }
 </script>
