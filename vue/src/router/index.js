@@ -17,6 +17,7 @@ import EditRecipeView from "../views/EditRecipeView.vue";
 import AddMealView from "../views/AddMealView.vue";
 import MealPlanView from "../views/MealPlanView.vue";
 import AddMealPlanView from "../views/AddMealPlanView.vue";
+import ListRecipeIngredientsView from "../views/ListRecipeIngredientsView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component

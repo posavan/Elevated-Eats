@@ -27,7 +27,6 @@ export default {
       recipeService
         .GetUserRecipeByRecipeId(this.recipeId)
         .then((response) => {
-          //console.log("Reached created in UserRecipeDetailsView.vue");
           console.log(response.data);
           this.recipe = response.data;
         })
