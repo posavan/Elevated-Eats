@@ -9,9 +9,8 @@
       <input type="text" name="description" id="description" v-model="editMealPlan.mealPlanDescription" />
     </div>
     <!-- display meals to be added -->
-    <meal v-for="meal in addedMeals" v-bind:key="meal.id" v-bind:item="meal">
+    <meal v-for="meal in addedMeals" v-bind:key="meal.id" v-bind:item="meal" />
     <!-- <button class="btn-remove" type="button" @click="removeMeal">Remove Meal</button> -->
-    </meal>
     <div>
       <!-- add each meal -->
       <label for="meals">Meals:</label>
@@ -22,10 +21,13 @@
       </select>
       <button class="btn-add-meal" type="button" @click="addMeal">Add Meal</button>
     </div>
-    <button class="btn-create-meal" type="button" @click="$router.push({ name: 'createMeal' })" v-if="showCreate">Create New Meal</button>
+
+    <button class="btn-create-meal" type="button" @click="this.$router.push({ name: 'createMeal' })"
+      v-if="showCreate">Create
+      New Meal</button>
     <div class="actions">
-      <button class="btn-submit" type="submit">Create Meal Plan</button>
-      <button class="btn-cancel" type="button" @click="cancelForm">Cancel</button>
+      <button class="btn-submit" type="submit">Save Meal Plan</button>
+      <button class="btn-cancel" type="button" @click="cancel" v-if="show">Cancel</button>
     </div>
   </form>
 </template>
@@ -47,7 +49,9 @@ export default {
   },
   data() {
     return {
+      show: this.$route.name == "editMealPlan",
       showCreate: this.$route.name == "viewMealPlanDetails",
+      showSave: this.$route.name == "addMealPlan",
       selected: {},
       meals: [],
       addedMeals: [],
@@ -56,7 +60,7 @@ export default {
         mealPlanName: this.mealplan.mealPlanName,
         mealPlanDescription: this.mealplan.mealPlanDescription,
         mealList: this.mealplan.mealList
-      }
+      },
     };
   },
 
@@ -84,7 +88,7 @@ export default {
         });
     },
 
-    addMeal(){
+    addMeal() {
       this.addedMeals.push(this.selected);
     },
 
@@ -110,9 +114,12 @@ export default {
           });
       }
     },
-    cancelForm() {
+
+    cancel() {
       this.$router.back();
-    },
+    }
+
+
   },
   created() {
     this.loadMeals();

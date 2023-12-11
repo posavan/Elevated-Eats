@@ -11,10 +11,10 @@
             <button class="save-meal" v-on:click.prevent="saveMeal" v-if="showDetails">
                 {{ feedback }}
             </button>
-            <button class="view-meal-details" v-on:click="this.$router.push('/meal/' + meal.mealId)" v-if="showDetails">
+            <button class="view-meal-details" v-on:click="this.$router.push('/meal/' + meal.mealId)" v-if="showDetails || !showEdit">
                 View Meal Details
             </button>
-            <button class="remove-meal" v-on:click.prevent="deleteMeal" v-if="showEdit">
+            <button class="remove-meal" v-on:click.prevent="deleteMeal" v-if="showEdit || !showDetails">
                 Delete Meal
             </button>
             <button class="edit-meal" v-on:click="this.$router.push('/meal/' + meal.mealId + '/edit')" v-if="showEdit">

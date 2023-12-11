@@ -10,7 +10,7 @@
         </div>
     </div>
 </template>
-  
+
 <script>
 import mealPlanService from '../services/MealPlanService.js';
 import mealplan from '../components/MealPlan.vue';
@@ -23,7 +23,8 @@ export default {
     data() {
         return {
             mealplans: [],
-            newMealPlan: {}
+            newMealPlan: {},
+            mealPlanId: 0
         };
     },
     methods: {
