@@ -2,7 +2,7 @@
 <template>
     <section class="meal">
         <h3>Name: {{ meal.mealName }}</h3>
-        <section class="container">
+        <section v-if="showDetails || showEdit" class="container">
             <h4>Recipes:</h4>
             <recipe v-for="recipe in recipes" v-bind:key="recipe.id" v-bind:item="recipe" />
         </section>
@@ -11,10 +11,10 @@
             <button class="save-meal" v-on:click.prevent="saveMeal" v-if="showDetails">
                 {{ feedback }}
             </button>
-            <button class="view-meal-details" v-on:click="this.$router.push('/meal/' + meal.mealId)" v-if="!showEdit">
+            <button class="view-meal-details" v-on:click="this.$router.push('/meal/' + meal.mealId)" v-if="showDetails">
                 View Meal Details
             </button>
-            <button class="remove-meal" v-on:click.prevent="removeMeal" v-if="!showDetails">
+            <button class="remove-meal" v-on:click.prevent="deleteMeal" v-if="showEdit">
                 Delete Meal
             </button>
             <button class="edit-meal" v-on:click="this.$router.push('/meal/' + meal.mealId + '/edit')" v-if="showEdit">
@@ -85,7 +85,7 @@ export default {
                 });
         },
 
-        removeMeal() {
+        deleteMeal() {
             mealService
                 .deleteMeal(this.meal.mealId)
                 .then((response) => {
