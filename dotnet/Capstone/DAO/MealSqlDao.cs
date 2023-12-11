@@ -222,8 +222,6 @@ namespace Capstone.DAO
 
             return result;
         }
-
-
         public bool DeleteMeal(int mealId)
         {
             bool result = false;
@@ -291,6 +289,7 @@ namespace Capstone.DAO
             return recipes;
         }
 
+
         public Meal MapRowToMeal(SqlDataReader reader)
         {
             Meal meal = new Meal();
@@ -299,7 +298,6 @@ namespace Capstone.DAO
             meal.MealDescription = Convert.ToString(reader["meal_description"]);
             return meal;
         }
-
     }
 
 }

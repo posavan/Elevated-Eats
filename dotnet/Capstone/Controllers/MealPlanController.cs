@@ -88,6 +88,10 @@ namespace Capstone.Controllers
             return Ok(result);
         }
 
-
+        [HttpGet("meals/{mealPlanId}")]
+        public ActionResult<List<Meal>> ListMealsByMealPlan(int mealPlanId)
+        {
+            return Ok(dao.GetMealsByMealPlanId(mealPlanId));
+        }
     }
 }

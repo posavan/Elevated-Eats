@@ -4,6 +4,9 @@ export default {
     list() {
         return axios.get('/mealplan');
     },
+    listMealsFromPlan(mealPlanId) {
+        return axios.get(`/mealplan/meals/${mealPlanId}`);
+    },
     getMealPlan(mealPlanId) {
         return axios.get(`/mealplan/${mealPlanId}`);
     },
@@ -11,7 +14,7 @@ export default {
         return axios.post(`/mealplan`, newMealPlan);
     },
     updateMealPlan(newMealPlan) {
-        return axios.put(`/mealplan/`, newMealPlan);
+        return axios.put(`/mealplan`, newMealPlan);
     },
     addMealToPlan(mealPlanId, mealId) {
         return axios.post(`/mealplan/${mealPlanId}`, mealId);

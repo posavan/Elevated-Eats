@@ -14,6 +14,10 @@ import RecipeDetailsView from "../views/RecipeDetailsView.vue";
 import UserRecipeDetailsView from "../views/UserRecipeDetailsView.vue";
 import EditRecipeView from "../views/EditRecipeView.vue";
 import MealView from "../views/MealView.vue";
+import MealPlanView from "../views/MealPlanView.vue";
+import AddMealPlanView from "../views/AddMealPlanView.vue";
+import MealDetailsView from "../views/MealDetailsView.vue";
+import EditMealView from "../views/EditMealView.vue";
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
  * inside of App.vue depending on the URL.
@@ -111,6 +115,23 @@ const routes = [
       requiresAuth: true,
     },
   },
+  {
+    path: "/meal/:mealId",
+    name: "mealDetailsView",
+    component: MealDetailsView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/meal/:mealId/edit",
+    name: "EditMealView",
+    component: EditMealView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  
 
 
   // {
@@ -137,10 +158,26 @@ const routes = [
   //     requiresAuth: true,
   //   },
   // },
+  {
+    path: "/mealplan",
+    name: "mealplan",
+    component: MealPlanView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/mealplan/add",
+    name: "addMealPlan",
+    component: AddMealPlanView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
   // {
-  //   path: "/mealplans",
-  //   name: "mealplans",
-  //   component: MealplanView,
+  //   path: "/mealplan/:mealPlanId",
+  //   name: "viewMealPlan",
+  //   component: MealPlanDetailsView,
   //   meta: {
   //     requiresAuth: true,
   //   },

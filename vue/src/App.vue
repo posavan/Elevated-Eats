@@ -10,9 +10,9 @@
       <span id="user">
       &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">MyRecipes</router-link>&nbsp;
       </span>
-      <!-- <span id="mealplan">
-      <router-link v-bind:to="{ name: 'mealplans' }" v-if="$store.state.token != ''">Mealplans</router-link>&nbsp;|&nbsp;
-      </span> -->
+      <span id="mealplan">
+      <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token != ''">Meal Plans</router-link>&nbsp;|&nbsp;
+      </span>
       <span id="logout">
        &nbsp;<router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>&nbsp;
       </span>

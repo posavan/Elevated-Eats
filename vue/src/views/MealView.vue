@@ -4,10 +4,8 @@
     <section class="container">
       <meal v-for="meal in meals" v-bind:key="meal.id" v-bind:item="meal" />
     </section>
-    <form form v-on:submit.prevent="createNewRecipe" v-show="showForm">
-        <button type="submit">Save Meal</button>
-    </form>
   </div>
+
 </template>
 
 <script>
@@ -23,7 +21,7 @@ export default {
   data() {
     return {
       meals: [],
-      
+
     };
   },
   methods: {
