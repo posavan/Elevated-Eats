@@ -4,14 +4,14 @@
       <span id="home">
        &nbsp;<router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       </span>
-      <span id="recipe">
-      &nbsp;<router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''">Recipes</router-link>&nbsp;
+      <span id="mealplan">
+      <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token != ''">MealPlans</router-link>&nbsp;
       </span>
       <span id="user">
       &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">MyRecipes</router-link>&nbsp;
       </span>
-      <span id="mealplan">
-      <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token != ''">Meal Plans</router-link>&nbsp;|&nbsp;
+      <span id="recipe">
+      &nbsp;<router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''">Recipes</router-link>&nbsp;
       </span>
       <span id="logout">
        &nbsp;<router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>&nbsp;

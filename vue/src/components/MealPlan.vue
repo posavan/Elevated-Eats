@@ -2,7 +2,7 @@
     <section class="mealplan">
         <h3>Name: {{ mealplan.mealPlanName }}</h3>
         <p>Description: {{ mealplan.mealPlanDescription }}</p>
-        <section class="container">
+        <section v-if="!showDetails" class="container">
             <h4>Meals:</h4>
             <meal v-for="meal in meals" v-bind:key="meal.id" v-bind:item="meal" />
         </section>
@@ -11,10 +11,9 @@
                 {{ feedback }}
             </button>
             <button class="view-mealplan-details" v-on:click="this.$router.push('/mealplan/' + mealplan.mealPlanId)"
-                v-if="showDetails">
-                View Meal Plan Details
+                v-if="showDetails">View Meal Plan Details
             </button>
-            <button class="remove-mealplan" v-on:click.prevent="removeMealPlan" v-if="showDetails">
+            <button class="delete-mealplan" v-on:click.prevent="deleteMealPlan" v-if="showDetails">
                 Delete Meal Plan
             </button>
             <button class="edit-mealplan" v-on:click="this.$router.push('/mealplan/' + mealplan.mealPlanId + '/edit')"
@@ -87,9 +86,9 @@ export default {
                 });
         },
 
-        removeMealPlan() {
+        deleteMealPlan() {
             mealPlanService
-                .removeMealPlan(this.mealplan.mealPlanId)
+                .deleteMealPlan(this.mealplan.mealPlanId)
                 .then((response) => {
                     console.log(response);
                     location.reload();
@@ -113,7 +112,6 @@ export default {
     },
 
     created() {
-        console.log('reached mealplan', this.item);
         this.mealplan = this.item;
         this.loadMeals();
     },

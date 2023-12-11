@@ -6,7 +6,7 @@
 
         </section>
         <div class="create-mealplan">
-            <button v-on:click="this.$router.push('addMealPlan')">Create Meal Plan</button>
+            <button v-on:click="$router.push({ name: 'addMealPlan' })">Create Meal Plan</button>
         </div>
     </div>
 </template>

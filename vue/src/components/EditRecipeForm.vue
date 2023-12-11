@@ -6,9 +6,14 @@
       <input type="text" name="edit-ingredient-name" id="edit-ingredient-name" v-model="editRecipe.ingredientName" />
     </div>
 
-    <div>
+
+    <div v-for="ingredient in Array.from(editRecipe.ingredientList)" :key="ingredient.ingredientId">
+
+      <label for="type">Edit Ingredient Name: </label>
+      <input type="text" name="edit-ingredient-name" id="edit-ingredient-name" v-model="ingredient.ingredientName" />
+    
       <label for="type">Edit Ingredient Quantity: </label>
-      <input type="text" name="edit-ingredient-quantity" id="edit-ingredient-quantity" v-model="editRecipe.quantity" />
+      <input type="text" name="edit-ingredient-quantity" id="edit-ingredient-quantity" v-model="ingredient.quantity" />
     </div>
 
     <div>
@@ -32,18 +37,13 @@
 import recipeService from "../services/RecipeService.js";
 
 export default {
-  props: {
-    recipe: {
-      type: Object,
-      required: true,
-    },
-  },
+  props: ['recipe'],
   data() {
     return {
       editRecipe: {
-        recipeId: this.recipeId,
-        recipeName: this.recipeName,
-        recipeInstructions: this.recipeInstructions
+        recipeId: this.recipe.recipeId,
+        recipeName: this.recipe.recipeName,
+        recipeInstructions: this.recipe.recipeInstructions
       },
     };
   },
@@ -73,6 +73,12 @@ export default {
         this.$router.back();
     
     }
+  },
+
+  created() {
+    this.editRecipe = this.recipe
+    console.log('logging editRecipeFormData', this.editRecipe)
+
   }
 }
 </script>
