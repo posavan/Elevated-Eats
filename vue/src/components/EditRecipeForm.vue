@@ -41,13 +41,6 @@ export default {
   data() {
     return {
       editRecipe: {
-<<<<<<< HEAD
-        recipeId: this.recipe.recipeId,
-        recipeName: this.recipe.recipeName,
-        recipeInstructions: this.recipe.recipeInstructions,
-      },
-    };
-=======
         recipeId: this.recipeId,
         recipeName: this.recipeName,
         recipeInstructions: this.recipeInstructions
@@ -80,7 +73,6 @@ export default {
         this.$router.back();
     
     }
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
   }
 }
 </script>

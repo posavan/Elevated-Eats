@@ -7,13 +7,8 @@
 </template>
 
 <script>
-<<<<<<< HEAD
-import EditRecipeForm from "../components/EditRecipeForm.vue";
-import RecipeService from "../services/RecipeService";
-=======
 import recipeService from "../services/RecipeService";
 import EditRecipeForm from "../components/EditRecipeForm.vue";
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
 
 export default {
   components: EditRecipeForm,
@@ -23,10 +18,6 @@ export default {
       required: true,
 
     },
-<<<<<<< HEAD
-
-=======
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
   },
   data() {
     return {
@@ -38,31 +29,6 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
-    deleteRecipe() {
-      if (
-        confirm(
-          "Are you sure you want to delete this recipe and all associated ingredients? This action cannot be undone."
-        )
-      ) {
-        RecipeService.removeRecipeFromUser(this.recipe.recipeId)
-          .then((response) => {
-            if (Response.status === 200) {
-              this.$store.commit("SET_NOTIFICATION", {
-                message: `Recipe ${this.recipe.recipeId} was successfully deleted.`,
-                type: "success",
-              });
-              this.$router.push({
-                name: "HomeView",
-                params: { id: this.recipe.recipeId },
-              });
-            }
-          })
-          .catch((error) => {
-            this.handleErrorResponse(error, "deleting");
-          });
-      }
-=======
     updateRecipe() {
       recipeService
         .updateRecipe(this.editRecipe.recipeId, this.editRecipe)
@@ -98,11 +64,6 @@ export default {
             });
         }
       },
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
     },
   };
 </script>
-<<<<<<< HEAD
-=======
-
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370

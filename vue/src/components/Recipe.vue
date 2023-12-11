@@ -183,8 +183,6 @@ section {
   padding: 2%;
 }
 
-
-
 .add-recipe-button {
   margin-top: 1.25rem;
   align-items: center;
