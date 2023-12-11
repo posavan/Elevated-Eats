@@ -5,11 +5,7 @@
 
     <section v-if="!hide" class="container">
       <h4>Ingredients:</h4>
-      <ingredient
-        v-for="ingredient in ingredients"
-        v-bind:key="ingredient.id"
-        v-bind:item="ingredient"
-      />
+      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
     </section>
 
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
@@ -18,27 +14,13 @@
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
         {{ feedback }}
       </button>
-
-      <button
-        class="remove-recipe"
-        v-on:click.prevent="removeRecipe"
-        v-if="!hide"
-      >
-        Delete Recipe
-      </button>
-
-      <button
-        class="view-recipe-details"
-        v-on:click="$router.push('/recipe/favorites/' + recipeId)"
-        v-if="showDetails"
-      >
+      <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipeId)" v-if="!showEdit">
         View Recipe Details
       </button>
-      <button
-        class="edit-recipe"
-        v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')"
-        v-if="showEdit"
-      >
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
+        Delete Recipe
+      </button>
+      <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')" v-if="showEdit">
         Edit Recipe
       </button>
     </div>
@@ -171,7 +153,7 @@ section {
 }
 
 .container {
-  
+
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;

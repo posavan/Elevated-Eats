@@ -11,14 +11,31 @@ import recipeService from "../services/RecipeService";
 import EditRecipeForm from "../components/EditRecipeForm.vue";
 
 export default {
+<<<<<<< HEAD
   components: {EditRecipeForm},
+=======
+  components: EditRecipeForm,
+  prop: {
+    recipe: {
+      type: Object,
+      required: true,
+
+    },
+  },
+>>>>>>> 04528248c3a39728db308756bbf78371854b3e52
   data() {
     return {
       isLoading: true,
       editRecipe: {
+<<<<<<< HEAD
         recipeId: 0,
         recipeName: "",
         recipeInstructions: "",
+=======
+        recipeId: this.recipeId,
+        recipeName: this.recipeName,
+        recipeInstructions: this.recipeInstructions,
+>>>>>>> 04528248c3a39728db308756bbf78371854b3e52
       },
     };
   },
