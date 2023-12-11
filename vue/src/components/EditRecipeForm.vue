@@ -1,5 +1,15 @@
 <template>
   <form v-on:submit.prevent="updateRecipe">
+<<<<<<< HEAD
+=======
+    <div>
+      <!--add ingredients button-->
+      <label for="type">Edit Ingredients: </label>
+      <input type="text" name="edit-ingredient-name" id="edit-ingredient-name" v-model="editRecipe.ingredientName" />
+    </div>
+
+
+>>>>>>> c205cc1a1069ff22867559f010e09ad2a3cebb9e
     <div v-for="ingredient in Array.from(editRecipe.ingredientList)" :key="ingredient.ingredientId">
 
       <label for="type">Edit Ingredient Name: </label>

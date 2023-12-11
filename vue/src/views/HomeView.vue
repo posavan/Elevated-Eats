@@ -2,14 +2,14 @@
   <div class="home">
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
-    <nav class="recipes">
-      <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">Recipes </a>
-    </nav>
-    <nav class="my-recipes"> 
-      <a href="/recipe/favorites" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Recipes</a>
-    </nav>
     <nav class="meal-plans">
       <a href="/mealplan" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
+    </nav>
+    <nav class="my-recipes"> 
+      <a href="/recipe/favorites" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Saved Recipes</a>
+    </nav>
+    <nav class="recipes">
+      <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">All Recipes</a>
     </nav>
   </div>
 </template>

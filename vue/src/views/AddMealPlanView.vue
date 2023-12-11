@@ -1,5 +1,5 @@
 <template>
-    <h1>Add New Meal Plan</h1>
+    <h1>Create New Meal Plan</h1>
     <meal-plan-form v-bind:mealplan="mealplan" />
   </template>
   
