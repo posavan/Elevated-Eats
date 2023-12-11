@@ -3,21 +3,13 @@
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="recipes">
-<<<<<<< HEAD
-      <a href="/recipe" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">Recipes </a>
-=======
       <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">Recipes </a>
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
     </nav>
     <nav class="my-recipes"> 
       <a href="/recipe/1" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Recipes</a>
     </nav>
     <nav class="meal-plans">
-<<<<<<< HEAD
-      <a href="/mealPlans" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
-=======
       <a href="/mealplans" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
     </nav>
     <!-- <nav class="meal-plans">
       <a href="mealplans">My Meal Plans</a>

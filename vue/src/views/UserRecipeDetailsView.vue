@@ -4,14 +4,8 @@
     <recipe :key="recipe.recipeId" :item="recipe" />
 
   </div>
-<<<<<<< HEAD
 </template>
   
-=======
-
-</template>
-
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
 <script>
 import recipe from "../components/Recipe.vue";
 import recipeService from "../services/RecipeService.js";
@@ -20,38 +14,23 @@ export default {
   components: {
     recipe,
   },
-<<<<<<< HEAD
   name: "RecipeDetailsView",
-=======
-  name: "UserRecipeDetailsView",
-
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
   data() {
     return {
       recipe: [],
       recipeName: "",
       userId: 0,
-<<<<<<< HEAD
-      recipeId: 0,
-=======
       recipeId: 0
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
+
     };
   },
   methods: {
     loadRecipe() {
-<<<<<<< HEAD
       console.log(this.userId, this.recipeId);
       recipeService
         .GetUserRecipeByRecipeId(this.recipeId, this.userId)
         .then((response) => {
           console.log("Reached created in RecipeDetailsView.vue");
-=======
-      console.log("reached userRecipeDetailsView/loadRecipe()", this.recipeId);
-      recipeService
-        .GetUserRecipeByRecipeId(this.recipeId)
-        .then((response) => {
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
           console.log(response.data);
           this.recipe = response.data;
         })
@@ -69,33 +48,21 @@ export default {
     },
   },
   created() {
-<<<<<<< HEAD
     console.log("about to call load recipe");
     //this.loadRecipe(this.recipeName);
     this.recipeId = this.$route.params.recipeId;
     // this.userId = this.$store.params.userId;
-=======
-
-    this.recipeId = this.$route.params.recipeId;
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
     this.loadRecipe();
   },
 };
 </script>
 
-<<<<<<< HEAD
   
-=======
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
 <style scoped>
 h1 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-<<<<<<< HEAD
-  background-color: wheat;
-=======
   background-color: rgb(206, 182, 236);
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
   border-radius: 50px;
 }
 div {
@@ -122,8 +89,5 @@ button:hover {
   opacity: 0.8;
 }
 </style>
-<<<<<<< HEAD
   
-=======
 
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e

@@ -38,15 +38,4 @@ export default {
   },
 };
 </script>
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 
-=======
-<<<<<<< HEAD
-=======
-=======
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
->>>>>>> f0dcfada6de9610c5e3fbbd38198d7ea7ccfb83f
->>>>>>> 00cae56a8e2a28d52d2b0d563d6b7f166c5c0684
->>>>>>> 1e860c9f4ab4e25768d00ea4ed1b8e33a3b6802e
