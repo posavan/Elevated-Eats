@@ -1,8 +1,7 @@
 <template>
   <h1>User Recipe Details</h1>
-  <div class="Recipe Details">
+  <div class="User Recipe Details">
     <recipe :key="recipe.recipeId" :item="recipe" />
-
   </div>
 </template>
   
@@ -14,27 +13,21 @@ export default {
   components: {
     recipe,
   },
-<<<<<<< HEAD
-  name: "RecipeDetailsView",
-=======
   name: "UserRecipeDetailsView",
->>>>>>> e2c024ea142eb508e50a352bac84dd3cf97ff8d8
   data() {
     return {
       recipe: [],
-      recipeName: "",
-      userId: 0,
       recipeId: 0
 
     };
   },
   methods: {
     loadRecipe() {
-      console.log(this.userId, this.recipeId);
+      console.log(this.recipeId)
       recipeService
-        .GetUserRecipeByRecipeId(this.recipeId, this.userId)
+        .GetUserRecipeByRecipeId(this.recipeId)
         .then((response) => {
-          console.log("Reached created in RecipeDetailsView.vue");
+          //console.log("Reached created in UserRecipeDetailsView.vue");
           console.log(response.data);
           this.recipe = response.data;
         })
@@ -42,9 +35,7 @@ export default {
           if (error.response) {
             console.log("Error loading recipe: ", error.response.status);
           } else if (error.request) {
-            console.log(
-              "Error loading recipe: unable to communicate to server"
-            );
+            console.log("Error loading recipe: unable to communicate to server");
           } else {
             console.log("Error loading recipe: make request");
           }
@@ -53,9 +44,9 @@ export default {
   },
   created() {
     console.log("about to call load recipe");
-    //this.loadRecipe(this.recipeName);
     this.recipeId = this.$route.params.recipeId;
-    // this.userId = this.$store.params.userId;
+    console.log(this.recipeId);
+    //this.userId = this.$store.params.userId;
     this.loadRecipe();
   },
 };
@@ -63,19 +54,12 @@ export default {
 
   
 <style scoped>
-h1 {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: center;
-  background-color: rgb(206, 182, 236);
-  border-radius: 50px;
-}
 div {
   background-color: rgb(118, 244, 175);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: large;
   text-align: center;
   border-radius: 50px;
-  padding: auto;
   justify-content: space-between;
 }
 

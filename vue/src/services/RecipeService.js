@@ -1,5 +1,5 @@
 import axios from "axios";
-import RecipeDetailsViewVue from "../views/RecipeDetailsView.vue";
+//import RecipeDetailsViewVue from "../views/RecipeDetailsView.vue";
 
 export default {
   list() {

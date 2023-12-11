@@ -143,8 +143,10 @@ export default {
 
   created() {
     this.recipe = this.item;
-    this.recipeId = this.$route.params.recipeId;
+    this.recipeId = this.item.recipeId;
     this.loadRecipeIngredients();
+    console.log("In created of REcipe.vue", this.item.recipeId)
+    console.log("In created of REcipe.vue", this.item)
   },
 };
 </script>

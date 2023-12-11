@@ -88,8 +88,6 @@ export default {
         })
         .catch((error) => {
           if (error.response) {
-            // error.response exists
-            // Request was made, but response has error status (4xx or 5xx)
             console.log("Error loading ingredients: ", error.response.status);
           } else if (error.request) {
             // There is no error.response, but error.request exists

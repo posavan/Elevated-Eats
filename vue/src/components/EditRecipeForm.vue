@@ -16,7 +16,7 @@
     </div>
 
     <div class="actions">
-      <button class="btn-continue" type="submit">Save Recipe</button><!--Needs to return to prev-->
+      <button class="btn-continue" type="submit">Save Recipe</button> <!--Needs to return to prev-->
       <button class="btn-submit" type="submit">
         Save and Continue Editing
       </button>
