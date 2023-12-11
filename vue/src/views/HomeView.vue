@@ -3,20 +3,13 @@
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="recipes">
-<<<<<<< HEAD
-      <a href="/recipe" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">Recipes </a>
+      <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">Recipes </a>
     </nav>
     <nav class="my-recipes"> 
-      <a href="/recipe/1" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">My Recipes</a>
+      <a href="/recipe/1" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Recipes</a>
     </nav>
     <nav class="meal-plans">
-      <a href="/mealPlans" style="text-decoration: none; color: wheat; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
-=======
-      <a href="recipe">Recipes </a>
-    </nav>
-    <nav class="my-recipes">
-      <a href="recipe/favorites">My Recipes</a>
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
+      <a href="/mealplans" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
     </nav>
     <!-- <nav class="meal-plans">
       <a href="mealplans">My Meal Plans</a>
@@ -30,9 +23,9 @@ export default {};
 
 <style scoped>
 div.home {
-  background-color: rgb(120, 111, 84);
+  background-color: white;
   background-image: url("../../homeview.jpg");
-  color: wheat;
+  color: white;
   padding-top: 100px;
   padding-bottom: 13%;
   padding-top: 240px;
@@ -50,7 +43,7 @@ p {
 }
 
 a {
-  color: wheat;
+  color: white;
   text-decoration: none;
 }
 
@@ -66,7 +59,7 @@ a:hover {
   /* color: wheat; */
   text-align: center;
   padding: 14px 16px;
-  background-color: rgb(213, 51, 51);
+  background-color:rgb(235, 142, 42);
   border-radius: 50px;
   margin-left: 40%;
   margin-right: 40%;

@@ -2,15 +2,12 @@
   <h1>User Recipe Details</h1>
   <div class="Recipe Details">
     <recipe :key="recipe.recipeId" :item="recipe" />
+
+  
   </div>
-<<<<<<< HEAD
-  <a href="/recipe/1/1/edit">Edit Recipe</a>
+
 </template>
 
-=======
-</template>
-  
->>>>>>> e4978dacac6c0dc4bfb9bff593d5b6688eb3cc0f
 <script>
 import recipe from "../components/Recipe.vue";
 import recipeService from "../services/RecipeService.js";
@@ -26,7 +23,6 @@ export default {
       recipeName: "",
       userId: 0,
       recipeId: 0
-
     };
   },
   methods: {
@@ -52,14 +48,13 @@ export default {
     },
   },
   created() {
-    console.log("about to call load recipe");
-    //this.loadRecipe(this.recipeName);
+
     this.recipeId = this.$route.params.recipeId;
-    // this.userId = this.$store.params.userId;
     this.loadRecipe();
   },
 };
 </script>
+
   
 <style scoped>
 h1 {
@@ -68,7 +63,6 @@ h1 {
   background-color: rgb(206, 182, 236);
   border-radius: 50px;
 }
-
 div {
   background-color: rgb(118, 244, 175);
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
@@ -76,6 +70,21 @@ div {
   text-align: center;
   border-radius: 50px;
   padding: auto;
+  justify-content: space-between;
+}
+
+button {
+  padding: 1.25rem;
+  background-color: #4caf50;
+  justify-content: space-between;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
 }
 </style>
-  
+

@@ -13,6 +13,7 @@ namespace Capstone.Controllers
     public class MealPlanController : ControllerBase
     {
         IMealPlanDao dao;
+
         IUserDao userDao;
         public MealPlanController(IMealPlanDao MealPlanDao, IUserDao UserDao)
         {
@@ -86,6 +87,7 @@ namespace Capstone.Controllers
 
             return Ok(result);
         }
+
 
     }
 }

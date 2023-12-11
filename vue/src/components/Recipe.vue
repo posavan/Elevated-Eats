@@ -3,14 +3,40 @@
     <h3>Name: {{ recipe.recipeName }}</h3>
     <section v-if="!hide" class="container">
       <h4>Ingredients:</h4>
-      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
+      <ingredient
+        v-for="ingredient in ingredients"
+        v-bind:key="ingredient.id"
+        v-bind:item="ingredient"
+      />
     </section>
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
-        {{ feedback }}</button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
-        Delete Recipe</button>
+        {{ feedback }}
+      </button>
+
+      <button
+        class="remove-recipe"
+        v-on:click.prevent="removeRecipe"
+        v-if="!hide"
+      >
+        Delete Recipe
+      </button>
+
+      <button
+        class="view-recipe-details"
+        v-on:click="$router.push('/recipe/favorites/' + recipeId)"
+        v-if="showDetails"
+      >
+        View Recipe Details
+      </button>
+      <button
+        class="edit-recipe"
+        v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')"
+        v-if="showEdit"
+      >
+        Edit Recipe
+      </button>
     </div>
     <p></p>
   </section>
@@ -24,16 +50,18 @@ export default {
   name: "recipe",
   props: ["item"],
   components: {
-    ingredient
+    ingredient,
   },
   data() {
     return {
       recipe: {},
       ingredients: [],
-      hide: this.$route.name == 'recipe',
+      hide: this.$route.name == "recipe",
+      showDetails: this.$route.name == "favorites",
+      showEdit: this.$route.name == "userRecipeDetails",
       recipeId: 0,
-      feedback: 'Add Recipe To Favorites'
-    }
+      feedback: "Add Recipe To Favorites",
+    };
   },
   methods: {
     loadRecipeIngredients() {
@@ -45,7 +73,10 @@ export default {
         })
         .catch((error) => {
           if (error.response) {
-            console.log("Error loading recipe ingredients: ", error.response.status);
+            console.log(
+              "Error loading recipe ingredients: ",
+              error.response.status
+            );
           } else if (error.request) {
             console.log(
               "Error loading ingredients: unable to communicate to server"
@@ -65,7 +96,7 @@ export default {
         .addRecipeToUser(this.recipe)
         .then((response) => {
           console.log(response);
-          this.$router.push({ name: 'recipe' });
+          this.$router.push({ name: "recipe" });
           this.buttonClick();
           //location.reload();
         })
@@ -78,7 +109,6 @@ export default {
             console.log("Error saving recipe: make request");
           }
         });
-      
     },
 
     removeRecipe() {
@@ -93,7 +123,9 @@ export default {
           if (error.response) {
             console.log("Error removing recipe: ", error.response.status);
           } else if (error.request) {
-            console.log("Error removing recipe: unable to communicate to server");
+            console.log(
+              "Error removing recipe: unable to communicate to server"
+            );
           } else {
             console.log("Error removing recipe: make request");
           }
@@ -101,12 +133,12 @@ export default {
     },
 
     buttonClick() {
-      this.feedback = 'Added';
+      this.feedback = "Added";
       // setTimeout(resetMessage, 3000);
       // function resetMessage() {
       //   this.feedback = "Add Recipe To Favorites";
       // }
-    }
+    },
   },
 
   created() {
@@ -129,14 +161,25 @@ h1 {
   text-align: center;
 }
 
+section {
+  text-align: center;
+  justify-content: space-between;
+}
+
 .container {
+  
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
 }
 
 .recipe {
+<<<<<<< HEAD
+  background-color: rgb(164, 225, 187);
+=======
+  text-align: center;
   background-color: rgb(225, 203, 164);
+>>>>>>> 00cae56a8e2a28d52d2b0d563d6b7f166c5c0684
   border-radius: 0.625rem;
   /* Rounded corners for recipe cards */
   box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
@@ -175,6 +218,7 @@ input {
   box-sizing: border-box;
 }
 
+
 button {
   padding: 1.25rem;
   background-color: brown;
@@ -182,15 +226,18 @@ button {
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
+  margin-right: 1.25rem;
 }
 
 button {
   padding: 1.25rem;
   background-color: #4caf50;
+  justify-content: space-between;
   color: #fff;
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
+  margin-right: 1.25rem;
 }
 
 button:hover {

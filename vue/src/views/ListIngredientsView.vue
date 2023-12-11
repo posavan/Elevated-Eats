@@ -1,4 +1,9 @@
 <template>
+
+<!--from EditRecipeView: should display ingredients in the current recipe; allow for the user to add or remove an ingredient from that recipe-->
+<!--should also include a mass add ingredient button that allows a user to create a new ingredient on the ingredient form-->
+
+
   <div class="list-ingredients">
     <h1>Ingredients</h1>
     <button class="btn-add" v-on:click="$router.push({ name: 'AddIngredientView' })">Add Ingredient
