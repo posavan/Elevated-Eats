@@ -9,14 +9,14 @@ namespace Capstone.DAO
     public class MealSqlDao : IMealDao
     {
         private readonly string connectionString;
-        private readonly RecipeSqlDao recipeSqlDao;
+        private readonly RecipeSqlDao recipeDao;
 
 
         public MealSqlDao(string dbConnectionString)
         {
 
             this.connectionString = dbConnectionString;
-            this.recipeSqlDao = new RecipeSqlDao(dbConnectionString);
+            this.recipeDao = new RecipeSqlDao(dbConnectionString);
         }
 
 
@@ -54,13 +54,13 @@ namespace Capstone.DAO
             }
             return meals;
         }
-        public Meal GetMeal(int MealId)
+        public Meal GetMeal(int mealId)
         {
             Meal meal = null;
 
             string sql = " SELECT meal_id, meal_name, meal_description " +
                          "FROM meals " +
-                         "WHERE meal_id = @mealId ";
+                         "WHERE meal_id = @meal_id ";
 
             try
             {
@@ -70,7 +70,7 @@ namespace Capstone.DAO
 
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
-                        cmd.Parameters.AddWithValue("@meal_id", MealId);
+                        cmd.Parameters.AddWithValue("@meal_id", mealId);
 
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
@@ -159,19 +159,28 @@ namespace Capstone.DAO
         public bool AddRecipeToMeal(int mealId, int recipeId)
         {
             bool result = false;
+
+            string checkSql = "SELECT recipe_id FROM meals_recipes WHERE meal_id=@meal_id";
             string sql = "INSERT INTO meals_recipes (meal_id, recipe_id) " +
-             "VALUES(@meal_id, @recipe_id);";
+             "VALUES (@meal_id, @recipe_id);";
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
+                    SqlCommand cmd = new SqlCommand(checkSql, conn);
+                    cmd.Parameters.AddWithValue("@meal_id", mealId);
+                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (count > 0)
+                    {
+                        return result;
+                    }
 
-                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@meal_id", mealId);
                     cmd.Parameters.AddWithValue("@recipe_id", recipeId);
-                    int count = Convert.ToInt32(cmd.ExecuteScalar());
+                    count = Convert.ToInt32(cmd.ExecuteScalar());
                     if (count > 0)
                     {
                         result = true;
@@ -188,7 +197,7 @@ namespace Capstone.DAO
         {
             bool result = false;
             string sql = "DELETE FROM meals_recipes " +
-             "WHERE meal_id = @mealId AND recipe_id = @recipe_id";
+             "WHERE meal_id = @meal_id AND recipe_id = @recipe_id";
 
             try
             {
@@ -217,28 +226,30 @@ namespace Capstone.DAO
 
         public bool DeleteMeal(int mealId)
         {
-            string sql = "DELETE FROM meals " +
-                         "WHERE meal_id = @meal_id ";
+            bool result = false;
+            string mealsRecipesSql = "DELETE FROM meals_recipes WHERE meal_id = @meal_id";
+            string mealplansMealsSql = "DELETE FROM meal_plans_meals WHERE meal_id = @meal_id";
+            string sql = "DELETE FROM meals WHERE meal_id = @meal_id ";
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
+                    SqlCommand cmd = new SqlCommand(mealsRecipesSql, conn);
+                    cmd.Parameters.AddWithValue("@meal_id", mealId);
+                    int count = cmd.ExecuteNonQuery();
+                    
+                    cmd = new SqlCommand(mealplansMealsSql, conn);
+                    cmd.Parameters.AddWithValue("@meal_id", mealId);
+                    count = cmd.ExecuteNonQuery();
 
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@meal_id", mealId);
+                    count = cmd.ExecuteNonQuery();
+                    if (count > 0)
                     {
-                        cmd.Parameters.AddWithValue("@meal_id", mealId);
-
-                        int count = cmd.ExecuteNonQuery();
-                        if (count == 1)
-                        {
-                            return true;
-                        }
-                        else
-                        {
-                            return false;
-                        }
+                        result = true;
                     }
                 }
             }
@@ -246,9 +257,39 @@ namespace Capstone.DAO
             {
                 throw new DaoException("SQL exception occurred", ex);
             }
+            return result;
         }
+        public List<Recipe> GetRecipesByMealId(int mealId)
+        {
+            List<Recipe> recipes = new List<Recipe>();
+            string sql = "SELECT r.recipe_id, r.recipe_name, r.recipe_instructions " +
+            "FROM recipes r JOIN meals_recipes mr ON r.recipe_id = mr.recipe_id " +
+            "WHERE mr.meal_id = @meal_id;";
 
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
 
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@meal_id", mealId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Recipe recipe = recipeDao.MapRowToRecipe(reader);
+                        recipes.Add(recipe);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return recipes;
+        }
 
         public Meal MapRowToMeal(SqlDataReader reader)
         {

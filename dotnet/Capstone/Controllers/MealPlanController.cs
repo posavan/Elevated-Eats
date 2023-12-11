@@ -64,9 +64,9 @@ namespace Capstone.Controllers
         }
 
         [HttpPost("{mealPlanId}")]
-        public ActionResult<MealPlan> AddMealToMealPlan(int mealPlanId, int mealId)
+        public ActionResult<MealPlan> AddMealToMealPlan(int mealPlanId, Meal meal)
         {
-            bool result = dao.AddMealToMealPlan(mealPlanId, mealId);
+            bool result = dao.AddMealToMealPlan(mealPlanId, meal.MealId);
 
             return Ok(result);
         }

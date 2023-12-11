@@ -62,13 +62,14 @@ CREATE TABLE meals (
     meal_id int IDENTITY (1,1) NOT NULL,
     meal_name varchar(60) NOT NULL,
     meal_description varchar(500) NOT NULL,
-    CONSTRAINT PK_meal PRIMARY KEY (meal_id),
+    CONSTRAINT PK_meals PRIMARY KEY (meal_id),
 )
 
 CREATE TABLE meals_recipes (
 	meal_id int NOT NULL,
 	recipe_id int NOT NULL,
 	recipe_name varchar(60),
+	CONSTRAINT PK_meals_recipes PRIMARY KEY (meal_id, recipe_id),
 	CONSTRAINT FK_meals_recipes_meals FOREIGN KEY (meal_id) 
 	REFERENCES meals (meal_id),
 	CONSTRAINT FK_meals_recipes_recipes FOREIGN KEY (recipe_id) 
@@ -80,8 +81,8 @@ CREATE TABLE meal_plans (
 	meal_plan_name varchar(60),
 	meal_plan_description varchar(60),
     user_id int NOT NULL,
-    CONSTRAINT PK_meal_plan PRIMARY KEY (meal_plan_id),
-    CONSTRAINT FK_meal_plan_users FOREIGN KEY (user_id) 
+    CONSTRAINT PK_meal_plans PRIMARY KEY (meal_plan_id),
+    CONSTRAINT FK_meal_plans_users FOREIGN KEY (user_id) 
 	REFERENCES users (user_id)
 )
 
@@ -89,8 +90,9 @@ CREATE TABLE meal_plans_meals (
 	meal_plan_id int NOT NULL,
     meal_id int NOT NULL,
     meal_name varchar(60),
-	CONSTRAINT FK_meal_plan_meal_plans FOREIGN KEY (meal_plan_id) REFERENCES meal_plans (meal_plan_id),
-	CONSTRAINT FK_meal_plan_meals FOREIGN KEY (meal_id) REFERENCES meals (meal_id)
+	CONSTRAINT PK_meal_plans_meals PRIMARY KEY (meal_plan_id, meal_id),
+	CONSTRAINT FK_meal_plans_meal_plans FOREIGN KEY (meal_plan_id) REFERENCES meal_plans (meal_plan_id),
+	CONSTRAINT FK_meal_plans_meals FOREIGN KEY (meal_id) REFERENCES meals (meal_id)
 )
 
 --populate default data

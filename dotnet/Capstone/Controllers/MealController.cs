@@ -57,7 +57,6 @@ namespace Capstone.Controllers
         {
             Meal newMeal = dao.UpdateMeal(updatedMeal);
 
-
             if (newMeal == null)
             {
                 return BadRequest();
@@ -66,7 +65,6 @@ namespace Capstone.Controllers
             {
                 return Ok(newMeal);
             }
-
         }
 
         [HttpPost("{mealId}")]
@@ -89,16 +87,9 @@ namespace Capstone.Controllers
         public ActionResult<Meal> DeleteMeal(int mealId)
         {
 
-            if (dao.DeleteMeal(mealId) == true)
-            {
-                return NotFound();
-            }
-            if (dao.DeleteMeal(mealId))
-            {
-                return NoContent();
-            }
+            bool result = dao.DeleteMeal(mealId);
 
-            return NotFound();
+            return Ok(result);
         }
 
     }
