@@ -11,10 +11,6 @@ import recipeService from "../services/RecipeService";
 import EditRecipeForm from "../components/EditRecipeForm.vue";
 
 export default {
-<<<<<<< HEAD
-  components: {
-    EditRecipeForm,
-=======
   components: EditRecipeForm,
   prop: {
     recipe: {
@@ -22,19 +18,13 @@ export default {
       required: true,
 
     },
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
   },
   data() {
     return {
       editRecipe: {
-<<<<<<< HEAD
-        name: "",
-        recipeId: Number(this.recipeId),
-=======
         recipeId: this.recipeId,
         recipeName: this.recipeName,
         recipeInstructions: this.recipeInstructions,
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
       },
     };
   },
@@ -48,9 +38,6 @@ export default {
             params: { id: this.editRecipe.recipeId },
           });
         })
-<<<<<<< HEAD
-        .catch((error) => {});
-=======
         .catch((error) => { })
       },
       deleteRecipe() {
@@ -77,7 +64,6 @@ export default {
             });
         }
       },
->>>>>>> 84a5cadec79dec09593ce558d685e6f8dcb2d370
     },
   };
 </script>
