@@ -2,7 +2,7 @@
   <h1>Recipe Library</h1>
   <div class="list-all-recipes">
     <section class="container">
-      <recipe v-for="recipe in allRecipes" v-bind:key="recipe.id" v-bind:item="recipe">
+      <recipe v-for="recipe in allRecipes" v-bind:key="recipe.recipeId" v-bind:item="recipe">
         <button v-on:click="addRecipeToUser">Save Recipe To Favorites</button>
       </recipe>
     </section>

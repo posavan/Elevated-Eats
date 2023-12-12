@@ -4,7 +4,7 @@
         <p>Description: {{ mealplan.mealPlanDescription }}</p>
         <section v-if="showDetails" class="container">
             <h4>Meals:</h4>
-            <meal v-for="meal in meals" v-bind:key="meal.id" v-bind:item="meal" />
+            <meal v-for="meal in meals" v-bind:key="meal.mealId" v-bind:item="meal" />
         </section>
         <div class="button-container">
             <!-- <button class="save-mealplan" v-on:click.prevent="createMealPlan" v-if="false">

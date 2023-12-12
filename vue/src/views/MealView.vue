@@ -2,7 +2,7 @@
   <div class="list-meals">
     <h1>Meals</h1>
     <section class="container">
-      <meal v-for="meal in meals" v-bind:key="meal.id" v-bind:item="meal" />
+      <meal v-for="meal in meals" v-bind:key="meal.mealId" v-bind:item="meal" />
     </section>
   </div>
 
