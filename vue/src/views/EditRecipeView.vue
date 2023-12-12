@@ -11,29 +11,23 @@ import recipeService from "../services/RecipeService";
 import EditRecipeForm from "../components/EditRecipeForm.vue";
 
 export default {
-  components: EditRecipeForm,
-  prop: {
-    recipe: {
-      type: Object,
-      required: true,
-
-    },
-  },
+  components: { EditRecipeForm },
   data() {
     return {
       isLoading: true,
       editRecipe: {
-        recipeId: this.recipeId,
-        recipeName: this.recipeName,
-        recipeInstructions: this.recipeInstructions,
+        recipeId: 0,
+        recipeName: "",
+        recipeInstructions: "",
       },
     };
   },
   methods: {
   
     updateRecipe() {
+      console.log(this.editRecipe)
       recipeService
-        .updateRecipe(this.editRecipe.recipeId, this.editRecipe)
+        .updateRecipe(this.editRecipe)
         .then((response) => {
           this.$router.push({
             name: "EditRecipeView",
