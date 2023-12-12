@@ -1,6 +1,6 @@
 <template>
   <h1>User Recipe Details</h1>
-  <div class="User Recipe Details">
+  <div class="User-Recipe-Details">
     <recipe :key="recipe.recipeId" :item="recipe" />
   </div>
 </template>
@@ -53,23 +53,30 @@ export default {
 
   
 <style scoped>
-div {
-  background-color: rgb(118, 244, 175);
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: large;
+div#User-Recipe-Details {
+  background-color:  rgb(249, 205, 123);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
-  border-radius: 50px;
-  justify-content: space-between;
+  border-right: 20px;
+  border-color: black;
+  border-width: 10rem;
 }
 
 button {
-  padding: 1.25rem;
-  background-color: #4caf50;
-  justify-content: space-between;
-  color: #fff;
-  border: none;
-  border-radius: 0.25rem;
-  cursor: pointer;
+  display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    border-radius: 50px;
+    margin-left: 40%;
+    margin-right: 40%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: 0.9%;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 16px;
 }
 
 button:hover {
