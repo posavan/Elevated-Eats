@@ -44,7 +44,7 @@ export default {
       ingredients: [],
       hide: this.$route.name == "recipe",
       showDetails: this.$route.name == "favorites",
-      showEdit: this.$route.name == "4",
+      showEdit: this.$route.name == "userRecipeDetails",
       recipeId: 0,
       feedback: "Add Recipe To Favorites",
     };

@@ -6,10 +6,13 @@ import HomeView from "../views/HomeView.vue";
 import LoginView from "../views/LoginView.vue";
 import LogoutView from "../views/LogoutView.vue";
 import RegisterView from "../views/RegisterView.vue";
+
 import ListIngredientsView from "../views/ListIngredientsView.vue";
 import ListRecipesView from "../views/ListRecipesView.vue";
 import ListAllRecipesView from "../views/ListAllRecipesView.vue";
+
 import AddIngredientView from "../views/AddIngredientView.vue";
+
 import RecipeDetailsView from "../views/RecipeDetailsView.vue";
 import AddRecipeView from "../views/AddRecipeView.vue";
 import UserRecipeDetailsView from "../views/UserRecipeDetailsView.vue";
@@ -20,11 +23,10 @@ import MealDetailsView from "../views/MealDetailsView.vue";
 import AddMealView from "../views/AddMealView.vue";
 import EditMealView from "../views/EditMealView.vue";
 
-import MealPlanView from "../views/MealPlanView.vue";
+import MealPlanView from "../views/MealplanView.vue";
 import AddMealPlanView from "../views/AddMealPlanView.vue";
 import MealPlanDetailsView from "../views/MealPlanDetailsView.vue";
 import EditMealPlanView from "../views/EditMealPlanView.vue";
-import ListRecipeIngredientsView from "../views/ListRecipeIngredientsView.vue";
 
 /**
  * The Vue Router is used to "direct" the browser to render a specific view component
