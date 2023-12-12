@@ -101,17 +101,24 @@ section.recipe {
   text-align: center;
 }
 .container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
-  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
 }
+
 h1{
   text-align: center;
 }
+h4 {
+  text-align: center;
+}
+
 form{
   text-align: center;
 } 
-
+div.label{
+  font-weight: bold;
+}
 .add-recipe{
   display: block;
   color: white;

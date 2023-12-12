@@ -53,13 +53,18 @@ export default {
 
   
 <style scoped>
-div#User-Recipe-Details {
+
+h1{
+  text-align: center;
+}
+div.User-Recipe-Details {
   background-color:  rgb(249, 205, 123);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   border-right: 20px;
   border-color: black;
   border-width: 10rem;
+  margin-top: 2%;
 }
 
 button {
