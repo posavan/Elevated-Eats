@@ -1,7 +1,7 @@
 <template>
   <h1>Meal Details</h1>
   <div class="Meal Details">
-    <meal :key="meal.mealId" :item="meal" />
+    <Meal :key="meal.mealId" :item="meal" />
   </div>
   <div class="edit-meal"> 
   <button v-on:click="this.$router.push('/meal/' + this.mealId + '/edit')">Edit Meal Details</button>
@@ -22,18 +22,20 @@ export default {
   name: "MealDetailsView",
   data() {
     return {
-      meal: [],
+      meal: {},
       mealName: "",
       mealId: 0,
     };
   },
   methods: {
     loadMeal() {
-      console.log(this.mealId);
-      MealService.getMeal(this.mealId)
+  
+      MealService
+        .listRecipesFromMeal(this.mealId)
         .then((response) => {
-          console.log(response.data);
+   
           this.meal = response.data;
+
         })
         .catch((error) => {
           if (error.response) {
@@ -64,6 +66,7 @@ export default {
     },
   },
   created() {
+   
     this.mealId = this.$route.params.mealId;
     this.loadMeal();
   },

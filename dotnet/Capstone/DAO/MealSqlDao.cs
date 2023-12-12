@@ -3,6 +3,7 @@ using Capstone.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Reflection.PortableExecutable;
 
 namespace Capstone.DAO
 {
@@ -40,8 +41,8 @@ namespace Capstone.DAO
 
                             while (reader.Read())
                             {
-                                Meal meal = new Meal();
-                                meal = MapRowToMeal(reader);
+                                Meal meal = MapRowToMeal(reader);
+                                meal.RecipeList = GetRecipesByMealId(meal.MealId);
                                 meals.Add(meal);
                             }
                         }
@@ -77,6 +78,8 @@ namespace Capstone.DAO
                             if (reader.Read())
                             {
                                 meal = MapRowToMeal(reader);
+                                meal.RecipeList = GetRecipesByMealId(meal.MealId);
+                               
                             }
                         }
                     }
@@ -160,7 +163,8 @@ namespace Capstone.DAO
         {
             bool result = false;
 
-            string checkSql = "SELECT recipe_id FROM meals_recipes WHERE meal_id=@meal_id";
+            string checkSql = "SELECT COUNT(*) meal_recipes  FROM meals_recipes WHERE meal_id=@meal_id AND recipe_id=@recipe_id";
+
             string sql = "INSERT INTO meals_recipes (meal_id, recipe_id) " +
              "VALUES (@meal_id, @recipe_id);";
 
@@ -169,22 +173,29 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
+
                     SqlCommand cmd = new SqlCommand(checkSql, conn);
                     cmd.Parameters.AddWithValue("@meal_id", mealId);
+
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
+
                     if (count > 0)
                     {
                         return result;
                     }
 
                     cmd = new SqlCommand(sql, conn);
+
                     cmd.Parameters.AddWithValue("@meal_id", mealId);
                     cmd.Parameters.AddWithValue("@recipe_id", recipeId);
+
                     count = Convert.ToInt32(cmd.ExecuteScalar());
+
                     if (count > 0)
                     {
                         result = true;
                     }
+           
                 }
             }
             catch (SqlException ex)
@@ -300,6 +311,16 @@ namespace Capstone.DAO
             meal.MealDescription = Convert.ToString(reader["meal_description"]);
             return meal;
         }
+        
+        public Recipe MapRowToRecipe(SqlDataReader reader)
+        {
+            Recipe recipe = new Recipe();
+            recipe.RecipeId = Convert.ToInt32(reader["recipe_id"]);
+            recipe.RecipeName = Convert.ToString(reader["recipe_name"]);
+            recipe.RecipeInstructions = Convert.ToString(reader["recipe_instructions"]);
+            return recipe;
+        }
+
     }
 
 }
