@@ -71,12 +71,9 @@ export default {
 </script>
 
 <style scoped>
-h1 {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  text-align: right;
-  border-radius: 50px;
-}
-
+ h1{
+  text-align: center;
+ }
 div {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: large;
