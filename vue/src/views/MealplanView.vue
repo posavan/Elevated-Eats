@@ -65,8 +65,7 @@ section.mealplan {
     width: 90%;
     padding: 2%;
     text-align: center;
-    border-width: .2rem;
-    padding-right: 20%;
+    border-width: 1rem;
     
 }
 

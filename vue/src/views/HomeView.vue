@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Home</h1>
+    <h1>Elevated Eating</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="meal-plans">
       <a
@@ -9,7 +9,6 @@
           text-decoration: none;
           color: white;
           font-size: 20px;
-          font-family: Times New Roman;
         "
         >My Meal Plans</a
       >
@@ -21,7 +20,6 @@
           text-decoration: none;
           color: white;
           font-size: 20px;
-          font-family: Times New Roman;
         "
         >My Saved Recipes</a
       >
@@ -33,7 +31,7 @@
           text-decoration: none;
           color: white;
           font-size: 20px;
-          font-family: Times New Roman;
+        
         "
         >All Recipes</a
       >
@@ -45,7 +43,6 @@
           text-decoration: none;
           color: white;
           font-size: 20px;
-          font-family: Times New Roman;
         "
         >Meals</a
       >
@@ -59,6 +56,7 @@ export default {};
 
 <style scoped>
 div.home {
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: white;
   background-image: url("../../homeview.jpg");
   color: white;
@@ -72,6 +70,9 @@ div.home {
 h1 {
   text-align: center;
   font-size: 100px;
+}
+section.container{
+  display: block;
 }
 
 p {
@@ -91,6 +92,7 @@ a:hover {
 .meal-plans,
 .meals,
 .my-recipes {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   display: block;
   text-align: center;
   padding: 13px 16px;
@@ -103,7 +105,6 @@ a:hover {
   border-right: none;
   margin-bottom: 0.9%;
   text-decoration: none;
-  font-family: sans-serif;
   font-size: 16px;
   color: inherit;
 }
