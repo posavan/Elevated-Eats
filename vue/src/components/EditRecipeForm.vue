@@ -1,81 +1,48 @@
 <template>
   <form v-on:submit.prevent="updateRecipe">
-    <div
-      v-for="ingredient in Array.from(editRecipe.ingredientList)"
-      :key="ingredient.ingredientId"
-    >
+    <label for="type">Edit Recipe Name: </label>
+    <input type="text" name="edit-recipe-name" id="edit-recipe-name" v-model="editRecipe.recipeName" />
+
+    <div v-for="ingredient in Array.from(editRecipe.ingredientList)" :key="ingredient.ingredientId">
       <label for="type">Edit Ingredient Name: </label>
-      <input
-        type="text"
-        name="edit-ingredient-name"
-        id="edit-ingredient-name"
-        v-model="ingredient.ingredientName"
-      />
+      <input type="text" name="edit-ingredient-name" id="edit-ingredient-name" v-model="ingredient.ingredientName" />
 
       <label for="type">Edit Ingredient Quantity: </label>
-      <input
-        type="text"
-        name="edit-ingredient-quantity"
-        id="edit-ingredient-quantity"
-        v-model="ingredient.quantity"
-      />
+      <input type="text" name="edit-ingredient-quantity" id="edit-ingredient-quantity" v-model="ingredient.quantity" />
+
     </div>
 
-    <ingredient
-      v-for="ingredient in addedIngredients"
-      v-bind:key="ingredient.ingredientId"
-      v-bind:item="ingredient"
-    >
+    <ingredient v-for="ingredient in addedIngredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient">
     </ingredient>
 
     <div v-if="showAddIngredientForm">
       <label for="type">New Ingredient Name: </label>
-      <input
-        type="text"
-        name="new-ingredient-name"
-        id="new-ingredient-name"
-        v-model="newIngredient.ingredientName"
-      />
-
+      <input type="text" name="new-ingredient-name" id="new-ingredient-name" v-model="newIngredient.ingredientName" />
       <label for="type">New Ingredient Quantity: </label>
-      <input
-        type="text"
-        name="new-ingredient-quantity"
-        id="new-ingredient-quantity"
-        v-model="newIngredient.quantity"
-      />
+      <input type="text" name="new-ingredient-quantity" id="new-ingredient-quantity" v-model="newIngredient.quantity" />
       <button v-on:click.prevent="addNewIngredient">Add +</button>
     </div>
 
-    <div>
-      <label for="name">Edit Instructions: </label>
-      <input
-        type="text"
-        name="edit-instructions"
-        id="edit-instructions"
-        v-model="editRecipe.recipeInstructions"
-      />
-    </div>
-
-    <label for="ingredients">Ingredients:</label>
-    <select v-model="selected">
-      <option
-        v-for="ingredient in ingredients"
-        :key="ingredient.ingredientId"
-        :value="ingredient"
-      >
+    <label for="ingredients">Ingredient:</label>
+    <select v-model="newIngredient">
+      <option v-for="ingredient in ingredients" :key="ingredient.ingredientId" :value="ingredient">
         {{ ingredient.ingredientName }}
       </option>
     </select>
+    <label for="type">Quantity: </label>
+    <input type="text" name="dropdown-quantity" id="dropdown-quantity" v-model="newIngredient.quantity" />
 
-    <button type="button" v-on:click="addIngredientsToRecipe">
+    <button type="button" v-on:click="addIngredient">
       Add Ingredient
     </button>
-
     <button type="button" v-on:click="showAddIngredientForm = true">
-      Add New Ingredient
+      Create New Ingredient
     </button>
 
+    <div>
+      <label for="name">Edit Instructions: </label>
+      <input type="text" name="edit-instructions" id="edit-instructions" v-model="editRecipe.recipeInstructions" />
+    </div>
     <div class="actions">
       <button class="btn-submit" type="submit">Save Recipe</button>
       <button class="btn-cancel" type="button" v-on:click="cancelForm">
@@ -106,10 +73,11 @@ export default {
       },
       showAddIngredientForm: false,
       newIngredient: {
+        ingredientId: 0,
         ingredientName: "",
         quantity: "",
       },
-      
+      storeQuantity: 0
     };
   },
 
@@ -135,19 +103,36 @@ export default {
     },
 
     addIngredientsToRecipe() {
-      if (this.selected) {
-        this.addedIngredients.push({
-          ingredientName: this.selected.ingredientName,
-          quantity: this.selected.quantity,
+      //   if (this.selected) {
+      //     this.addedIngredients.push({
+      //       ingredientName: this.selected.ingredientName,
+      //       quantity: this.selected.quantity,
+      //     });
+      //     this.selected = {};
+      //   }
+      this.editRecipe.ingredientList = this.addedIngredients;
+      recipeService
+        .addIngredientsToRecipe(this.editRecipe)
+        .then((response) => {
+          console.log("Recipe edited successfully", response);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("Error updating Recipe: ", error.response.status);
+          } else if (error.request) {
+            console.log(
+              "Error updating Recipe: unable to communicate to server"
+            );
+          } else {
+            console.log("Error updating Recipe: make request");
+          }
         });
-        this.selected = {};
-      }
     },
 
     updateRecipe() {
       console.log('UpdatingRecipe...');
       console.log('editRecipe', this.editRecipe);
-      this.editRecipe.ingredientList = this.addedIngredients;
+      this.addIngredientsToRecipe();
       recipeService
         .updateRecipe(this.editRecipe)
         .then((response) => {
@@ -171,11 +156,38 @@ export default {
         });
     },
 
+
     addNewIngredient() {
-      this.addedIngredients.push({
-        ingredientName: this.newIngredient.ingredientName,
-        quantity: this.newIngredient.quantity,
-      });
+      this.storeQuantity = this.newIngredient.quantity;
+      ingredientService
+        .createIngredient(this.newIngredient)
+        .then((response) => {
+          this.newIngredient = response.data;
+          this.newIngredient.quantity = this.storeQuantity;
+          this.addedIngredients.push(
+            this.newIngredient
+          );
+          this.newIngredient = {};
+          console.log("Ingredient added successfully", response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("Error adding ingredient: ", error.response.status);
+          } else if (error.request) {
+            console.log(
+              "Error adding ingredient: unable to communicate to server"
+            );
+          } else {
+            console.log("Error adding ingredient: make request");
+          }
+        });
+
+    },
+    addIngredient() {
+      this.addedIngredients.push(
+        this.newIngredient
+      );
+      this.newIngredient = {};
     },
 
     cancelForm() {
@@ -207,6 +219,7 @@ div {
   margin-bottom: 1.25rem;
   padding: 2%;
 }
+
 input {
   padding: auto;
 }
@@ -231,7 +244,7 @@ button:hover {
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 1.rem;  
+  border-radius: 1.rem;
 }
 
 label {
@@ -248,8 +261,8 @@ input[type="text"] {
   margin-bottom: 12px;
   box-sizing: border-box;
   border-radius: 1rem;
-  background-color:rgb(255, 237, 202);
-;
+  background-color: rgb(255, 237, 202);
+  ;
   text-align: center;
 }
 
@@ -293,6 +306,4 @@ button {
 .actions {
   margin-top: 20px;
 }
-
-
 </style>

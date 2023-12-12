@@ -26,14 +26,78 @@
 
 
 <style>
+
+h1 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+h2 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+h3{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+  
+}
+
+section.container {
+  text-align: center;
+}
+p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+div.button-container {
+  text-align: center;
+}
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
+  gap: 1.25rem;
+}
+button {
+  display: inline-block;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  white-space: wrap;
+  text-transform: none;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-feature-settings: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: 1.25em;
+  font-size: 16px;
+  font-weight: 500;
+  overflow-wrap: normal;
+  border-width: .2rem;
+  margin-bottom: 1.9rem;
+  text-align: center;
+}
+button:hover {
+  border-style: dotted;
+}
+
+section.recipe{
+  text-align: center;
+}
+section.meal{
+  background-color: rgb(255, 207, 111);
+  
+}
+
 html{
   background-color: white;
 }
 #nav {
- float: left;
-  background-color: rgb(235, 142, 42);
-  color: white;
-  padding: 10px;
+ /* float: left; */
+ font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ background-color: rgb(235, 142, 42);
+  color: black;
+  padding: 15px;
   background-blend-mode: multiply;
 }
 
@@ -42,9 +106,11 @@ html{
 #recipe,
 #user,
 #mealplan,
+#meal,
 #logout {
   font-size: 18px;
-  margin-right: 10px;
+  margin-right: 65px;
+  text-align: center;
 }
 
 #home a,
@@ -54,7 +120,7 @@ html{
 #mealplan a,
 #logout a {
   text-decoration: none;
-  color: white;
+  color: black;
 }
 #home a:hover,
 #recipe a:hover,
@@ -62,7 +128,7 @@ html{
 #user a:hover,
 #mealplan a:hover,
 #logout a:hover {
-  color: black;
+  color: white;
 }
 
 #home a:hover,

@@ -14,12 +14,12 @@ export default {
         return axios.get(`/meal/${mealId}`);
     },
     updateMeal(newMeal) {
-        return axios.put(`/meal/`, newMeal);
+        return axios.put(`/meal`, newMeal);
     },
-    addRecipeToMeal(mealId, recipeId) {//req server implement
+    addRecipeToMeal(mealId, recipeId) {
         return axios.post(`/meal/${mealId}`, recipeId);
     },
-    removeRecipeFromMeal(mealId, recipeId) {//req server implement
+    removeRecipeFromMeal(mealId, recipeId) {
         return axios.delete(`/meal/${mealId}/${recipeId}`);
     },
     deleteMeal(mealId) {

@@ -33,7 +33,7 @@ namespace Capstone.Controllers
 
             if (result == null || result.IngredientId == 0)
             {
-                return BadRequest();
+                return BadRequest("Ingredient not made.");
             }
             else
             {

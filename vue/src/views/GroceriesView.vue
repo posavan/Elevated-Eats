@@ -1,56 +1,63 @@
 <template>
-    <div class="list-mealplans">
-        <h1>My Meal Plans</h1>
+    <div class="list-groceries">
+        <h1>Grocery List</h1>
         <section class="container">
-            <mealplan v-for="mealplan in mealplans" v-bind:key="mealplan.mealPlanId" v-bind:item="mealplan" />
-
+            <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
         </section>
-        <div class="create-mealplan">
-            <button v-on:click="$router.push({ name: 'addMealPlan' })">Create Meal Plan</button>
+        <div class="actions">
+            <button class="btn-cancel" type="button" @click="cancel">Cancel</button>
         </div>
     </div>
 </template>
 
 <script>
 import mealPlanService from '../services/MealPlanService.js';
-import mealplan from '../components/MealPlan.vue';
+import ingredient from '../components/Ingredient.vue';
 
 export default {
-    name: "MealPlanView",
+    name: "GroceriesView",
     components: {
-        mealplan,
+        ingredient,
+    },
+    prop: {
+        params: [
+            'mealPlanId'
+        ]
     },
     data() {
         return {
-            mealplans: [],
-            newMealPlan: {},
+            ingredients: [],
             mealPlanId: 0
         };
     },
     methods: {
-        loadMealPlans() {
+        loadGroceries() {
             mealPlanService
-                .list()
+                .getGroceries(this.mealPlanId)
                 .then((response) => {
                     console.log(response);
-                    this.mealplans = response.data;
+                    this.groceries = response.data;
                 })
                 .catch((error) => {
                     if (error.response) {
-                        console.log("Error loading mealplans: ", error.response.status);
+                        console.log("Error loading groceries: ", error.response.status);
                     } else if (error.request) {
                         console.log(
-                            "Error loading mealplans: unable to communicate to server"
+                            "Error loading groceries: unable to communicate to server"
                         );
                     } else {
-                        console.log("Error loading mealplan: make request");
+                        console.log("Error loading groceries: make request");
                     }
                 });
         },
+        cancel() {
+            this.$router.back();
+        }
     },
 
     created() {
-        this.loadMealPlans();
+        this.mealPlanId = this.$route.params.mealPlanId;
+        this.loadGroceries();
     },
 };
 </script>
@@ -65,15 +72,16 @@ section.mealplan {
     width: 90%;
     padding: 2%;
     text-align: center;
-    border-width: 1rem;
-    
+    border-width: .2rem;
+    padding-right: 20%;
+
 }
 
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     gap: 10px;
-    
+
 }
 
 h1 {
@@ -83,6 +91,7 @@ h1 {
 form {
     text-align: center;
 }
+
 .add-mealplan {
     display: block;
     color: white;
@@ -100,6 +109,5 @@ form {
     font-family: sans-serif;
     font-size: 16px;
 }
-
 </style>
   
