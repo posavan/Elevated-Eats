@@ -2,7 +2,7 @@
   <div class="list-recipes">
     <h1>Favorite Recipes</h1>
     <section class="container">
-      <recipe v-for="recipe in recipes" v-bind:key="recipe.id" v-bind:item="recipe" />
+      <recipe v-for="recipe in recipes" v-bind:key="recipe.recipeId" v-bind:item="recipe" />
       
     </section>
     <div class="add-recipe">
@@ -92,7 +92,7 @@ export default {
 
 <style scoped>
 section.recipe {
-  background-color: rgb(171, 247, 201);
+  background-color: rgb(255, 207, 111);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 0.5rem;
   margin-bottom: 1.25rem;
@@ -116,10 +116,9 @@ form{
   display: block;
   color: white;
   text-align: center;
-  padding: 14px 16px;
-  background-color: rgb(169, 235, 161);
+  padding: 10px;
   border-radius: 50px;
-  margin-left: 40%;
+  margin-left: 50%;
   margin-right: 40%;
   border-top: none;
   border-left: none;

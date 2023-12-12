@@ -1,11 +1,14 @@
 <template>
   <section class="recipe">
-
     <h3>Name: {{ recipe.recipeName }}</h3>
 
     <section v-if="!hide" class="container">
       <h4>Ingredients:</h4>
-      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
+      <ingredient
+        v-for="ingredient in ingredients"
+        v-bind:key="ingredient.ingredientId"
+        v-bind:item="ingredient"
+      />
     </section>
 
     <p>Instructions: {{ recipe.recipeInstructions }}</p>
@@ -14,13 +17,25 @@
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
         {{ feedback }}
       </button>
-      <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipeId)" v-if="!showEdit">
+      <button
+        class="view-recipe-details"
+        v-on:click="$router.push('/recipe/favorites/' + recipeId)"
+        v-if="!showEdit"
+      >
         View Recipe Details
       </button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
+      <button
+        class="remove-recipe"
+        v-on:click.prevent="removeRecipe"
+        v-if="!hide"
+      >
         Delete Recipe
       </button>
-      <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')" v-if="showEdit">
+      <button
+        class="edit-recipe"
+        v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')"
+        v-if="showEdit"
+      >
         Edit Recipe
       </button>
     </div>
@@ -138,7 +153,7 @@ export default {
 <style scoped>
 .list-all-recipes {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  text-align: center;
+  text-align: right;
   /* Center text for better appearance */
   padding-right: 20%;
 }
@@ -153,20 +168,25 @@ section {
 }
 
 .container {
-
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
+  text-align: center;
+  padding: 3rem;
+  border-radius: 1rem;
+  height: 10%;
 }
 
 .recipe {
+  background-color: rgb(249, 205, 123);
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
-  background-color: rgb(225, 203, 164);
-  border-radius: 0.625rem;
-  /* Rounded corners for recipe cards */
-  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.25rem;
-  padding: 2%;
+  border-right: 90%;
+  border-color: black;
+  border-width: 10%;
+  margin-top: 1.9rem;
+  border-radius: 1.2rem;
+  text-size-adjust: auto;
 }
 
 .add-recipe-button {
@@ -180,6 +200,7 @@ form {
   max-width: 18.75rem;
   margin: auto;
   margin-top: 1.25rem;
+
   /* Add spacing between the button and the form */
 }
 
@@ -198,19 +219,28 @@ input {
   box-sizing: border-box;
 }
 
-
 button {
-  padding: 1.25rem;
-  background-color: #4caf50;
-  justify-content: space-between;
-  color: #fff;
-  border: none;
-  border-radius: 0.25rem;
+  display: inline-block;
+  border-radius: 1.5rem;
   cursor: pointer;
-  margin-right: 1.25rem;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+  text-transform: none;
+  font-family: FuturaPT, helvetica, sans-serif;
+  font-feature-settings: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: 1.25em;
+  font-size: 16px;
+  font-weight: 500;
+  overflow-wrap: normal;
+  border-width: 0.2rem;
+  margin-bottom: 1.9rem;
 }
 
 button:hover {
-  opacity: 0.8;
+  border-style: dotted;
 }
 </style>

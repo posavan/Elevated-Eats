@@ -9,13 +9,13 @@
       <input type="text" name="description" id="description" v-model="editMealPlan.mealPlanDescription" />
     </div>
     <!-- display meals to be added -->
-    <meal v-for="meal in addedMeals" v-bind:key="meal.id" v-bind:item="meal" />
+    <meal v-for="meal in addedMeals" v-bind:key="meal.mealId" v-bind:item="meal" />
     <!-- <button class="btn-remove" type="button" @click="removeMeal">Remove Meal</button> -->
     <div>
       <!-- add each meal -->
       <label for="meals">Meals:</label>
       <select v-model="selected">
-        <option v-for="meal in meals" v-bind:key="meal.id" :value="meal">
+        <option v-for="meal in meals" v-bind:key="meal.mealId" :value="meal">
           {{ meal.mealName }}
         </option>
       </select>

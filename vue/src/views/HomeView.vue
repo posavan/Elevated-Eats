@@ -3,16 +3,52 @@
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="meal-plans">
-      <a href="/mealplan" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
+      <a
+        href="/mealplan"
+        style="
+          text-decoration: none;
+          color: white;
+          font-size: 20px;
+          font-family: Times New Roman;
+        "
+        >My Meal Plans</a
+      >
     </nav>
-    <nav class="my-recipes"> 
-      <a href="/recipe/favorites" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Saved Recipes</a>
+    <nav class="my-recipes">
+      <a
+        href="/recipe/favorites"
+        style="
+          text-decoration: none;
+          color: white;
+          font-size: 20px;
+          font-family: Times New Roman;
+        "
+        >My Saved Recipes</a
+      >
     </nav>
     <nav class="recipes">
-      <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">All Recipes</a>
+      <a
+        href="/recipe"
+        style="
+          text-decoration: none;
+          color: white;
+          font-size: 20px;
+          font-family: Times New Roman;
+        "
+        >All Recipes</a
+      >
     </nav>
     <nav class="meals">
-      <a href="/meal" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">Meals</a>
+      <a
+        href="/meal"
+        style="
+          text-decoration: none;
+          color: white;
+          font-size: 20px;
+          font-family: Times New Roman;
+        "
+        >Meals</a
+      >
     </nav>
   </div>
 </template>
@@ -56,10 +92,9 @@ a:hover {
 .meals,
 .my-recipes {
   display: block;
-  /* color: wheat; */
   text-align: center;
   padding: 13px 16px;
-  background-color:rgb(235, 142, 42);
+  background-color: rgb(235, 142, 42);
   border-radius: 50px;
   margin-left: 40%;
   margin-right: 40%;
@@ -74,17 +109,21 @@ a:hover {
 }
 
 .recipes:hover {
-  opacity: .50;
+  border-color: white;
+  border-style: dotted;
 }
 
 .my-recipes:hover {
-  opacity: 0.50;
+  border-color: white;
+  border-style: dotted;
 }
 
 .meal-plans:hover {
-  opacity: 0.50;
+  border-color: white;
+  border-style: dotted;
 }
 .meals:hover {
-  opacity: 0.50;
+  border-color: white;
+  border-style: dotted;
 }
 </style>

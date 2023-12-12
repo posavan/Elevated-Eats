@@ -2,7 +2,7 @@
     <div class="list-mealplans">
         <h1>My Meal Plans</h1>
         <section class="container">
-            <mealplan v-for="mealplan in mealplans" v-bind:key="mealplan.id" v-bind:item="mealplan" />
+            <mealplan v-for="mealplan in mealplans" v-bind:key="mealplan.mealPlanId" v-bind:item="mealplan" />
 
         </section>
         <div class="create-mealplan">
@@ -58,19 +58,23 @@ export default {
   
 <style scoped>
 section.mealplan {
-    background-color: rgb(171, 247, 201);
+    background-color: rgb(255, 207, 111);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 0.5rem;
     margin-bottom: 1.25rem;
     width: 90%;
     padding: 2%;
     text-align: center;
+    border-width: .2rem;
+    padding-right: 20%;
+    
 }
 
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     gap: 10px;
+    
 }
 
 h1 {

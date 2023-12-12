@@ -2,8 +2,11 @@
   <div class="list-meals">
     <h1>Meals</h1>
     <section class="container">
-      <meal v-for="meal in meals" v-bind:key="meal.id" v-bind:item="meal" />
+      <meal v-for="meal in meals" v-bind:key="meal.mealId" v-bind:item="meal" />
     </section>
+    <div class="create-meal">
+            <button v-on:click="$router.push({ name: 'createMeal' })">Create Meal</button>
+        </div>
   </div>
 
 </template>
@@ -47,3 +50,33 @@ export default {
   },
 };
 </script>
+<style>
+button {
+  display: inline-block;
+  border-radius: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  white-space: wrap;
+  text-transform: none;
+  font-family: FuturaPT, helvetica, sans-serif;
+  font-feature-settings: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: 1.25em;
+  font-size: 16px;
+  font-weight: 500;
+  overflow-wrap: normal;
+  border-width: .2rem;
+  margin-bottom: 1.9rem;
+  text-align: center;
+}
+button:hover {
+  border-style: dotted;
+}
+section.meal{
+  background-color: rgb(255, 207, 111);
+  
+}
+</style>

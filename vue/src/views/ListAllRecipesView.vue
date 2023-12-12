@@ -2,7 +2,7 @@
   <h1>Recipe Library</h1>
   <div class="list-all-recipes">
     <section class="container">
-      <recipe v-for="recipe in allRecipes" v-bind:key="recipe.id" v-bind:item="recipe">
+      <recipe v-for="recipe in allRecipes" v-bind:key="recipe.recipeId" v-bind:item="recipe">
         <button v-on:click="addRecipeToUser">Save Recipe To Favorites</button>
       </recipe>
     </section>
@@ -113,14 +113,17 @@ export default {
 
 <style scoped>
 section.recipe {
-  background-color:  rgb(171, 247, 201);
+  background-color: rgb(255, 207, 111);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   border-right: 20px;
+  border-color: black;
+  border-width: 10rem;
 }
 
 .list-all-recipes {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color:black;
 }
 
 h1 {
@@ -156,23 +159,35 @@ input {
 }
 
 button {
-  padding: 1.25rem;
-  background-color: rgb(235, 142, 42);
-  color: wheat;
-  border: none;
-  border-radius: 0.25rem;
+  display: inline-block;
+  border-radius: 1.5rem;
   cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  text-decoration: none;
+  white-space: nowrap;
+  text-transform: none;
+  font-family: FuturaPT, helvetica, sans-serif;
+  font-feature-settings: normal;
+  font-style: normal;
+  letter-spacing: normal;
+  line-break: auto;
+  line-height: 1.25em;
+  font-size: 16px;
+  font-weight: 500;
+  overflow-wrap: normal;
+  border-width: .2rem;
+  margin-bottom: 1.9rem;
 }
 
 button:hover {
-  opacity: 0.50;
+  border-style: dotted;
 }
 
-.container recipe {
-  background-color: rgb(171, 247, 201);
-  border-radius: 0.5rem;
-  margin-bottom: 1.25rem;
-  width: 30%;
-  padding: 2%;
+
+.add-recipe{
+  display: block;
+  color: white;
+  text-align: center;
+  padding-top: 1rem;
 }
 </style>

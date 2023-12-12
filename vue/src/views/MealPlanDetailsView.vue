@@ -49,12 +49,12 @@
     
   <style scoped>
   div {
-    background-color: rgb(118, 244, 175);
+    background-color: rgb(238, 221, 127);
     font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
     font-size: large;
-    text-align: center;
+    border: solid black;
     border-radius: 50px;
-    justify-content: space-between;
+    border: solid black
   }
   
   button {

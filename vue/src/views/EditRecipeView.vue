@@ -1,7 +1,8 @@
 <template>
   <h1 v-if="isLoading == false">Edit Recipe: {{editRecipe.recipeName}}</h1>
+  <div>
   <EditRecipeForm v-bind:recipe="editRecipe" v-if="isLoading == false" />
-
+</div>
   <!--needs add ingredient button that allows user to add an ingredient not already part of this recipe-->
   <!--add ingredient button brings up a list of ingredients from ListIngredientsView-->
 </template>
