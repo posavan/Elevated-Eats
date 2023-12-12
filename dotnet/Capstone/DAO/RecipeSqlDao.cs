@@ -447,7 +447,7 @@ namespace Capstone.DAO
             return recipe;
         }
 
-        private Ingredient MapRowToIngredient(SqlDataReader reader)
+        public Ingredient MapRowToIngredient(SqlDataReader reader)
         {
             Ingredient ingredient = new Ingredient();
             ingredient.IngredientId = Convert.ToInt32(reader["ingredient_id"]);

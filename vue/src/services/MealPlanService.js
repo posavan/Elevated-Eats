@@ -10,6 +10,10 @@ export default {
     getMealPlan(mealPlanId) {
         return axios.get(`/mealplan/${mealPlanId}`);
     },
+    getGroceries(mealPlanId) {
+        return axios.get(`/mealplan/${mealPlanId}/groceries`);
+    },
+
     createMealPlan(newMealPlan) {
         return axios.post(`/mealplan`, newMealPlan);
     },

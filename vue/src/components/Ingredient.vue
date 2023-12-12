@@ -1,7 +1,7 @@
 <template>
   <section class="ingredient">
-    <div v-if="!hideQuantity">Quantity: {{ item.quantity }}</div>
     <div>Name: {{ item.ingredientName }}</div>
+    <div v-if="!hideQuantity">Quantity: {{ item.quantity }}</div>
     <p></p>
   </section>
 </template>
