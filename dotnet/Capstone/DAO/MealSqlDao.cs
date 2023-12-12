@@ -260,6 +260,7 @@ namespace Capstone.DAO
         public List<Recipe> GetRecipesByMealId(int mealId)
         {
             List<Recipe> recipes = new List<Recipe>();
+
             string sql = "SELECT r.recipe_id, r.recipe_name, r.recipe_instructions " +
             "FROM recipes r JOIN meals_recipes mr ON r.recipe_id = mr.recipe_id " +
             "WHERE mr.meal_id = @meal_id;";
@@ -289,6 +290,7 @@ namespace Capstone.DAO
             return recipes;
         }
 
+        
 
         public Meal MapRowToMeal(SqlDataReader reader)
         {

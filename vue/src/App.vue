@@ -5,13 +5,16 @@
        &nbsp;<router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       </span>
       <span id="mealplan">
-      <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token != ''">MealPlans</router-link>&nbsp;
+      <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token !=''">Meal Plans</router-link>&nbsp;
       </span>
       <span id="user">
-      &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">MyRecipes</router-link>&nbsp;
+      &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">My Recipes</router-link>&nbsp;
       </span>
       <span id="recipe">
       &nbsp;<router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''">Recipes</router-link>&nbsp;
+      </span>
+      <span id="meal">
+      &nbsp;<router-link v-bind:to="{ name: 'meal' }" v-if="this.$store.state.token != ''">Meals </router-link>&nbsp;
       </span>
       <span id="logout">
        &nbsp;<router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>&nbsp;
@@ -47,6 +50,7 @@ html{
 #home a,
 #recipe a,
 #user a,
+#meal a,
 #mealplan a,
 #logout a {
   text-decoration: none;
@@ -54,6 +58,7 @@ html{
 }
 #home a:hover,
 #recipe a:hover,
+#meal a:hover,
 #user a:hover,
 #mealplan a:hover,
 #logout a:hover {
@@ -63,6 +68,7 @@ html{
 #home a:hover,
 #recipe a:hover,
 #user a:hover,
+#meal a:hover,
 #mealplan a:hover,
 #logout a:hover {
   text-decoration: underline;

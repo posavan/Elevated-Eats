@@ -18,11 +18,19 @@ namespace Capstone.Controllers
             this.dao = MealDao;
         }
 
-        // /meal
+        // meal
         [HttpGet()]
         public ActionResult<List<Meal>> ListMeals()
         {
             return Ok(dao.ListMeals());
+        }
+
+        // meal/recipeId
+
+        [HttpGet("{recipeId}/recipes")]
+        public ActionResult<List<Recipe>> GetRecipesByMealId(int mealId)
+        {
+            return Ok(dao.GetRecipesByMealId(mealId));
         }
 
         // meal/1
@@ -75,7 +83,7 @@ namespace Capstone.Controllers
             return Ok(result);
         }
 
-        [HttpDelete("{mealId}/{recipeId}")]
+        [HttpDelete("{mealId}/{recipeId}/")]
         public ActionResult<Meal> RemoveRecipeFromMeal(int mealId, int recipeId)
         {
             bool result = dao.RemoveRecipeFromMeal(mealId, recipeId);

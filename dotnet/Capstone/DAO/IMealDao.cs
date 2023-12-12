@@ -13,7 +13,8 @@ namespace Capstone.DAO
         public bool RemoveRecipeFromMeal(int mealId, int recipeId);
 
         public bool DeleteMeal(int mealId);
-        
+
+        public List<Recipe> GetRecipesByMealId(int mealId);
 
     }
 }
