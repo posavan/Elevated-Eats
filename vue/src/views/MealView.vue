@@ -2,7 +2,7 @@
   <div class="list-meals">
     <h1>Meals</h1>
     <section class="container">
-      <meal v-for="meal in meals" v-bind:key="meal.mealId" v-bind:item="meal" />
+      <Meal v-for="meal in meals" v-bind:key="meal.mealId" v-bind:item="meal" />
     </section>
     <div class="create-meal">
             <button v-on:click="$router.push({ name: 'createMeal' })">Create Meal</button>
@@ -29,7 +29,8 @@ export default {
   },
   methods: {
     loadMeals() {
-      MealService.list()
+      MealService
+        .list()
         .then((response) => {
           this.meals = response.data;
           this.$router.push("meal");
@@ -51,3 +52,8 @@ export default {
 };
 
 </script>
+<style scoped>
+h1{
+  text-align: center;
+}
+</style>

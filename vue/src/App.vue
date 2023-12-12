@@ -28,8 +28,9 @@
 <style>
 
 h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:Georgia, 'Times New Roman', Times, serif;
   text-align: center;
+  font-weight: normal;
 }
 h2 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -94,10 +95,10 @@ html{
 }
 #nav {
  /* float: left; */
- font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+ font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  background-color: rgb(235, 142, 42);
-  color: black;
-  padding: 15px;
+  color: white;
+  padding: 10px;
   background-blend-mode: multiply;
 }
 
@@ -120,7 +121,7 @@ html{
 #mealplan a,
 #logout a {
   text-decoration: none;
-  color: black;
+  color: white;
 }
 #home a:hover,
 #recipe a:hover,
@@ -128,7 +129,7 @@ html{
 #user a:hover,
 #mealplan a:hover,
 #logout a:hover {
-  color: white;
+  color: black;
 }
 
 #home a:hover,

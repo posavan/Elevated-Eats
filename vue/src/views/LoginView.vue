@@ -74,10 +74,12 @@ export default {
 div#login {
   background-color:white;
   /* border-radius: 10%; */
+  text-align: center;
   
 }
 .form-input-group {
   margin-bottom: 1rem;
+  text-align: center;
 }
 label {
   margin-right: 0.5rem;
@@ -129,12 +131,13 @@ input#password {
   height: 25px;
   padding-top: 10px;
   margin-bottom: 15px;
-  background:lightgray;
+  background: lightgray;
   border-bottom: 1px solid #fff;
   border-top: none;
   border-left: none;
   border-right: none;
   text-align: center;
   font-size: large;
+
 }
 </style>

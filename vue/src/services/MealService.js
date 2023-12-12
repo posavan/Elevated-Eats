@@ -4,11 +4,14 @@ export default {
     list() {
         return axios.get('/meal');
     },
-    getMeal(mealId) {
-        return axios.get(`/meal/${mealId}`);
-    },
+    // getMeal(mealId) {
+    //     return axios.get(`/meal/${mealId}`);
+    // },
     createMeal(newMeal) {
         return axios.post(`/meal`, newMeal);
+    },
+    listRecipesFromMeal(mealId) {
+        return axios.get(`/meal/${mealId}`);
     },
     updateMeal(newMeal) {
         return axios.put(`/meal`, newMeal);
