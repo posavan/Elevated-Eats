@@ -85,6 +85,7 @@ a {
 }
 
 a:hover {
+  color: black;
   text-decoration: underline;
 }
 
@@ -110,21 +111,25 @@ a:hover {
 }
 
 .recipes:hover {
-  border-color: white;
-  border-style: dotted;
+  border-color: rgb(8, 155, 21);
+  border-style: solid;
+  border-width: .325rem;
 }
 
 .my-recipes:hover {
-  border-color: white;
-  border-style: dotted;
+  border-color: rgb(8, 155, 21);
+  border-style: solid;
+  border-width: .325rem;
 }
 
 .meal-plans:hover {
-  border-color: white;
-  border-style: dotted;
+  border-color: rgb(8, 155, 21);
+  border-style: solid;
+  border-width: .325rem;
 }
 .meals:hover {
-  border-color: white;
-  border-style: dotted;
+  border-color: rgb(8, 155, 21);
+  border-style: solid;
+  border-width: .325rem;
 }
 </style>
