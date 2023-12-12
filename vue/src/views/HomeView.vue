@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Elevated Eating</h1>
+    <h1>Elevated Eats</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="meal-plans">
       <a
@@ -56,7 +56,7 @@ export default {};
 
 <style scoped>
 div.home {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:Georgia, 'Times New Roman', Times, serif;
   background-color: white;
   background-image: url("../../homeview.jpg");
   color: white;
