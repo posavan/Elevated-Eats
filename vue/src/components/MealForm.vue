@@ -80,8 +80,8 @@
           });
       },
   
-      addRecipe(){
-        this.addedRecipes.push(this.selected);
+      addMeal(){
+        this.addedMeal.push(this.selected);
       },
   
       createNewMeal() {

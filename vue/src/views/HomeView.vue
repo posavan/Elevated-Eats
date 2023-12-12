@@ -2,9 +2,6 @@
   <div class="home">
     <h1>Home</h1>
     <!-- <p>You must be authenticated to see this</p> -->
-    <nav class="recipes">
-      <a href="/recipe" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman; ">Recipes </a>
-    </nav>
     <nav class="meal-plans">
       <a href="/mealplan" style="text-decoration: none; color: white; font-size: 20px; font-family: Times New Roman;">My Meal Plans</a>
     </nav>

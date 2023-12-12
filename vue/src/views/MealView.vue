@@ -4,6 +4,9 @@
     <section class="container">
       <meal v-for="meal in meals" v-bind:key="meal.id" v-bind:item="meal" />
     </section>
+    <div class="create-meal">
+            <button v-on:click="$router.push({ name: 'createMeal' })">Create Meal</button>
+        </div>
   </div>
 
 </template>

@@ -1,6 +1,6 @@
 <template>
-  <h1>Edit Meal</h1>
-  <edit-meal-form v-bind:meal="meal" />
+  <h1>Edit Meal: {{ editMeal.mealId }}</h1>
+  <edit-meal-form v-bind:meal="editMeal.mealId" />
 </template>
 
 <script>
@@ -11,25 +11,19 @@ export default {
   components: {
     EditMealForm,
   },
-
-  props: {
-    meal: {
-      type: Object,
-      required: true,
-    },
-  },
   data() {
     return {
       editMeal: {
-        mealId: this.meal.mealId,
-        mealName: this.meal.mealName,
-        mealDescription: this.meal.mealDescription,
+        mealId: 0,
+        mealName: '',
+        mealDescription: '',
       },
     };
   },
   methods: {
     updateMeal() {
-      MealService.updateMeal(this.editMeal.mealId, this.editMeal)
+      MealService
+        .updateMeal(this.editMeal)
         .then(() => {
           this.$router.push({
             name: "mealDetailsView",
@@ -51,6 +45,26 @@ export default {
     cancelForm() {
       this.$router.back();
     },
-  }
+    created() {
+      this.editMeal.mealId = this.$route.params.mealId;
+      console.log('logging editMeal', this.editMeal);
+      this.editMeal.mealId = this.mealId;
+      this.editMeal.mealDescription = this.mealDescription;
+      MealService.getMeal(this.editMeal.mealId)
+      .then((response) => {
+          console.log(response.data);
+          this.editMeal = response.data;
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("Error loading meal: ", error.response.status);
+          } else if (error.request) {
+            console.log("Error loading meal: unable to communicate to server");
+          } else {
+            console.log("Error loading meal: make request");
+          }
+        });
+    },
+  },
 };
 </script>
