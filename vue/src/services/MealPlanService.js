@@ -16,8 +16,8 @@ export default {
     updateMealPlan(newMealPlan) {
         return axios.put(`/mealplan`, newMealPlan);
     },
-    addMealToPlan(mealPlanId, mealId) {
-        return axios.post(`/mealplan/${mealPlanId}`, mealId);
+    addMealToPlan(mealPlanId, meal) {
+        return axios.post(`/mealplan/${mealPlanId}`, meal);
     },
     removeMealFromPlan(mealPlanId, mealId) {
         return axios.delete(`/mealplan/${mealPlanId}/${mealId}`);

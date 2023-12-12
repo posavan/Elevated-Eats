@@ -2,7 +2,7 @@
   <section class="meal">
     <h2>Meal Name: {{ item.mealName }}</h2>
     <p>Description: {{ item.mealDescription }}</p>
-    <section v-if="!hide" class="container">
+    <section v-if="!showDetails" class="container">
       <p>Recipes: {{ item.recipeList }}</p>
       <!-- <recipe
         v-for="recipe in recipes"

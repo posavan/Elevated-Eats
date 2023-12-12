@@ -9,7 +9,7 @@
             <input type="text" name="description" id="description" v-model="editMealPlan.mealPlanDescription" />
         </div>
         <!-- display meals to be added -->
-        <meal v-for="meal in meals" v-bind:key="meal.id" v-bind:item="meal" />
+        <meal v-for="meal in this.editMealPlan.mealList" v-bind:key="meal.id" v-bind:item="meal" />
         <!-- <button class="btn-remove" type="button" @click="removeMeal">Remove Meal</button> -->
         <div>
             <!-- add each meal -->
@@ -53,7 +53,7 @@ export default {
             showSave: this.$route.name == "addMealPlan",
             selected: {},
             meals: [],
-            addedMeals: [],
+            
             editMealPlan: {
                 mealPlanId: this.mealplan.mealPlanId,
                 mealPlanName: this.mealplan.mealPlanName,
@@ -65,10 +65,32 @@ export default {
 
     methods: {
         loadMeals() {
+            mealPlanService
+                .listMealsFromPlan(this.editMealPlan.mealPlanId)
+                .then((response) => {
+                    console.log("reached loadMeals", response.data);
+                    this.editMealPlan.meals = response.data;
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log(
+                            "Error loading meals: ",
+                            error.response.status
+                        );
+                    } else if (error.request) {
+                        console.log(
+                            "Error loading meals: unable to communicate to server"
+                        );
+                    } else {
+                        console.log("Error loading meals: make request");
+                    }
+                });
+        },
+        loadAllMeals() {
             mealService
                 .list()
                 .then((response) => {
-                    console.log("reached loadMeals", response.data);
+                    console.log("reached loadAllMeals", response.data);
                     this.meals = response.data;
                 })
                 .catch((error) => {
@@ -88,11 +110,55 @@ export default {
         },
 
         addMeal() {
-            this.addedMeals.push(this.selected);
+            console.log("reached addMeal", this.editMealPlan, this.selected)
+            mealPlanService
+                .addMealToPlan(this.editMealPlan.mealPlanId, this.selected)
+                .then((response) => {
+                    console.log("reached loadMeals", response.data);
+                    this.loadMeals();
+                    location.reload();
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log(
+                            "Error loading meals: ",
+                            error.response.status
+                        );
+                    } else if (error.request) {
+                        console.log(
+                            "Error loading meals: unable to communicate to server"
+                        );
+                    } else {
+                        console.log("Error loading meals: make request");
+                    }
+                });
+        },
+
+        updateMealPlan() {
+            mealPlanService
+                .updateMealPlan(this.editMealPlan)
+                .then((response) => {
+                    console.log("reached loadMeals", response.data);
+                    this.meals = response.data;
+                    this.cancel();
+                })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log(
+                            "Error loading meals: ",
+                            error.response.status
+                        );
+                    } else if (error.request) {
+                        console.log(
+                            "Error loading meals: unable to communicate to server"
+                        );
+                    } else {
+                        console.log("Error loading meals: make request");
+                    }
+                });
         },
 
         createNewMealPlan() {
-            this.editMealPlan.mealList = this.addedMeals;
             if (this.editMealPlan.mealPlanName) {
                 mealPlanService
                     .createMealPlan(this.editMealPlan)
@@ -118,9 +184,9 @@ export default {
             this.$router.back();
         }
 
-
     },
     created() {
+        this.loadAllMeals();
         this.loadMeals();
     },
 };
