@@ -99,6 +99,7 @@ namespace Capstone.Controllers
                 return NoContent();
             }
 
+
             return NotFound();
 
         }
@@ -123,20 +124,17 @@ namespace Capstone.Controllers
         public ActionResult<Recipe> AddIngredientsToRecipe(Recipe recipe)
         {
             // Check if each ingredient exists in the master list
-            foreach (Ingredient ingredient in recipe.IngredientList)
-            {
-                if (ingredientDao.IngredientExists(ingredient))
-                {
-                    // Handle the case where the ingredient already exist
-                    return BadRequest($"Ingredient {ingredient.IngredientName} already exists in the master list.");
-                }
-            }
+            //foreach (Ingredient ingredient in recipe.IngredientList)
+            //{
+            //    if (ingredientDao.IngredientExists(ingredient))
+            //    {
+            //        // Handle the case where the ingredient already exist
+            //        return BadRequest($"Ingredient {ingredient.IngredientName} already exists in the master list.");
+            //    }
+            //}
+            bool result = dao.AddIngredientsToRecipe(recipe);
 
-            // Call the method to add ingredients to the recipe
-            dao.AddIngredientsToRecipe(recipe);
-
-            //return a success response
-            return Ok("Ingredients added successfully to the recipe.");
+            return Ok(result);
 
         }
 
