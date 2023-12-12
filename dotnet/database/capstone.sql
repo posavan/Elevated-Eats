@@ -102,6 +102,9 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('admin','Yh
 INSERT INTO ingredients (ingredient_name) VALUES ( 'Rice' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'Eggs' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'Milk' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'basil' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'garlic' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'cumin' )
 
 INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Calzone' , 'Delicious Italian Delicacy')
 INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Carbonara' , 'Carbs')
@@ -122,6 +125,8 @@ INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity)
 	VALUES ( 7, 2, '2 ea');
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
 	VALUES ( 2, 2, '3 ea');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 3, 5, '3 cups');
 
 INSERT INTO meals (meal_name, meal_description) VALUES ('Breakfast', 'IDK');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Lunch', 'IDK');
@@ -132,6 +137,7 @@ insert into meals_recipes (meal_id, recipe_id) VALUES (1,3);
 insert into meals_recipes (meal_id, recipe_id) VALUES (1,5);
 insert into meals_recipes (meal_id, recipe_id) VALUES (2,2);
 insert into meals_recipes (meal_id, recipe_id) VALUES (3,1);
+insert into meals_recipes (meal_id, recipe_id) VALUES (3,5);
 
 INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Vegan', 'for those allergic to meat');  
 INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Leftovers', 'for the cheap');  
