@@ -10,25 +10,17 @@
       <!-- <button class="save-mealplan" v-on:click.prevent="createMealPlan" v-if="false">
                 {{ feedback }}
             </button> -->
-      <button
-        class="view-mealplan-details"
-        v-on:click="this.$router.push(`/mealplan/${this.mealPlanId}`)"
-        v-if="show"
-      >
+      <button class="view-mealplan-details" v-on:click="this.$router.push(`/mealplan/${this.mealPlanId}`)" v-if="show">
         View Meal Plan Details
       </button>
-      <button
-        class="edit-mealplan"
-        v-on:click="this.$router.push(`/mealplan/${this.mealPlanId}/edit`)"
-        v-if="showEdit"
-      >
+      <button class="view-groceries" v-on:click="this.$router.push({ name:'groceries', params:this.mealPlanId })"
+        v-if="showDetails">
+        View Grocery List
+      </button>
+      <button class="edit-mealplan" v-on:click="this.$router.push(`/mealplan/${this.mealPlanId}/edit`)" v-if="showDetails">
         Edit Meal Plan
       </button>
-      <button
-        class="delete-mealplan"
-        v-on:click.prevent="deleteMealPlan"
-        v-if="show || showDetails"
-      >
+      <button class="delete-mealplan" v-on:click.prevent="deleteMealPlan" v-if="show || showDetails">
         Delete Meal Plan
       </button>
       <button class="btn-cancel" type="button" @click="cancel" v-if="!show">
@@ -56,7 +48,6 @@ export default {
       mealPlanId: 0,
       show: this.$route.name == "mealplan",
       showDetails: this.$route.name == "mealPlanDetails",
-      showEdit: this.$route.name == "mealPlanDetails",
       feedback: "Create Meal Plan",
     };
   },

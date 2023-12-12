@@ -12,12 +12,13 @@ namespace Capstone.DAO
 
         private readonly string connectionString;
         private readonly MealSqlDao mealDao;
+        private readonly RecipeSqlDao recipeDao;
 
         public MealPlanSqlDao(string dbConnectionString)
         {
-
             this.connectionString = dbConnectionString;
             this.mealDao = new MealSqlDao(dbConnectionString);
+            this.recipeDao = new RecipeSqlDao(dbConnectionString);
         }
 
         string getListSql = "SELECT meal_plan_id, meal_plan_name, meal_plan_description, user_id " +
@@ -46,6 +47,11 @@ namespace Capstone.DAO
             "FROM meals m JOIN meal_plans_meals mpm ON m.meal_id = mpm.meal_id " +
             "WHERE mpm.meal_plan_id = @meal_plan_id;";
 
+        string groceriesSql = "SELECT i.ingredient_id, i.ingredient_name, ri.quantity FROM ingredients i " +
+            "JOIN recipes_ingredients ri ON i.ingredient_id=ri.ingredient_id " +
+            "JOIN meals_recipes mr ON ri.recipe_id=mr.recipe_id " +
+            "JOIN meal_plans_meals mpm ON mr.meal_id=mpm.meal_id " +
+            "WHERE mpm.meal_plan_id=@meal_plan_id;";
 
         public List<MealPlan> ListMealPlansByUserId(int userId)
         {
@@ -281,6 +287,35 @@ namespace Capstone.DAO
 
             return meals;
         }
+        public List<Ingredient> GetGroceriesIngredients(int mealPlanId)
+        {
+            List<Ingredient> groceries = new List<Ingredient>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+
+                    SqlCommand cmd = new SqlCommand(groceriesSql, conn);
+                    cmd.Parameters.AddWithValue("@meal_plan_id", mealPlanId);
+                    SqlDataReader reader = cmd.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        Ingredient ingredient = recipeDao.MapRowToIngredient(reader);
+                        groceries.Add(ingredient);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new DaoException("SQL exception occurred", ex);
+            }
+
+            return groceries;
+        }
+
         public MealPlan MapRowToMealPlan(SqlDataReader reader)
         {
             MealPlan mealplan = new MealPlan();

@@ -129,6 +129,7 @@ INSERT INTO meals (meal_name, meal_description) VALUES ('Dinner', 'IDK');
 
 insert into meals_recipes (meal_id, recipe_id) VALUES (1,1);
 insert into meals_recipes (meal_id, recipe_id) VALUES (1,3);
+insert into meals_recipes (meal_id, recipe_id) VALUES (1,5);
 insert into meals_recipes (meal_id, recipe_id) VALUES (2,2);
 insert into meals_recipes (meal_id, recipe_id) VALUES (3,1);
 

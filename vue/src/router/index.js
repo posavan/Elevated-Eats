@@ -24,6 +24,7 @@ import MealPlanView from "../views/MealPlanView.vue";
 import AddMealPlanView from "../views/AddMealPlanView.vue";
 import MealPlanDetailsView from "../views/MealPlanDetailsView.vue";
 import EditMealPlanView from "../views/EditMealPlanView.vue";
+import GroceriesView from "../views/GroceriesView.vue";
 import ListRecipeIngredientsView from "../views/ListRecipeIngredientsView.vue";
 
 /**
@@ -210,6 +211,14 @@ const routes = [
     path: "/mealplan/:mealPlanId/edit",
     name: "editMealPlan",
     component: EditMealPlanView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/mealplan/:mealPlanId/groceries",
+    name: "groceries",
+    component: GroceriesView,
     meta: {
       requiresAuth: true,
     },

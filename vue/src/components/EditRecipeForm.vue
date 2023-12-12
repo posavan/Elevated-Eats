@@ -244,7 +244,7 @@ button:hover {
   margin: 0 auto;
   padding: 20px;
   border: 1px solid #ccc;
-  border-radius: 1.rem;  
+  border-radius: 1.rem;
 }
 
 label {
@@ -261,8 +261,8 @@ input[type="text"] {
   margin-bottom: 12px;
   box-sizing: border-box;
   border-radius: 1rem;
-  background-color:rgb(255, 237, 202);
-;
+  background-color: rgb(255, 237, 202);
+  ;
   text-align: center;
 }
 
@@ -306,6 +306,4 @@ button {
 .actions {
   margin-top: 20px;
 }
-
-
 </style>

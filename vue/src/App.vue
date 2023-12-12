@@ -42,6 +42,7 @@ html{
 #recipe,
 #user,
 #mealplan,
+#meal,
 #logout {
   font-size: 18px;
   margin-right: 10px;
