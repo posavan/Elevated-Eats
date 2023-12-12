@@ -137,6 +137,8 @@ namespace Capstone.DAO
         public Ingredient CreateIngredient(Ingredient ingredient)
         {
             Ingredient newIngredient = null;
+            string check = "SELECT * FROM ingredients " +
+                "WHERE ingredient_name=@name;";
 
             string sql = "INSERT INTO ingredients (ingredient_name) " +
                          "OUTPUT INSERTED.ingredient_id " +
@@ -149,7 +151,14 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
-                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    SqlCommand cmd = new SqlCommand(check, conn);
+                    cmd.Parameters.AddWithValue("@name", ingredient.IngredientName);
+                    int rowsReturned = Convert.ToInt32(cmd.ExecuteScalar());
+                    if (rowsReturned > 0)
+                    {
+                        return newIngredient;
+                    }
+                    cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@name", ingredient.IngredientName);
                     ingredient.IngredientId = Convert.ToInt32(cmd.ExecuteScalar());
 

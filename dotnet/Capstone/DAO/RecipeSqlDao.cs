@@ -354,14 +354,14 @@ namespace Capstone.DAO
 
         }
 
-        public void AddIngredientsToRecipe(Recipe recipe)
+        public bool AddIngredientsToRecipe(Recipe recipe)
         {
-            string sqlAddNewIngredient = "INSERT INTO ingredients (ingredient_name) " +
-                "OUTPUT INSERTED.ingredient_id " +
-                "VALUES (@ingredientName);";
+            bool result = false;
+            string checkSql = "SELECT * FROM recipes_ingredients WHERE recipe_id=@recipe_id AND " +
+            "ingredient_id=@ingredient_id";
 
-            string sqlAddIngredientToRecipe = "INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) " +
-                         "VALUES(@recipe_id, @ingredient_id, @quantity);";
+            string sql = "INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) " +
+             "VALUES (@recipe_id, @ingredient_id, @quantity);";
 
             try
             {
@@ -369,46 +369,28 @@ namespace Capstone.DAO
                 {
                     conn.Open();
 
+                    int count = 0;
                     foreach (Ingredient ingredient in recipe.IngredientList)
                     {
-                        // check if ingredient already exists in the master list (db does not allow duplicates)
-                        //if (!ingredientDao.IngredientExists(ingredient))
-                        //{
-                        // add the new ingredient to the master list
-                        SqlCommand cmdNewIngredient = new SqlCommand(sqlAddNewIngredient, conn);
-                        cmdNewIngredient.Parameters.AddWithValue("@ingredientName", ingredient.IngredientName);
-
-                        // assign new ingredient's id
-                        int newIngredientId = Convert.ToInt32(cmdNewIngredient.ExecuteScalar());
-
-                        if (newIngredientId > 0)
+                        SqlCommand cmd = new SqlCommand(checkSql, conn);
+                        cmd.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
+                        cmd.Parameters.AddWithValue("@ingredient_id", ingredient.IngredientId);
+                        int rowsAffected = Convert.ToInt32(cmd.ExecuteScalar());
+                        if (rowsAffected > 0)
                         {
-                            // add the ingredient to recipes_ingredients
-                            SqlCommand cmdAddToRecipe = new SqlCommand(sqlAddIngredientToRecipe, conn);
-                            cmdAddToRecipe.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
-                            cmdAddToRecipe.Parameters.AddWithValue("@ingredient_id", newIngredientId);
-                            cmdAddToRecipe.Parameters.AddWithValue("@quantity", ingredient.Quantity);
-
-                            int rowsAffected = cmdAddToRecipe.ExecuteNonQuery();
-
-                            if (rowsAffected > 0)
-                            {
-                                Console.WriteLine($"Ingredient {ingredient.IngredientName} added successfully to recipe.");
-                            }
-                            else
-                            {
-                                Console.WriteLine($"Failed to add ingredient {ingredient.IngredientName} to the recipe.");
-                            }
+                            // already added 
+                            continue;
                         }
-                        else
-                        {
-                            Console.WriteLine($"Failed to add ingredient {ingredient.IngredientName} to the master list.");
-                        }
-                        //}
-                        //else
-                        //{
-                        //    Console.WriteLine($"Ingredient {ingredient.IngredientName} already exists in the master list.");
-                        //}
+
+                        cmd = new SqlCommand(sql, conn);
+                        cmd.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
+                        cmd.Parameters.AddWithValue("@ingredient_id", ingredient.IngredientId);
+                        cmd.Parameters.AddWithValue("@quantity", ingredient.Quantity);
+                        count += Convert.ToInt32(cmd.ExecuteNonQuery());
+                    }
+                    if (count > 0)
+                    {
+                        result = true;
                     }
                 }
             }
@@ -417,7 +399,7 @@ namespace Capstone.DAO
                 throw new DaoException("SQL exception occurred", ex);
             }
 
-            return;
+            return result;
 
         }
 

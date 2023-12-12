@@ -24,19 +24,11 @@
       >
         View Recipe Details
       </button>
-      <button
-        class="remove-recipe"
-        v-on:click.prevent="removeRecipe"
-        v-if="!hide"
-      >
-        Delete Recipe
-      </button>
-      <button
-        class="edit-recipe"
-        v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')"
-        v-if="showEdit"
-      >
+      <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')" v-if="showEdit">
         Edit Recipe
+      </button>
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
+        Delete Recipe
       </button>
     </div>
     <p></p>
