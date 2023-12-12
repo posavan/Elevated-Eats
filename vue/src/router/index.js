@@ -23,7 +23,7 @@ import MealDetailsView from "../views/MealDetailsView.vue";
 import AddMealView from "../views/AddMealView.vue";
 import EditMealView from "../views/EditMealView.vue";
 
-import MealPlanView from "../views/MealplanView.vue";
+import MealPlanView from "../views/MealpPanView.vue";
 import AddMealPlanView from "../views/AddMealPlanView.vue";
 import MealPlanDetailsView from "../views/MealPlanDetailsView.vue";
 import EditMealPlanView from "../views/EditMealPlanView.vue";
