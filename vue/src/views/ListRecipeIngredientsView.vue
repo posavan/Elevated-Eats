@@ -7,7 +7,7 @@
     <section class="container">
       <ingredient
         v-for="ingredient in ingredients"
-        v-bind:key="ingredient.id"
+        v-bind:key="ingredient.ingredientId"
         v-bind:item="ingredient"
       />
     </section>

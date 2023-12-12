@@ -5,7 +5,7 @@
 
     <section v-if="!hide" class="container">
       <h4>Ingredients:</h4>
-      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
+      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
     </section>
 
     <p>Instructions: {{ recipe.recipeInstructions }}</p>

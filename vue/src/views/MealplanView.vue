@@ -2,7 +2,7 @@
     <div class="list-mealplans">
         <h1>My Meal Plans</h1>
         <section class="container">
-            <mealplan v-for="mealplan in mealplans" v-bind:key="mealplan.id" v-bind:item="mealplan" />
+            <mealplan v-for="mealplan in mealplans" v-bind:key="mealplan.mealPlanId" v-bind:item="mealplan" />
 
         </section>
         <div class="create-mealplan">
@@ -10,7 +10,7 @@
         </div>
     </div>
 </template>
-  
+
 <script>
 import mealPlanService from '../services/MealPlanService.js';
 import mealplan from '../components/MealPlan.vue';
@@ -23,7 +23,8 @@ export default {
     data() {
         return {
             mealplans: [],
-            newMealPlan: {}
+            newMealPlan: {},
+            mealPlanId: 0
         };
     },
     methods: {

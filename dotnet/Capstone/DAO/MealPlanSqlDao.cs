@@ -32,7 +32,8 @@ namespace Capstone.DAO
             "SET meal_plan_name = @meal_plan_name, meal_plan_description = @meal_plan_description " +
             "WHERE meal_plan_id = @meal_plan_id AND user_id = @user_id";
 
-        string checkMealSql = "SELECT meal_id FROM meal_plans_meals WHERE meal_plan_id=@meal_plan_id";
+        string checkMealSql = "SELECT * FROM meal_plans_meals WHERE meal_plan_id=@meal_plan_id AND " +
+            "meal_id=@meal_id";
         string addMealSql = "INSERT INTO meal_plans_meals (meal_plan_id, meal_id) " +
              "VALUES (@meal_plan_id, @meal_id);";
         string removeMealSql = "DELETE FROM meal_plans_meals " +
@@ -171,6 +172,7 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand(checkMealSql, conn);
                     cmd.Parameters.AddWithValue("@meal_plan_id", mealPlanId);
+                    cmd.Parameters.AddWithValue("@meal_id", mealId);
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
                     if (count > 0)
                     {

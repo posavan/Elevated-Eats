@@ -9,7 +9,7 @@
     <button class="btn-add" v-on:click="$router.push({ name: 'AddIngredientView' })">Add Ingredient
     </button>
     <section class="container">
-      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.id" v-bind:item="ingredient" />
+      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
     </section>
     <!-- 
 

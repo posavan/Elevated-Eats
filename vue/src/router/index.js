@@ -22,6 +22,8 @@ import EditMealView from "../views/EditMealView.vue";
 
 import MealPlanView from "../views/MealPlanView.vue";
 import AddMealPlanView from "../views/AddMealPlanView.vue";
+import MealPlanDetailsView from "../views/MealPlanDetailsView.vue";
+import EditMealPlanView from "../views/EditMealPlanView.vue";
 import ListRecipeIngredientsView from "../views/ListRecipeIngredientsView.vue";
 
 /**
@@ -196,14 +198,22 @@ const routes = [
       requiresAuth: true,
     },
   },
-  // {
-  //   path: "/mealplan/:mealPlanId",
-  //   name: "viewMealPlan",
-  //   component: MealPlanDetailsView,
-  //   meta: {
-  //     requiresAuth: true,
-  //   },
-  // },
+  {
+    path: "/mealplan/:mealPlanId",
+    name: "mealPlanDetails",
+    component: MealPlanDetailsView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
+  {
+    path: "/mealplan/:mealPlanId/edit",
+    name: "editMealPlan",
+    component: EditMealPlanView,
+    meta: {
+      requiresAuth: true,
+    },
+  },
 ];
 
 // Create the router

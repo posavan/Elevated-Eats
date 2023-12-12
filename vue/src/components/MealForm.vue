@@ -9,12 +9,12 @@
         <input type="text" name="description" id="description" v-model="editMeal.mealDescription" />
       </div>
       <!-- display recipes to be added -->
-      <recipe v-for="recipe in addedRecipes" v-bind:key="recipe.id" v-bind:item="recipe" />
+      <recipe v-for="recipe in addedRecipes" v-bind:key="recipe.recipeId" v-bind:item="recipe" />
       <div>
         <!-- add each recipe -->
         <label for="recipes">Recipes:</label>
         <select v-model="selected">
-          <option v-for="recipe in recipes" v-bind:key="recipe.id" :value="recipe">
+          <option v-for="recipe in recipes" v-bind:key="recipe.recipeId" :value="recipe">
             {{ recipe.recipeName }}
           </option>
         </select>
