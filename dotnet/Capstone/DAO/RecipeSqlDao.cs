@@ -448,7 +448,7 @@ namespace Capstone.DAO
             recipe.RecipeId = Convert.ToInt32(reader["recipe_id"]);
             recipe.RecipeName = Convert.ToString(reader["recipe_name"]);
             recipe.RecipeInstructions = Convert.ToString(reader["recipe_instructions"]);
-            recipe.RecipeImage = Convert.ToString(reader["reader_image"]);
+            recipe.RecipeImage = Convert.ToString(reader["recipe_image"]);
             return recipe;
         }
 
