@@ -9,7 +9,7 @@ namespace Capstone.DAO
         public Meal GetMeal(int MealId);
         public Meal CreateMeal(Meal newMeal);
         public Meal UpdateMeal(Meal updatedMeal);
-        public bool AddRecipeToMeal(int mealId, int recipeId);
+        public bool AddRecipeToMeal(int mealId, Recipe recipe);
         public bool RemoveRecipeFromMeal(int mealId, int recipeId);
 
         public bool DeleteMeal(int mealId);

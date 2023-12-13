@@ -2,28 +2,28 @@
   <section class="recipe">
     <h3>Name: {{ recipe.recipeName }}</h3>
 
-    <section v-if="!hide" class="container">
-      <h4>Ingredients:</h4>
+    <section v-if="!hide && !showDetails"   class="container">
+      <div class="ingredients" >Ingredients:</div>
       <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
     </section>
 
-    <p>Instructions: {{ recipe.recipeInstructions }}</p>
+    <div class="instructions" v-if="!hide && !showDetails" >Instructions: {{ recipe.recipeInstructions }}</div>
 
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
         {{ feedback }}
       </button>
       <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipeId)"
-        v-if="!showEdit && !hide">
+        v-if="!showEdit && !hide && !hideMeals">
         View Recipe Details
       </button>
       <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')" v-if="showEdit">
         Edit Recipe
       </button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="showEdit">
         Delete Recipe
       </button>
-      <button class="btn-cancel" type="button" @click="cancel" v-if="!hide">Return</button>
+      <button class="btn-cancel" type="button" @click="cancel" v-if="showEdit">Return</button>
     </div>
     <p></p>
   </section>
@@ -43,9 +43,10 @@ export default {
     return {
       recipe: {},
       ingredients: [],
-      hide: this.$route.name == "recipe",
+      hide: this.$route.name == "recipe" , 
       showDetails: this.$route.name == "favorites",
       showEdit: this.$route.name == "userRecipeDetails",
+      hideMeals: this.$route.name == "createMeal",
       recipeId: 0,
       feedback: "Add Recipe To Favorites",
     };
@@ -144,7 +145,8 @@ export default {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: right;
   /* Center text for better appearance */
-  padding-right: 20%;
+  padding-right: 30%;
+  position:center;
 }
 
 h1 {
@@ -154,6 +156,7 @@ h1 {
 section {
   text-align: center;
   justify-content: space-between;
+  padding-bottom: 2px;
 }
 
 .container {
@@ -161,21 +164,19 @@ section {
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
   text-align: center;
-  padding: 3rem;
+  padding: 1em;
   border-radius: 1rem;
-  height: 10%;
+  padding-bottom: 1rem;
 }
 
 .recipe {
-  background-color: rgb(249, 205, 123);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   border-right: 90%;
-  border-color: black;
-  border-width: 10%;
+  border: solid black;
   margin-top: 1.9rem;
   border-radius: 1.2rem;
-  text-size-adjust: auto;
+  text-size-adjust: wrap;
 }
 
 .add-recipe-button {
@@ -189,8 +190,12 @@ form {
   max-width: 18.75rem;
   margin: auto;
   margin-top: 1.25rem;
-
+  border-bottom: 1rem;
   /* Add spacing between the button and the form */
+}
+.instructions{
+  text-align: center;
+  padding-top: flex;
 }
 
 form div {

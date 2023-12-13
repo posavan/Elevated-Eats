@@ -1,23 +1,24 @@
 <template>
   <h1>Meal Details</h1>
   <div class="Meal Details">
-    <Meal :key="meal.mealId" :item="meal" />
+    <meal :key="meal.mealId" :item="meal" />
   </div>
-  <div class="edit-meal"> 
+  <!-- <div class="edit-meal"> 
   <button v-on:click="this.$router.push('/meal/' + this.mealId + '/edit')">Edit Meal Details</button>
   </div>
   <div class="remove-meal">
     <button v-on:click.prevent="removeMeal" v-if="!hide">Delete Meal</button>
   </div>
+  <button class="btn-cancel" type="button" @click="cancel" v-if="!hide">Return</button> -->
 </template>
 
 <script>
-import Meal from "../components/Meal.vue";
+import meal from "../components/Meal.vue";
 import MealService from "../services/MealService";
 
 export default {
   components: {
-    Meal,
+    meal,
   },
   name: "MealDetailsView",
   data() {
@@ -25,17 +26,15 @@ export default {
       meal: {},
       mealName: "",
       mealId: 0,
+      hide: false
     };
   },
   methods: {
     loadMeal() {
-  
       MealService
-        .listRecipesFromMeal(this.mealId)
+        .getMeal(this.mealId)
         .then((response) => {
-   
           this.meal = response.data;
-
         })
         .catch((error) => {
           if (error.response) {
@@ -51,8 +50,7 @@ export default {
       MealService.deleteMeal(this.mealId)
         .then((response) => {
           console.log(response);
-          //this.$router.push({name: 'favorites' });
-          location.reload();
+          this.$router.back();
         })
         .catch((error) => {
           if (error.response) {
@@ -64,6 +62,9 @@ export default {
           }
         });
     },
+    cancel() {
+      this.$router.back();
+    }
   },
   created() {
    

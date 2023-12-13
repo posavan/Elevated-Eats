@@ -159,7 +159,7 @@ namespace Capstone.DAO
             }
         }
 
-        public bool AddRecipeToMeal(int mealId, int recipeId)
+        public bool AddRecipeToMeal(int mealId, Recipe recipe)
         {
             bool result = false;
 
@@ -176,6 +176,7 @@ namespace Capstone.DAO
 
                     SqlCommand cmd = new SqlCommand(checkSql, conn);
                     cmd.Parameters.AddWithValue("@meal_id", mealId);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
 
                     int count = Convert.ToInt32(cmd.ExecuteScalar());
 
@@ -187,7 +188,7 @@ namespace Capstone.DAO
                     cmd = new SqlCommand(sql, conn);
 
                     cmd.Parameters.AddWithValue("@meal_id", mealId);
-                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipe.RecipeId);
 
                     count = Convert.ToInt32(cmd.ExecuteScalar());
 

@@ -306,7 +306,7 @@ namespace Capstone.DAO
                     newRecipe = GetRecipeById(Convert.ToInt32(cmd.ExecuteScalar()));
                 }
 
-                newRecipe = GetRecipeById(recipe.RecipeId);
+                //newRecipe = GetRecipeById(newRecipe.RecipeId);
 
 
             }

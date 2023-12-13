@@ -2,60 +2,81 @@
   <div id="capstone-app">
     <div id="nav">
       <span id="home">
-       &nbsp;<router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
+        &nbsp;<router-link v-bind:to="{ name: 'home' }">Home</router-link
+        >&nbsp;|&nbsp;
       </span>
       <span id="mealplan">
-      <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token !=''">Meal Plans</router-link>&nbsp;
+        <router-link
+          v-bind:to="{ name: 'mealplan' }"
+          v-if="this.$store.state.token != ''"
+          >Meal Plans</router-link
+        >&nbsp;
       </span>
       <span id="user">
-      &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">My Recipes</router-link>&nbsp;
+        &nbsp;<router-link
+          v-bind:to="{ name: 'favorites' }"
+          v-if="this.$store.state.token != ''"
+          >My Recipes</router-link
+        >&nbsp;
       </span>
       <span id="recipe">
-      &nbsp;<router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''">Recipes</router-link>&nbsp;
+        &nbsp;<router-link
+          v-bind:to="{ name: 'recipe' }"
+          v-if="this.$store.state.token != ''"
+          >Recipes</router-link
+        >&nbsp;
       </span>
       <span id="meal">
-      &nbsp;<router-link v-bind:to="{ name: 'meal' }" v-if="this.$store.state.token != ''">Meals </router-link>&nbsp;
+        &nbsp;<router-link
+          v-bind:to="{ name: 'meal' }"
+          v-if="this.$store.state.token != ''"
+          >Meals </router-link
+        >&nbsp;
       </span>
       <span id="logout">
-       &nbsp;<router-link v-bind:to="{ name: 'logout' }" v-if="this.$store.state.token != ''">Logout</router-link>&nbsp;
+        &nbsp;<router-link
+          v-bind:to="{ name: 'logout' }"
+          v-if="this.$store.state.token != ''"
+          >Logout</router-link
+        >&nbsp;
       </span>
     </div>
     <router-view />
   </div>
 </template>
 
-
 <style>
-
 h1 {
   font-family:Georgia, 'Times New Roman', Times, serif;
   text-align: center;
   font-weight: normal;
 }
 h2 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
-h3{
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+h3 {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
-  
 }
 
 section.container {
   text-align: center;
+  position: center;
 }
 p {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
 div.button-container {
   text-align: center;
 }
 .container {
-  display: grid;
+  display: grid ;
+  border-width: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
+  position: center;
 }
 button {
   display: inline-block;
@@ -65,7 +86,7 @@ button {
   text-decoration: none;
   white-space: wrap;
   text-transform: none;
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-feature-settings: normal;
   font-style: normal;
   letter-spacing: normal;
@@ -74,7 +95,7 @@ button {
   font-size: 16px;
   font-weight: 500;
   overflow-wrap: normal;
-  border-width: .2rem;
+  border-width: 0.2rem;
   margin-bottom: 1.9rem;
   text-align: center;
 }
@@ -82,15 +103,14 @@ button:hover {
   border-style: dotted;
 }
 
-section.recipe{
+/* section.recipe {
   text-align: center;
 }
-section.meal{
+section.meal {
   background-color: rgb(255, 207, 111);
-  
-}
+} */
 
-html{
+html {
   background-color: white;
 }
 #nav {
@@ -101,7 +121,6 @@ html{
   padding: 10px;
   background-blend-mode: multiply;
 }
-
 
 #home,
 #recipe,
@@ -141,5 +160,4 @@ html{
   text-decoration: underline;
   cursor: pointer;
 }
-
 </style>
