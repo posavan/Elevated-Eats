@@ -54,9 +54,12 @@
     font-size: large;
     border: solid black;
     border-radius: 50px;
-    border: solid black
+    border: solid black;
+
   }
-  
+  h1{
+    text-align: center;
+  }
   button {
     padding: 1.25rem;
     background-color: #4caf50;

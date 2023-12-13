@@ -47,11 +47,7 @@
 
 <style>
 h1 {
-<<<<<<< HEAD
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-=======
   font-family:Georgia, 'Times New Roman', Times, serif;
->>>>>>> 434b7025756ff80357083d9272a1edb41512bf68
   text-align: center;
   font-weight: normal;
 }
@@ -115,19 +111,11 @@ html {
   background-color: white;
 }
 #nav {
-<<<<<<< HEAD
-  /* float: left; */
-  font-family: Georgia, "Times New Roman", Times, serif;
-  background-color: rgb(235, 142, 42);
-  color: black;
-  padding: 15px;
-=======
  /* float: left; */
  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
  background-color: rgb(235, 142, 42);
   color: white;
   padding: 10px;
->>>>>>> 434b7025756ff80357083d9272a1edb41512bf68
   background-blend-mode: multiply;
 }
 

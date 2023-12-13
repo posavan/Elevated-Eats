@@ -101,7 +101,7 @@ section.recipe {
   text-align: center;
 }
 .container {
-  display: flex;
+  position: center;
   flex-direction: row;
   text-align: center;
 }

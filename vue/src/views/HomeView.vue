@@ -111,24 +111,24 @@ a:hover {
 }
 
 .recipes:hover {
-  border-color: rgb(8, 155, 21);
+  border-color: white;
   border-style: solid;
   border-width: .325rem;
 }
 
 .my-recipes:hover {
-  border-color: rgb(8, 155, 21);
+  border-color: white;
   border-style: solid;
   border-width: .325rem;
 }
 
 .meal-plans:hover {
-  border-color: rgb(8, 155, 21);
+  border-color:white;
   border-style: solid;
   border-width: .325rem;
 }
 .meals:hover {
-  border-color: rgb(8, 155, 21);
+  border-color:white;
   border-style: solid;
   border-width: .325rem;
 }
