@@ -14,28 +14,27 @@
 
     <ingredient v-for="ingredient in addedIngredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient">
     </ingredient>
-
+    <div>
+      <label for="ingredients">Ingredient:</label>
+      <select v-model="newIngredient">
+        <option v-for="ingredient in ingredients" :key="ingredient.ingredientId" :value="ingredient">
+          {{ ingredient.ingredientName }}
+        </option>
+      </select>
+      <label for="type">Quantity: </label>
+      <input type="text" name="dropdown-quantity" id="dropdown-quantity" v-model="newIngredient.quantity" />
+      <button type="button" v-on:click="addIngredient">
+        Add Ingredient
+      </button>
+    </div>
     <div v-if="showAddIngredientForm">
       <label for="type">New Ingredient Name: </label>
-      <input type="text" name="new-ingredient-name" id="new-ingredient-name" v-model="newIngredient.ingredientName"/>
+      <input type="text" name="new-ingredient-name" id="new-ingredient-name" v-model="newIngredient.ingredientName" />
       <label for="type">New Ingredient Quantity: </label>
-      <input type="text" name="new-ingredient-quantity" id="new-ingredient-quantity" v-model="newIngredient.quantity"/>
+      <input type="text" name="new-ingredient-quantity" id="new-ingredient-quantity" v-model="newIngredient.quantity" />
       <button v-on:click.prevent="addNewIngredient">Add +</button>
     </div>
-
-    <label for="ingredients">Ingredient:</label>
-    <select v-model="newIngredient">
-      <option v-for="ingredient in ingredients" :key="ingredient.ingredientId" :value="ingredient">
-        {{ ingredient.ingredientName }}
-      </option>
-    </select>
-    <label for="type">Quantity: </label>
-    <input type="text" name="dropdown-quantity" id="dropdown-quantity" v-model="newIngredient.quantity"/>
-
-    <button type="button" v-on:click="addIngredient">
-      Add Ingredient
-    </button>
-    <button type="button" v-on:click="showAddIngredientForm = true">
+    <button type="button" v-on:click="showAddIngredientForm = !showAddIngredientForm">
       Create New Ingredient
     </button>
 
@@ -86,7 +85,6 @@ export default {
       ingredientService
         .list()
         .then((response) => {
-          console.log("reached loadIngredients", response.data);
           this.ingredients = response.data;
         })
         .catch((error) => {
@@ -101,15 +99,13 @@ export default {
           }
         });
     },
-
+    addIngredient() {
+      this.addedIngredients.push(
+        this.newIngredient
+      );
+      this.newIngredient = {};
+    },
     addIngredientsToRecipe() {
-      //   if (this.selected) {
-      //     this.addedIngredients.push({
-      //       ingredientName: this.selected.ingredientName,
-      //       quantity: this.selected.quantity,
-      //     });
-      //     this.selected = {};
-      //   }
       this.editRecipe.ingredientList = this.addedIngredients;
       recipeService
         .addIngredientsToRecipe(this.editRecipe)
@@ -183,12 +179,7 @@ export default {
         });
 
     },
-    addIngredient() {
-      this.addedIngredients.push(
-        this.newIngredient
-      );
-      this.newIngredient = {};
-    },
+
 
     cancelForm() {
       this.$router.back();

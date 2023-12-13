@@ -14,16 +14,16 @@
         {{ feedback }}
       </button>
       <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipeId)"
-        v-if="!showEdit && !hide">
+        v-if="!showEdit && !hide && !hideMeals">
         View Recipe Details
       </button>
       <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')" v-if="showEdit">
         Edit Recipe
       </button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="!hide">
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="showEdit">
         Delete Recipe
       </button>
-      <button class="btn-cancel" type="button" @click="cancel" v-if="!hide">Return</button>
+      <button class="btn-cancel" type="button" @click="cancel" v-if="showEdit">Return</button>
     </div>
     <p></p>
   </section>
@@ -46,6 +46,7 @@ export default {
       hide: this.$route.name == "recipe",
       showDetails: this.$route.name == "favorites",
       showEdit: this.$route.name == "userRecipeDetails",
+      hideMeals: this.$route.name == "createMeal",
       recipeId: 0,
       feedback: "Add Recipe To Favorites",
     };

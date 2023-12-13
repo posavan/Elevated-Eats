@@ -7,11 +7,17 @@
       <recipe v-for="recipe in item.recipeList" v-bind:key="recipe.recipeId" v-bind:item="recipe" />
     </section>
     <div class="button-container">
-      <button class="edit-meal" v-on:click="this.$router.push('/meal/' + this.mealId + '/edit')" v-if="showEdit">
+      <button class="view-meal-details" v-on:click="this.$router.push(`/meal/${this.mealId}`)" v-if="showDetails || show">
+        View Meal Details
+      </button>
+      <button class="edit-meal" v-on:click="this.$router.push(`/meal/${this.mealId}/edit`)" v-if="showRecipes">
         Edit Meal
       </button>
-      <button class="view-meal-details" v-on:click="this.$router.push('/meal/' + this.mealId)" v-if="showDetails || show">
-        View Meal Details
+      <button class="delete-meal" v-on:click.prevent="deleteMeal" v-if="showRecipes">
+        Delete Meal Plan
+      </button>
+      <button class="btn-cancel" type="button" @click="cancel" v-if="!showDetails">
+        Return
       </button>
     </div>
   </section>
@@ -20,8 +26,8 @@
 <script>
 import recipe from "../components/Recipe.vue";
 import RecipeService from "../services/RecipeService";
-import MealService from "../services/MealService.js";
-import MealPlanService from "../services/MealPlanService";
+import mealService from "../services/MealService.js";
+import mealPlanService from "../services/MealPlanService";
 
 export default {
   components: {
@@ -39,30 +45,30 @@ export default {
       showDetails: this.$route.name == "meal",
       showRecipes: this.$route.name == "mealDetailsView",
       showEdit: this.$route.name == "EditMealView",
-      show: this.$route.name == "editMealPlan"
+      show: this.$route.name == "editMealPlan",
     };
   },
   methods: {
-    loadMeals() {
-      console.log(this.meal, "this meal");
-      MealService.list(this.meal.mealId)
-        .then((response) => {
-          console.log("response", response);
-          this.meal = response.data;
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log("Error loading meals: ", error.response.status);
-          } else if (error.request) {
-            console.log("Error loading meals: unable to communicate to server");
-          } else {
-            console.log("Error loading meals: make request");
-          }
-        });
-    },
+    // loadMeals() {
+    //   mealService
+    //     .list(this.meal.mealId)
+    //     .then((response) => {
+    //       console.log("response", response);
+    //       this.meal = response.data;
+    //     })
+    //     .catch((error) => {
+    //       if (error.response) {
+    //         console.log("Error loading meals: ", error.response.status);
+    //       } else if (error.request) {
+    //         console.log("Error loading meals: unable to communicate to server");
+    //       } else {
+    //         console.log("Error loading meals: make request");
+    //       }
+    //     });
+    // },
     loadRecipes() {
-      console.log(this.meal, "this meal");
-      MealService.listRecipesFromMeal(this.meal.mealId)
+      mealService
+        .listRecipesFromMeal(this.meal.mealId)
         .then((response) => {
           console.log("response", response);
           this.recipes = response.data;
@@ -98,41 +104,66 @@ export default {
     //       }
     //     });
     // },
-    saveMeal() {
-      MealPlanService.addMealToMealPlan(this.meal)
+
+    // saveMeal() {
+    //   mealService
+    //     .createMeal(this.meal)
+    //     .then((response) => {
+    //       console.log(response);
+    //       this.$router.push({ name: "meal" });
+    //       this.buttonClick();
+    //       //location.reload();
+    //     })
+    //     .catch((error) => {
+    //       if (error.response) {
+    //         console.log("Error saving meal: ", error.response.status);
+    //       } else if (error.request) {
+    //         console.log("Error saving meal: unable to communicate to server");
+    //       } else {
+    //         console.log("Error saving meal: make request");
+    //       }
+    //     });
+    // },
+    deleteMeal() {
+      mealService
+        .deleteMeal(this.meal.mealId)
         .then((response) => {
           console.log(response);
-          this.$router.push({ name: "meal" });
-          this.buttonClick();
-          //location.reload();
+          // if (!this.show) {
+          //     this.cancel();
+          // }
+          this.cancel();
         })
         .catch((error) => {
           if (error.response) {
-            console.log("Error saving meal: ", error.response.status);
+            console.log("Error removing mealplan: ", error.response.status);
           } else if (error.request) {
-            console.log("Error saving meal: unable to communicate to server");
+            console.log(
+              "Error removing mealplan: unable to communicate to server"
+            );
           } else {
-            console.log("Error saving meal: make request");
+            console.log("Error removing mealplan: make request");
           }
         });
+    },
+    cancel() {
+      this.$router.back();
     },
     buttonClick() {
       this.feedback = "Added";
     },
   },
   created() {
-    console.log(" step 4 reached created load recipes");
     this.meal = this.item;
-
-    console.log("logging this meal", this.meal)
     this.mealId = this.meal.mealId;
-    if (this.$route.name == "meal") {
-      this.loadMeals();
-    } else if (this.$route.name == "mealDetailsView") {
-      if (this.meal.recipeList) {
-        this.loadRecipes();
-      }
+    // if (this.$route.name == "meal") {
+    //   this.loadMeals();
+    // } else 
+    // if (this.$route.name == "mealDetailsView") {
+    if (this.meal.recipeList) {
+      this.loadRecipes();
     }
+
   },
 };
 </script>

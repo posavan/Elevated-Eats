@@ -4,20 +4,20 @@ export default {
     list() {
         return axios.get('/meal');
     },
-    // getMeal(mealId) {
-    //     return axios.get(`/meal/${mealId}`);
-    // },
+    getMeal(mealId) {
+        return axios.get(`/meal/${mealId}`);
+    },
     createMeal(newMeal) {
         return axios.post(`/meal`, newMeal);
     },
     listRecipesFromMeal(mealId) {
-        return axios.get(`/meal/${mealId}`);
+        return axios.get(`/meal/${mealId}/recipes`);
     },
     updateMeal(newMeal) {
         return axios.put(`/meal`, newMeal);
     },
-    addRecipeToMeal(mealId, recipeId) {
-        return axios.post(`/meal/${mealId}`, recipeId);
+    addRecipeToMeal(mealId, recipe) {
+        return axios.post(`/meal/${mealId}`, recipe);
     },
     removeRecipeFromMeal(mealId, recipeId) {
         return axios.delete(`/meal/${mealId}/${recipeId}`);

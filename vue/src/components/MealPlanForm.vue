@@ -69,7 +69,6 @@ export default {
       mealService
         .list()
         .then((response) => {
-          console.log("reached loadMeals", response.data);
           this.meals = response.data;
         })
         .catch((error) => {
@@ -140,7 +139,6 @@ export default {
     cancel() {
       this.$router.back();
     }
-
 
   },
   created() {
