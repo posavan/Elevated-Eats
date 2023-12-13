@@ -157,6 +157,9 @@ INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES (1, 'Bre
 INSERT INTO meals (meal_name, meal_description) VALUES ('Breakfast', 'IDK');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Lunch', 'IDK');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Dinner', 'IDK');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Appetizers', 'IDK');
+
+
 
 insert into meals_recipes (meal_id, recipe_id) VALUES (1,1);
 insert into meals_recipes (meal_id, recipe_id) VALUES (1,3);
