@@ -23,11 +23,10 @@
     </div>
 
     <button class="btn-create-meal" type="button" @click="this.$router.push({ name: 'createMeal' })"
-      v-if="showCreate">Create
-      New Meal</button>
+      v-if="showCreate">Create New Meal</button>
     <div class="actions">
       <button class="btn-submit" type="submit">Save Meal Plan</button>
-      <button class="btn-cancel" type="button" @click="cancel" v-if="show">Cancel</button>
+      <button class="btn-cancel" type="button" @click="cancel" v-if="!hide">Return</button>
     </div>
   </form>
 </template>
@@ -49,6 +48,7 @@ export default {
   },
   data() {
     return {
+      hide: this.$route.name == "mealplan",
       show: this.$route.name == "editMealPlan",
       showCreate: this.$route.name == "viewMealPlanDetails",
       showSave: this.$route.name == "addMealPlan",
@@ -92,13 +92,35 @@ export default {
       this.addedMeals.push(this.selected);
     },
 
-    createNewMealPlan() {
+    addMealsToMealPlan() {
       this.editMealPlan.mealList = this.addedMeals;
+      this.addedMeals.forEach(addedMeal => {
+        mealPlanService
+          .addMealToPlan(this.editMealPlan.mealPlanId, addedMeal)
+          .then(() => {
+            this.addedMeals = [];
+          })
+          .catch((error) => {
+            if (error.response) {
+              console.log("Error adding mealplan: ", error.response.status);
+            } else if (error.request) {
+              console.log(
+                "Error adding mealplan: unable to communicate to server"
+              );
+            } else {
+              console.log("Error adding mealplan: make request");
+            }
+          });
+      });
+    },
+
+    createNewMealPlan() {
       if (this.editMealPlan.mealPlanName) {
         mealPlanService
           .createMealPlan(this.editMealPlan)
-          .then(() => {
-            this.editMealPlan = {};
+          .then((response) => {
+            this.editMealPlan = response.data;
+            this.addMealsToMealPlan();
             this.$router.push({ name: "mealplan" });
           })
           .catch((error) => {
