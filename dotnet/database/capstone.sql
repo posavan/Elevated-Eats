@@ -33,7 +33,7 @@ CREATE TABLE recipes (
     recipe_id int IDENTITY (1,1) NOT NULL,
 	user_id int,
 	recipe_name varchar(60) NOT NULL,
-	recipe_instructions varchar(500) NOT NULL,
+	recipe_instructions varchar(5000) NOT NULL,
 	recipe_image varchar(500),
 	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id)
 )
@@ -84,6 +84,7 @@ CREATE TABLE meal_plans (
 	meal_plan_description varchar(60),
 		meal_plan_image varchar(500),
     user_id int NOT NULL,
+	meal_plan_image varchar(500),
     CONSTRAINT PK_meal_plans PRIMARY KEY (meal_plan_id),
     CONSTRAINT FK_meal_plans_users FOREIGN KEY (user_id) 
 	REFERENCES users (user_id)
@@ -161,6 +162,10 @@ INSERT INTO meals (meal_name, meal_description) VALUES ('Breakfast', 'IDK');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Lunch', 'IDK');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Dinner', 'IDK');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Appetizers', 'IDK');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Snacks', 'IDK');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Desserts', 'IDK');
+
+
 
 
 
