@@ -68,12 +68,15 @@ section.mealplan {
     border-width: 1rem;
     border:solid black;
     
+    
 }
 
 .container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
     gap: 10px;
+    padding: 10%;
+  padding-top: .05%;
     
 }
 
@@ -89,7 +92,6 @@ form {
     color: white;
     text-align: center;
     padding: 14px 16px;
-    background-color: rgb(169, 235, 161);
     border-radius: 50px;
     margin-left: 40%;
     margin-right: 40%;

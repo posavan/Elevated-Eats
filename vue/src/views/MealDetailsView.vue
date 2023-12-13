@@ -1,6 +1,6 @@
 <template>
   <h1>Meal Details</h1>
-  <div class="Meal Details">
+  <div class="meal-details">
     <meal :key="meal.mealId" :item="meal" />
   </div>
   <!-- <div class="edit-meal"> 
@@ -84,6 +84,13 @@ div {
   text-align: center;
   border-radius: 50px;
   padding: auto;
+}
+p{
+  font-weight: bold;
+}
+.meal-details{
+  padding: 10%;
+  padding-top: .05%;
 }
 
 button.remove-meal {

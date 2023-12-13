@@ -110,6 +110,8 @@ section.recipe {
   position: center;
   flex-direction: row;
   text-align: center;
+  padding: 10%;
+  padding-top: .05%;
 }
 
 h1{
