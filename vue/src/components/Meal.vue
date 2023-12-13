@@ -182,8 +182,12 @@ h1 {
   padding: 1%;
   border-left: 10%;
   border-right: 10%;
+  
 }
-
+.container{
+  padding: 10%;
+  padding-top: .05%;
+}
 .meal:hover {
   color: black;
 }

@@ -131,6 +131,8 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
+  padding: 10%;
+  padding-top: .05%;
 }
 
 form {

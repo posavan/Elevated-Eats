@@ -1,8 +1,8 @@
 <template>
   <h1>Recipe Details</h1>
-  <div class="Recipe Details">
+  <section class="container">
     <recipe :key="recipe.recipeName" :item="recipe" />
-  </div>
+  </section>
 </template>
 
 <script>
@@ -50,6 +50,10 @@ export default {
 </script>
 
 <style scoped>
+.container{
+  padding: 10%;
+  padding-top: .05%;
+}
 /* h1 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
