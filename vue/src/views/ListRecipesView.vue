@@ -47,7 +47,7 @@ export default {
             this.newRecipe = {};
             this.showForm = false;
             this.loadRecipes();
-            location.refresh();
+            location.reload();
             //this.$router.push({name:"favorites"})
           })
           .catch((error) => {

@@ -24,7 +24,7 @@
         Delete Meal Plan
       </button>
       <button class="btn-cancel" type="button" @click="cancel" v-if="!show">
-        Cancel
+        Return
       </button>
     </div>
     <p></p>

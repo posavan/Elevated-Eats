@@ -17,9 +17,9 @@
 
     <div v-if="showAddIngredientForm">
       <label for="type">New Ingredient Name: </label>
-      <input type="text" name="new-ingredient-name" id="new-ingredient-name" v-model="newIngredient.ingredientName" />
+      <input type="text" name="new-ingredient-name" id="new-ingredient-name" v-model="newIngredient.ingredientName"/>
       <label for="type">New Ingredient Quantity: </label>
-      <input type="text" name="new-ingredient-quantity" id="new-ingredient-quantity" v-model="newIngredient.quantity" />
+      <input type="text" name="new-ingredient-quantity" id="new-ingredient-quantity" v-model="newIngredient.quantity"/>
       <button v-on:click.prevent="addNewIngredient">Add +</button>
     </div>
 
@@ -30,7 +30,7 @@
       </option>
     </select>
     <label for="type">Quantity: </label>
-    <input type="text" name="dropdown-quantity" id="dropdown-quantity" v-model="newIngredient.quantity" />
+    <input type="text" name="dropdown-quantity" id="dropdown-quantity" v-model="newIngredient.quantity"/>
 
     <button type="button" v-on:click="addIngredient">
       Add Ingredient
@@ -46,7 +46,7 @@
     <div class="actions">
       <button class="btn-submit" type="submit">Save Recipe</button>
       <button class="btn-cancel" type="button" v-on:click="cancelForm">
-        Cancel
+        Return
       </button>
     </div>
   </form>
