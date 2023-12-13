@@ -1,6 +1,7 @@
 <template>
   <section class="recipe">
     <h3>{{ recipe.recipeName }}</h3>
+    <div class="image" >{{ recipe.recipeImage }}</div>
 
     <section v-if="!hide && !showDetails && hideMealsRecipes"   class="container">
       <div class="ingredients" >Ingredients:</div>

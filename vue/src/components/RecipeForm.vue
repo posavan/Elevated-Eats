@@ -5,8 +5,12 @@
         <input type="text" name="name" id="name" v-model="editRecipe.recipeName" />
       </div>
       <div>
-        <label for="description">Description: </label>
-        <input type="text" name="description" id="description" v-model="editRecipe.recipeDescription"/>
+        <label for="instructions">Instructions: </label>
+        <input type="text" name="instructions" id="instructions" v-model="editRecipe.recipeInstructions"/>
+      </div>
+      <div>
+        <label for="image">Image URL: </label>
+        <input type="text" name="image" id="image" v-model="editRecipe.recipeImage"/>
       </div>
       <div class="actions">
         <button class="btn-submit" type="submit">Add and Continue</button>
@@ -30,7 +34,8 @@
         editRecipe: {
           recipeId: this.recipe.recipeId,
           recipeName: this.recipe.recipeName,
-          recipeDescription: this.recipe.recipeDescription,
+          recipeInstructions: this.recipe.recipeInstructions,
+          recipeImage: this.recipe.recipeImage,
         },
         mealId: this.recipe.mealId,
       };

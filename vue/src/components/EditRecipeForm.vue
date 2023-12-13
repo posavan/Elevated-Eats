@@ -38,9 +38,14 @@
     </button>
 
     <div>
-      <label for="name">Edit Instructions: </label>
+      <label for="instructions">Edit Instructions: </label>
       <input type="text" name="edit-instructions" id="edit-instructions" v-model="editRecipe.recipeInstructions" />
     </div>
+    <div>
+      <label for="image">Edit Image URL: </label>
+      <input type="text" name="edit-image" id="edit-image" v-model="editRecipe.recipeImage" />
+    </div>
+
     <div class="actions">
       <button class="btn-submit" type="submit">Save Recipe</button>
       <button class="btn-cancel" type="button" v-on:click="cancelForm">
@@ -68,6 +73,7 @@ export default {
         recipeName: this.recipe.recipeName,
         recipeInstructions: this.recipe.recipeInstructions,
         ingredientList: this.recipe.ingredientList,
+        recipeImage: this.recipe.recipeImage,
       },
       showAddIngredientForm: false,
       newIngredient: {

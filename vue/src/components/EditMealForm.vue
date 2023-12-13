@@ -12,8 +12,10 @@
       <label for="type">Edit Recipe Name: </label>
       <input type="text" name="edit-recipe-name" id="edit-recipe-name" v-model="recipe.recipeName" />
 
-      <label for="type">Edit Recipe Description: </label>
-      <input type="text" name="edit-recipe-description" id="edit-recipe-description" v-model="recipe.recipeDescription" />
+      <label for="instructions">Edit Recipe Instructions: </label>
+      <input type="text" name="edit-recipe-instructions" id="edit-recipe-instructions" v-model="recipe.recipeInstructions" />
+      <label for="image">Edit Recipe Image URL: </label>
+      <input type="text" name="edit-recipe-image" id="edit-recipe-image" v-model="recipe.recipeImage" />
     </div>
 
     <recipe v-for="recipe in addedRecipes" v-bind:key="recipe.recipeId" v-bind:item="recipe">
@@ -32,9 +34,12 @@
     <div v-if="showRecipeForm">
       <label for="type">New Recipe Name: </label>
       <input type="text" name="new-recipe-name" id="new-recipe-name" v-model="newRecipe.recipeName" />
-      <label for="type">New Recipe Description: </label>
-      <input type="text" name="new-recipe-description" id="new-recipe-description"
-        v-model="newRecipe.recipeDescription" />
+      <label for="type">New Recipe Instructions: </label>
+      <input type="text" name="new-recipe-instructions" id="new-recipe-instructions"
+        v-model="newRecipe.recipeInstructions" />
+        <label for="type">New Recipe Image URL: </label>
+      <input type="text" name="new-recipe-image" id="new-recipe-image"
+        v-model="newRecipe.recipeImage" />
       <button v-on:click.prevent="addNewRecipe">Add +</button>
     </div>
     <button type="button" v-on:click="showRecipeForm = !showRecipeForm">
@@ -77,8 +82,9 @@ export default {
       newRecipe: {
         recipeId: 0,
         recipeName: "",
-        recipeDescription: "",
-        ingredientList: []
+        recipeInstructions: "",
+        ingredientList: [],
+        recipeImage: ""
       }
     };
   },
