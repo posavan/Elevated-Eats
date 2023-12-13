@@ -123,15 +123,7 @@ namespace Capstone.Controllers
         [HttpPut("favorites/edit/ingredients")]
         public ActionResult<Recipe> AddIngredientsToRecipe(Recipe recipe)
         {
-            // Check if each ingredient exists in the master list
-            //foreach (Ingredient ingredient in recipe.IngredientList)
-            //{
-            //    if (ingredientDao.IngredientExists(ingredient))
-            //    {
-            //        // Handle the case where the ingredient already exist
-            //        return BadRequest($"Ingredient {ingredient.IngredientName} already exists in the master list.");
-            //    }
-            //}
+
             bool result = dao.AddIngredientsToRecipe(recipe);
 
             return Ok(result);

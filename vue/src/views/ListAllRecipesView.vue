@@ -3,7 +3,7 @@
   <div class="list-all-recipes">
     <section class="container">
       <recipe v-for="recipe in allRecipes" v-bind:key="recipe.recipeId" v-bind:item="recipe">
-        <button v-on:click="addRecipeToUser">Save Recipe To Favorites</button>
+        <button v-on:click="addRecipeToUser">Copy Recipe To Favorites</button>
       </recipe>
     </section>
     <form v-on:submit.prevent="createNewRecipe" v-show="showForm">
