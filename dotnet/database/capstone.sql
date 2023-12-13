@@ -1,4 +1,4 @@
-USE master
+﻿USE master
 GO
 
 --drop database if it exists
@@ -33,7 +33,7 @@ CREATE TABLE recipes (
     recipe_id int IDENTITY (1,1) NOT NULL,
 	user_id int,
 	recipe_name varchar(60) NOT NULL,
-	recipe_instructions varchar(500) NOT NULL,
+	recipe_instructions varchar(5000) NOT NULL,
 	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id)
 )
 
@@ -103,22 +103,25 @@ INSERT INTO ingredients (ingredient_name) VALUES ( 'Rice' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'Eggs' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'Milk' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'basil' )
-INSERT INTO ingredients (ingredient_name) VALUES ( 'garlic' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'cumin' )
 
 INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Calzone' , 'Delicious Italian Delicacy')
 INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Carbonara' , 'Carbs')
 INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Tapioca' , 'yummy yummy')
 INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Pastel' , 'mhhmm mhhmm')
+INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Homemade Lasagna' , '1. Preheat the oven to 350°F. In a large pot of salted water, boil lasagna noodles until al dente according to package directions. 
+Drain, rinse under cold water, and set aside. 2. In a large skillet or dutch oven, brown beef, sausage, onion, and garlic over medium-high heat until no pink remains. Drain any fat.
+3. Stir in the pasta sauce, tomato paste, Italian seasoning, ½ teaspoon of salt, and ¼ teaspoon of black pepper. Simmer uncovered over medium heat for 5 minutes or until thickened.
+4. In a separate bowl, combine 1 ½ cups mozzarella, ¼ cup parmesan cheese, ricotta, parsley, egg, and ¼ teaspoon salt.
+5. Spread 1 cup of the meat sauce in a 9x13 pan or casserole dish. Top it with 3 lasagna noodles. Layer with ⅓ of the ricotta cheese mixture and 1 cup of meat sauce. Repeat twice more. Finish with 3 noodles topped with remaining sauce.
+6. Cover with foil and bake for 45 minutes. 
+7. Remove the foil and sprinkle with the remaining 2 ½ cups mozzarella cheese and ¼ cup parmesan cheese. Bake for an additional 15 minutes or until browned and bubbly. Broil for 2-3 minutes if desired.
+8. Rest for at least 15 minutes before cutting.')
 
 INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Pizza', 'Bake for 30 mins');
 INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (2, 'Pasta', 'Boil for 25 mins');
 INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (2, 'Cake', 'Bake for 1 hour');
 
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
-	VALUES ( 5, 2, '1 ea');
-INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
-	VALUES ( 5, 1 ,'2 ea');
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
 	VALUES ( 2, 3, '2 ea');
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
@@ -147,6 +150,53 @@ INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (
 insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 1, 'Breakfast');
 insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 3, 'Dinner');
 insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (2, 1, 'Breakfast');
+
+
+
+
+--ingredients for lasagna
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Lasagna noodles' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Shredded Mozzarella' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Shredded Parmesan' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Ground Beef' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Italian Sausage' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Onion' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Garlic' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Pasta Sauce' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Tomato Paste' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Italian Seasoning' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Egg' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Ricotta Cheese' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Fresh Parsley' )
+
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 6, '12 noodles, uncooked');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 7, '4 cups, divided');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 8, '1/2 cup, divided');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 9, '1/2 lb.');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 10, '1/2 lb.');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 11, '1, diced');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 12, '2 cloves, minced');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 13, '36 oz.');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 14, '2 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 15, '1 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 16, '1');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 17, '2 cups');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 5, 18, '1/4 cup, chopped');
+
 
 
 GO
