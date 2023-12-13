@@ -9,13 +9,12 @@
 
       <label for="type">Edit Ingredient Quantity: </label>
       <input type="text" name="edit-ingredient-quantity" id="edit-ingredient-quantity" v-model="ingredient.quantity" />
-
     </div>
 
     <ingredient v-for="ingredient in addedIngredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient">
     </ingredient>
     <div>
-      <label for="ingredients">Ingredient:</label>
+      <label for="ingredient">Ingredient:</label>
       <select v-model="newIngredient">
         <option v-for="ingredient in ingredients" :key="ingredient.ingredientId" :value="ingredient">
           {{ ingredient.ingredientName }}
@@ -39,9 +38,14 @@
     </button>
 
     <div>
-      <label for="name">Edit Instructions: </label>
+      <label for="instructions">Edit Instructions: </label>
       <input type="text" name="edit-instructions" id="edit-instructions" v-model="editRecipe.recipeInstructions" />
     </div>
+    <div>
+      <label for="image">Edit Image URL: </label>
+      <input type="text" name="edit-image" id="edit-image" v-model="editRecipe.recipeImage" />
+    </div>
+
     <div class="actions">
       <button class="btn-submit" type="submit">Save Recipe</button>
       <button class="btn-cancel" type="button" v-on:click="cancelForm">
@@ -69,6 +73,7 @@ export default {
         recipeName: this.recipe.recipeName,
         recipeInstructions: this.recipe.recipeInstructions,
         ingredientList: this.recipe.ingredientList,
+        recipeImage: this.recipe.recipeImage,
       },
       showAddIngredientForm: false,
       newIngredient: {
@@ -126,8 +131,6 @@ export default {
     },
 
     updateRecipe() {
-      console.log('UpdatingRecipe...');
-      console.log('editRecipe', this.editRecipe);
       this.addIngredientsToRecipe();
       recipeService
         .updateRecipe(this.editRecipe)
@@ -151,7 +154,6 @@ export default {
           }
         });
     },
-
 
     addNewIngredient() {
       this.storeQuantity = this.newIngredient.quantity;

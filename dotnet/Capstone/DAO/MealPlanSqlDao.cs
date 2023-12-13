@@ -21,16 +21,17 @@ namespace Capstone.DAO
             this.recipeDao = new RecipeSqlDao(dbConnectionString);
         }
 
-        string getListSql = "SELECT meal_plan_id, meal_plan_name, meal_plan_description, user_id " +
+        string getListSql = "SELECT meal_plan_id, meal_plan_name, meal_plan_description, user_id, meal_plan_image " +
             "FROM meal_plans WHERE user_id = @user_id;";
-        string getMealPlanSql = "SELECT meal_plan_id, meal_plan_name, meal_plan_description, user_id " +
+        string getMealPlanSql = "SELECT meal_plan_id, meal_plan_name, meal_plan_description, user_id, meal_plan_image " +
             "FROM meal_plans WHERE meal_plan_id = @meal_plan_id";
 
-        string createSql = "INSERT INTO meal_plans (meal_plan_name, meal_plan_description, user_id) " +
+        string createSql = "INSERT INTO meal_plans (meal_plan_name, meal_plan_description, user_id, meal_plan_image) " +
             "OUTPUT INSERTED.meal_plan_id " +
-            "VALUES (@name, @description, @user_id);";
+            "VALUES (@name, @description, @user_id, @image);";
         string updateSql = "UPDATE meal_plans " +
-            "SET meal_plan_name = @meal_plan_name, meal_plan_description = @meal_plan_description " +
+            "SET meal_plan_name = @meal_plan_name, meal_plan_description = @meal_plan_description, " +
+            "meal_plan_image=@meal_plan_image " +
             "WHERE meal_plan_id = @meal_plan_id AND user_id = @user_id";
 
         string checkMealSql = "SELECT * FROM meal_plans_meals WHERE meal_plan_id=@meal_plan_id AND " +
@@ -43,7 +44,7 @@ namespace Capstone.DAO
         string deleteMealsSql = "DELETE FROM meal_plans_meals " +
             "WHERE meal_plan_id = @meal_plan_id";
         string deleteSql = "DELETE FROM meal_plans WHERE meal_plan_id=@meal_plan_id;";
-        string getMealsSql = "SELECT m.meal_id, m.meal_name, m.meal_description " +
+        string getMealsSql = "SELECT m.meal_id, m.meal_name, m.meal_description, m.meal_image " +
             "FROM meals m JOIN meal_plans_meals mpm ON m.meal_id = mpm.meal_id " +
             "WHERE mpm.meal_plan_id = @meal_plan_id;";
 
@@ -125,6 +126,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.Parameters.AddWithValue("@name", mealPlan.MealPlanName);
                     cmd.Parameters.AddWithValue("@description", mealPlan.MealPlanDescription);
+                    cmd.Parameters.AddWithValue("@meal_plan_image", mealPlan.MealPlanImage);
                     mealplan = GetMealPlanById(Convert.ToInt32(cmd.ExecuteScalar()));
                 }
             }
@@ -147,6 +149,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@meal_plan_name", mealPlan.MealPlanName);
                     cmd.Parameters.AddWithValue("@meal_plan_description", mealPlan.MealPlanDescription);
                     cmd.Parameters.AddWithValue("@meal_plan_id", mealPlan.MealPlanId);
+                    cmd.Parameters.AddWithValue("@meal_plan_image", mealPlan.MealPlanImage);
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     int count = cmd.ExecuteNonQuery();
 
@@ -323,6 +326,7 @@ namespace Capstone.DAO
             mealplan.MealPlanName = Convert.ToString(reader["meal_plan_name"]);
             mealplan.MealPlanDescription = Convert.ToString(reader["meal_plan_description"]);
             mealplan.UserId = Convert.ToInt32(reader["user_id"]);
+            mealplan.MealPlanImage = Convert.ToString(reader["meal_plan_image"]);
             return mealplan;
         }
 

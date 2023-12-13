@@ -20,6 +20,7 @@ export default {
         recipeId: 0,
         recipeName: "",
         recipeInstructions: "",
+        recipeImage: ""
       },
     };
   },
@@ -68,6 +69,7 @@ export default {
       console.log('logging editRecipe', this.editRecipe);
       this.editRecipe.recipeName = this.recipeName;
       this.editRecipe.recipeInstructions = this.recipeInstructions;
+      this.editRecipe.recipeImage = this.recipeImage;
       recipeService.GetUserRecipeByRecipeId(this.editRecipe.recipeId)
       .then((response) => {
           console.log(response.data);

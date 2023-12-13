@@ -14,8 +14,12 @@
         <input type="text" name="name" id="name" v-model="newRecipe.recipeName" />
       </div>
       <div>
-        <label for="type">Instructions: </label>
+        <label for="instructions">Instructions: </label>
         <input type="text" name="recipeInstructions" id="recipeInstructions" v-model="newRecipe.recipeInstructions" />
+      </div>
+      <div>
+        <label for="image">Image URL: </label>
+        <input type="text" name="recipeImage" id="recipeImage" v-model="newRecipe.recipeImage" />
       </div>
       <button type="submit">Save Recipe</button>
     </form>

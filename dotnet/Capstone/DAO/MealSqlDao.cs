@@ -25,7 +25,7 @@ namespace Capstone.DAO
         {
             List<Meal> meals = new List<Meal>();
 
-            string sql = "SELECT meal_id, meal_name, meal_description FROM meals;";
+            string sql = "SELECT meal_id, meal_name, meal_description, meal_image FROM meals;";
 
             try
             {
@@ -59,7 +59,7 @@ namespace Capstone.DAO
         {
             Meal meal = null;
 
-            string sql = " SELECT meal_id, meal_name, meal_description " +
+            string sql = " SELECT meal_id, meal_name, meal_description, meal_image " +
                          "FROM meals " +
                          "WHERE meal_id = @meal_id ";
 
@@ -96,9 +96,9 @@ namespace Capstone.DAO
         {
             newMeal.MealId = 0;
 
-            string sql = "INSERT INTO meals (meal_name, meal_description) " +
+            string sql = "INSERT INTO meals (meal_name, meal_description, meal_image) " +
                          "OUTPUT INSERTED.meal_id " +
-                         "VALUES (@meal_name, @meal_description) ";
+                         "VALUES (@meal_name, @meal_description, @meal_image) ";
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -109,6 +109,7 @@ namespace Capstone.DAO
                     {
                         cmd.Parameters.AddWithValue("@meal_name", newMeal.MealName);
                         cmd.Parameters.AddWithValue("@meal_description", newMeal.MealDescription);
+                        cmd.Parameters.AddWithValue("@meal_image", newMeal.MealImage);
                         newMeal.MealId = (int)cmd.ExecuteScalar();
                     }
                 }
@@ -124,7 +125,8 @@ namespace Capstone.DAO
         public Meal UpdateMeal(Meal updatedMeal)
         {
             string sql = "UPDATE meals " +
-                         "SET meal_name = @meal_name, meal_description = @meal_description  " +
+                         "SET meal_name = @meal_name, meal_description = @meal_description,  " +
+                         "meal_image = @meal_image "+
                          "WHERE meal_id = @meal_id";
 
             try
@@ -138,6 +140,7 @@ namespace Capstone.DAO
                         cmd.Parameters.AddWithValue("@meal_name", updatedMeal.MealName);
                         cmd.Parameters.AddWithValue("@meal_description", updatedMeal.MealDescription);
                         cmd.Parameters.AddWithValue("@meal_id", updatedMeal.MealId);
+                        cmd.Parameters.AddWithValue("@meal_image", updatedMeal.MealImage);
 
                         int count = cmd.ExecuteNonQuery();
 
@@ -273,7 +276,7 @@ namespace Capstone.DAO
         {
             List<Recipe> recipes = new List<Recipe>();
 
-            string sql = "SELECT r.recipe_id, r.recipe_name, r.recipe_instructions " +
+            string sql = "SELECT r.recipe_id, r.recipe_name, r.recipe_instructions, r.recipe_image " +
             "FROM recipes r JOIN meals_recipes mr ON r.recipe_id = mr.recipe_id " +
             "WHERE mr.meal_id = @meal_id;";
 
@@ -310,6 +313,7 @@ namespace Capstone.DAO
             meal.MealId = Convert.ToInt32(reader["meal_id"]);
             meal.MealName = Convert.ToString(reader["meal_name"]);
             meal.MealDescription = Convert.ToString(reader["meal_description"]);
+            meal.MealImage = Convert.ToString(reader["meal_image"]);
             return meal;
         }
         
@@ -319,6 +323,7 @@ namespace Capstone.DAO
             recipe.RecipeId = Convert.ToInt32(reader["recipe_id"]);
             recipe.RecipeName = Convert.ToString(reader["recipe_name"]);
             recipe.RecipeInstructions = Convert.ToString(reader["recipe_instructions"]);
+            recipe.RecipeImage = Convert.ToString(reader["recipe_image"]);
             return recipe;
         }
 

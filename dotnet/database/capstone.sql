@@ -63,7 +63,7 @@ CREATE TABLE meals (
     meal_id int IDENTITY (1,1) NOT NULL,
     meal_name varchar(60) NOT NULL,
     meal_description varchar(500) NOT NULL,
-	recipe_image varchar(500),
+	meal_image varchar(500),
     CONSTRAINT PK_meals PRIMARY KEY (meal_id),
 )
 
@@ -82,8 +82,8 @@ CREATE TABLE meal_plans (
     meal_plan_id int IDENTITY (1,1) NOT NULL,
 	meal_plan_name varchar(60),
 	meal_plan_description varchar(60),
-    user_id int NOT NULL,
 	meal_plan_image varchar(500),
+    user_id int NOT NULL,
     CONSTRAINT PK_meal_plans PRIMARY KEY (meal_plan_id),
     CONSTRAINT FK_meal_plans_users FOREIGN KEY (user_id) 
 	REFERENCES users (user_id)

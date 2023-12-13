@@ -8,6 +8,7 @@ namespace Capstone.Models
         public int UserId { get; set; } = 0;
         public string RecipeName { get; set; }
         public string RecipeInstructions { get; set; } = "";
+        public string RecipeImage { get; set; } = "";
         public List<Ingredient> IngredientList { get; set; } = new List<Ingredient>();
     }
 }

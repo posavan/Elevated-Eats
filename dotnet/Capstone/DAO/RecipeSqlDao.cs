@@ -23,7 +23,7 @@ namespace Capstone.DAO
         {
             IList<Recipe> recipes = new List<Recipe>();
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes;";
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions, recipe_image FROM recipes;";
 
 
             try
@@ -55,7 +55,7 @@ namespace Capstone.DAO
         {
             IList<Recipe> recipes = new List<Recipe>();
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes " +
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions, recipe_image FROM recipes " +
                 "WHERE user_id = @user_id;";
 
             try
@@ -88,7 +88,7 @@ namespace Capstone.DAO
         {
             Recipe recipe = null;
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes " +
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions, recipe_image FROM recipes " +
                 "WHERE recipe_id = @recipe_id";
 
             try
@@ -122,7 +122,7 @@ namespace Capstone.DAO
         {
             Recipe recipe = null;
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes " +
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions, recipe_image FROM recipes " +
                 "WHERE recipe_id = @recipe_id";
 
             try
@@ -154,7 +154,7 @@ namespace Capstone.DAO
         {
             Recipe recipe = null;
 
-            string sql = "SELECT recipe_id, recipe_name, recipe_instructions FROM recipes " +
+            string sql = "SELECT recipe_id, recipe_name, recipe_instructions, recipe_image FROM recipes " +
                 "WHERE recipe_name = @name";
 
             try
@@ -222,8 +222,8 @@ namespace Capstone.DAO
         public Recipe AddRecipeToUser(Recipe recipe, int userId)
         {
             Recipe newRecipe = null;
-            string sql = "INSERT INTO recipes (user_id, recipe_name, recipe_instructions) " +
-                         "VALUES (@user_id, @recipe_name, @recipe_instructions);";
+            string sql = "INSERT INTO recipes (user_id, recipe_name, recipe_instructions, recipe_image) " +
+                         "VALUES (@user_id, @recipe_name, @recipe_instructions, @recipe_image);";
 
             try
             {
@@ -235,6 +235,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.Parameters.AddWithValue("@recipe_name", recipe.RecipeName);
                     cmd.Parameters.AddWithValue("@recipe_instructions", recipe.RecipeInstructions);
+                    cmd.Parameters.AddWithValue("@recipe_image", recipe.RecipeImage);
                     cmd.ExecuteScalar();
                     //newRecipe = GetRecipeById(Convert.ToInt32(cmd.ExecuteScalar())); returns null
                 }
@@ -290,9 +291,9 @@ namespace Capstone.DAO
         {
             Recipe newRecipe = null;
 
-            string sql = "INSERT INTO recipes (user_id, recipe_name, recipe_instructions) " +
+            string sql = "INSERT INTO recipes (user_id, recipe_name, recipe_instructions, recipe_image) " +
                          "OUTPUT INSERTED.recipe_id " +
-                         "VALUES (@user_id, @name, @instructions);";
+                         "VALUES (@user_id, @name, @instructions, @image);";
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
@@ -303,6 +304,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@user_id", userId);
                     cmd.Parameters.AddWithValue("@name", recipe.RecipeName);
                     cmd.Parameters.AddWithValue("@instructions", recipe.RecipeInstructions);
+                    cmd.Parameters.AddWithValue("@image", recipe.RecipeImage);
                     newRecipe = GetRecipeById(Convert.ToInt32(cmd.ExecuteScalar()));
                 }
 
@@ -321,8 +323,9 @@ namespace Capstone.DAO
         public Recipe ModifyRecipe(Recipe updatedRecipe)
         {
             //method to update a recipe that a user has saved
-            string sqlUpdateRecipe = "UPDATE recipes SET recipe_name = @recipe_name, recipe_instructions = @recipe_instructions  " +
-                            "WHERE recipe_id = @recipe_id";
+            string sqlUpdateRecipe = "UPDATE recipes SET recipe_name = @recipe_name, recipe_instructions = @recipe_instructions,  " +
+                "recipe_image=@recipe_image "+            
+                "WHERE recipe_id = @recipe_id";
 
             try
             {
@@ -333,7 +336,8 @@ namespace Capstone.DAO
                     SqlCommand cmd = new SqlCommand(sqlUpdateRecipe, conn);
                     cmd.Parameters.AddWithValue("@recipe_name", updatedRecipe.RecipeName);
                     cmd.Parameters.AddWithValue("@recipe_instructions", updatedRecipe.RecipeInstructions);
-                    cmd.Parameters.AddWithValue("recipe_id", updatedRecipe.RecipeId);
+                    cmd.Parameters.AddWithValue("@recipe_id", updatedRecipe.RecipeId);
+                    cmd.Parameters.AddWithValue("@recipe_image", updatedRecipe.RecipeImage);
 
                     int count = cmd.ExecuteNonQuery();
                     if (count == 1)
@@ -444,6 +448,7 @@ namespace Capstone.DAO
             recipe.RecipeId = Convert.ToInt32(reader["recipe_id"]);
             recipe.RecipeName = Convert.ToString(reader["recipe_name"]);
             recipe.RecipeInstructions = Convert.ToString(reader["recipe_instructions"]);
+            recipe.RecipeImage = Convert.ToString(reader["recipe_image"]);
             return recipe;
         }
 

@@ -1,20 +1,24 @@
 <template>
   <section class="recipe">
     <h3>{{ recipe.recipeName }}</h3>
+    <div class="image">
+      <img v-bind:src="recipe.recipeImage" />
+    </div>
 
-    <section v-if="!hide && !showDetails && hideMealsRecipes"   class="container">
-      <div class="ingredients" >Ingredients:</div>
+    <section v-if="!hide && !showDetails && hideMealsRecipes" class="container">
+      <div class="ingredients">Ingredients:</div>
       <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
     </section>
 
-    <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes " >Instructions: {{ recipe.recipeInstructions }}</div>
+    <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes">Instructions: {{ recipe.recipeInstructions
+    }}</div>
 
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
         {{ feedback }}
       </button>
       <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipeId)"
-        v-if="!showEdit && !hide && !hideMeals ">
+        v-if="!showEdit && !hide && !hideMeals">
         View Recipe Details
       </button>
       <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')" v-if="showEdit">
@@ -43,7 +47,7 @@ export default {
     return {
       recipe: {},
       ingredients: [],
-      hide: this.$route.name == "recipe" , 
+      hide: this.$route.name == "recipe",
       showDetails: this.$route.name == "favorites",
       showEdit: this.$route.name == "userRecipeDetails",
       hideMealsRecipes: this.$route.name == "userRecipeDetails",
@@ -147,8 +151,12 @@ export default {
   text-align: right;
   /* Center text for better appearance */
   padding-right: 30%;
-  position:center;
+  position: center;
 }
+
+/* .recipe.image {
+  image: url("/img/homeview.jpg");
+} */
 
 h1 {
   text-align: center;
@@ -180,9 +188,11 @@ section {
   border-radius: 1.2rem;
   text-size-adjust: wrap;
 }
-.ingredients{
+
+.ingredients {
   font-weight: bold;
 }
+
 .add-recipe-button {
   margin-top: 1.25rem;
   align-items: center;
@@ -197,7 +207,8 @@ form {
   border-bottom: 1rem;
   /* Add spacing between the button and the form */
 }
-.instructions{
+
+.instructions {
   text-align: center;
   padding-top: 3%;
   padding-left: 5%;
@@ -205,7 +216,7 @@ form {
   text-indent: 50px;
   line-height: 2;
   white-space: wrap;
-  
+
 }
 
 form div {
@@ -246,5 +257,4 @@ button {
 
 button:hover {
   border-style: dotted;
-}
-</style>
+}</style>
