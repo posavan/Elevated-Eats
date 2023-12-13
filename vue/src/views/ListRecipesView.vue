@@ -99,9 +99,11 @@ section.recipe {
   width: 90%;
   padding: 2%;
   text-align: center;
+  border-color: solid black;
+  border-width: .2rem;
 }
 .container {
-  display: flex;
+  position: center;
   flex-direction: row;
   text-align: center;
 }

@@ -174,7 +174,8 @@ h1 {
 }
 
 .meal {
-  background-color: rgb(132, 226, 170);
+  border: solid black;
+  background-color: rgb(249, 205, 123);
   border-radius: 0.5rem;
   margin-bottom: 1.25rem;
   width: 97%;

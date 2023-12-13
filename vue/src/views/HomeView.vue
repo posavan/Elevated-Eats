@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <h1>Elevated Eating</h1>
+    <h1>Elevated Eats</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="meal-plans">
       <a
@@ -56,7 +56,7 @@ export default {};
 
 <style scoped>
 div.home {
-  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family:Georgia, 'Times New Roman', Times, serif;
   background-color: white;
   background-image: url("../../homeview.jpg");
   color: white;
@@ -111,24 +111,24 @@ a:hover {
 }
 
 .recipes:hover {
-  border-color: rgb(8, 155, 21);
+  border-color: white;
   border-style: solid;
   border-width: .325rem;
 }
 
 .my-recipes:hover {
-  border-color: rgb(8, 155, 21);
+  border-color: white;
   border-style: solid;
   border-width: .325rem;
 }
 
 .meal-plans:hover {
-  border-color: rgb(8, 155, 21);
+  border-color:white;
   border-style: solid;
   border-width: .325rem;
 }
 .meals:hover {
-  border-color: rgb(8, 155, 21);
+  border-color:white;
   border-style: solid;
   border-width: .325rem;
 }

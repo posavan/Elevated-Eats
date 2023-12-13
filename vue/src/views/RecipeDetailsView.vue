@@ -50,7 +50,7 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+/* h1 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
   background-color: rgb(210, 184, 244);
@@ -63,6 +63,5 @@ div {
   font-size: large;
   text-align: center;
   border-radius: 50px;
-  padding: auto;
-}
+} */
 </style>

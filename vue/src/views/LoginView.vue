@@ -70,20 +70,29 @@ export default {
 };
 </script>
 
+
 <style scoped>
-div#login {
-  background-color:white;
-  /* border-radius: 10%; */
+h1{
   text-align: center;
+  color:rgb(235, 142, 42);
+  margin-left: .1%;
   
 }
+/* div#login {
+  background-color:white;
+  border-radius: 10%;
+  text-align: center;
+  
+} */
 .form-input-group {
   margin-bottom: 1rem;
   text-align: center;
 }
+
 label {
-  margin-right: 0.5rem;
+  margin-right: 70px;
 }
+
 form {
   padding-top: 15%;
   background-color: white;
@@ -92,52 +101,54 @@ form {
   text-align: center;
   border-radius: 50%;
   padding: auto;
-  color:rgb(235, 142, 42);
+
 }
+
 button {
   display: block;
   color: white;
-  text-align: center;
+  align-items: center;
   padding: 14px 16px;
   text-decoration: none;
   background-color:grey;
   border-radius: 50px;
-  margin-left: 48%;
+  margin-left: 47%;
   border-top: none;
   border-left: none;
   border-right: none;
   border-bottom: none;
 }
+
 p {
   margin: 20px;
   padding-bottom: 15%;
   padding-top: 1%;
 }
-input#username {
-  width: 10%;
-  height: 25px;
-  padding-top: 10px;
-  margin-bottom: 15px;
-  background: lightgray;
-  border-bottom: 1px solid #fff;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  text-align: center;
-  font-size: large;
-}
-input#password {
-  width: 10%;
-  height: 25px;
-  padding-top: 10px;
-  margin-bottom: 15px;
-  background: lightgray;
-  border-bottom: 1px solid #fff;
-  border-top: none;
-  border-left: none;
-  border-right: none;
-  text-align: center;
-  font-size: large;
 
+input#username {
+  width: 12%;
+  height:35px;
+  margin-bottom: 15px;
+  background: lightgray;
+  border-bottom: 1px solid #fff;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  text-align: center;
+}
+
+input#password {
+  width: 12%;
+  height: 25px;
+  padding-top: 10px;
+  margin-bottom: 15px;
+  text-align: center;
+  border-radius: 1rem;
+  background: lightgray;
+  border-bottom: 1px solid #fff;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+ 
 }
 </style>

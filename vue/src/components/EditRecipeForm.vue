@@ -242,17 +242,6 @@ label {
   padding-left: 4rem;
 }
 
-input[type="text"] {
-  width: 60%;
-  padding: 8px;
-  margin-bottom: 12px;
-  box-sizing: border-box;
-  border-radius: 1rem;
-  background-color: rgb(255, 237, 202);
-  ;
-  text-align: center;
-}
-
 select {
   width: 50%;
   padding: 8px;

@@ -165,7 +165,7 @@ section {
 
 .add-mealplan-button {
   margin-top: 1.25rem;
-  align-items: center;
+  position: center;
 }
 
 form {
