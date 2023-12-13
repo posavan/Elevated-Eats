@@ -2,7 +2,7 @@
     <div class="list-groceries">
         <h1>Grocery List</h1>
         <section class="container">
-            <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
+            <ingredient v-for="ingredient in groceries" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
         </section>
         <div class="actions">
             <button class="btn-cancel" type="button" @click="cancel">Cancel</button>
@@ -12,12 +12,12 @@
 
 <script>
 import mealPlanService from '../services/MealPlanService.js';
-import ingredient from '../components/Ingredient.vue';
+import Ingredient from '../components/Ingredient.vue';
 
 export default {
     name: "GroceriesView",
     components: {
-        ingredient,
+        Ingredient
     },
     prop: {
         params: [
