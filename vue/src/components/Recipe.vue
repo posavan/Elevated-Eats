@@ -110,7 +110,7 @@ export default {
         .then((response) => {
           console.log(response);
           //this.$router.push({name: 'favorites' });
-          location.reload();
+          this.cancel();
         })
         .catch((error) => {
           if (error.response) {
@@ -154,9 +154,10 @@ export default {
   position: center;
 }
 
-/* .recipe.image {
-  image: url("/img/homeview.jpg");
-} */
+img {
+  width:350px;
+  height: auto;
+}
 
 h1 {
   text-align: center;

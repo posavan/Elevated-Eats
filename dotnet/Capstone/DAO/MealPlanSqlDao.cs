@@ -52,7 +52,8 @@ namespace Capstone.DAO
             "JOIN recipes_ingredients ri ON i.ingredient_id=ri.ingredient_id " +
             "JOIN meals_recipes mr ON ri.recipe_id=mr.recipe_id " +
             "JOIN meal_plans_meals mpm ON mr.meal_id=mpm.meal_id " +
-            "WHERE mpm.meal_plan_id=@meal_plan_id;";
+            "WHERE mpm.meal_plan_id=@meal_plan_id " +
+            "ORDER BY i.ingredient_name, ri.quantity;";
 
         public List<MealPlan> ListMealPlansByUserId(int userId)
         {
