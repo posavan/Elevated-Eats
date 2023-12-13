@@ -46,6 +46,11 @@
 </template>
 
 <style>
+body{
+  margin: 0%;
+  padding: 0%;
+  border: 0%;
+}
 h1 {
   font-family:Georgia, 'Times New Roman', Times, serif;
   text-align: center;
