@@ -70,6 +70,7 @@ p {
 }
 div.button-container {
   text-align: center;
+  padding: 2%;
 }
 .container {
   display: grid ;
