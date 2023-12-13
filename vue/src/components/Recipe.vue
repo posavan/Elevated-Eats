@@ -199,7 +199,13 @@ form {
 }
 .instructions{
   text-align: center;
-  padding-top: flex;
+  padding-top: 3%;
+  padding-left: 5%;
+  padding-right: 5%;
+  text-indent: 50px;
+  line-height: 2;
+  white-space: wrap;
+  
 }
 
 form div {

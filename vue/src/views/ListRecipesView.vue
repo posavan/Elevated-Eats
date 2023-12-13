@@ -98,7 +98,7 @@ export default {
 section.recipe {
   background-color: rgb(255, 207, 111);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  border-radius: 0.5rem;
+  border-radius: 1.25rem;
   margin-bottom: 1.25rem;
   width: 90%;
   padding: 2%;

@@ -9,7 +9,7 @@
         <router-link
           v-bind:to="{ name: 'mealplan' }"
           v-if="this.$store.state.token != ''"
-          >Meal Plans</router-link
+          >My Meal Plans</router-link
         >&nbsp;
       </span>
       <span id="user">
