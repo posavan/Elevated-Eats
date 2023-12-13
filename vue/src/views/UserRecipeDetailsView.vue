@@ -1,5 +1,5 @@
 <template>
-  <h1>User Recipe Details</h1>
+  <h1>Recipe Details</h1>
   <div class="User-Recipe-Details">
     <recipe :key="recipe.recipeId" :item="recipe" />
   </div>

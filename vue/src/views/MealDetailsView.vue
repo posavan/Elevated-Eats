@@ -87,6 +87,7 @@ div {
 }
 
 button.remove-meal {
+padding-top: 10%;
   align-items: right;
 }
 .edit-meal-details{
