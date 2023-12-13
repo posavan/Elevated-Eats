@@ -1,20 +1,20 @@
 <template>
   <section class="recipe">
-    <h3>Name: {{ recipe.recipeName }}</h3>
+    <h3>{{ recipe.recipeName }}</h3>
 
-    <section v-if="!hide && !showDetails"   class="container">
+    <section v-if="!hide && !showDetails && hideMealsRecipes"   class="container">
       <div class="ingredients" >Ingredients:</div>
       <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
     </section>
 
-    <div class="instructions" v-if="!hide && !showDetails" >Instructions: {{ recipe.recipeInstructions }}</div>
+    <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes " >Instructions: {{ recipe.recipeInstructions }}</div>
 
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
         {{ feedback }}
       </button>
       <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipeId)"
-        v-if="!showEdit && !hide && !hideMeals">
+        v-if="!showEdit && !hide && !hideMeals ">
         View Recipe Details
       </button>
       <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')" v-if="showEdit">
@@ -46,6 +46,7 @@ export default {
       hide: this.$route.name == "recipe" , 
       showDetails: this.$route.name == "favorites",
       showEdit: this.$route.name == "userRecipeDetails",
+      hideMealsRecipes: this.$route.name == "userRecipeDetails",
       hideMeals: this.$route.name == "createMeal",
       recipeId: 0,
       feedback: "Add Recipe To Favorites",
@@ -178,7 +179,9 @@ section {
   border-radius: 1.2rem;
   text-size-adjust: wrap;
 }
-
+.ingredients{
+  font-weight: bold;
+}
 .add-recipe-button {
   margin-top: 1.25rem;
   align-items: center;

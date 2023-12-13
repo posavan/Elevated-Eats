@@ -1,6 +1,6 @@
 <template>
   <section class="mealplan">
-    <h3>Name: {{ mealplan.mealPlanName }}</h3>
+    <h3>Plan: {{ mealplan.mealPlanName }}</h3>
     <p>Description: {{ mealplan.mealPlanDescription }}</p>
     <section v-if="showDetails" class="container">
       <h4>Meals:</h4>
