@@ -1,5 +1,5 @@
 <template>
-  <h1>Edit Meal: {{ editMeal.mealId }}</h1>
+  <h1>Edit Meal</h1>
   <edit-meal-form v-bind:meal="editMeal.mealId" />
 </template>
 
