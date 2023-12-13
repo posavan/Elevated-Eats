@@ -69,26 +69,26 @@ export default {
         });
     },
 
-    createMealPlan() {
-      mealPlanService
-        .addMealToPlan(this.meal)
-        .then((response) => {
-          console.log(response);
-          this.$router.push({ name: "mealplan" });
-          this.buttonClick();
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log("Error saving mealplan: ", error.response.status);
-          } else if (error.request) {
-            console.log(
-              "Error saving mealplan: unable to communicate to server"
-            );
-          } else {
-            console.log("Error saving mealplan: make request");
-          }
-        });
-    },
+    // createMealPlan() {
+    //   mealPlanService
+    //     .addMealToPlan(this.meal)
+    //     .then((response) => {
+    //       console.log(response);
+    //       this.$router.push({ name: "mealplan" });
+    //       this.buttonClick();
+    //     })
+    //     .catch((error) => {
+    //       if (error.response) {
+    //         console.log("Error saving mealplan: ", error.response.status);
+    //       } else if (error.request) {
+    //         console.log(
+    //           "Error saving mealplan: unable to communicate to server"
+    //         );
+    //       } else {
+    //         console.log("Error saving mealplan: make request");
+    //       }
+    //     });
+    // },
 
     deleteMealPlan() {
       mealPlanService

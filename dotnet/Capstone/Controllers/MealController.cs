@@ -25,9 +25,9 @@ namespace Capstone.Controllers
             return Ok(dao.ListMeals());
         }
 
-        // meal/recipeId
+        // meal/mealId/recipes
 
-        [HttpGet("{recipeId}/recipes")]
+        [HttpGet("{mealId}/recipes")]
         public ActionResult<List<Recipe>> GetRecipesByMealId(int mealId)
         {
             return Ok(dao.GetRecipesByMealId(mealId));
@@ -76,9 +76,9 @@ namespace Capstone.Controllers
         }
 
         [HttpPost("{mealId}")]
-        public ActionResult<Meal> AddRecipeToMeal(int mealId, int recipeId)
+        public ActionResult<Meal> AddRecipeToMeal(int mealId, Recipe recipe)
         {
-            bool result = dao.AddRecipeToMeal(mealId, recipeId);
+            bool result = dao.AddRecipeToMeal(mealId, recipe);
 
             return Ok(result);
         }
