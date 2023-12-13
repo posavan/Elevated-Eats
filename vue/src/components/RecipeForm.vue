@@ -6,7 +6,7 @@
       </div>
       <div>
         <label for="description">Description: </label>
-        <input type="text" name="description" id="description" v-model="editRecipe.recipeDescription" />
+        <input type="text" name="description" id="description" v-model="editRecipe.recipeDescription"/>
       </div>
       <div class="actions">
         <button class="btn-submit" type="submit">Add and Continue</button>

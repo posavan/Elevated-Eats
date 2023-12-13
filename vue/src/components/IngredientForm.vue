@@ -12,7 +12,7 @@
     <div class="actions">
       <button class="btn-continue" type="submit">Save Ingredient</button>
       <button class="btn-submit" type="submit">Save and Continue Adding</button>
-      <button class="btn-cancel" type="button" v-on:click="cancelForm">Cancel</button>
+      <button class="btn-cancel" type="button" v-on:click="cancelForm">Return</button>
     </div>
   </form>
 </template>

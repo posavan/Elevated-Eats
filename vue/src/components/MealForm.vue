@@ -23,7 +23,7 @@
       <button class="btn-create-recipe" type="button" @click="$router.push({ name: 'createRecipe' })">Create New Recipe</button>
       <div class="actions">
         <button class="btn-submit" type="submit">Create Meal</button>
-        <button class="btn-cancel" type="button" @click="cancelForm">Cancel</button>
+        <button class="btn-cancel" type="button" @click="cancelForm">Return</button>
       </div>
     </form>
   </template>

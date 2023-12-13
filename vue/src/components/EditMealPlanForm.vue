@@ -26,7 +26,7 @@
             Create New Meal</button>
         <div class="actions">
             <button class="btn-submit" type="submit">Save Meal Plan</button>
-            <button class="btn-cancel" type="button" @click="cancel" v-if="show">Cancel</button>
+            <button class="btn-cancel" type="button" @click="cancel" v-if="show">Return</button>
         </div>
     </form>
 </template>

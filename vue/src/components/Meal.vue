@@ -4,25 +4,13 @@
     <p>Description: {{ item.mealDescription }}</p>
     <section v-if="showRecipes" class="container">
       <p>Recipes:</p>
-      <recipe
-        v-for="recipe in item.recipeList"
-        v-bind:key="recipe.recipeId"
-        v-bind:item="recipe"
-      />
+      <recipe v-for="recipe in item.recipeList" v-bind:key="recipe.recipeId" v-bind:item="recipe" />
     </section>
     <div class="button-container">
-      <button
-        class="edit-meal"
-        v-on:click="this.$router.push('/meal/' + this.mealId + '/edit')"
-        v-if="showEdit"
-      >
+      <button class="edit-meal" v-on:click="this.$router.push('/meal/' + this.mealId + '/edit')" v-if="showEdit">
         Edit Meal
       </button>
-      <button
-        class="view-meal-details"
-        v-on:click="this.$router.push('/meal/' + this.mealId)"
-        v-if="showDetails"
-      >
+      <button class="view-meal-details" v-on:click="this.$router.push('/meal/' + this.mealId)" v-if="showDetails || show">
         View Meal Details
       </button>
     </div>
@@ -51,6 +39,7 @@ export default {
       showDetails: this.$route.name == "meal",
       showRecipes: this.$route.name == "mealDetailsView",
       showEdit: this.$route.name == "EditMealView",
+      show: this.$route.name == "editMealPlan"
     };
   },
   methods: {
@@ -134,8 +123,8 @@ export default {
   created() {
     console.log(" step 4 reached created load recipes");
     this.meal = this.item;
-    
-    console.log("logging this meal",this.meal)
+
+    console.log("logging this meal", this.meal)
     this.mealId = this.meal.mealId;
     if (this.$route.name == "meal") {
       this.loadMeals();
@@ -162,6 +151,7 @@ h1 {
   border-left: 10%;
   border-right: 10%;
 }
+
 .meal:hover {
   color: black;
 }
