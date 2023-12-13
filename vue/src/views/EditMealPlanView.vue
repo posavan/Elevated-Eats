@@ -11,7 +11,7 @@ import mealPlanService from "../services/MealPlanService";
 import EditMealPlanForm from "../components/EditMealPlanForm.vue";
 
 export default {
-    components: {EditMealPlanForm},
+    components: { EditMealPlanForm },
     prop: {
         mealplan: {
             type: Object,
@@ -39,11 +39,11 @@ export default {
                 })
                 .catch((error) => {
                     if (error.response) {
-                        console.log("Error loading recipe: ", error.response.status);
+                        console.log("Error loading mealplan: ", error.response.status);
                     } else if (error.request) {
-                        console.log("Error loading recipe: unable to communicate to server");
+                        console.log("Error loading mealplan: unable to communicate to server");
                     } else {
-                        console.log("Error loading recipe: make request");
+                        console.log("Error loading mealplan: make request");
                     }
                 });
         },
@@ -56,8 +56,17 @@ export default {
                         name: "EditMealPlanView",
                         params: { id: this.editMealPlan.mealPlanId },
                     });
+                    console.log("Meal plan edited successfully", response);
                 })
-                .catch((error) => { })
+                .catch((error) => {
+                    if (error.response) {
+                        console.log("Error updating Meal: ", error.response.status);
+                    } else if (error.request) {
+                        console.log("Error updating Meal: unable to communicate to server");
+                    } else {
+                        console.log("Error updating Meal: make request");
+                    }
+                });
         },
 
     },

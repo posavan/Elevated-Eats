@@ -9,13 +9,12 @@
 
       <label for="type">Edit Ingredient Quantity: </label>
       <input type="text" name="edit-ingredient-quantity" id="edit-ingredient-quantity" v-model="ingredient.quantity" />
-
     </div>
 
     <ingredient v-for="ingredient in addedIngredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient">
     </ingredient>
     <div>
-      <label for="ingredients">Ingredient:</label>
+      <label for="ingredient">Ingredient:</label>
       <select v-model="newIngredient">
         <option v-for="ingredient in ingredients" :key="ingredient.ingredientId" :value="ingredient">
           {{ ingredient.ingredientName }}
@@ -126,8 +125,6 @@ export default {
     },
 
     updateRecipe() {
-      console.log('UpdatingRecipe...');
-      console.log('editRecipe', this.editRecipe);
       this.addIngredientsToRecipe();
       recipeService
         .updateRecipe(this.editRecipe)
@@ -151,7 +148,6 @@ export default {
           }
         });
     },
-
 
     addNewIngredient() {
       this.storeQuantity = this.newIngredient.quantity;

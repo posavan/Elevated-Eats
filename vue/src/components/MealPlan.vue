@@ -7,9 +7,6 @@
       <meal v-for="meal in meals" v-bind:key="meal.mealId" v-bind:item="meal" />
     </section>
     <div class="button-container">
-      <!-- <button class="save-mealplan" v-on:click.prevent="createMealPlan" v-if="false">
-                {{ feedback }}
-            </button> -->
       <button class="view-mealplan-details" v-on:click="this.$router.push(`/mealplan/${this.mealPlanId}`)" v-if="show">
         View Meal Plan Details
       </button>
