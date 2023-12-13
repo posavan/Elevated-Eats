@@ -54,8 +54,6 @@
     font-size: large;
     border: solid black;
     border-radius: 50px;
-    border: solid black;
-
   }
   h1{
     text-align: center;

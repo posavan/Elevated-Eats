@@ -62,6 +62,7 @@ h3 {
 
 section.container {
   text-align: center;
+  position: center;
 }
 p {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -71,9 +72,11 @@ div.button-container {
   text-align: center;
 }
 .container {
-  display: grid;
+  display: grid ;
+  border-width: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
+  position: center;
 }
 button {
   display: inline-block;
@@ -100,12 +103,12 @@ button:hover {
   border-style: dotted;
 }
 
-section.recipe {
+/* section.recipe {
   text-align: center;
 }
 section.meal {
   background-color: rgb(255, 207, 111);
-}
+} */
 
 html {
   background-color: white;
