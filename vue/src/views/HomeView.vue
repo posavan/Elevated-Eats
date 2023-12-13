@@ -58,7 +58,7 @@ export default {};
 div.home {
   font-family:Georgia, 'Times New Roman', Times, serif;
   background-color: white;
-  background-image: url("../../homeview.jpg");
+  background-image: url("/img/homeview.jpg");
   color: white;
   padding-top: 100px;
   padding-bottom: 13%;

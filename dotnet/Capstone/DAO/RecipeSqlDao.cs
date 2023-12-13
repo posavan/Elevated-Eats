@@ -324,7 +324,7 @@ namespace Capstone.DAO
         {
             //method to update a recipe that a user has saved
             string sqlUpdateRecipe = "UPDATE recipes SET recipe_name = @recipe_name, recipe_instructions = @recipe_instructions,  " +
-                "recipe_image=@recipe_image"+            
+                "recipe_image=@recipe_image "+            
                 "WHERE recipe_id = @recipe_id";
 
             try
