@@ -109,14 +109,14 @@ INSERT INTO ingredients (ingredient_name) VALUES ( 'basil' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'cumin' )
 
 
-INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES ( 1, 'Homemade Lasagna' , '1. Preheat the oven to 350°F. In a large pot of salted water, boil lasagna noodles until al dente according to package directions. Drain, rinse under cold water, and set aside. 
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions, recipe_image ) VALUES ( 1, 'Homemade Lasagna' , '1. Preheat the oven to 350°F. In a large pot of salted water, boil lasagna noodles until al dente according to package directions. Drain, rinse under cold water, and set aside. 
 2. In a large skillet or dutch oven, brown beef, sausage, onion, and garlic over medium-high heat until no pink remains. Drain any fat.
 3. Stir in the pasta sauce, tomato paste, Italian seasoning, ½ teaspoon of salt, and ¼ teaspoon of black pepper. Simmer uncovered over medium heat for 5 minutes or until thickened.
 4. In a separate bowl, combine 1 ½ cups mozzarella, ¼ cup parmesan cheese, ricotta, parsley, egg, and ¼ teaspoon salt.
 5. Spread 1 cup of the meat sauce in a 9x13 pan or casserole dish. Top it with 3 lasagna noodles. Layer with 1/3 of the ricotta cheese mixture and 1 cup of meat sauce. Repeat twice more. Finish with 3 noodles topped with remaining sauce.
 6. Cover with foil and bake for 45 minutes. 
 7. Remove the foil and sprinkle with the remaining 2 ½ cups mozzarella cheese and ¼ cup parmesan cheese. Bake for an additional 15 minutes or until browned and bubbly. Broil for 2-3 minutes if desired.
-8. Rest for at least 15 minutes before cutting.')
+8. Rest for at least 15 minutes before cutting.', '/img/Lasagna.jpg')
 INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES ( 1, 'Mexican Corn Dip' , '1. In a slow cooker, mix together the corn, rotel, cream cheese, shredded cheese, green onions, garlic, and chili powder. 2. Cook on high for an hour or on low for a few hours.')
 INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES ( 1, 'Homemade Mozzarella Sticks' , '1. Line a rimmed baking sheet with parchment paper, set aside. 
 2. In a small shallow bowl, mix the flour with salt, pepper, and garlic powder.

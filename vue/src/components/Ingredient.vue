@@ -23,12 +23,16 @@ export default {
 </script>
 
 <style>
+
+
 section.ingredient {
-  display: grid
+  display: flex;
+  /* justify-content: center; */
+  align-items: center;
 }
 
 .column {
-  border: 3px rgb(216, 117, 81) solid;
+  /* border: 3px rgb(216, 117, 81) solid; */
   text-align: center;
   padding: 10px;
 }
