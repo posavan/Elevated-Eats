@@ -126,10 +126,11 @@ form{
 div.label{
   font-weight: bold;
 }
-/* .add-recipe{
-  display: block;
-  color: white;
+ .add-recipe{
   text-align: center;
+  margin-bottom: 100px;
+  /*display: block;
+  color: white;
   padding: 10px;
   border-radius: 50px;
   margin-left: 50%;
@@ -140,10 +141,8 @@ div.label{
   margin-bottom: 0.9%;
   text-decoration: none;
   font-family: sans-serif;
-  font-size: 16px;
-} */
-
-
+  font-size: 16px;*/
+} 
 
 /* CSS */
 .button {
