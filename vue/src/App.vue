@@ -144,7 +144,7 @@ html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: rgb(245, 141, 30);
   color: white;
-  padding: 10px;
+  padding: 9px;
   background-blend-mode: multiply;
 }
 

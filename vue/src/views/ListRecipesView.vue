@@ -111,6 +111,7 @@ section.recipe {
   text-align: center;
   padding: 5%;
   padding-top: .1%;
+  padding-bottom: 0%;
 }
 
 h1{
