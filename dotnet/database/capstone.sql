@@ -217,33 +217,43 @@ INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Vani
 
 
 
-
-
-
-
+INSERT INTO meals (meal_name, meal_description) VALUES ('Appetizers', 'Bite-Sized Beginnings');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Breakfast', 'Sunrise Sustenance');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Lunch', 'Mid-day Munching');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Dinner', 'Nighttime Nourishment');
-INSERT INTO meals (meal_name, meal_description) VALUES ('Appetizers', 'Bite-Sized Beginnings');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Snacks', 'Tasty Treats');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Desserts', 'Feast Finale');
 
 
-insert into meals_recipes (meal_id, recipe_id) VALUES (1,1);
 insert into meals_recipes (meal_id, recipe_id) VALUES (1,3);
-insert into meals_recipes (meal_id, recipe_id) VALUES (1,5);
-insert into meals_recipes (meal_id, recipe_id) VALUES (2,2);
-insert into meals_recipes (meal_id, recipe_id) VALUES (3,1);
-insert into meals_recipes (meal_id, recipe_id) VALUES (3,5);
+insert into meals_recipes (meal_id, recipe_id) VALUES (1,2);
+insert into meals_recipes (meal_id, recipe_id) VALUES (2,5);
+insert into meals_recipes (meal_id, recipe_id) VALUES (2,8);
+insert into meals_recipes (meal_id, recipe_id) VALUES (2,19);
+insert into meals_recipes (meal_id, recipe_id) VALUES (3,4);
+insert into meals_recipes (meal_id, recipe_id) VALUES (3,12);
+insert into meals_recipes (meal_id, recipe_id) VALUES (3,18);
+insert into meals_recipes (meal_id, recipe_id) VALUES (3,6);
+insert into meals_recipes (meal_id, recipe_id) VALUES (4,1);
+insert into meals_recipes (meal_id, recipe_id) VALUES (4,10);
+insert into meals_recipes (meal_id, recipe_id) VALUES (4,9);
+insert into meals_recipes (meal_id, recipe_id) VALUES (4,13);
+insert into meals_recipes (meal_id, recipe_id) VALUES (4,7);
+insert into meals_recipes (meal_id, recipe_id) VALUES (5,15);
+insert into meals_recipes (meal_id, recipe_id) VALUES (5,14);
+insert into meals_recipes (meal_id, recipe_id) VALUES (6,17);
+insert into meals_recipes (meal_id, recipe_id) VALUES (6,16);
+insert into meals_recipes (meal_id, recipe_id) VALUES (6,20);
 
-INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Vegan', 'for those allergic to meat');  
-INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Leftovers', 'for the cheap');  
-INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (2, 'Bulk Prep', 'the gains');
-INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (2, 'vegetarian', 'gross');
 
-insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 1, 'Breakfast');
-insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 3, 'Dinner');
-insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (2, 1, 'Breakfast');
+INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Vegetarian', 'All the flavor, none of the meat!');  
+INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, '30-Minute Meals', 'Time is of the Essence!');  
+INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Soup and Salad', 'Sorry, no breadsticks!');
+INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Party Plates!', 'Impress guests with a delicious spread');
+
+--insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 1, 'Breakfast');
+--insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 3, 'Dinner');
+--insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (2, 1, 'Breakfast');
 
 --ingredients for lasagna
 INSERT INTO ingredients (ingredient_name) VALUES ( 'Lasagna noodles' )
