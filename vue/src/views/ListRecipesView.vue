@@ -96,7 +96,6 @@ export default {
 
 <style scoped>
 section.recipe {
-
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   border-radius: 1.25rem;
   margin-bottom: 1.25rem;
@@ -122,7 +121,7 @@ h4 {
 }
 
 form{
-  /* text-align: center; */
+  text-align: center;
 } 
 div.label{
   font-weight: bold;

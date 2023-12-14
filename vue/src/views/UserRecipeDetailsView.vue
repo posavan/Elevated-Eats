@@ -57,11 +57,13 @@ h1{
   text-align: center;
 }
 .User-Recipe-Details {
-  background-color:  rgb(249, 205, 123);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   border-right: 20px;
   border-radius: 1rem;
+  border: solid black;
+  margin: 20%;
+  margin-top: 0%;
 
 }
 

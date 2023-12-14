@@ -201,6 +201,8 @@ section {
   margin-top: 1.9rem;
   border-radius: 0x;
   text-size-adjust: wrap;
+  margin-top: 5%;
+  
 }
 
 .ingredients {
