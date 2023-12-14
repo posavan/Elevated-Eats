@@ -8,10 +8,16 @@
         <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token != ''" style="
           text-decoration: none; color: white;">My Meal
           Plans</router-link>&nbsp;
+<<<<<<< HEAD
       </span></li>
       <li><span id="user">
         &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''" style="
           text-decoration: none; color: white;">My
+=======
+      </span>
+      <span id="user">
+        &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">Favorite
+>>>>>>> 4c7afb8d7d64bdfa7dcffa9b3a8add3fef73092a
           Recipes</router-link>&nbsp;
       </span></li>
       <li><span id="recipe">
@@ -193,7 +199,11 @@ html {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background-color: rgb(245, 141, 30);
   color: white;
+<<<<<<< HEAD
   padding: 20px;
+=======
+  padding: 9px;
+>>>>>>> 4c7afb8d7d64bdfa7dcffa9b3a8add3fef73092a
   background-blend-mode: multiply;
   
 }

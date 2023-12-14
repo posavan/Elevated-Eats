@@ -33,7 +33,7 @@ section.ingredient {
 
 .column {
   /* border: 3px rgb(216, 117, 81) solid; */
-  text-align: center;
+  text-align: justify;
   padding: 10px;
 }
 </style>
