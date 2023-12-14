@@ -30,7 +30,7 @@ export default {
   methods: {
     loadMeal() {
       mealService
-        .getMealPlan(this.editMeal.mealId)
+        .getMeal(this.editMeal.mealId)
         .then((response) => {
           console.log(response.data);
           this.editMeal = response.data;
@@ -70,7 +70,9 @@ export default {
     cancelForm() {
       this.$router.back();
     },
-    created() {
+
+  },
+  created() {
       console.log("reached edit meal view");
       this.editMeal.mealId = this.$route.params.mealId;
       this.loadMeal();
@@ -91,6 +93,5 @@ export default {
       //     }
       //   });
     },
-  },
 };
 </script>
