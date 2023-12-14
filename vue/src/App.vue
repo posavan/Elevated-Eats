@@ -1,5 +1,6 @@
 <template>
-  <div id="capstone-app">
+  <div id="capstone-app" >
+    <!-- <img id="background" src="/img/wood3.webp"> -->
     <div id="nav">
       <li><span id="home" >
         &nbsp;<router-link v-bind:to="{ name: 'home' }"><img src="/img/homeIcon.png" style="padding: 0; margin: 0; border:0"> </router-link>&nbsp; &nbsp;
@@ -8,17 +9,10 @@
         <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token != ''" style="
           text-decoration: none; color: white;">My Meal
           Plans</router-link>&nbsp;
-<<<<<<< HEAD
       </span></li>
       <li><span id="user">
         &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''" style="
-          text-decoration: none; color: white;">My
-=======
-      </span>
-      <span id="user">
-        &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">Favorite
->>>>>>> 4c7afb8d7d64bdfa7dcffa9b3a8add3fef73092a
-          Recipes</router-link>&nbsp;
+          text-decoration: none; color: white;">Favorite Recipes</router-link>&nbsp;
       </span></li>
       <li><span id="recipe">
         &nbsp;<router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''" style="
@@ -44,6 +38,13 @@ body {
   padding: 0%;
   border: 0%;
     
+}
+#capstone-app {
+  background-image: url("/img/wood3.webp");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  
 }
 
 
