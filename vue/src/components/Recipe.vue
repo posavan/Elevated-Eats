@@ -1,29 +1,37 @@
 <template>
   <section class="recipe">
     <h3>{{ recipe.recipeName }}</h3>
+    <div class="image">
+      <img v-bind:src="recipe.recipeImage" />
+    </div>
 
-    <section v-if="!hide && !showDetails && hideMealsRecipes"   class="container">
-      <div class="ingredients" >Ingredients:</div>
+    <section v-if="inDetails" class="container">
+      <div class="ingredients">Ingredients:</div>
       <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
     </section>
 
-    <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes " >Instructions: {{ recipe.recipeInstructions }}</div>
+    <div class="instructions" v-if="inDetails">Instructions: {{ recipe.recipeInstructions
+    }}</div>
 
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="show">
         {{ feedback }}
       </button>
-      <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipeId)"
-        v-if="!showEdit && !hide && !hideMeals ">
+      <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipe.recipeId)"
+        v-if="inMealDetails || inFavorites">
         View Recipe Details
       </button>
-      <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')" v-if="showEdit">
+      <!-- <button class="view-public-details" v-on:click="$router.push('/recipe/public/' + recipe.recipeName)"
+        v-if="show">
+        View Recipe Details
+      </button> -->
+      <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipe.recipeId + '/edit')" v-if="inDetails">
         Edit Recipe
       </button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="showEdit">
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="inFavorites || inEdit || inAdd || inMealDetails">
         Delete Recipe
       </button>
-      <button class="btn-cancel" type="button" @click="cancel" v-if="showEdit">Return</button>
+      <button class="btn-cancel" type="button" @click="cancel" v-if="inDetails">Return</button>
     </div>
     <p></p>
   </section>
@@ -43,13 +51,15 @@ export default {
     return {
       recipe: {},
       ingredients: [],
-      hide: this.$route.name == "recipe" , 
-      showDetails: this.$route.name == "favorites",
-      showEdit: this.$route.name == "userRecipeDetails",
-      hideMealsRecipes: this.$route.name == "userRecipeDetails",
-      hideMeals: this.$route.name == "createMeal",
       recipeId: 0,
       feedback: "Add Recipe To Favorites",
+      inDetails: this.$route.name == "userRecipeDetails",
+      inFavorites: this.$route.name == "favorites",
+      inMealDetails: this.$route.name == "mealDetailsView",
+      inAdd: this.$route.name == "createMeal",
+      inEdit: this.$route.name == "EditMealView",
+      show: this.$route.name == "recipe",
+      inPublic: this.$route.name == "recipeDetails"
     };
   },
   methods: {
@@ -106,7 +116,7 @@ export default {
         .then((response) => {
           console.log(response);
           //this.$router.push({name: 'favorites' });
-          location.reload();
+          this.cancel();
         })
         .catch((error) => {
           if (error.response) {
@@ -147,7 +157,12 @@ export default {
   text-align: right;
   /* Center text for better appearance */
   padding-right: 30%;
-  position:center;
+  position: center;
+}
+
+img {
+  width:350px;
+  height: auto;
 }
 
 h1 {
@@ -168,6 +183,7 @@ section {
   padding: 1em;
   border-radius: 1rem;
   padding-bottom: 1rem;
+  
 }
 
 .recipe {
@@ -179,9 +195,11 @@ section {
   border-radius: 1.2rem;
   text-size-adjust: wrap;
 }
-.ingredients{
+
+.ingredients {
   font-weight: bold;
 }
+
 .add-recipe-button {
   margin-top: 1.25rem;
   align-items: center;
@@ -196,7 +214,8 @@ form {
   border-bottom: 1rem;
   /* Add spacing between the button and the form */
 }
-.instructions{
+
+.instructions {
   text-align: center;
   padding-top: 3%;
   padding-left: 5%;
@@ -204,7 +223,7 @@ form {
   text-indent: 50px;
   line-height: 2;
   white-space: wrap;
-  
+
 }
 
 form div {
@@ -245,5 +264,4 @@ button {
 
 button:hover {
   border-style: dotted;
-}
-</style>
+}</style>

@@ -3,7 +3,7 @@
   <div class="list-all-recipes">
     <section class="container">
       <recipe v-for="recipe in allRecipes" v-bind:key="recipe.recipeId" v-bind:item="recipe">
-        <button v-on:click="addRecipeToUser">Save Recipe To Favorites</button>
+        <button v-on:click="addRecipeToUser">Copy Recipe To Favorites</button>
       </recipe>
     </section>
     <form v-on:submit.prevent="createNewRecipe" v-show="showForm">
@@ -131,6 +131,8 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
+  padding: 10%;
+  padding-top: .05%;
 }
 
 form {

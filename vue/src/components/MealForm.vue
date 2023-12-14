@@ -6,7 +6,7 @@
     </div>
     <div>
       <label for="description">Description: </label>
-      <input type="text" name="description" id="description" v-model="editMeal.mealDescription" />
+      <textarea placeholder="description" name="description" id="description" v-model="editMeal.mealDescription" />
     </div>
     <!-- display recipes to be added -->
     <recipe v-for="recipe in addedRecipes" v-bind:key="recipe.recipeId" v-bind:item="recipe" />
@@ -21,11 +21,14 @@
       <button class="btn-add-recipe" type="button" @click="addRecipe">Add Recipe</button>
     </div>
     <div v-if="showRecipeForm">
-      <label for="type">New Recipe Name:</label>
+      <label for="name">New Recipe Name:</label>
       <input type="text" name="new-recipe-name" id="new-recipe-name" v-model="newRecipe.recipeName" />
-      <label for="type">New Recipe Instructions:</label>
-      <input type="text" name="new-recipe-description" id="new-recipe-description"
+      <label for="instructions">New Recipe Instructions:</label>
+      <textarea placeholder="instructions" name="new-recipe-description" id="new-recipe-description"
         v-model="newRecipe.recipeInstructions" />
+        <label for="image">Recipe Image URL:</label>
+      <input type="text" name="new-recipe-image" id="new-recipe-image"
+        v-model="newRecipe.recipeImage" />
       <button v-on:click.prevent="addNewRecipe">Add +</button>
     </div>
     <button class="btn-create-recipe" type="button" @click="showRecipeForm = !showRecipeForm">
@@ -69,7 +72,8 @@ export default {
         userId: 0,
         recipeName: "",
         recipeInstructions: "",
-        ingredientsList: []
+        ingredientsList: [],
+        recipeImage: ""
       }
     };
   },
