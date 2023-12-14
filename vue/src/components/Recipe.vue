@@ -1,33 +1,51 @@
 <template>
   <section class="recipe">
-    <h3>{{ recipe.recipeName }}</h3>
     <div class="image">
       <img v-bind:src="recipe.recipeImage" />
     </div>
+    <h3>{{ recipe.recipeName }}</h3>
 
     <section v-if="!hide && !showDetails && hideMealsRecipes" class="container">
       <div class="ingredients">Ingredients:</div>
-      <ingredient v-for="ingredient in ingredients" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
+      <ingredient
+        v-for="ingredient in ingredients"
+        v-bind:key="ingredient.ingredientId"
+        v-bind:item="ingredient"
+      />
     </section>
 
-    <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes">Instructions: {{ recipe.recipeInstructions
-    }}</div>
+    <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes">
+      Instructions: {{ recipe.recipeInstructions }}
+    </div>
 
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
         {{ feedback }}
       </button>
-      <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipeId)"
-        v-if="!showEdit && !hide && !hideMeals">
+      <button
+        class="view-recipe-details"
+        v-on:click="$router.push('/recipe/favorites/' + recipeId)"
+        v-if="!showEdit && !hide && !hideMeals"
+      >
         View Recipe Details
       </button>
-      <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')" v-if="showEdit">
+      <button
+        class="edit-recipe"
+        v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')"
+        v-if="showEdit"
+      >
         Edit Recipe
       </button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="showEdit">
+      <button
+        class="remove-recipe"
+        v-on:click.prevent="removeRecipe"
+        v-if="showEdit"
+      >
         Delete Recipe
       </button>
-      <button class="btn-cancel" type="button" @click="cancel" v-if="showEdit">Return</button>
+      <button class="btn-cancel" type="button" @click="cancel" v-if="showEdit">
+        Return
+      </button>
     </div>
     <p></p>
   </section>
@@ -134,7 +152,7 @@ export default {
     },
     cancel() {
       this.$router.back();
-    }
+    },
   },
 
   created() {
@@ -153,7 +171,11 @@ export default {
   padding-right: 30%;
   position: center;
 }
-
+img {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: contain;
+}
 /* .recipe.image {
   image: url("/img/homeview.jpg");
 } */
@@ -176,16 +198,14 @@ section {
   padding: 1em;
   border-radius: 1rem;
   padding-bottom: 1rem;
-  
 }
 
 .recipe {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
   border-right: 90%;
-  border: solid black;
   margin-top: 1.9rem;
-  border-radius: 1.2rem;
+  border-radius: 0x;
   text-size-adjust: wrap;
 }
 
@@ -216,7 +236,6 @@ form {
   text-indent: 50px;
   line-height: 2;
   white-space: wrap;
-
 }
 
 form div {
@@ -257,4 +276,5 @@ button {
 
 button:hover {
   border-style: dotted;
-}</style>
+}
+</style>

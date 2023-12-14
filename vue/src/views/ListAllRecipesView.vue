@@ -113,7 +113,6 @@ export default {
 
 <style scoped>
 section.recipe {
-  background-color: rgb(255, 207, 111);
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   text-align: center;
 }
