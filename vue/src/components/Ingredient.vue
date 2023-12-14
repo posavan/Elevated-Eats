@@ -26,7 +26,7 @@ export default {
 
 
 section.ingredient {
-  display: flex;
+  
   /* justify-content: center; */
   align-items: center;
 }

@@ -78,7 +78,6 @@ export default {
 
 
 section.mealplan {
-    background-color: rgb(255, 207, 111);
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 0.5rem;
     margin-bottom: 1.25rem;

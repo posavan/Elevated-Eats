@@ -3,7 +3,6 @@
     <h3>Plan: {{ mealplan.mealPlanName }}</h3>
     <p>Description: {{ mealplan.mealPlanDescription }}</p>
     <section v-if="showDetails" class="container">
-      <h4>Meals:</h4>
       <meal v-for="meal in meals" v-bind:key="meal.mealId" v-bind:item="meal" />
     </section>
     <div class="button-container">
@@ -154,7 +153,6 @@ section {
 
 .meal {
   border: solid black;
-  background-color: rgb(209, 193, 161);
   border-radius: 0.5rem;
   margin-bottom: 1.25rem;
   width: 97%;

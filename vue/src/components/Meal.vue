@@ -3,7 +3,7 @@
     <h2>Meal: {{ item.mealName }}</h2>
     <p>Description: {{ item.mealDescription }}</p>
     <section v-if="inDetails" class="container">
-      <p>Recipes:</p>
+      
       <recipe v-for="recipe in item.recipeList" v-bind:key="recipe.recipeId" v-bind:item="recipe" />
     </section>
     <div class="button-container">
