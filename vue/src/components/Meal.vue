@@ -178,7 +178,7 @@ h1 {
 
 .meal {
   border: solid black;
-  background-color: rgb(249, 205, 123);
+  /* background-color: rgb(123, 249, 188); */
   border-radius: 0.5rem;
   margin-bottom: 1.25rem;
   width: 97%;
@@ -195,5 +195,42 @@ h1 {
 
 .meal:hover {
   color: black;
+}
+
+button {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:after {
+  content: "";
+  background-color:rgb(254, 178, 108);
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+button:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  button{
+    padding: 13px 50px 13px;
+  }
 }
 </style>

@@ -281,7 +281,7 @@ select {
   text-align: center;
 }
 
-button {
+/* button {
   display: inline-block;
   border-radius: 1.5rem;
   cursor: pointer;
@@ -301,7 +301,7 @@ button {
   border-width: .2rem;
   margin-bottom: 1.9rem;
   text-align: center;
-}
+} */
 
 .btn-cancel {
   background-color: #ccc;

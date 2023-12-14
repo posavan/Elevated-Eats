@@ -14,45 +14,14 @@
       />
     </section>
 
-<<<<<<< HEAD
     <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes">
       Instructions: {{ recipe.recipeInstructions }}
     </div>
-=======
-    <div class="instructions" v-if="inDetails">Instructions: {{ recipe.recipeInstructions
-    }}</div>
->>>>>>> cd124dc7b321485ea3257abae5ba1b31f02b12e1
 
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="show">
         {{ feedback }}
       </button>
-<<<<<<< HEAD
-      <button
-        class="view-recipe-details"
-        v-on:click="$router.push('/recipe/favorites/' + recipeId)"
-        v-if="!showEdit && !hide && !hideMeals"
-      >
-        View Recipe Details
-      </button>
-      <button
-        class="edit-recipe"
-        v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')"
-        v-if="showEdit"
-      >
-        Edit Recipe
-      </button>
-      <button
-        class="remove-recipe"
-        v-on:click.prevent="removeRecipe"
-        v-if="showEdit"
-      >
-        Delete Recipe
-      </button>
-      <button class="btn-cancel" type="button" @click="cancel" v-if="showEdit">
-        Return
-      </button>
-=======
       <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipe.recipeId)"
         v-if="inMealDetails || inFavorites">
         View Recipe Details
@@ -68,7 +37,6 @@
         Delete Recipe
       </button>
       <button class="btn-cancel" type="button" @click="cancel" v-if="inDetails">Return</button>
->>>>>>> cd124dc7b321485ea3257abae5ba1b31f02b12e1
     </div>
     <p></p>
   </section>
@@ -196,7 +164,6 @@ export default {
   padding-right: 30%;
   position: center;
 }
-<<<<<<< HEAD
 img {
   width: 100%;
   aspect-ratio: 3/2;
@@ -205,13 +172,6 @@ img {
 /* .recipe.image {
   image: url("/img/homeview.jpg");
 } */
-=======
-
-img {
-  width:350px;
-  height: auto;
-}
->>>>>>> cd124dc7b321485ea3257abae5ba1b31f02b12e1
 
 h1 {
   text-align: center;
@@ -285,7 +245,7 @@ input {
   padding: 0.625rem;
   box-sizing: border-box;
 }
-
+/* 
 button {
   display: inline-block;
   border-radius: 1.5rem;
@@ -309,5 +269,41 @@ button {
 
 button:hover {
   border-style: dotted;
+} */
+button {
+  font-size: 16px;
+  font-weight: 200;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+button:after {
+  content: "";
+  background-color:rgb(254, 178, 108);
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
+}
+
+button:hover:after {
+  top: 0px;
+  left: 0px;
+}
+
+@media (min-width: 768px) {
+  button{
+    padding: 13px 50px 13px;
+  }
 }
 </style>
