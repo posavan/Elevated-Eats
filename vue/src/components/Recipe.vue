@@ -14,45 +14,14 @@
       />
     </section>
 
-<<<<<<< HEAD
-    <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes">
+    <div class="instructions" v-if="inDetails">
       Instructions: {{ recipe.recipeInstructions }}
     </div>
-=======
-    <div class="instructions" v-if="inDetails">Instructions: {{ recipe.recipeInstructions
-    }}</div>
->>>>>>> cd124dc7b321485ea3257abae5ba1b31f02b12e1
 
     <div class="button-container">
       <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="show">
         {{ feedback }}
       </button>
-<<<<<<< HEAD
-      <button
-        class="view-recipe-details"
-        v-on:click="$router.push('/recipe/favorites/' + recipeId)"
-        v-if="!showEdit && !hide && !hideMeals"
-      >
-        View Recipe Details
-      </button>
-      <button
-        class="edit-recipe"
-        v-on:click="$router.push('/recipe/favorites/' + recipeId + '/edit')"
-        v-if="showEdit"
-      >
-        Edit Recipe
-      </button>
-      <button
-        class="remove-recipe"
-        v-on:click.prevent="removeRecipe"
-        v-if="showEdit"
-      >
-        Delete Recipe
-      </button>
-      <button class="btn-cancel" type="button" @click="cancel" v-if="showEdit">
-        Return
-      </button>
-=======
       <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipe.recipeId)"
         v-if="inMealDetails || inFavorites">
         View Recipe Details
@@ -68,7 +37,6 @@
         Delete Recipe
       </button>
       <button class="btn-cancel" type="button" @click="cancel" v-if="inDetails">Return</button>
->>>>>>> cd124dc7b321485ea3257abae5ba1b31f02b12e1
     </div>
     <p></p>
   </section>
