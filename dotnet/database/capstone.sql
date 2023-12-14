@@ -168,7 +168,40 @@ INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Buff
 INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Chicken Noodle Soup', '1. Place a large pot over moderate heat and add extra-virgin olive oil. Work close to the stove and add vegetables to the pot as you chop, in the order they are listed.
 2. Add bay leaves and season vegetables with salt and pepper, to taste. Add stock to the pot and raise flame to bring liquid to a boil. Add diced chicken tenderloins, return soup to a boil, and reduce heat back to moderate. Cook chicken 2 minutes and add noodles. Cook soup an additional 6 minutes or until noodles are tender and remove soup from the heat.
 3. Stir in parsley and dill, remove bay leaves and serve. This is a thick soup. Add up to 2 cups of water if you like chicken soup with lots of broth.')
---INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Crispy Smashed Potatoes', '1. Cook potatoes: Bring a pot of water to the boil, add 1 tbsp salt. Cook potatoes until soft - small ones should take around 20 to 25 minutes, medium ones might take 30 minutes. Its ok if the skin splits. Alternatively, steam or microwave them.
+2. Preheat oven to 390°F.
+3. Steam dry: Drain the potatoes and let them dry in the colander for 5 minutes or so.
+4. Smash! Place on the tray then use a large fork or potato masher to squish them, keeping them in one piece. Thin = crisper. Thicker = fluffier insides. (Both good!) More nubbly surface = better crunch!
+5. Leave on the tray to steam dry for 5 minutes or so - makes them crispier!
+6. Drizzle with butter, then olive oil. Sprinkle with salt and pepper.
+7. Bake for 45 minutes to 55 minutes or until deep golden and crispy. Do not flip!
+8. Serve hot, sprinkled with parsley if desired.')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Marinated Pretzels', '1. Pour the pretzels into a large bowl.
+2. Blend olive oil, ranch-style dressing mix, garlic powder, and dill weed in a medium bowl; pour the mixture over pretzels. Let pretzels marinate for 1 hour, tossing approximately every 10 minutes.
+3. Preheat oven to 350°F.
+4. Spread marinated pretzels on a large cookie sheet. Bake in the preheated oven for 8 to 10 minutes. Allow the pretzels to cool, then serve.')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Kettle Corn', '1. Heat vegetable oil in a large pot over medium heat. Stir in popcorn kernels and sugar.
+2. Cover and shake the pot constantly to prevent sugar from burning. When popping has slowed to once every 2 to 3 seconds, remove the pot from the heat and shake for a few minutes until popping stops.
+3. Pour popcorn into a large bowl and allow to cool, stirring occasionally to break up large clumps.')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Chocolate Chip Cookies', '1. Preheat oven to 375 degrees F. Line three baking sheets with parchment paper and set aside.
+2. In a medium bowl mix flour, baking soda, baking powder and salt. Set aside.
+3. Cream together butter and sugars until combined.
+4. Beat in eggs and vanilla until light (about 1 minute).
+5. Mix in the dry ingredients until combined.
+6. Add chocolate chips and mix well.
+7. Roll 2-3 Tablespoons (depending on how large you like your cookies) of dough at a time into balls and place them evenly spaced on your prepared cookie sheets.
+8. Bake in preheated oven for approximately 8-10 minutes. Take them out when they are just barely starting to turn brown.
+9. Let them sit on the baking pan for 2 minutes before removing to cooling rack.')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Dutch Apple Pie', '1. Make the Pie Crust: Process ¾ cups of the flour, the sugar, and salt together in a food processor until combined, about 2 one-second pulses. Add the butter and shortening and process until a homogenous dough just starts to collect in uneven clumps, about 7 to 10 seconds (the dough will resemble cottage cheese curds with some very small pieces of butter remaining, but there should be no uncoated flour). Scrape down the sides and bottom of the bowl with a rubber spatula and redistribute the dough evenly around the bowl. Add the remaining ½ cup flour and pulse until the mixture is evenly distributed around the bowl and the mass of dough has been broken up, 4 to 6 quick pulses. Empty the mixture into a medium bowl.
+2. Sprinkle the vodka and water over the mixture. With a rubber spatula, use a folding motion to mix, pressing down on the dough until it is slightly tacky and sticks together. Turn the dough out onto a lightly floured work surface and bring it together with your hands, pressing it into a 6-inch round. Lightly flour the top and gently and quickly roll it out to a 13-inch circle, picking it up and doing a quarter turn after every couple of rolls to keep it from sticking.
+3. Transfer the dough to a 9-inch pie plate and gently press it into the bottom and up the sides. Trim the dough to 1 inch beyond the lip of the pie plate, then tuck it under itself so it is flush with the edge of the pie plate. Flute the edges or press with the tines of a fork, then refrigerate the dough-lined plate for at least 2 hours.
+4. Blind Bake the Pie Crust: Preheat oven to 350 degrees F. Line the chilled pie dough with aluminum foil and use granulated sugar to fill the whole pie plate. Bake for 40 minutes; remove the foil and sugar and place the crust on a wire rack while you make the filling.
+5. Increase the oven temperature to 425 degrees F.
+6. Make the Apple Filling: Peel, quarter, and core the apples; slice each quarter crosswise into pieces ¼ inch thick. Toss the apples, sugar, cinnamon, and salt in a large bowl to combine. Heat the butter in a large Dutch oven (or pot) over high heat until foaming subsides; add the apples and toss to coat. Reduce the hat to medium-high and cook, covered, stirring occasionally, until the Granny Smith apple slices are tender and the McIntosh apple slices are softened and beginning to break down, about 10 minutes.
+7. Set a large colander over a large bowl; transfer the cooked apples to the colander. Shake the colander and toss the apples to drain off as much juice as possible. Bring the drained juice and the cream to a boil in the now-empty Dutch oven over high heat; cook, stirring occasionally, until thickened and a wooden spoon leaves a trail in the mixture, about 5 minutes. Transfer the apples to the prebaked pie shell; pour the reduced juice mixture over and smooth with a rubber spatula.
+8. Make the Streusel Topping: Combine the flour and sugars in a medium bowl; drizzle with the melted butter and toss with a fork until evenly moistened and the mixture forms many large chunks with pea-sized pieces mixed throughout. Sprinkle the streusel evenly over the pie filling.
+9. Bake the Pie: Set the pie plate on a baking sheet and bake until the streusel topping is deep golden brown, 10 to 20 minutes. Cool on a wire rack to room temperature and serve.')
+
 
 
 INSERT INTO meals (meal_name, meal_description) VALUES ('Breakfast', 'Sunrise Sustenance');
@@ -530,6 +563,56 @@ INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity)
 INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
 	VALUES ( 12, 79, 'handful, chopped');
 	
+
+--ingredients for smashed potatoes 13
+INSERT INTO ingredients (ingredient_name) VALUES ('Small Potatoes')
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 13, 80, '1 package, about 12-14 potatoes');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 13, 26, '1 tbsp, for boiling');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 13, 39, '1 tbsp, melted');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 13, 37, '1 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 13, 26, '3/4 tsp, for seasoning');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 13, 27, '1/4 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 13, 18, 'finely chopped for garnish');
+
+
+--ingredients for marinated pretzels
+INSERT INTO ingredients (ingredient_name) VALUES ('Pretzels')
+INSERT INTO ingredients (ingredient_name) VALUES ('Dry Ranch Dressing Mix')
+INSERT INTO ingredients (ingredient_name) VALUES ('Dried Dill Weed')
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 14, 81, '1 15oz package');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 14, 37, '3/4 cup');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 14, 82, '1 (1oz) package');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 14, 28, '3 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 14, 83, '3 tbsp');
+
+--ingredients for kettle corn
+INSERT INTO ingredients (ingredient_name) VALUES ('Popcorn Kernels')
+INSERT INTO ingredients (ingredient_name) VALUES ('Sugar')
+
+
+
+
+
+
+
+
+
+--ingredients for kettle corn
+
 
 
 --ingredients for quesadilla
