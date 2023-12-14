@@ -6,7 +6,7 @@
         </div>
         <div>
             <label for="description">Description: </label>
-            <input type="text" name="description" id="description" v-model="editMealPlan.mealPlanDescription" />
+            <textarea placeholder="description" name="description" id="description" v-model="editMealPlan.mealPlanDescription" />
         </div>
         <!-- display meals to be added -->
         <meal v-for="meal in this.editMealPlan.mealList" v-bind:key="meal.mealId" v-bind:item="meal" />

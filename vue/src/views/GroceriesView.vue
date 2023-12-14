@@ -3,8 +3,7 @@
         <h1>Grocery List</h1>
         <section v-if="isLoading == false" class="container">
             <ingredient v-for="ingredient in groceries" 
-            v-bind:key="ingredient.ingredientId" 
-            v-bind:item="ingredient" />
+            v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
         </section>
         <div class="actions">
             <button class="btn-cancel" type="button" @click="cancel">Cancel</button>

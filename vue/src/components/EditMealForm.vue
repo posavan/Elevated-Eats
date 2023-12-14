@@ -6,7 +6,7 @@
     </div>
     <div>
       <label for="description">Description: </label>
-      <input type="text" name="description" id="description" v-model="editMeal.mealDescription" />
+      <input type="textarea" name="description" id="description" v-model="editMeal.mealDescription" />
     </div>
     <div>
       <label for="image">Edit Image URL: </label>
@@ -38,7 +38,7 @@
       <label for="type">New Recipe: </label>
       <input type="text" name="new-recipe-name" id="new-recipe-name" v-model="newRecipe.recipeName" />
       <label for="type">New Recipe Instructions: </label>
-      <input type="text" name="new-recipe-instructions" id="new-recipe-instructions"
+      <textarea placeholder="instructions" name="new-recipe-instructions" id="new-recipe-instructions"
         v-model="newRecipe.recipeInstructions" />
       <label for="type">New Recipe Image URL: </label>
       <input type="text" name="new-recipe-image" id="new-recipe-image" v-model="newRecipe.recipeImage" />

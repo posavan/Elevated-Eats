@@ -6,7 +6,7 @@
       </div>
       <div>
         <label for="instructions">Instructions: </label>
-        <input type="text" name="instructions" id="instructions" v-model="editRecipe.recipeInstructions"/>
+        <textarea placeholder="instructions" name="instructions" id="instructions" v-model="editRecipe.recipeInstructions"/>
       </div>
       <div>
         <label for="image">Image URL: </label>
