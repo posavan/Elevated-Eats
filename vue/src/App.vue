@@ -34,7 +34,7 @@
         >&nbsp;
       </span>
       <span id="logout">
-        &nbsp;<router-link
+        &nbsp;|&nbsp;<router-link
           v-bind:to="{ name: 'logout' }"
           v-if="this.$store.state.token != ''"
           >Logout</router-link
