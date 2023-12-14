@@ -108,11 +108,9 @@ INSERT INTO ingredients (ingredient_name) VALUES ( 'Milk' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'basil' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'cumin' )
 
---INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Calzone' , 'Delicious Italian Delicacy')
---INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Carbonara' , 'Carbs')
---INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Tapioca' , 'yummy yummy')
-INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES ( 1, 'Homemade Lasagna' , '1. Preheat the oven to 350°F. In a large pot of salted water, boil lasagna noodles until al dente according to package directions. 
-Drain, rinse under cold water, and set aside. 2. In a large skillet or dutch oven, brown beef, sausage, onion, and garlic over medium-high heat until no pink remains. Drain any fat.
+
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES ( 1, 'Homemade Lasagna' , '1. Preheat the oven to 350°F. In a large pot of salted water, boil lasagna noodles until al dente according to package directions. Drain, rinse under cold water, and set aside. 
+2. In a large skillet or dutch oven, brown beef, sausage, onion, and garlic over medium-high heat until no pink remains. Drain any fat.
 3. Stir in the pasta sauce, tomato paste, Italian seasoning, ½ teaspoon of salt, and ¼ teaspoon of black pepper. Simmer uncovered over medium heat for 5 minutes or until thickened.
 4. In a separate bowl, combine 1 ½ cups mozzarella, ¼ cup parmesan cheese, ricotta, parsley, egg, and ¼ teaspoon salt.
 5. Spread 1 cup of the meat sauce in a 9x13 pan or casserole dish. Top it with 3 lasagna noodles. Layer with ⅓ of the ricotta cheese mixture and 1 cup of meat sauce. Repeat twice more. Finish with 3 noodles topped with remaining sauce.
@@ -167,6 +165,11 @@ INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Buff
 3. Microwave the tortillas in batches until warm, softened and foldable, about 30 seconds. Keep warm between damp paper towels. 
 4.Spoon a portion of the chicken mixture down the middle of each tortilla and roll up. Place them side by side, seam-side down, in the prepared pan. Pour the hot sauce mixture over the tortillas. Sprinkle with the remaining 1 cup Cheddar and the blue cheese and bake until the cheese is melted and bubbly, 15 to 17 minutes. 
 5. Drizzle the blue cheese dressing over the enchiladas and sprinkle with the scallion greens. Serve with more hot sauce.' )
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Chicken Noodle Soup', '1. Place a large pot over moderate heat and add extra-virgin olive oil. Work close to the stove and add vegetables to the pot as you chop, in the order they are listed.
+2. Add bay leaves and season vegetables with salt and pepper, to taste. Add stock to the pot and raise flame to bring liquid to a boil. Add diced chicken tenderloins, return soup to a boil, and reduce heat back to moderate. Cook chicken 2 minutes and add noodles. Cook soup an additional 6 minutes or until noodles are tender and remove soup from the heat.
+3. Stir in parsley and dill, remove bay leaves and serve. This is a thick soup. Add up to 2 cups of water if you like chicken soup with lots of broth.')
+--INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 
+
 
 INSERT INTO meals (meal_name, meal_description) VALUES ('Breakfast', 'Sunrise Sustenance');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Lunch', 'Mid-day Munching');
@@ -174,9 +177,6 @@ INSERT INTO meals (meal_name, meal_description) VALUES ('Dinner', 'Nighttime Nou
 INSERT INTO meals (meal_name, meal_description) VALUES ('Appetizers', 'Bite-Sized Beginnings');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Snacks', 'Tasty Treats');
 INSERT INTO meals (meal_name, meal_description) VALUES ('Desserts', 'Feast Finale');
-
-
-
 
 
 insert into meals_recipes (meal_id, recipe_id) VALUES (1,1);
@@ -499,8 +499,37 @@ INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity)
 
 
 --ingredients for chicken noodle soup
+INSERT INTO ingredients (ingredient_name) VALUES ('Parsnips')
+INSERT INTO ingredients (ingredient_name) VALUES ('Celery')
+INSERT INTO ingredients (ingredient_name) VALUES ('Bay Leaves')
+INSERT INTO ingredients (ingredient_name) VALUES ('Chicken Stock')
+INSERT INTO ingredients (ingredient_name) VALUES ('Chicken Breast Tenders')
+INSERT INTO ingredients (ingredient_name) VALUES ('Wide Egg Noodles')
+INSERT INTO ingredients (ingredient_name) VALUES ('Fresh Dill')
 
-
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 37, '2 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 62, '2, peeled and chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 73, '1, peeled and chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 11, '1, chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 74, '2 ribs, chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 75, '2, fresh or dried');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 76, '6 cups');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 77, '1 lb');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 78, '1/2 lb');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 18, 'handful, chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 79, 'handful, chopped');
+	
 
 
 --ingredients for quesadilla
