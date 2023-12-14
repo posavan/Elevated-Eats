@@ -164,7 +164,6 @@ export default {
   padding-right: 30%;
   position: center;
 }
-<<<<<<< HEAD
 img {
   width: 100%;
   aspect-ratio: 3/2;
@@ -173,13 +172,6 @@ img {
 /* .recipe.image {
   image: url("/img/homeview.jpg");
 } */
-=======
-
-img {
-  width:350px;
-  height: auto;
-}
->>>>>>> cd124dc7b321485ea3257abae5ba1b31f02b12e1
 
 h1 {
   text-align: center;
