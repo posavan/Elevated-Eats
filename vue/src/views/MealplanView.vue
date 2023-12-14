@@ -67,8 +67,6 @@ section.mealplan {
     text-align: center;
     border-width: 1rem;
     border:solid black;
-    
-    
 }
 
 .container {
@@ -87,7 +85,7 @@ h1 {
 form {
     text-align: center;
 }
-.add-mealplan {
+.create-mealplan {
     display: block;
     color: white;
     text-align: center;

@@ -56,4 +56,21 @@ export default {
 h1{
   text-align: center;
 }
+
+.create-meal {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    border-radius: 50px;
+    margin-left: 40%;
+    margin-right: 40%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    margin-bottom: 0.9%;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 16px;
+}
 </style>

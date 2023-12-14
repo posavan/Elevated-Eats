@@ -14,7 +14,7 @@
       />
     </section>
 
-    <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes">
+    <div class="instructions" v-if="inDetails">
       Instructions: {{ recipe.recipeInstructions }}
     </div>
 
@@ -57,7 +57,7 @@ export default {
       recipe: {},
       ingredients: [],
       recipeId: 0,
-      feedback: "Add Recipe To Favorites",
+      feedback: "Copy Recipe To Favorites",
       inDetails: this.$route.name == "userRecipeDetails",
       inFavorites: this.$route.name == "favorites",
       inMealDetails: this.$route.name == "mealDetailsView",
@@ -137,7 +137,7 @@ export default {
     },
 
     buttonClick() {
-      this.feedback = "Added";
+      this.feedback = "Copied";
       // setTimeout(resetMessage, 3000);
       // function resetMessage() {
       //   this.feedback = "Add Recipe To Favorites";
