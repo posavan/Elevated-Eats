@@ -9,7 +9,7 @@
           Plans</router-link>&nbsp;
       </span>
       <span id="user">
-        &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">My
+        &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">Favorite
           Recipes</router-link>&nbsp;
       </span>
       <span id="recipe">
