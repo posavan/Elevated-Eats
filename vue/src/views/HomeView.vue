@@ -14,7 +14,7 @@
           text-decoration: none;
           color: white;
           font-size: 20px;
-        ">My Recipes</a>
+        ">Favorite Recipes</a>
     </nav>
     <nav class="recipes">
       <a href="/recipe" class="fill-nav" style="
