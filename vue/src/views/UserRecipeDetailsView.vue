@@ -65,7 +65,7 @@ h1{
 
 }
 
-button {
+/* button {
   display: block;
     color: white;
     text-align: center;
@@ -84,7 +84,7 @@ button {
 
 button:hover {
   opacity: 0.8;
-}
+} */
 </style>
   
 

@@ -73,41 +73,50 @@ div.button-container {
   position: center;
 }
 
-form {
-  margin-left: 100px;
-  margin-right: 100px;
-}
-
-textarea {
-  width: 60%;
-  height: 200px;
-}
-
-button {
-  display: inline-block;
-  border-radius: 1.5rem;
+.button{
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
+  box-sizing: border-box;
+  color: #41403e;
   cursor: pointer;
-  padding: 0.5rem 1.5rem;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: .75rem;
   text-decoration: none;
-  white-space: wrap;
-  text-transform: none;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  font-feature-settings: normal;
-  font-style: normal;
-  letter-spacing: normal;
-  line-break: auto;
-  line-height: 1.25em;
-  font-size: 16px;
-  font-weight: 500;
-  overflow-wrap: normal;
-  border-width: 0.2rem;
-  margin-bottom: 1.9rem;
-  text-align: center;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
 }
 
-button:hover {
-  border-style: dotted;
+.button:hover {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
 }
+
+.button:focus {
+  box-shadow: rgba(0, 0, 0, .3) 2px 8px 4px -6px;
+}
+
+
+/* button:hover {
+  border-style: dotted;
+} */
 
 /* section.recipe {
   text-align: center;
@@ -123,7 +132,7 @@ html {
 #nav {
   /* float: left; */
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(235, 142, 42);
+  background-color: rgb(245, 141, 30);
   color: white;
   padding: 10px;
   background-blend-mode: multiply;

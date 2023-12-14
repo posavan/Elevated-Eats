@@ -215,7 +215,7 @@ select {
   text-align: center;
 }
 
-button {
+/* button {
   display: inline-block;
   border-radius: 1.5rem;
   cursor: pointer;
@@ -239,7 +239,7 @@ button {
 
 .btn-cancel {
   background-color: #ccc;
-}
+} */
 
 /* Additional styles as needed */
 .actions {

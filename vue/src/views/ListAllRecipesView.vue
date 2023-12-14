@@ -130,7 +130,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
-  padding: 10%;
+  padding:10%;
   padding-top: .05%;
 }
 
@@ -156,7 +156,7 @@ input {
   box-sizing: border-box;
 }
 
-button {
+/* button {
   display: inline-block;
   border-radius: 1.5rem;
   cursor: pointer;
@@ -179,7 +179,7 @@ button {
 
 button:hover {
   border-style: dotted;
-}
+} */
 
 
 .add-recipe{
