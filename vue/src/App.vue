@@ -39,14 +39,6 @@ body {
   border: 0%;
     
 }
-#capstone-app {
-  background-image: url("/img/wood3.webp");
-  background-repeat: no-repeat;
-  background-size: cover;
-
-  
-}
-
 
 #nav {
   list-style-type: none;
@@ -59,7 +51,8 @@ body {
   width: 100%;
   height: 50px;
   font-size: 18px;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: normal;
   z-index: 99999;
 }
 
@@ -84,7 +77,7 @@ li span{
 }
 
 li span:hover{
-  background-color:  rgb(37, 36, 42);
+  background-color:  rgb(70, 69, 70);
 }
 
 .active {
@@ -130,6 +123,7 @@ textarea {
 div.button-container {
   text-align: center;
   padding: 2%;
+  
 }
 
 .container {
@@ -142,35 +136,31 @@ div.button-container {
 }
 
 
-.button{
-  align-self: center;
-  background-color: #fff;
-  background-image: none;
-  background-position: 0 90%;
-  background-repeat: repeat no-repeat;
-  background-size: 4px 3px;
-  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
-  border-style: solid;
-  border-width: 2px;
-  box-shadow: rgba(0, 0, 0, .2) 15px 28px 25px -18px;
-  box-sizing: border-box;
-  color: #41403e;
+.button {
+  font-size: 16px;
+  font-weight: 200;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  letter-spacing: 1px;
+  padding: 13px 20px 13px;
+  outline: 0;
+  border: 1px solid black;
   cursor: pointer;
-  display: inline-block;
-  font-family: Neucha, sans-serif;
-  font-size: 1rem;
-  line-height: 23px;
-  outline: none;
-  padding: .75rem;
-  text-decoration: none;
-  transition: all 235ms ease-in-out;
-  border-bottom-left-radius: 15px 255px;
-  border-bottom-right-radius: 225px 15px;
-  border-top-left-radius: 255px 15px;
-  border-top-right-radius: 15px 225px;
+  position: relative;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
+}
+
+button:after {
+  content: "";
+  background-color:rgb(254, 178, 108);
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  height: 100%;
+  top: 7px;
+  left: 7px;
+  transition: 0.2s;
 }
 
 .button:hover {
@@ -184,7 +174,8 @@ div.button-container {
 
 
 html {
-  background-color: white;
+  background-color: rgb(255, 227, 190);
+  
 }
 #recipe,
 #user,
@@ -195,49 +186,6 @@ html {
   text-align: center;
 }
 
-/* #nav {
-  
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(245, 141, 30);
-  color: white;
-<<<<<<< HEAD
-  padding: 20px;
-=======
-  padding: 9px;
->>>>>>> 4c7afb8d7d64bdfa7dcffa9b3a8add3fef73092a
-  background-blend-mode: multiply;
-  
-}
-
-
-#logout {
-  font-weight: bold;
-  font-size: 18px;
-  margin-left: 250px;
-  text-align: center;
-}
-
-#home a,
-#recipe a,
-#user a,
-#meal a,
-#mealplan a,
-#logout a {
-  text-decoration: none;
-  color: white; 
-  text-align: center;
-}
-
-#home a:hover,
-#recipe a:hover,
-#meal a:hover,
-#user a:hover,
-#mealplan a:hover,
-#logout a:hover {
-  color: black;
-  text-decoration: underline;
-  cursor: pointer;
-} */
 
 
 </style>

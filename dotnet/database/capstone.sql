@@ -34,7 +34,7 @@ CREATE TABLE recipes (
 	user_id int,
 	recipe_name varchar(60) NOT NULL,
 	recipe_instructions varchar(5000) NOT NULL,
-	recipe_image varchar(500),
+	recipe_image varchar(8000),
 	CONSTRAINT PK_recipe PRIMARY KEY (recipe_id)
 )
 
