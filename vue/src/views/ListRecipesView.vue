@@ -142,7 +142,11 @@ div.label{
   text-decoration: none;
   font-family: sans-serif;
   font-size: 16px;*/
-} 
+}
+label {
+  text-align: left;
+  padding-left: 300px;
+}
 
 /* CSS */
 .button {
