@@ -8,14 +8,14 @@
     <div class="add-recipe">
     <button v-show="!showForm" v-on:click="showForm = true">Add Recipe</button>
     </div>
-    <form v-on:submit.prevent="createNewRecipe" v-show="showForm">
+    <form v-on:submit.prevent="createNewRecipe" v-show="showForm" >
       <div>
         <label for="name">Name: </label>
         <input type="text" name="name" id="name" v-model="newRecipe.recipeName" />
       </div>
       <div>
         <label for="instructions">Instructions: </label>
-        <input type="text" name="recipeInstructions" id="recipeInstructions" v-model="newRecipe.recipeInstructions" />
+        <textarea placeholder="recipe instructions" name="recipeInstructions" id="recipeInstructions" v-model="newRecipe.recipeInstructions" />
       </div>
       <div>
         <label for="image">Image URL: </label>
@@ -122,7 +122,7 @@ h4 {
 }
 
 form{
-  text-align: center;
+  /* text-align: center; */
 } 
 div.label{
   font-weight: bold;
