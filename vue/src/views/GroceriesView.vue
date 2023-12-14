@@ -1,10 +1,12 @@
 <template>
+    <h1>Grocery List</h1>
     <div class="list-groceries">
-        <h1>Grocery List</h1>
-        <section v-if="isLoading == false" class="container">
-            <ingredient v-for="ingredient in groceries" 
-            v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
-        </section>
+        
+        <div v-if="isLoading == false" class="groceries">
+            <ingredient v-for="ingredient in groceries" v-bind:key="ingredient.ingredientId" v-bind:item="ingredient" />
+        </div>
+
+
         <div class="actions">
             <button class="btn-cancel" type="button" @click="cancel">Cancel</button>
         </div>
@@ -67,6 +69,14 @@ export default {
   
   
 <style scoped>
+.list-groceries {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin-left: 42%;
+}
+
+
 section.mealplan {
     background-color: rgb(255, 207, 111);
     font-family: Verdana, Geneva, Tahoma, sans-serif;

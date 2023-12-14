@@ -2,12 +2,12 @@
   <div class="home">
     <h1>Elevated Eats</h1>
     <!-- <p>You must be authenticated to see this</p> -->
-    <nav class="recipes">
-      <a href="/recipe" class="fill-nav" style="
+    <nav class="meal-plans">
+      <a href="/mealplan" class="fill-nav" style="
           text-decoration: none;
           color: white;
           font-size: 20px;
-        ">Recipes</a>
+        ">My Meal Plans</a>
     </nav>
     <nav class="my-recipes">
       <a href="/recipe/favorites" class="fill-nav" style="
@@ -16,19 +16,19 @@
           font-size: 20px;
         ">My Recipes</a>
     </nav>
+    <nav class="recipes">
+      <a href="/recipe" class="fill-nav" style="
+          text-decoration: none;
+          color: white;
+          font-size: 20px;
+        ">Recipes</a>
+    </nav>
     <nav class="meals">
       <a href="/meal" class="fill-nav" style="
           text-decoration: none;
           color: white;
           font-size: 20px;
         ">Meals</a>
-    </nav>
-    <nav class="meal-plans">
-      <a href="/mealplan" class="fill-nav" style="
-          text-decoration: none;
-          color: white;
-          font-size: 20px;
-        ">My Meal Plans</a>
     </nav>
   </div>
 </template>

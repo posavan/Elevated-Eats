@@ -73,6 +73,16 @@ div.button-container {
   position: center;
 }
 
+form {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+textarea {
+  width: 60%;
+  height: 200px;
+}
+
 button {
   display: inline-block;
   border-radius: 1.5rem;
