@@ -78,6 +78,7 @@ section.mealplan {
   gap: 10px;
   padding: 10%;
   padding-top: 0.05%;
+  padding-bottom: 0%;
 }
 
 h1 {

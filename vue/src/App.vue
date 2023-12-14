@@ -80,6 +80,7 @@ div.button-container {
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
   position: center;
+  padding-bottom: 0%;
 }
 
 .button{

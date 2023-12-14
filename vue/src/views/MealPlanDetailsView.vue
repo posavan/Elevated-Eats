@@ -55,7 +55,7 @@ div {
   border: solid black;
   border-radius: 50px;
   margin: 20%;
-  margin-top: 5%;
+  margin-top: 0%;
 }
 h1 {
   text-align: center;
@@ -67,6 +67,7 @@ button {
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
+ 
 }
 
 button:hover {
