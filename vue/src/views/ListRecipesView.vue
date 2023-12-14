@@ -129,6 +129,7 @@ div.label{
 }
  .add-recipe{
   text-align: center;
+  margin-bottom: 100px;
   /*display: block;
   color: white;
   padding: 10px;
