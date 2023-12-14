@@ -6,16 +6,16 @@
     </div>
     <div>
       <label for="description">Description: </label>
-      <input type="text" name="description" id="description" v-model="editMeal.mealDescription" />
+      <input type="textarea" name="description" id="description" v-model="editMeal.mealDescription" />
     </div>
+    <div>
+      <label for="image">Edit Image URL: </label>
+      <input type="text" name="edit-image" id="edit-image" v-model="editMeal.mealImage" />
+    </div>
+    <h3>Recipes:</h3>
     <div v-for="recipe in Array.from(editMeal.recipeList)" :key="recipe.recipeId">
-      <label for="type">Edit Recipe Name: </label>
-      <input type="text" name="edit-recipe-name" id="edit-recipe-name" v-model="recipe.recipeName" />
-
-      <label for="instructions">Edit Recipe Instructions: </label>
-      <input type="text" name="edit-recipe-instructions" id="edit-recipe-instructions" v-model="recipe.recipeInstructions" />
-      <label for="image">Edit Recipe Image URL: </label>
-      <input type="text" name="edit-recipe-image" id="edit-recipe-image" v-model="recipe.recipeImage" />
+      <p>{{ recipe.recipeName }}</p>
+      <button @click.prevent="removeRecipe(recipe)">Remove</button>
     </div>
 
     <recipe v-for="recipe in addedRecipes" v-bind:key="recipe.recipeId" v-bind:item="recipe">
@@ -28,26 +28,25 @@
         </option>
       </select>
       <button type="button" v-on:click="addRecipe">
-        Add Recipe
+        Add Recipe +
       </button>
     </div>
+    <button type="button" v-on:click="buttonClick">
+      {{ feedback }}
+    </button>
     <div v-if="showRecipeForm">
-      <label for="type">New Recipe Name: </label>
+      <label for="type">New Recipe: </label>
       <input type="text" name="new-recipe-name" id="new-recipe-name" v-model="newRecipe.recipeName" />
       <label for="type">New Recipe Instructions: </label>
-      <input type="text" name="new-recipe-instructions" id="new-recipe-instructions"
+      <textarea placeholder="instructions" name="new-recipe-instructions" id="new-recipe-instructions"
         v-model="newRecipe.recipeInstructions" />
-        <label for="type">New Recipe Image URL: </label>
-      <input type="text" name="new-recipe-image" id="new-recipe-image"
-        v-model="newRecipe.recipeImage" />
-      <button v-on:click.prevent="addNewRecipe">Add +</button>
+      <label for="type">New Recipe Image URL: </label>
+      <input type="text" name="new-recipe-image" id="new-recipe-image" v-model="newRecipe.recipeImage" />
+      <button v-on:click.prevent="addNewRecipe">Create</button>
     </div>
-    <button type="button" v-on:click="showRecipeForm = !showRecipeForm">
-      Create New Recipe
-    </button>
 
     <div class="actions">
-      <button class="btn-submit" type="submit">Add and Continue</button>
+      <button class="btn-submit" type="submit">Save Meal</button>
       <button class="btn-cancel" type="button" v-on:click="cancelForm">
         Return
       </button>
@@ -85,7 +84,8 @@ export default {
         recipeInstructions: "",
         ingredientList: [],
         recipeImage: ""
-      }
+      },
+      feedback: "Create New Recipe"
     };
   },
 
@@ -108,12 +108,58 @@ export default {
           }
         });
     },
+
+    addNewRecipe() {
+      recipeService
+        .createRecipe(this.newRecipe)
+        .then((response) => {
+          console.log("created", response)
+          this.newRecipe = response.data;
+          this.addedRecipes.push(
+            this.newRecipe
+          );
+          this.newRecipe = {};
+          console.log("Recipe added successfully", response.data);
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("Error adding recipe: ", error.response.status);
+          } else if (error.request) {
+            console.log(
+              "Error adding recipe: unable to communicate to server"
+            );
+          } else {
+            console.log("Error adding recipe: make request");
+          }
+        });
+    },
     addRecipe() {
       this.addedRecipes.push(
         this.newRecipe
       );
       this.newRecipe = {};
     },
+    removeRecipe(targetRecipe) {
+      console.log(targetRecipe);
+      mealService
+        .removeRecipeFromMeal(this.editMeal.mealId, targetRecipe.recipeId)
+        .then((response) => {
+          console.log("Recipe removed successfully", response.data);
+          location.reload();
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("Error adding recipe: ", error.response.status);
+          } else if (error.request) {
+            console.log(
+              "Error adding recipe: unable to communicate to server"
+            );
+          } else {
+            console.log("Error adding recipe: make request");
+          }
+        });
+    },
+
     addRecipesToMeal() {
       this.editMeal.recipeList = this.addedRecipes;
       this.addedRecipes.forEach(addedRecipe => {
@@ -136,15 +182,14 @@ export default {
           });
       });
     },
-
     updateMeal() {
       this.addRecipesToMeal();
       mealService
-        .updateMeal(this.editMeal.mealId, this.editMeal)
+        .updateMeal(this.editMeal)
         .then((response) => {
           this.$router.push({
             name: "mealDetailsView",
-            params: { id: this.editMeal.mealId },
+            params: { mealId: this.editMeal.mealId },
           });
           console.log("Meal edited successfully", response);
         })
@@ -158,36 +203,22 @@ export default {
           }
         });
     },
-    addNewRecipe() {
-      recipeService
-        .createRecipe(this.newRecipe)
-        .then((response) => {
-          this.newRecipe = response.data;
-          this.addedRecipes.push(
-            this.addRecipe
-          );
-          this.newRecipe = {};
-          console.log("Recipe added successfully", response.data);
-        })
-        .catch((error) => {
-          if (error.response) {
-            console.log("Error adding recipe: ", error.response.status);
-          } else if (error.request) {
-            console.log(
-              "Error adding recipe: unable to communicate to server"
-            );
-          } else {
-            console.log("Error adding recipe: make request");
-          }
-        });
-      },
+
+    buttonClick() {
+      this.showRecipeForm = !this.showRecipeForm;
+      if (this.showRecipeForm) {
+        this.feedback = "Collapse";
+      } else {
+        this.feedback = "Create New Recipe";
+      }
+    },
 
     cancelForm() {
       this.$router.back();
     },
   },
 
-  created(){
+  created() {
     console.log("reached edit meal form");
     this.editMeal = this.meal;
     this.loadRecipes();

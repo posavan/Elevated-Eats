@@ -1,8 +1,10 @@
 <template>
   <section class="ingredient">
-    <div>Name: {{ item.ingredientName }}</div>
-    <div v-if="!hideQuantity">Quantity: {{ item.quantity }}</div>
-    <p></p>
+    <div class="column">
+      <input type="checkbox" id="checkbox" v-model="checked" v-if="inGroceries" />
+      <span v-if="!hideQuantity">{{ item.quantity }}</span>&nbsp;
+      <span>{{ item.ingredientName }}</span>
+    </div>
   </section>
 </template>
 
@@ -12,8 +14,22 @@ export default {
   props: ["item"],
   data() {
     return {
-      hideQuantity: this.$route.name == 'ingredients'
+      hideQuantity: this.$route.name == 'ingredients',
+      inGroceries: this.$route.name == "groceries",
     }
-  }
+  },
+
 };
 </script>
+
+<style>
+section.ingredient {
+  display: grid
+}
+
+.column {
+  border: 3px rgb(216, 117, 81) solid;
+  text-align: center;
+  padding: 10px;
+}
+</style>

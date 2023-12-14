@@ -252,9 +252,13 @@ namespace Capstone.DAO
         public bool RemoveRecipeFromUser(int recipeId, int userId)
         {
             bool result = false;
-            string priorSql = "DELETE FROM recipes_ingredients WHERE recipe_id IN " +
+            string priorASql = "DELETE FROM recipes_ingredients WHERE recipe_id IN " +
                 "(SELECT ri.recipe_id FROM recipes_ingredients ri " +
                 "JOIN recipes r ON ri.recipe_id=r.recipe_id " +
+                "WHERE r.recipe_id=@recipe_id);";
+            string priorBSql = "DELETE FROM meals_recipes WHERE recipe_id IN " +
+                "(SELECT mr.recipe_id FROM meals_recipes mr "+
+                "JOIN recipes r ON mr.recipe_id=r.recipe_id " +
                 "WHERE r.recipe_id=@recipe_id);";
             string sql = "DELETE FROM recipes WHERE recipe_id=@recipe_id AND user_id=@user_id;";
 
@@ -263,9 +267,13 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    SqlCommand cmd = new SqlCommand(priorSql, conn);
+                    SqlCommand cmd = new SqlCommand(priorASql, conn);
                     cmd.Parameters.AddWithValue("@recipe_id", recipeId);
                     int count = cmd.ExecuteNonQuery();
+
+                    cmd = new SqlCommand(priorBSql, conn);
+                    cmd.Parameters.AddWithValue("@recipe_id", recipeId);
+                    count = cmd.ExecuteNonQuery();
 
                     cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@recipe_id", recipeId);

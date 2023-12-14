@@ -3,49 +3,32 @@
     <h1>Elevated Eats</h1>
     <!-- <p>You must be authenticated to see this</p> -->
     <nav class="recipes">
-      <a
-        href="/recipe"
-        style="
+      <a href="/recipe" class="fill-nav" style="
           text-decoration: none;
           color: white;
           font-size: 20px;
-        
-        "
-        >Recipes</a
-      >
+        ">Recipes</a>
     </nav>
     <nav class="my-recipes">
-      <a
-        href="/recipe/favorites"
-        style="
+      <a href="/recipe/favorites" class="fill-nav" style="
           text-decoration: none;
           color: white;
           font-size: 20px;
-        "
-        >My Recipes</a
-      >
+        ">My Recipes</a>
     </nav>
     <nav class="meals">
-      <a
-        href="/meal"
-        style="
+      <a href="/meal" class="fill-nav" style="
           text-decoration: none;
           color: white;
           font-size: 20px;
-        "
-        >Meals</a
-      >
+        ">Meals</a>
     </nav>
     <nav class="meal-plans">
-      <a
-        href="/mealplan"
-        style="
+      <a href="/mealplan" class="fill-nav" style="
           text-decoration: none;
           color: white;
           font-size: 20px;
-        "
-        >My Meal Plans</a
-      >
+        ">My Meal Plans</a>
     </nav>
   </div>
 </template>
@@ -56,7 +39,7 @@ export default {};
 
 <style scoped>
 div.home {
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   background-color: white;
   background-image: url("/img/homeview.jpg");
   color: white;
@@ -71,7 +54,8 @@ h1 {
   text-align: center;
   font-size: 100px;
 }
-section.container{
+
+section.container {
   display: block;
 }
 
@@ -110,6 +94,13 @@ a:hover {
   color: inherit;
 }
 
+a.fill-nav {
+  display: block;
+  height: 100%;
+  width: 100%;
+  text-decoration: none;
+}
+
 .recipes:hover {
   border-color: white;
   border-style: solid;
@@ -123,14 +114,14 @@ a:hover {
 }
 
 .meal-plans:hover {
-  border-color:white;
-  border-style: solid;
-  border-width: .325rem;
-}
-.meals:hover {
-  border-color:white;
+  border-color: white;
   border-style: solid;
   border-width: .325rem;
 }
 
+.meals:hover {
+  border-color: white;
+  border-style: solid;
+  border-width: .325rem;
+}
 </style>

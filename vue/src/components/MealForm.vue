@@ -6,7 +6,7 @@
     </div>
     <div>
       <label for="description">Description: </label>
-      <input type="text" name="description" id="description" v-model="editMeal.mealDescription" />
+      <textarea placeholder="description" name="description" id="description" v-model="editMeal.mealDescription" />
     </div>
     <!-- display recipes to be added -->
     <recipe v-for="recipe in addedRecipes" v-bind:key="recipe.recipeId" v-bind:item="recipe" />
@@ -24,7 +24,7 @@
       <label for="name">New Recipe Name:</label>
       <input type="text" name="new-recipe-name" id="new-recipe-name" v-model="newRecipe.recipeName" />
       <label for="instructions">New Recipe Instructions:</label>
-      <input type="text" name="new-recipe-description" id="new-recipe-description"
+      <textarea placeholder="instructions" name="new-recipe-description" id="new-recipe-description"
         v-model="newRecipe.recipeInstructions" />
         <label for="image">Recipe Image URL:</label>
       <input type="text" name="new-recipe-image" id="new-recipe-image"

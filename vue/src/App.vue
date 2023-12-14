@@ -2,43 +2,25 @@
   <div id="capstone-app">
     <div id="nav">
       <span id="home">
-        &nbsp;<router-link v-bind:to="{ name: 'home' }">Home</router-link
-        >&nbsp;|&nbsp;
+        &nbsp;<router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
       </span>
       <span id="mealplan">
-        <router-link
-          v-bind:to="{ name: 'mealplan' }"
-          v-if="this.$store.state.token != ''"
-          >My Meal Plans</router-link
-        >&nbsp;
+        <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token != ''">My Meal
+          Plans</router-link>&nbsp;
       </span>
       <span id="user">
-        &nbsp;<router-link
-          v-bind:to="{ name: 'favorites' }"
-          v-if="this.$store.state.token != ''"
-          >My Recipes</router-link
-        >&nbsp;
+        &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">My
+          Recipes</router-link>&nbsp;
       </span>
       <span id="recipe">
-        &nbsp;<router-link
-          v-bind:to="{ name: 'recipe' }"
-          v-if="this.$store.state.token != ''"
-          >Recipes</router-link
-        >&nbsp;
+        &nbsp;<router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''">Recipes</router-link>&nbsp;
       </span>
       <span id="meal">
-        &nbsp;<router-link
-          v-bind:to="{ name: 'meal' }"
-          v-if="this.$store.state.token != ''"
-          >Meals </router-link
-        >&nbsp;
+        &nbsp;<router-link v-bind:to="{ name: 'meal' }" v-if="this.$store.state.token != ''">Meals </router-link>&nbsp;
       </span>
       <span id="logout">
-        &nbsp;<router-link
-          v-bind:to="{ name: 'logout' }"
-          v-if="this.$store.state.token != ''"
-          >Logout</router-link
-        >&nbsp;
+        &nbsp;|&nbsp;<router-link v-bind:to="{ name: 'logout' }"
+          v-if="this.$store.state.token != ''">Logout</router-link>&nbsp;
       </span>
     </div>
     <router-view />
@@ -46,20 +28,23 @@
 </template>
 
 <style>
-body{
+body {
   margin: 0%;
   padding: 0%;
   border: 0%;
 }
+
 h1 {
-  font-family:Georgia, 'Times New Roman', Times, serif;
+  font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
   font-weight: normal;
 }
+
 h2 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
+
 h3 {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
@@ -69,21 +54,25 @@ section.container {
   text-align: center;
   position: center;
 }
+
 p {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   text-align: center;
 }
+
 div.button-container {
   text-align: center;
   padding: 2%;
 }
+
 .container {
-  display: grid ;
+  display: grid;
   border-width: 1rem;
   grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr));
   gap: 1.25rem;
   position: center;
 }
+
 button {
   display: inline-block;
   border-radius: 1.5rem;
@@ -105,6 +94,7 @@ button {
   margin-bottom: 1.9rem;
   text-align: center;
 }
+
 button:hover {
   border-style: dotted;
 }
@@ -119,10 +109,11 @@ section.meal {
 html {
   background-color: white;
 }
+
 #nav {
- /* float: left; */
- font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
- background-color: rgb(235, 142, 42);
+  /* float: left; */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(235, 142, 42);
   color: white;
   padding: 10px;
   background-blend-mode: multiply;
@@ -148,6 +139,7 @@ html {
   text-decoration: none;
   color: white;
 }
+
 #home a:hover,
 #recipe a:hover,
 #meal a:hover,

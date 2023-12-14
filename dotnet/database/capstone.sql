@@ -108,11 +108,9 @@ INSERT INTO ingredients (ingredient_name) VALUES ( 'Milk' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'basil' )
 INSERT INTO ingredients (ingredient_name) VALUES ( 'cumin' )
 
---INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Calzone' , 'Delicious Italian Delicacy')
---INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Carbonara' , 'Carbs')
---INSERT INTO recipes (recipe_name, recipe_instructions ) VALUES ( 'Tapioca' , 'yummy yummy')
-INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES ( 1, 'Homemade Lasagna' , '1. Preheat the oven to 350°F. In a large pot of salted water, boil lasagna noodles until al dente according to package directions. 
-Drain, rinse under cold water, and set aside. 2. In a large skillet or dutch oven, brown beef, sausage, onion, and garlic over medium-high heat until no pink remains. Drain any fat.
+
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES ( 1, 'Homemade Lasagna' , '1. Preheat the oven to 350°F. In a large pot of salted water, boil lasagna noodles until al dente according to package directions. Drain, rinse under cold water, and set aside. 
+2. In a large skillet or dutch oven, brown beef, sausage, onion, and garlic over medium-high heat until no pink remains. Drain any fat.
 3. Stir in the pasta sauce, tomato paste, Italian seasoning, ½ teaspoon of salt, and ¼ teaspoon of black pepper. Simmer uncovered over medium heat for 5 minutes or until thickened.
 4. In a separate bowl, combine 1 ½ cups mozzarella, ¼ cup parmesan cheese, ricotta, parsley, egg, and ¼ teaspoon salt.
 5. Spread 1 cup of the meat sauce in a 9x13 pan or casserole dish. Top it with 3 lasagna noodles. Layer with ⅓ of the ricotta cheese mixture and 1 cup of meat sauce. Repeat twice more. Finish with 3 noodles topped with remaining sauce.
@@ -154,18 +152,31 @@ INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES (1, 'Bre
 5. Add eggs and cook until just about set, they will continue cooking as they cool.
 6. Arrange 8 pieces of foil with a flour tortilla in the center of each. Divide hash brown mixture, eggs, cheese and salsa over tortillas.
 7. Enjoy immediately or wrap the burritos in the foil and store it in a plastic zip-top bag in the freezer.')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES (1, 'Grilled Chicken','1. Combine the olive oil, lemon juice, garlic, oregano, chili powder, salt and pepper in a small bowl. Whisk until well combined.
+2. Place the chicken breasts in a zip-top plastic bag and pound them using a meat mallet or rolling pin until they are an even thickness, about ½-inch thick.
+3. Pour the marinade into the bag with the chicken, seal the bag, and place it in a baking dish (in case of leaks). Turn the bag to coat all parts of the chicken. Place chicken in the refrigerator for 30 minutes to 2 hours.
+4. Clean the grates of a gas or charcoal grill (or use an indoor grill pan). Oil the grill grates and heat the grill to medium high (375-450 degrees F).
+5. Remove the chicken from the marinade and discard extra marinade. Grill chicken for 5-8 minutes per side, until cooked through. The internal temperature of the chicken should reach 165 degrees F. For the best grill marks and juicy chicken, begin cooking the chicken on a hotter part of the grill for a few minutes and then move it to lower heat to finish cooking through.
+6. Let chicken rest for 5 minutes before serving.')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Chicken Stir-Fry' , '1. Heat 1 tablespoon oil in a saute pan over medium heat. Add garlic and stir. Place the chicken in the pan and brown 4 minutes on each side. Remove from pan, slice into strips, set aside.
+2. Heat remaining tablespoon of oil in a wok over high heat. Add the vegetables and teriyaki sauce. Stir-fry quickly until the vegetables begin to soften. Add the chicken strips, combine well and continue to cook for 2 to 3 minutes. Serve immediately.')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Buffalo Chicken Enchiladas' , 'Preheat the oven to 400 degrees F. Butter a 9-by-13-inch baking dish.
+2. Mix the chicken, cream cheese, 1 cup of the Cheddar, 1/3 cup of the hot sauce, white parts of the scallions and cumin in a large bowl until well combined. Stir together the butter, remaining 2/3 cup hot sauce and 3 tablespoons water in a medium bowl. 
+3. Microwave the tortillas in batches until warm, softened and foldable, about 30 seconds. Keep warm between damp paper towels. 
+4.Spoon a portion of the chicken mixture down the middle of each tortilla and roll up. Place them side by side, seam-side down, in the prepared pan. Pour the hot sauce mixture over the tortillas. Sprinkle with the remaining 1 cup Cheddar and the blue cheese and bake until the cheese is melted and bubbly, 15 to 17 minutes. 
+5. Drizzle the blue cheese dressing over the enchiladas and sprinkle with the scallion greens. Serve with more hot sauce.' )
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Chicken Noodle Soup', '1. Place a large pot over moderate heat and add extra-virgin olive oil. Work close to the stove and add vegetables to the pot as you chop, in the order they are listed.
+2. Add bay leaves and season vegetables with salt and pepper, to taste. Add stock to the pot and raise flame to bring liquid to a boil. Add diced chicken tenderloins, return soup to a boil, and reduce heat back to moderate. Cook chicken 2 minutes and add noodles. Cook soup an additional 6 minutes or until noodles are tender and remove soup from the heat.
+3. Stir in parsley and dill, remove bay leaves and serve. This is a thick soup. Add up to 2 cups of water if you like chicken soup with lots of broth.')
+--INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 
 
 
-
-INSERT INTO meals (meal_name, meal_description) VALUES ('Breakfast', 'IDK');
-INSERT INTO meals (meal_name, meal_description) VALUES ('Lunch', 'IDK');
-INSERT INTO meals (meal_name, meal_description) VALUES ('Dinner', 'IDK');
-INSERT INTO meals (meal_name, meal_description) VALUES ('Appetizers', 'IDK');
-INSERT INTO meals (meal_name, meal_description) VALUES ('Snacks', 'IDK');
-INSERT INTO meals (meal_name, meal_description) VALUES ('Desserts', 'IDK');
-
-
-
+INSERT INTO meals (meal_name, meal_description) VALUES ('Breakfast', 'Sunrise Sustenance');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Lunch', 'Mid-day Munching');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Dinner', 'Nighttime Nourishment');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Appetizers', 'Bite-Sized Beginnings');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Snacks', 'Tasty Treats');
+INSERT INTO meals (meal_name, meal_description) VALUES ('Desserts', 'Feast Finale');
 
 
 insert into meals_recipes (meal_id, recipe_id) VALUES (1,1);
@@ -183,9 +194,6 @@ INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (
 insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 1, 'Breakfast');
 insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 3, 'Dinner');
 insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (2, 1, 'Breakfast');
-
-
-
 
 --ingredients for lasagna
 INSERT INTO ingredients (ingredient_name) VALUES ( 'Lasagna noodles' )
@@ -409,6 +417,138 @@ INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity)
 	VALUES ( 8, 56, '8, 12" tortillas');
 
 
+--ingredients for Grilled Chicken 9
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Chicken Breasts' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Dried Oregano' )
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 9, 37, '1/4 cup');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 9, 35, '1/4 cup');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 9, 12, '3 cloves, minced');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 9, 58, '1 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 9, 23, '1/4 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 9, 26, '1/2 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 9, 27, '1/2 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 9, 57, '4, boneless, skinless; about 2 lbs');
+
+
+--ingredients for chicken stir fry
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Dark Sesame Oil' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Broccoli' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Mushrooms' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Carrots' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Green Beans' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Bok Choy' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Teriyaki Sauce' )
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 10, 57, '2 lbs., boneless, skinless');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 10, 59, '2 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 10, 12, '2 cloves, minced');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 10, 60, '1 head, stems removed');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 10, 61, '1 dozen, sliced');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 10, 62, '3, peeled and julienned');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 10, 63, '1/4 lb, diced');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 10, 64, '1 head, chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 10, 65, '2-3 tbsp');
+
+--ingredients for buffalo chicken enchiladas
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Buffalo Sauce' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Ground Cumin' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Corn Tortillas' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Blue Cheese Crumbles' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Blue Cheese Dressing' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Scallions' )
+INSERT INTO ingredients (ingredient_name) VALUES ( 'Rotisserie Chicken' )
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 66, '1 cup');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 39, '3 tbsp, melted');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 72, '4 cups, shredded');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 24, '8 oz, room temp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 43, '2 cups, shredded');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 71, '1 bunch, thinly sliced');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 67, '1/4 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 68, '16');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 69, '2 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 11, 70, '2 tbsp');
+
+
+--ingredients for chicken noodle soup
+INSERT INTO ingredients (ingredient_name) VALUES ('Parsnips')
+INSERT INTO ingredients (ingredient_name) VALUES ('Celery')
+INSERT INTO ingredients (ingredient_name) VALUES ('Bay Leaves')
+INSERT INTO ingredients (ingredient_name) VALUES ('Chicken Stock')
+INSERT INTO ingredients (ingredient_name) VALUES ('Chicken Breast Tenders')
+INSERT INTO ingredients (ingredient_name) VALUES ('Wide Egg Noodles')
+INSERT INTO ingredients (ingredient_name) VALUES ('Fresh Dill')
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 37, '2 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 62, '2, peeled and chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 73, '1, peeled and chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 11, '1, chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 74, '2 ribs, chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 75, '2, fresh or dried');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 76, '6 cups');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 77, '1 lb');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 78, '1/2 lb');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 18, 'handful, chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 12, 79, 'handful, chopped');
+	
+
+
+--ingredients for quesadilla
+
+
+
+--ingredients for deviled eggs
+--ingredients for choc chip cookies
+--ingredients for creme brulee
+--ingredients for apple pie 
+--ingredients for spinach artichoke dip
+
+
+
+
+--hummus
+--marinated pretzels
+--kettle corn
+--pigs in a blanket
 
 
 GO

@@ -5,7 +5,7 @@
     </div>
     <h3>{{ recipe.recipeName }}</h3>
 
-    <section v-if="!hide && !showDetails && hideMealsRecipes" class="container">
+    <section v-if="inDetails" class="container">
       <div class="ingredients">Ingredients:</div>
       <ingredient
         v-for="ingredient in ingredients"
@@ -14,14 +14,20 @@
       />
     </section>
 
+<<<<<<< HEAD
     <div class="instructions" v-if="!hide && !showDetails && hideMealsRecipes">
       Instructions: {{ recipe.recipeInstructions }}
     </div>
+=======
+    <div class="instructions" v-if="inDetails">Instructions: {{ recipe.recipeInstructions
+    }}</div>
+>>>>>>> cd124dc7b321485ea3257abae5ba1b31f02b12e1
 
     <div class="button-container">
-      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="hide">
+      <button class="save-recipe" v-on:click.prevent="saveRecipe" v-if="show">
         {{ feedback }}
       </button>
+<<<<<<< HEAD
       <button
         class="view-recipe-details"
         v-on:click="$router.push('/recipe/favorites/' + recipeId)"
@@ -46,6 +52,23 @@
       <button class="btn-cancel" type="button" @click="cancel" v-if="showEdit">
         Return
       </button>
+=======
+      <button class="view-recipe-details" v-on:click="$router.push('/recipe/favorites/' + recipe.recipeId)"
+        v-if="inMealDetails || inFavorites">
+        View Recipe Details
+      </button>
+      <!-- <button class="view-public-details" v-on:click="$router.push('/recipe/public/' + recipe.recipeName)"
+        v-if="show">
+        View Recipe Details
+      </button> -->
+      <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipe.recipeId + '/edit')" v-if="inDetails">
+        Edit Recipe
+      </button>
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="inFavorites || inEdit || inAdd || inMealDetails">
+        Delete Recipe
+      </button>
+      <button class="btn-cancel" type="button" @click="cancel" v-if="inDetails">Return</button>
+>>>>>>> cd124dc7b321485ea3257abae5ba1b31f02b12e1
     </div>
     <p></p>
   </section>
@@ -65,13 +88,15 @@ export default {
     return {
       recipe: {},
       ingredients: [],
-      hide: this.$route.name == "recipe",
-      showDetails: this.$route.name == "favorites",
-      showEdit: this.$route.name == "userRecipeDetails",
-      hideMealsRecipes: this.$route.name == "userRecipeDetails",
-      hideMeals: this.$route.name == "createMeal",
       recipeId: 0,
       feedback: "Add Recipe To Favorites",
+      inDetails: this.$route.name == "userRecipeDetails",
+      inFavorites: this.$route.name == "favorites",
+      inMealDetails: this.$route.name == "mealDetailsView",
+      inAdd: this.$route.name == "createMeal",
+      inEdit: this.$route.name == "EditMealView",
+      show: this.$route.name == "recipe",
+      inPublic: this.$route.name == "recipeDetails"
     };
   },
   methods: {
@@ -128,7 +153,7 @@ export default {
         .then((response) => {
           console.log(response);
           //this.$router.push({name: 'favorites' });
-          location.reload();
+          this.cancel();
         })
         .catch((error) => {
           if (error.response) {
@@ -171,6 +196,7 @@ export default {
   padding-right: 30%;
   position: center;
 }
+<<<<<<< HEAD
 img {
   width: 100%;
   aspect-ratio: 3/2;
@@ -179,6 +205,13 @@ img {
 /* .recipe.image {
   image: url("/img/homeview.jpg");
 } */
+=======
+
+img {
+  width:350px;
+  height: auto;
+}
+>>>>>>> cd124dc7b321485ea3257abae5ba1b31f02b12e1
 
 h1 {
   text-align: center;
