@@ -145,7 +145,7 @@ div.label{
 }
 label {
   text-align: left;
-  padding-left: 300px;
+  padding-left: 25%;
 }
 
 /* CSS */
