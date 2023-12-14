@@ -60,6 +60,15 @@ p {
   text-align: center;
 }
 
+form {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+textarea {
+  width: 60%;
+  height: 200px;
+}
 div.button-container {
   text-align: center;
   padding: 2%;
