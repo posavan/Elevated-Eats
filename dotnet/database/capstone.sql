@@ -52,7 +52,7 @@ CREATE TABLE recipes_ingredients (
 	recipe_id int NOT NULL,
 	ingredient_id int NOT NULL,
 	quantity varchar(60) NOT NULL,
-	CONSTRAINT PK_recipes_ingredients PRIMARY KEY (recipe_id, ingredient_id),
+	CONSTRAINT PK_recipes_ingredients PRIMARY KEY (recipe_id, ingredient_id, quantity),
 	CONSTRAINT FK_recipes_ingredients_recipes FOREIGN KEY (recipe_id)
 	REFERENCES recipes (recipe_id),
     CONSTRAINT FK_recipes_ingredients_ingredients FOREIGN KEY (ingredient_id) 
@@ -113,7 +113,7 @@ INSERT INTO recipes (user_id, recipe_name, recipe_instructions ) VALUES ( 1, 'Ho
 2. In a large skillet or dutch oven, brown beef, sausage, onion, and garlic over medium-high heat until no pink remains. Drain any fat.
 3. Stir in the pasta sauce, tomato paste, Italian seasoning, ½ teaspoon of salt, and ¼ teaspoon of black pepper. Simmer uncovered over medium heat for 5 minutes or until thickened.
 4. In a separate bowl, combine 1 ½ cups mozzarella, ¼ cup parmesan cheese, ricotta, parsley, egg, and ¼ teaspoon salt.
-5. Spread 1 cup of the meat sauce in a 9x13 pan or casserole dish. Top it with 3 lasagna noodles. Layer with ⅓ of the ricotta cheese mixture and 1 cup of meat sauce. Repeat twice more. Finish with 3 noodles topped with remaining sauce.
+5. Spread 1 cup of the meat sauce in a 9x13 pan or casserole dish. Top it with 3 lasagna noodles. Layer with 1/3 of the ricotta cheese mixture and 1 cup of meat sauce. Repeat twice more. Finish with 3 noodles topped with remaining sauce.
 6. Cover with foil and bake for 45 minutes. 
 7. Remove the foil and sprinkle with the remaining 2 ½ cups mozzarella cheese and ¼ cup parmesan cheese. Bake for an additional 15 minutes or until browned and bubbly. Broil for 2-3 minutes if desired.
 8. Rest for at least 15 minutes before cutting.')
@@ -201,6 +201,23 @@ INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Dutc
 7. Set a large colander over a large bowl; transfer the cooked apples to the colander. Shake the colander and toss the apples to drain off as much juice as possible. Bring the drained juice and the cream to a boil in the now-empty Dutch oven over high heat; cook, stirring occasionally, until thickened and a wooden spoon leaves a trail in the mixture, about 5 minutes. Transfer the apples to the prebaked pie shell; pour the reduced juice mixture over and smooth with a rubber spatula.
 8. Make the Streusel Topping: Combine the flour and sugars in a medium bowl; drizzle with the melted butter and toss with a fork until evenly moistened and the mixture forms many large chunks with pea-sized pieces mixed throughout. Sprinkle the streusel evenly over the pie filling.
 9. Bake the Pie: Set the pie plate on a baking sheet and bake until the streusel topping is deep golden brown, 10 to 20 minutes. Cool on a wire rack to room temperature and serve.')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Veggie Quesadillas' , '1. Heat 1 tablespoon oil in a medium pan over medium-high heat. Add the oil, bell peppers, black beans, corn, onion, garlic, cumin, chili powder, salt, and pepper. Season with salt and pepper and cook for 3-4 minutes or until the bell peppers and onions of softened. Turn off heat and stir in the cilantro.
+2. In a clean skillet over medium heat, add a flour tortilla. Top with cheese, cooked veggies mixture, and another layer of cheese. Place another tortilla on top and cook, flipping once, until golden on both sides, about 3 minutes per side. Repeat with remaining ingredients. Slice and Serve!')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Malawah', '1. Beat or whisk all ingredients together in a bowl. Alternatively, mix together with a hand-held blender.
+2. Heat up a frying pan with enough butter or oil to lightly coat surface.
+3. Ladle some batter into pan and swirl such that batter distributes to make a thin layer which spreads towards curving sides of pan
+4. Fry for about a minute or until lightly golden, then flip over and fry another minute or so on the other side.
+5. Serve malawah by spreading melted butter and honey on top or sprinkling some sugar on top.')
+INSERT INTO recipes (user_id, recipe_name, recipe_instructions) VALUES (1, 'Vanilla Creme Brulee', '1. Heat oven to 325 degrees. In a saucepan, combine cream, vanilla, and salt; cook over low heat just until hot. Let sit for a few minutes.
+2. In a bowl, beat yolks and sugar together until light. Stir about a quarter of the vanilla cream into this mixture, then pour sugar-egg mixture into cream and stir. Pour into four 6-ounce ramekins and place ramekins in a baking dish; fill dish with boiling water halfway up the sides of the ramekins.
+3. Bake for 30 to 40 minutes, or until centers are barely set. Cool completely. Refrigerate for several hours and up to a couple of days.
+4. When ready to serve, top each custard with about a teaspoon of sugar in a thin layer.
+5. Place ramekins in a broiler 2 to 3 inches from heat source. Turn on broiler. Cook until sugar melts and browns or even blackens a bit, about 5 minutes. Serve within 2 hours.')
+
+
+
+
+
 
 
 
@@ -603,34 +620,164 @@ INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity)
 INSERT INTO ingredients (ingredient_name) VALUES ('Popcorn Kernels')
 INSERT INTO ingredients (ingredient_name) VALUES ('Sugar')
 
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 15, 32, '1/4 cup');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 15, 84, '1/2 cup');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 15, 85, '1/4 cup');
 
 
+--ingredients for choc chip cookies
+INSERT INTO ingredients (ingredient_name) VALUES ('Light Brown Sugar')
+INSERT INTO ingredients (ingredient_name) VALUES ('Vanilla Extract')
+INSERT INTO ingredients (ingredient_name) VALUES ('Baking Soda')
+INSERT INTO ingredients (ingredient_name) VALUES ('Baking Powder')
+INSERT INTO ingredients (ingredient_name) VALUES ('Chocolate Chips')
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 39, '1 cup, softened');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 85, '1 cup');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 86, '1 cup, packed');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 87, '2 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 2, '2');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 25, '3 cups');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 88, '1 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 89, '1/2 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 26, '1 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 16, 90, '2 cups (14 oz)');
 
 
+--ingredients for apple pie 
+INSERT INTO ingredients (ingredient_name) VALUES ('Vegetable Shortening')
+INSERT INTO ingredients (ingredient_name) VALUES ('Vodka')
+INSERT INTO ingredients (ingredient_name) VALUES ('Granny Smith Apples')
+INSERT INTO ingredients (ingredient_name) VALUES ('McIntosh Apples')
+INSERT INTO ingredients (ingredient_name) VALUES ('Ground Cinnamon')
+INSERT INTO ingredients (ingredient_name) VALUES ('Heavy Cream')
+INSERT INTO ingredients (ingredient_name) VALUES ('Ice Water')
 
-
-
-
---ingredients for kettle corn
-
-
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 25, '1 1/4 cups, divided (crust)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 85, '1 tbsp (crust)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 26, '1/2 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 39, '6 tbsp, cold (crust)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 91, '1/4 cup, chilled');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 92, '2 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 97, '2 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 93, '5 large apples (~2.5 lbs)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 94, '4 large apples (~2 lbs)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 85, '1/4 cup (filling)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 95, '1/2 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 26, 'Pinch');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 39, '2 tbsp (filling)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 96, '1/2 cup');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 25, '1 1/4 cups (streusel)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 86, '1/3 cup (streusel)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 85, '1/3 cup (streusel)');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 17, 39, '7 tbsp, melted (streusel)');
 
 --ingredients for quesadilla
+INSERT INTO ingredients (ingredient_name) VALUES ('Monterey Jack Cheese')
+INSERT INTO ingredients (ingredient_name) VALUES ('Cilantro')
+INSERT INTO ingredients (ingredient_name) VALUES ('Black Beans')
+INSERT INTO ingredients (ingredient_name) VALUES ('Water')
+
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 37, '1 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 100, '1 cup, rinsed and drained');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 20, '1/2 cup, drained');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 11, '1/2 cup, diced');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 12, '2 cloves, minced');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 67, '1 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 23, '1 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 99, '1/4 cup, chopped');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 56, '4, medium size');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 18, 98, '2 cups, shredded');
 
 
+--ingredients for malawah
+INSERT INTO ingredients (ingredient_name) VALUES ('Ground Cardamom')
+INSERT INTO ingredients (ingredient_name) VALUES ('Ground Ginger')
+INSERT INTO ingredients (ingredient_name) VALUES ('Honey')
 
---ingredients for deviled eggs
---ingredients for choc chip cookies
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 19, 25, '2 cups');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 19, 3, '2 1/2 cups');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 19, 2, '2');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 19, 85, '1 tbsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 19, 102, '1/2 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 19, 103, '1/2 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 19, 26, 'Pinch');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 19, 39, '2 tbsp, for frying');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 19, 104, 'for garnish');
+
+
 --ingredients for creme brulee
---ingredients for apple pie 
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 20, 96, '2 cups');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 20, 87, '1 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 20, 26, '1/8 tsp');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 20, 2, '5, just the yolks');
+INSERT INTO recipes_ingredients (recipe_id, ingredient_id, quantity) 
+	VALUES ( 20, 85, '1/2 cup, plus more for topping');
+
+
+
+
+
 --ingredients for spinach artichoke dip
 
 
 
 
 --hummus
---marinated pretzels
---kettle corn
 --pigs in a blanket
 
 
