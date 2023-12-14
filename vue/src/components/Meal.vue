@@ -17,6 +17,9 @@
       <button class="delete-meal" v-on:click.prevent="deleteMeal" v-if="!show && !inDetails">
         Delete Meal
       </button>
+      <button class="delete-meal" v-on:click.prevent="removeMeal" v-if="false">
+        Remove Meal
+      </button>
       <button class="btn-cancel" type="button" @click="cancel" v-if="inDetails || inCreate">
         Return
       </button>
@@ -43,6 +46,7 @@ export default {
       mealId: 0,
       mealName: "",
       mealDescription: "",
+      mealPlanId: 0,
       inDetails: this.$route.name == "mealDetailsView",
       inEdit: this.$route.name == "editMealPlan",
       inAdd: this.$route.name == "addMealPlan",
@@ -51,23 +55,6 @@ export default {
     };
   },
   methods: {
-    // loadMeals() {
-    //   mealService
-    //     .list(this.meal.mealId)
-    //     .then((response) => {
-    //       console.log("response", response);
-    //       this.meal = response.data;
-    //     })
-    //     .catch((error) => {
-    //       if (error.response) {
-    //         console.log("Error loading meals: ", error.response.status);
-    //       } else if (error.request) {
-    //         console.log("Error loading meals: unable to communicate to server");
-    //       } else {
-    //         console.log("Error loading meals: make request");
-    //       }
-    //     });
-    // },
     loadRecipes() {
       mealService
         .listRecipesFromMeal(this.meal.mealId)
@@ -85,50 +72,29 @@ export default {
           }
         });
     },
-    // loadMealRecipes() {
-    //   MealService.listRecipesFromMeal(this.item.mealId)
-    //     .then((response) => {
-    //       console.log("successful recipe/loadRecipeIngredients");
-    //       this.ingredients = response.data;
-    //     })
-    //     .catch((error) => {
-    //       if (error.response) {
-    //         console.log(
-    //           "Error loading recipe ingredients: ",
-    //           error.response.status
-    //         );
-    //       } else if (error.request) {
-    //         console.log(
-    //           "Error loading ingredients: unable to communicate to server"
-    //         );
-    //       } else {
-    //         console.log("Error loading ingredients: make request");
-    //       }
-    //     });
-    // },
-
-    // saveMeal() {
-    //   mealService
-    //     .createMeal(this.meal)
-    //     .then((response) => {
-    //       console.log(response);
-    //       this.$router.push({ name: "meal" });
-    //       this.buttonClick();
-    //       //location.reload();
-    //     })
-    //     .catch((error) => {
-    //       if (error.response) {
-    //         console.log("Error saving meal: ", error.response.status);
-    //       } else if (error.request) {
-    //         console.log("Error saving meal: unable to communicate to server");
-    //       } else {
-    //         console.log("Error saving meal: make request");
-    //       }
-    //     });
-    // },
+ 
     deleteMeal() {
       mealService
         .deleteMeal(this.meal.mealId)
+        .then((response) => {
+          console.log(response);
+          location.reload();
+        })
+        .catch((error) => {
+          if (error.response) {
+            console.log("Error removing mealplan: ", error.response.status);
+          } else if (error.request) {
+            console.log(
+              "Error removing mealplan: unable to communicate to server"
+            );
+          } else {
+            console.log("Error removing mealplan: make request");
+          }
+        });
+    },
+    removeMeal() {
+      mealPlanService
+        .removeMealFromPlan(this.mealPlan.mealPlanId, this.meal.mealId)
         .then((response) => {
           console.log(response);
           location.reload();
@@ -156,10 +122,6 @@ export default {
     console.log("meal item", this.item);
     this.meal = this.item;
     this.mealId = this.meal.mealId;
-    // if (this.$route.name == "meal") {
-    //   this.loadMeals();
-    // } else 
-    // if (this.$route.name == "mealDetailsView") {
 
     if (this.meal.recipeList) {
       this.loadRecipes();

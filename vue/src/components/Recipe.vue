@@ -33,8 +33,8 @@
       <button class="edit-recipe" v-on:click="$router.push('/recipe/favorites/' + recipe.recipeId + '/edit')" v-if="inDetails">
         Edit Recipe
       </button>
-      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="inFavorites || inEdit || inAdd || inMealDetails">
-        Delete Recipe
+      <button class="remove-recipe" v-on:click.prevent="removeRecipe" v-if="inDetails">
+        Remove Recipe
       </button>
       <button class="btn-cancel" type="button" @click="cancel" v-if="inDetails">Return</button>
     </div>
@@ -121,6 +121,7 @@ export default {
         .then((response) => {
           console.log(response);
           //this.$router.push({name: 'favorites' });
+          //location.reload();
           this.cancel();
         })
         .catch((error) => {
