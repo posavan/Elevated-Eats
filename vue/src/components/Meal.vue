@@ -7,7 +7,8 @@
       <recipe v-for="recipe in item.recipeList" v-bind:key="recipe.recipeId" v-bind:item="recipe" />
     </section>
     <div class="button-container">
-      <button class="view-meal-details" v-on:click="this.$router.push(`/meal/${this.mealId}`)" v-if="!inDetails && !inAdd">
+      <button class="view-meal-details" v-on:click="this.$router.push(`/meal/${this.mealId}`)"
+        v-if="!inDetails && !inAdd">
         View Meal Details
       </button>
       <button class="edit-meal" v-on:click="this.$router.push({ name: 'EditMealView', params: { mealId: this.mealId } })"
@@ -46,7 +47,7 @@ export default {
       inEdit: this.$route.name == "editMealPlan",
       inAdd: this.$route.name == "addMealPlan",
       inCreate: this.$route.name == "createMeal",
-      show: this.$route.name == "meal"
+      show: this.$route.name == "meal",
     };
   },
   methods: {
@@ -130,10 +131,7 @@ export default {
         .deleteMeal(this.meal.mealId)
         .then((response) => {
           console.log(response);
-          // if (!this.show) {
-          //     this.cancel();
-          // }
-          this.cancel();
+          location.reload();
         })
         .catch((error) => {
           if (error.response) {

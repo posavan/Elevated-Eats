@@ -23,7 +23,7 @@
     </div>
 
     <button class="btn-create-meal" type="button" @click="this.$router.push({ name: 'createMeal' })"
-      v-if="showCreate">Create New Meal</button>
+      v-if="showCreate || showSave">Create New Meal</button>
     <div class="actions">
       <button class="btn-submit" type="submit">Save Meal Plan</button>
       <button class="btn-cancel" type="button" @click="cancel" v-if="!hide">Return</button>

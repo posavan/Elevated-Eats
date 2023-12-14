@@ -6,7 +6,8 @@
         </div>
         <div>
             <label for="description">Description: </label>
-            <textarea placeholder="description" name="description" id="description" v-model="editMealPlan.mealPlanDescription" />
+            <textarea placeholder="description" name="description" id="description"
+                v-model="editMealPlan.mealPlanDescription" />
         </div>
         <!-- display meals to be added -->
         <meal v-for="meal in this.editMealPlan.mealList" v-bind:key="meal.mealId" v-bind:item="meal" />
@@ -53,7 +54,7 @@ export default {
             showSave: this.$route.name == "addMealPlan",
             selected: {},
             meals: [],
-            
+
             editMealPlan: {
                 mealPlanId: this.mealplan.mealPlanId,
                 mealPlanName: this.mealplan.mealPlanName,
