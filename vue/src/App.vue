@@ -1,27 +1,32 @@
 <template>
   <div id="capstone-app">
     <div id="nav">
-      <span id="home">
-        &nbsp;<router-link v-bind:to="{ name: 'home' }">Home</router-link>&nbsp;|&nbsp;
-      </span>
-      <span id="mealplan">
-        <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token != ''">My Meal
+      <li><span id="home" >
+        &nbsp;<router-link v-bind:to="{ name: 'home' }"><img src="/img/homeIcon.png" style="padding: 0; margin: 0; border:0"> </router-link>&nbsp; &nbsp;
+      </span></li>
+      <li><span id="mealplan">
+        <router-link v-bind:to="{ name: 'mealplan' }" v-if="this.$store.state.token != ''" style="
+          text-decoration: none; color: white;">My Meal
           Plans</router-link>&nbsp;
-      </span>
-      <span id="user">
-        &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''">My
+      </span></li>
+      <li><span id="user">
+        &nbsp;<router-link v-bind:to="{ name: 'favorites' }" v-if="this.$store.state.token != ''" style="
+          text-decoration: none; color: white;">My
           Recipes</router-link>&nbsp;
-      </span>
-      <span id="recipe">
-        &nbsp;<router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''">Recipes</router-link>&nbsp;
-      </span>
-      <span id="meal">
-        &nbsp;<router-link v-bind:to="{ name: 'meal' }" v-if="this.$store.state.token != ''">Meals </router-link>&nbsp;
-      </span>
-      <span id="logout">
-        &nbsp;|&nbsp;<router-link v-bind:to="{ name: 'logout' }"
-          v-if="this.$store.state.token != ''">Logout</router-link>&nbsp;
-      </span>
+      </span></li>
+      <li><span id="recipe">
+        &nbsp;<router-link v-bind:to="{ name: 'recipe' }" v-if="this.$store.state.token != ''" style="
+          text-decoration: none; color: white;">Recipes</router-link>&nbsp;
+      </span></li>
+      <li><span id="meal">
+        &nbsp;<router-link v-bind:to="{ name: 'meal' }" v-if="this.$store.state.token != ''" style="
+          text-decoration: none; color: white;">Meals </router-link>&nbsp;
+      </span></li>
+      <li><span id="logout">
+        &nbsp;&nbsp;<router-link v-bind:to="{ name: 'logout' }"
+          v-if="this.$store.state.token != ''" style="
+          text-decoration: none; color: white;">Logout</router-link>&nbsp;
+      </span></li>
     </div>
     <router-view />
   </div>
@@ -32,9 +37,55 @@ body {
   margin: 0%;
   padding: 0%;
   border: 0%;
+    
+}
+
+
+#nav {
+  list-style-type: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+  overflow: hidden;
+  background-color: rgb(235, 142, 42);
+  position: fixed; 
+  top: 0;
+  width: 100%;
+  height: 50px;
+  font-size: 18px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  z-index: 99999;
+}
+
+li{ 
+  float: left;
+  border-right: 1px solid white;
+
+}
+li span#home{
+  padding-top: 8px;
+  padding-right: 3px;
+  
+  
+}
+
+li span{
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li span:hover{
+  background-color:  rgb(37, 36, 42);
+}
+
+.active {
+  background-color: black;
 }
 
 h1 {
+  margin-top: 6%;
   font-family: Georgia, 'Times New Roman', Times, serif;
   text-align: center;
   font-weight: normal;
@@ -83,6 +134,7 @@ div.button-container {
   padding-bottom: 0%;
 }
 
+
 .button{
   align-self: center;
   background-color: #fff;
@@ -124,38 +176,33 @@ div.button-container {
 }
 
 
-/* button:hover {
-  border-style: dotted;
-} */
-
-/* section.recipe {
-  text-align: center;
-}
-section.meal {
-  background-color: rgb(255, 207, 111);
-} */
-
 html {
   background-color: white;
 }
-
-#nav {
-  /* float: left; */
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: rgb(245, 141, 30);
-  color: white;
-  padding: 10px;
-  background-blend-mode: multiply;
-}
-
-#home,
 #recipe,
 #user,
 #mealplan,
-#meal,
-#logout {
+#meal
+{
   font-size: 18px;
-  margin-right: 65px;
+  text-align: center;
+}
+
+/* #nav {
+  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(245, 141, 30);
+  color: white;
+  padding: 20px;
+  background-blend-mode: multiply;
+  
+}
+
+
+#logout {
+  font-weight: bold;
+  font-size: 18px;
+  margin-left: 250px;
   text-align: center;
 }
 
@@ -166,7 +213,8 @@ html {
 #mealplan a,
 #logout a {
   text-decoration: none;
-  color: white;
+  color: white; 
+  text-align: center;
 }
 
 #home a:hover,
@@ -176,15 +224,9 @@ html {
 #mealplan a:hover,
 #logout a:hover {
   color: black;
-}
-
-#home a:hover,
-#recipe a:hover,
-#user a:hover,
-#meal a:hover,
-#mealplan a:hover,
-#logout a:hover {
   text-decoration: underline;
   cursor: pointer;
-}
+} */
+
+
 </style>
