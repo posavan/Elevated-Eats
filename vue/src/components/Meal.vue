@@ -3,7 +3,7 @@
     <h2>Meal: {{ item.mealName }}</h2>
     <p>Description: {{ item.mealDescription }}</p>
     <section v-if="inDetails" class="container">
-      <p>Recipes:</p>
+      
       <recipe v-for="recipe in item.recipeList" v-bind:key="recipe.recipeId" v-bind:item="recipe" />
     </section>
     <div class="button-container">
@@ -183,12 +183,14 @@ h1 {
   padding: 1%;
   border-left: 10%;
   border-right: 10%;
+padding-bottom: 7%;
 
 }
 
 .container {
   padding: 10%;
   padding-top: .05%;
+  padding-bottom: 0%;
 }
 
 .meal:hover {

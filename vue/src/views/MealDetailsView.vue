@@ -26,13 +26,12 @@ export default {
       meal: {},
       mealName: "",
       mealId: 0,
-      hide: false
+      hide: false,
     };
   },
   methods: {
     loadMeal() {
-      MealService
-        .getMeal(this.mealId)
+      MealService.getMeal(this.mealId)
         .then((response) => {
           this.meal = response.data;
         })
@@ -64,10 +63,9 @@ export default {
     },
     cancel() {
       this.$router.back();
-    }
+    },
   },
   created() {
-   
     this.mealId = this.$route.params.mealId;
     this.loadMeal();
   },
@@ -75,9 +73,10 @@ export default {
 </script>
 
 <style scoped>
- h1{
+h1 {
   text-align: center;
- }
+}
+
 div {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: large;
@@ -85,19 +84,21 @@ div {
   border-radius: 50px;
   padding: auto;
 }
-p{
+
+p {
   font-weight: bold;
 }
-.meal-details{
-  padding: 10%;
-  padding-top: .05%;
+
+.meal-details {
+  padding: 20%;
+  padding-top: 0.05%;
 }
 
 button.remove-meal {
-padding-top: 10%;
+  padding-top: 10%;
   align-items: right;
 }
-.edit-meal-details{
-    align-items: right;
+.edit-meal-details {
+  align-items: right;
 }
 </style>
