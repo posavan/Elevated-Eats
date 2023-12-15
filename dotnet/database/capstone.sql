@@ -253,9 +253,8 @@ INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (
 INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Soup and Salad', 'Sorry, no breadsticks!');
 INSERT INTO meal_plans (user_id, meal_plan_name, meal_plan_description) VALUES (1, 'Party Plates!', 'Impress guests with a delicious spread');
 
---insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 1, 'Breakfast');
---insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (1, 3, 'Dinner');
---insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (2, 1, 'Breakfast');
+insert into meal_plans_meals (meal_plan_id, meal_id, meal_name) VALUES (3, 3, 'Lunch');
+
 
 --ingredients for lasagna
 INSERT INTO ingredients (ingredient_name) VALUES ( 'Lasagna noodles' )
